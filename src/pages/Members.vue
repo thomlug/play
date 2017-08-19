@@ -3,12 +3,7 @@
     <p>Members</p>
     <div>
       <table-component
-     :data="[
-     { firstName: 'John', birthday: '04/10/1940', songs: 72 },
-     { firstName: 'Paul', birthday: '18/06/1942', songs: 70 },
-     { firstName: 'George', birthday: '25/02/1943', songs: 22 },
-     { firstName: 'Ringo', birthday: '07/07/1940', songs: 2 },
-     ]"
+     :data="fetchData"
      sort-by="songs"
      sort-order="asc"
      >
@@ -26,6 +21,18 @@
   export default {
     components: {
       MainLayout
+    },
+    methods:{
+      fetchData: function({page, filters, sort}){
+        var response = {data:[
+            { firstName: 'Thomas', birthday: '04/10/1940', songs: 72 },
+            { firstName: 'Paul', birthday: '18/06/1942', songs: 70 },
+            { firstName: 'George', birthday: '25/02/1943', songs: 22 },
+            { firstName: 'Ringo', birthday: '07/07/1940', songs: 2 },
+            ]};
+
+            return response
+      }
     }
   }
 </script>

@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import TableComponent from 'vue-table-component';
 import routes from './routes'
 Vue.use(VueRouter)
+Vue.use(TableComponent);
 
 var VueFire = require('vuefire')
 
