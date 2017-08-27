@@ -3,13 +3,13 @@
     <p>Members</p>
     <div>
       <table-component
-     :data="fetchData"
+     :data="users"
         >
-     <table-column show="playerName" label="Player name"></table-column>
-     <table-column show="team" label="Team"></table-column>
-     <table-column show="permissions" label="Permissions"></table-column>
+     <table-column show="first_name" label="First Name"></table-column>
+     <table-column show="last_name" label="Last Name"></table-column>
+     <table-column show="finance" label="Payment status"></table-column>
+     <table-column show="availability" label="Availability"></table-column>
  </table-component>
- {{users}}
     </div>
   </main-layout>
 </template>
@@ -22,19 +22,6 @@
     components: {
       MainLayout
     },
-    methods:{
-      fetchData: function({page, filters, sort}){
-        var response = {data:[
-            { playerName: 'Alvaro Arbeloa', permissions: 'Player', team: 'Real Madrid' },
-            { playerName: 'Ever Banega', permissions: 'Player', team: 'Sevilla' },
-            { playerName: 'Sergui Busquets', permissions: 'Player', team: 'FC Barcelona' },
-            { playerName: 'Danilo', permissions: 'Player', team: 'Valencia' },
-            ]};
-
-            return response
-      }
-      
-    },
     data () {
       return {
         users:  {}
@@ -42,7 +29,7 @@
     },
     firebase: {
       users:{
-          source: db.ref('people')
+          source: db.ref('player')
       }
     }
      
