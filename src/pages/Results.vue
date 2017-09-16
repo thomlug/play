@@ -15,15 +15,18 @@
     components: {
       MainLayout
     },
-    data () {
+    data: function () {
       return {
-        match:  {}
+        match:  {},
+        matchId: this.$route.params.match_id
         }
     },
-    firebase: {
-      match:{
-          source: db.ref('match/')//+this.$route.params.match_id)
-      }
+    firebase() {
+      return{
+        match:{
+            source: db.ref('match/'+this.$route.params.match_id)
+        }
+      };
     }
      
     
