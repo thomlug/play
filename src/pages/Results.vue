@@ -1,9 +1,22 @@
 <template>
   <main-layout>
     <p>Result</p>
-    <div>
-        {{match}}
-    </div>
+    <dl class="dl-horizontal">
+      <dt> Home Team</dt>
+      <dd> {{match.homeTeam}} </dd>
+      <dt> Home Photo</dt>
+      <dd> <img :src="match.homePhoto"/></dd>
+        <dt> Away Team</dt>
+      <dd> {{match.awayTeam}}</dd>
+      <dt> Away Photo</dt>
+      <dd> <img :src="match.awayPhoto"/></dd>
+        <dt> Date</dt>
+      <dd> {{match.date}}</dd>
+
+        <dt> Ground</dt>
+      <dd> {{match.ground}}</dd>
+
+    </dl>
   </main-layout>
 </template>
 
@@ -24,7 +37,8 @@
     firebase() {
       return{
         match:{
-            source: db.ref('match/'+this.$route.params.match_id)
+            source: db.ref('match/'+this.$route.params.match_id),
+            asObject: true
         }
       };
     }
