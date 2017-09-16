@@ -30,6 +30,7 @@
       <div v-show="!signedIn" id="firebaseui-auth-container"></div>
         <div v-bind="signedIn">test</div>
         <button v-on:click="signedIn = !signedIn">Toggle</button>
+        <router-view></router-view>
     </div>
     <script src="/dist/build.js"></script>
   </body>

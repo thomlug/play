@@ -2,8 +2,17 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueFire from 'vuefire';
 import TableComponent from 'vue-table-component';
-import routes from './routes';
 import './firebase';
+
+import App from './App.vue'
+
+import Home from './pages/Home.vue'
+import Members from './pages/Members.vue'
+import Teams from './pages/Teams.vue'
+import Competitions from './pages/Competitions.vue'
+import Marketing from './pages/Marketing.vue'
+import Fixtures from './pages/Fixtures.vue'
+import Results from './pages/Results.vue'
 
 Vue.use(VueRouter);
 Vue.use(TableComponent);
@@ -19,20 +28,32 @@ var uiConfig = {
       ],
       // Terms of service url.
       tosUrl: '<your-tos-url>'
-    };
+};
   
-    // Initialize the FirebaseUI Widget using Firebase.
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
-    // The start method will wait until the DOM is loaded.
-    ui.start('#firebaseui-auth-container', uiConfig);
+// Initialize the FirebaseUI Widget using Firebase.
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
+// The start method will wait until the DOM is loaded.
+ui.start('#firebaseui-auth-container', uiConfig);
   
-  firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     app.data.signedIn = true;
   } else {
     app.data.signedIn = false;
   }
-  });
+});
+
+const routes = [
+  {path: '/home', alias:'/', component: Home},
+  {path: '/members', component: Members},
+  {path: '/teams', component: Teams},
+  {path: '/competitions', component: Competitions},
+  {path: '/marketing', component: Marketing},
+  {path: '/fixtures', component: Fixtures},
+  {path: '/results/:match_id', component: Results, name:'results'},
+];
+
+const router = new VueRouter({routes});
   
 
 const app = new Vue({
@@ -47,16 +68,9 @@ const app = new Vue({
       {title: 'Outstanding Payments', subtitle: 'From players in your organisation'},
     ]}
   },
-  computed: {
-    ViewComponent () {
-      const matchingView = routes[this.currentRoute]
-      return matchingView
-        ? require('./pages/' + matchingView + '.vue')
-        : require('./pages/404.vue')
-    }
-  },
+  router,
   render (h) {
-    return h(this.ViewComponent)
+    return h(App)
   }
 })
 

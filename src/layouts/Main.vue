@@ -6,14 +6,26 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link" href="/">Dashboard <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="/members">Members</a>
-            <a class="nav-item nav-link" href="/teams">Teams</a>
-            <a class="nav-item nav-link" href="/competitions">Competitions</a>
-            <a class="nav-item nav-link" href="/marketing">Marketing</a>
-            <a class="nav-item nav-link" href="/fixtures">Fixtures/Results</a>
-          </div>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <router-link active-class="active" exact class="nav-item nav-link" to="home">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <router-link active-class="active" exact class="nav-item nav-link" to="members">Members</a>
+            </li>
+            <li class="nav-item">
+              <router-link active-class="active" exact class="nav-item nav-link" to="teams">Teams</a>
+            </li>
+            <li class="nav-item">
+              <router-link active-class="active" exact class="nav-item nav-link" to="competitions">Competitions</a>
+            </li>
+            <li class="nav-item">
+              <router-link active-class="active" exact class="nav-item nav-link" to="marketing">Marketing</a>
+            </li>
+            <li class="nav-item">
+              <router-link active-class="active" exact class="nav-item nav-link" to="fixtures">Fixtures/Results</a>
+            </li>
+          </ul>
         </div>
       </nav>
 

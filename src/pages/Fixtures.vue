@@ -3,7 +3,7 @@
     <p>Fixtures/Results</p>
     <div>
       <table-component
-     :data="users"
+     :data="fixtures"
         >
      <table-column show="homeTeam" label="Home Team"></table-column>
      <table-column show="awayTeam" label="Away Team"></table-column>
@@ -12,6 +12,8 @@
      <table-column show="status" label="Status"></table-column>
  </table-component>
     </div>
+    <router-link class="btn btn-warning btn-xs" v-bind:to="{name: 'results', params: {product_id: '-KrxDNaFszT_ocHrWgF-'}}">Edit</router-link>
+    {{fixtures}}
   </main-layout>
 </template>
 
@@ -25,11 +27,11 @@
     },
     data () {
       return {
-        users:  {}
+        fixtures:  {}
         }
     },
     firebase: {
-      users:{
+      fixtures:{
           source: db.ref('match')
       }
     }
