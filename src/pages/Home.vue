@@ -1,5 +1,8 @@
 <template>
   <main-layout>
+    <div class="jumbotron">
+       <h1 class="display-3">{{getCurrentTeam().name}}</h1>
+    </div>
     <div class="row">
       <div v-for="card in cards" :key="card.Title" class="col-md-3">
         <div class="card">
@@ -12,39 +15,43 @@
       </div>
     </div>
 
-<div class="row">
-  <div class="card col-md-8">
-      <div class="card-block">
-        <h4 class="card-title">Starting lineup</h4>
+    <div class="row">
+      <div class="card col-md-2">
         <div class="card-block">
-          <div class="row" v-for="(formationRowWidth, formationRow) in team.formation" :key="formationRow">
-            <div v-for="formationColumn in formationRowWidth" :key="formationColumn" 
-              class="center-block text-center" 
-              v-bind:class="calculateFormationClass(formationRowWidth)" 
-              v-bind:style="{'max-width': (100/formationRowWidth) + '%'}">
-              <div class="player-container text-center">
-                  <img class="img-fluid rounded-circle player-avatar" :src="getPlayer(formationRow, formationColumn).photo"/>
-                  {{getPlayer(formationRow, formationColumn).first_name}}
+          <h4 class="card-title">Next Fixture</h4>
+        </div>
+      </div>
+      <div class="card col-md-7">
+          <div class="card-block">
+            <h4 class="card-title">Starting lineup</h4>
+            <div class="card-block">
+              <div class="row" v-for="(formationRowWidth, formationRow) in getCurrentTeam().formation" :key="formationRow">
+                <div v-for="formationColumn in formationRowWidth" :key="formationColumn" 
+                  class="center-block text-center" 
+                  v-bind:class="calculateFormationClass(formationRowWidth)" 
+                  v-bind:style="{'max-width': (100/formationRowWidth) + '%'}">
+                  <div class="player-container text-center">
+                      <img class="img-fluid rounded-circle player-avatar" :src="getPlayer(formationRow, formationColumn).photo"/>
+                      {{getPlayer(formationRow, formationColumn).first_name}}
+                  </div>
+                </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="card col-md-3">
+        <div class="card-block">
+          <h4 class="card-title">Subs</h4>
+            <div class="card-block">
+              <div v-for="player in substitutePlayers()" :key="player['.key']" class="player-container text-center">
+                <img class="img-fluid rounded-circle player-avatar" :src="player.photo"/>
+                {{player.first_name}}
               </div>
             </div>
-       </div>
-     </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="card col-md-3">
-      <div class="card-block">
-        <h4 class="card-title">Subs</h4>
-        <div class="card-block">
-          <span v-for="player in substitutePlayers()" :key="player.key">
-          <img :src="player.photo"></img>
-          <h5 class="card-title">{{player.first_name}}</h5>
-        </span>
-       </div>
-     </div>
-    </div>
-  </div>
- </div>
-{{team}}
   </main-layout>
 </template>
   
@@ -61,12 +68,12 @@
     },
     data: function(){
         return {
-          cards: [
-            {title: 'Active Competitions', subtitle: 'In your organisation'},
-            {title: 'Revenue', subtitle: 'Per Competition'},
-            {title: 'Total Revenue To Date', subtitle: 'In your organisation from payments'},
-            {title: 'Outstanding Payments', subtitle: 'From players in your organisation'},
-          ],
+          // cards: [
+          //   {title: 'Active Competitions', subtitle: 'In your organisation'},
+          //   {title: 'Revenue', subtitle: 'Per Competition'},
+          //   {title: 'Total Revenue To Date', subtitle: 'In your organisation from payments'},
+          //   {title: 'Outstanding Payments', subtitle: 'From players in your organisation'},
+          // ],
           slickOptions: {
                         //options can be used from the plugin documentation
                         slidesToShow: 4,
@@ -80,20 +87,15 @@
                         swipe: true
                     },
           players: {},  
-          teams: {},
-          team:{}
+          teams: {}          
       };
     },
     firebase: {
       players:{
           source: db.ref('player')
       },
-       teams:{
-          source: db.ref('team')
-      },
-      team:{
-        source: db.ref('team/-KrO8CaNLHD9hgMRWaXB'),
-        asObject: true
+      teams:{
+        source: db.ref('team')
       }
     },
     methods: {
@@ -111,15 +113,26 @@
               this.$refs.slick.reSlick();
           });
       },
+      getCurrentTeam(){
+        return _.head(this.teams);
+      },
+      getPlayersForCurrentTeam(){
+        var teamKey = this.getCurrentTeam()[".key"];
+        return _.filter(this.players, function(p){return !_.isUndefined(p[teamKey])});;
+      },
       calculateFormationClass(e){
           var cols = 12/e;
           return "col-xs-"+cols + " col-md-"+cols;
       },
       activePlayers(){
-        return _.filter(this.players, function(p){return !_.isUndefined(p.position);});
+        return _.filter(this.getPlayersForCurrentTeam(), function(p){return !_.isUndefined(p.position);});
       },
       substitutePlayers(){
-        return _.filter(this.players, function(p){return _.isUndefined(p.position);});
+        var component = this;
+        return _.filter(this.getPlayersForCurrentTeam(), function(p){
+            return !_.isUndefined(p.position) 
+            && _.every(p.position, function(pos){return pos === 0;});
+          });
       },
       getPlayer(row, col){
         var result =  _.find(this.activePlayers(), function(p){
@@ -135,8 +148,8 @@
 .player-avatar{
     max-width:128px;
     max-width:100%;
-    margin: 0.5em;
-    border:0.5em solid red;
+    margin: 0.2em;
+    border: 0.2em solid #3b84d2;
     border-radius: 50em;
     -webkit-border-radius: 50em;
     -moz-border-radius: 50em;

@@ -1,10 +1,13 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
         <div v-show="!signedIn" id="firebaseui-auth-container"></div>
          <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+        <a class="navbar-brand" href="#">
+          <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo.jpg?alt=media&token=1c35a16a-5311-4c41-a91d-a264505a71a8" class="img-fluid">
+          </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <ul class="navbar-nav">
             <li class="nav-item">
