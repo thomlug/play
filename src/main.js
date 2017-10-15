@@ -21,6 +21,7 @@ Vue.use(VueRouter);
 Vue.use(TableComponent);
 Vue.use(VueFire);
 Vue.use(VueLodash, lodash)
+Vue.use(moment)
 Vue.prototype.moment = moment
 
   

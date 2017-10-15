@@ -77,6 +77,7 @@
   import {db} from '../firebase';
   import MainLayout from '../layouts/Main.vue'
   import Slick from 'vue-slick';
+  import moment from 'moment'
   
   export default {
     components: {
@@ -85,6 +86,7 @@
     },
     data: function(){
         return {
+          cards:[],
           // cards: [
           //   {title: 'Active Competitions', subtitle: 'In your organisation'},
           //   {title: 'Revenue', subtitle: 'Per Competition'},
@@ -137,7 +139,11 @@
         return _.head(this.teams);
       },
       getNextFixture(){
-        return _.head(this.fixtures);
+        var teamKey = this.getCurrentTeam()[".key"];
+        var component = this;
+        return _.find(this.fixtures, (f) => {
+          return component.moment(f.date) > component.moment() && !_.isUndefined(f[teamKey]);
+        });
       },
       getPlayersForCurrentTeam(){
         var teamKey = this.getCurrentTeam()[".key"];
