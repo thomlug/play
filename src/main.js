@@ -13,10 +13,14 @@ import Competitions from './pages/Competitions.vue'
 import Marketing from './pages/Marketing.vue'
 import Fixtures from './pages/Fixtures.vue'
 import Results from './pages/Results.vue'
+import lodash from 'lodash'
+import VueLodash from 'vue-lodash'
+
 
 Vue.use(VueRouter);
 Vue.use(TableComponent);
 Vue.use(VueFire);
+Vue.use(VueLodash, lodash)
 
   
 var uiConfig = {
