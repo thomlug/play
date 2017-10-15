@@ -19,6 +19,24 @@
       <div class="card col-md-2">
         <div class="card-block">
           <h4 class="card-title">Next Fixture</h4>
+          <div class="row">
+            <div class="col-4 team-photo-container">
+              <img :src="getNextFixture().homePhoto" class="play-photo team-photo">
+              <h3>{{getNextFixture().homeTeam}}</h3>
+              </div>
+            <div class="col-2">VS</div>
+            <div class="col-4 team-photo-container">
+              <img :src="getNextFixture().awayPhoto" class="play-photo team-photo">
+              <h3>{{getNextFixture().awayTeam}}</h3>
+              </div>
+          </div>
+          <div class="text-center">
+            <h2>{{moment(getNextFixture().date).format("hh:mm A")}}</h2>
+            <h3>{{moment(getNextFixture().date).format("dddd")}}</h3>
+          </div>
+          <div class="text-center">
+           <h4>{{getNextFixture().ground}}</h4>
+          </div>
         </div>
       </div>
       <div class="card col-md-7">
@@ -31,7 +49,7 @@
                   v-bind:class="calculateFormationClass(formationRowWidth)" 
                   v-bind:style="{'max-width': (100/formationRowWidth) + '%'}">
                   <div class="player-container text-center">
-                      <img class="img-fluid rounded-circle player-avatar" :src="getPlayer(formationRow, formationColumn).photo"/>
+                      <img class="img-fluid rounded-circle play-photo player-active" :src="getPlayer(formationRow, formationColumn).photo"/>
                       {{getPlayer(formationRow, formationColumn).first_name}}
                   </div>
                 </div>
@@ -44,14 +62,13 @@
           <h4 class="card-title">Subs</h4>
             <div class="card-block">
               <div v-for="player in substitutePlayers()" :key="player['.key']" class="player-container text-center">
-                <img class="img-fluid rounded-circle player-avatar" :src="player.photo"/>
+                <img class="img-fluid rounded-circle play-photo" :src="player.photo"/>
                 {{player.first_name}}
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   </main-layout>
 </template>
   
@@ -96,6 +113,9 @@
       },
       teams:{
         source: db.ref('team')
+      },
+      fixtures:{
+          source: db.ref('match')
       }
     },
     methods: {
@@ -115,6 +135,9 @@
       },
       getCurrentTeam(){
         return _.head(this.teams);
+      },
+      getNextFixture(){
+        return _.head(this.fixtures);
       },
       getPlayersForCurrentTeam(){
         var teamKey = this.getCurrentTeam()[".key"];
@@ -145,17 +168,28 @@
 </script>
 
 <<style>
-.player-avatar{
+.play-photo{
     max-width:128px;
     max-width:100%;
     margin: 0.2em;
-    border: 0.2em solid #3b84d2;
     border-radius: 50em;
     -webkit-border-radius: 50em;
     -moz-border-radius: 50em;
 }
 
+.player-active{
+    border: 0.2em solid #3b84d2;
+}
+
 .player-container{
+  max-width:128px;
+  margin: 0 auto;
+}
+
+.team-photo{
+  border: 0.2em solid #000;
+}
+.team-photo-container{
   max-width:128px;
   margin: 0 auto;
 }

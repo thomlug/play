@@ -10,10 +10,15 @@
      <table-column show="ground" label="Ground"></table-column>
      <table-column show="date" label="Date (UTC)"></table-column>
      <table-column show="status" label="Status"></table-column>
+     <table-column show="status" label="Status">
+      <template scope="row">
+        <router-link class="btn btn-warning btn-xs" v-bind:to="{name: 'results', params: {match_id: row['.key']}}">Edit</router-link>
+       </template>
+     </table-column>
+    
+     
  </table-component>
     </div>
-    <router-link class="btn btn-warning btn-xs" v-bind:to="{name: 'results', params: {match_id: '-KrxDNaFszT_ocHrWgF-'}}">Edit</router-link>
-    {{fixtures}}
   </main-layout>
 </template>
 

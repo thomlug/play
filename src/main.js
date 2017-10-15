@@ -15,12 +15,13 @@ import Fixtures from './pages/Fixtures.vue'
 import Results from './pages/Results.vue'
 import lodash from 'lodash'
 import VueLodash from 'vue-lodash'
-
+import moment from 'moment'
 
 Vue.use(VueRouter);
 Vue.use(TableComponent);
 Vue.use(VueFire);
 Vue.use(VueLodash, lodash)
+Vue.prototype.moment = moment
 
   
 var uiConfig = {
