@@ -16,16 +16,16 @@
     </div>
 
     <div class="row">
-      <div class="card col-md-2">
+      <div class="card col-xl-2">
         <div class="card-block">
           <h4 class="card-title">Next Fixture</h4>
           <div class="row">
-            <div class="col-4 team-photo-container">
+            <div class="col-4">
               <img :src="getNextFixture().homePhoto" class="play-photo team-photo">
               <h3>{{getNextFixture().homeTeam}}</h3>
               </div>
             <div class="col-2">VS</div>
-            <div class="col-4 team-photo-container">
+            <div class="col-4">
               <img :src="getNextFixture().awayPhoto" class="play-photo team-photo">
               <h3>{{getNextFixture().awayTeam}}</h3>
               </div>
@@ -39,7 +39,7 @@
           </div>
         </div>
       </div>
-      <div class="card col-md-7">
+      <div class="card col-xl-7">
           <div class="card-block">
             <h4 class="card-title">Starting lineup</h4>
             <div class="card-block">
@@ -57,7 +57,7 @@
         </div>
         </div>
       </div>
-      <div class="card col-md-3">
+      <div class="card col-xl-3">
         <div class="card-block">
           <h4 class="card-title">Subs</h4>
             <div class="card-block">
