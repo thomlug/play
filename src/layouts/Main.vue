@@ -1,6 +1,5 @@
 <template>
   <div class="container-fluid">
-        <div v-show="!signedIn" id="firebaseui-auth-container"></div>
          <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -44,4 +43,28 @@
       VLink
     }
   }
+  
+  var uiConfig = {
+  signInFlow: 'popup',
+      signInSuccessUrl: '#',
+      signInOptions: [
+        // Leave the lines as is for the providers you want to offer your users.
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID         
+      ],
+      // Terms of service url.
+      tosUrl: '<your-tos-url>'
+};
+  
+// Initialize the FirebaseUI Widget using Firebase.
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
+// The start method will wait until the DOM is loaded.
+ui.start('#firebaseui-auth-container', uiConfig);
+  
+// firebase.auth().onAuthStateChanged(function(user) {
+//   if (user) {
+//     this.data.signedIn = true;
+//   } else {
+//     this.data.signedIn = false;
+//   }
+// });
 </script>
