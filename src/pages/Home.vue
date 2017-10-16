@@ -21,12 +21,22 @@
           <h4 class="card-title">Next Fixture</h4>
           <div class="row">
             <div class="col-4">
-              <img :src="getNextFixture().homePhoto" class="play-photo team-photo">
+              <div v-if="!_.isUndefined(getNextFixture().homePhoto)">
+                <img :src="getNextFixture().homePhoto" class="play-photo team-photo">
+              </div>
+              <div v-else>
+                <div class="circle team-photo"></div>
+              </div>
               <h3>{{getNextFixture().homeTeam}}</h3>
               </div>
             <div class="col-2">VS</div>
             <div class="col-4">
-              <img :src="getNextFixture().awayPhoto" class="play-photo team-photo">
+             <div v-if="!_.isUndefined(getNextFixture().awayPhoto)">
+                <img :src="getNextFixture().awayPhoto" class="play-photo team-photo">
+              </div>
+              <div v-else>
+                <div class="circle team-photo"></div>
+              </div>
               <h3>{{getNextFixture().awayTeam}}</h3>
               </div>
           </div>
@@ -43,14 +53,21 @@
           <div class="card-block">
             <h4 class="card-title">Starting lineup</h4>
             <div class="card-block">
-              <div class="row" v-for="(formationRowWidth, formationRow) in getCurrentTeam().formation" :key="formationRow">
+              <div class="row" v-for="(formationRowWidth, formationRow) in getNextFixtureDetails().formation" :key="formationRow">
                 <div v-for="formationColumn in formationRowWidth" :key="formationColumn" 
                   class="center-block text-center" 
                   v-bind:class="calculateFormationClass(formationRowWidth)" 
                   v-bind:style="{'max-width': (100/formationRowWidth) + '%'}">
                   <div class="player-container text-center">
+                    <template v-if="getPlayer(formationRow, formationColumn).photo">
                       <img class="img-fluid rounded-circle play-photo player-active" :src="getPlayer(formationRow, formationColumn).photo"/>
                       {{getPlayer(formationRow, formationColumn).first_name}}
+                    </template>
+                    <template v-else>
+                      <div class="circle player-active"> 
+                      </div>
+                      {{getPlayer(formationRow, formationColumn).first_name}}
+                    </template>
                   </div>
                 </div>
           </div>
@@ -60,11 +77,20 @@
       <div class="card col-xl-3">
         <div class="card-block">
           <h4 class="card-title">Subs</h4>
-            <div class="card-block">
-              <div v-for="player in substitutePlayers()" :key="player['.key']" class="player-container text-center">
+            <div class="card-block row">
+              <div v-for="player in substitutePlayers()" :key="player['.key']" class="player-container text-center col-md-6">
                 <img class="img-fluid rounded-circle play-photo" :src="player.photo"/>
                 {{player.first_name}}
               </div>
+            </div>
+          </div>
+          <div class="card-block">
+          <h4 class="card-title">Game Info</h4>
+            <div class="card-block">
+              <dl class="dl-horizontal">
+                <dt> Game Plan</dt>
+                <dd>{{getNextGameInfo().gamePlan}}</dd>
+              </dl>
             </div>
           </div>
         </div>
@@ -118,6 +144,9 @@
       },
       fixtures:{
           source: db.ref('match')
+      },
+      teamFixtures:{
+          source: db.ref('teamFixture')
       }
     },
     methods: {
@@ -135,15 +164,24 @@
               this.$refs.slick.reSlick();
           });
       },
+      getNextGameInfo(){
+        return this.getNextFixtureDetails().gameInfo || {};
+      },
+      getNextFixtureDetails(){
+        var teamFixture = _.head(this.teamFixtures);
+        return !_.isUndefined(teamFixture) ? teamFixture  : {}
+      },
       getCurrentTeam(){
         return _.head(this.teams);
       },
       getNextFixture(){
         var teamKey = this.getCurrentTeam()[".key"];
         var component = this;
-        return _.find(this.fixtures, (f) => {
-          return component.moment(f.date) > component.moment() && !_.isUndefined(f[teamKey]);
+        var fixture = _.find(this.fixtures, (f) => {
+          return f.status === 'active' && !_.isUndefined(f[teamKey]);
         });
+        
+        return !_.isUndefined(fixture) ? fixture : {startDate: "unknown"};
       },
       getPlayersForCurrentTeam(){
         var teamKey = this.getCurrentTeam()[".key"];
@@ -165,9 +203,9 @@
       },
       getPlayer(row, col){
         var result =  _.find(this.activePlayers(), function(p){
-          return p.position[0] === row && p.position[1] === col;
+          return p.position[0] === (row+1) && p.position[1] === col;
         });
-        return !_.isUndefined(result) ? result : {first_name: "", photo: "https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/dwayneweight.PNG?alt=media&token=63adc3d7-0b2c-4ae1-a141-c0d74a04af28"};
+        return !_.isUndefined(result) ? result : {};
       }
     },
   }
@@ -175,7 +213,6 @@
 
 <<style>
 .play-photo{
-    max-width:128px;
     max-width:100%;
     margin: 0.2em;
     border-radius: 50em;
@@ -198,5 +235,14 @@
 .team-photo-container{
   max-width:128px;
   margin: 0 auto;
+}
+.circle{
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 0;
+  padding: 50% 0;
+  border-radius: 50%;
+  line-height: 0;
 }
 </style>

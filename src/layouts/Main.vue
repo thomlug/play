@@ -46,7 +46,7 @@
   
   var uiConfig = {
   signInFlow: 'popup',
-      signInSuccessUrl: '#',
+      signInSuccessUrl: '#/home',
       signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID         
