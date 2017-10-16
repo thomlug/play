@@ -16,7 +16,7 @@
     </div>
 
     <div class="row">
-      <div class="card col-xl-2">
+      <div class="card col-xl-3">
         <div class="card-block">
           <h4 class="card-title">Next Fixture</h4>
           <div class="row">
@@ -51,14 +51,12 @@
           
           <div class="card-block">
             <h4 class="card-title">Update your status</h4>
-            <div class="btn-group" role="group" aria-label="Basic example">
-              <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary">Available</button>
+              <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available">Available</button>
               <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
               <button v-on:click="setCurrentPlayerAvailability('unknown')" type="button" class="btn btn-secondary">Unknown</button>
-            </div>
           </div>
       </div>
-      <div class="card col-xl-7">
+      <div class="card col-xl-6">
           <div class="card-block">
             <h4 class="card-title">Starting lineup</h4>
             <div class="card-block">
@@ -216,7 +214,7 @@
       },
       calculateFormationClass(e){
           var cols = 12/e;
-          return "col-xs-"+cols + " col-md-"+cols;
+          return "col-"+cols + " col-md-"+cols;
       },
       activePlayers(){
         return _.filter(this.getPlayersForCurrentTeam(), function(p){return !_.isUndefined(p.position);});
@@ -266,7 +264,7 @@
 }
 
 .player-available{
-    border: 0.2em solid #3b84d2;
+    border: 0.2em solid #2acad0;
 }
 
 .player-unavailable{
@@ -298,4 +296,18 @@
   border-radius: 50%;
   line-height: 0;
 }
+
+.btn-available{
+  background-color: #2acad0;
+  border-color: #138387;
+}
+
+.btn-available:hover, 
+.btn-available:focus, 
+.btn-available:active, 
+.btn-available.active, 
+.open .dropdown-toggle.btn-available { 
+  background-color: #22A4A8; 
+  border-color: #138387; 
+} 
 </style>
