@@ -60,11 +60,13 @@
                   v-bind:style="{'max-width': (100/formationRowWidth) + '%'}">
                   <div class="player-container text-center">
                     <template v-if="getPlayer(formationRow, formationColumn).photo">
-                      <img class="img-fluid rounded-circle play-photo player-active" :src="getPlayer(formationRow, formationColumn).photo"/>
+                      <img class="img-fluid rounded-circle play-photo" 
+                        v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)"  
+                        :src="getPlayer(formationRow, formationColumn).photo"/>
                       {{getPlayer(formationRow, formationColumn).first_name}}
                     </template>
                     <template v-else>
-                      <div class="circle player-active"> 
+                      <div class="circle player-unknown"> 
                       </div>
                       {{getPlayer(formationRow, formationColumn).first_name}}
                     </template>
@@ -79,8 +81,16 @@
           <h4 class="card-title">Subs</h4>
             <div class="card-block row">
               <div v-for="player in substitutePlayers()" :key="player['.key']" class="player-container text-center col-md-6">
-                <img class="img-fluid rounded-circle play-photo" :src="player.photo"/>
-                {{player.first_name}}
+                <template v-if="player.photo">
+                  <img class="img-fluid rounded-circle play-photo" 
+                    v-bind:class="calculatePlayerClass(player.availability)" 
+                    :src="player.photo"/>
+                    </template>
+                    <template v-else>
+                      <div class="circle" v-bind:class="calculatePlayerClass(player.availability)" >
+                      </div>
+                    </template>
+                    {{player.first_name}}
               </div>
             </div>
           </div>
@@ -206,6 +216,20 @@
           return p.position[0] === (row+1) && p.position[1] === col;
         });
         return !_.isUndefined(result) ? result : {};
+      },
+      calculatePlayerClass(availability){
+        if(_.isUndefined(availability) || _.isEmpty(availability) || availability === "unknown"){
+          return "player-unknown";
+        }
+        else if(availability.toLowerCase() === "available"){
+          return "player-available";
+        }
+        else if(availability.toLowerCase() === "unavailable"){
+          return "player-unavailable";
+        }
+        else{
+          return "player-unknown";
+        }
       }
     },
   }
@@ -220,8 +244,16 @@
     -moz-border-radius: 50em;
 }
 
-.player-active{
+.player-available{
     border: 0.2em solid #3b84d2;
+}
+
+.player-unavailable{
+    border: 0.2em solid red;
+}
+
+.player-unknown{
+    border: 0.2em solid grey;
 }
 
 .player-container{
