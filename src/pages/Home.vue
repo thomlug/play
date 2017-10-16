@@ -48,6 +48,15 @@
            <h4>{{getNextFixture().ground}}</h4>
           </div>
         </div>
+          
+          <div class="card-block">
+            <h4 class="card-title">Update your status</h4>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary">Available</button>
+              <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
+              <button v-on:click="setCurrentPlayerAvailability('unknown')" type="button" class="btn btn-secondary">Unknown</button>
+            </div>
+          </div>
       </div>
       <div class="card col-xl-7">
           <div class="card-block">
@@ -145,6 +154,11 @@
           teams: {}          
       };
     },
+    computed:{
+      currentUser: function(){
+        return firebase.auth().currentUser;
+      }
+    },
     firebase: {
       players:{
           source: db.ref('player')
@@ -173,6 +187,9 @@
           this.$nextTick(() => {
               this.$refs.slick.reSlick();
           });
+      },
+      getCurrentPlayer(){
+        return _.find(this.players, (p) => {return p.userUid === this.currentUser.uid;});
       },
       getNextGameInfo(){
         return this.getNextFixtureDetails().gameInfo || {};
@@ -216,6 +233,10 @@
           return p.position[0] === (row+1) && p.position[1] === col;
         });
         return !_.isUndefined(result) ? result : {};
+      },
+      setCurrentPlayerAvailability(availability){
+        var player = this.getCurrentPlayer();
+        this.$firebaseRefs.players.child(player['.key']).child('availability').set(availability);
       },
       calculatePlayerClass(availability){
         if(_.isUndefined(availability) || _.isEmpty(availability) || availability === "unknown"){
