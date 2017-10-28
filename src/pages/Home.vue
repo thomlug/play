@@ -75,9 +75,11 @@
                       </router-link>
                     </template>
                     <template v-else>
-                      <div class="circle player-unknown"> 
-                      </div>
-                      {{getPlayer(formationRow, formationColumn).first_name}}
+                      <router-link v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
+                        <div class="circle player-unknown"> 
+                        </div>
+                        {{getPlayer(formationRow, formationColumn).first_name}}
+                      </router-link>
                     </template>
                   </div>
                 </div>
@@ -90,16 +92,18 @@
           <h4 class="card-title">Subs</h4>
             <div class="card-block row">
               <div v-for="player in substitutePlayers()" :key="player['.key']" class="player-container text-center col-md-6">
-                <template v-if="player.photo">
-                  <img class="img-fluid rounded-circle play-photo" 
-                    v-bind:class="calculatePlayerClass(player.availability)" 
-                    :src="player.photo"/>
+                <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
+                    <template v-if="player.photo">
+                      <img class="img-fluid rounded-circle play-photo" 
+                        v-bind:class="calculatePlayerClass(player.availability)" 
+                        :src="player.photo"/>
                     </template>
                     <template v-else>
                       <div class="circle" v-bind:class="calculatePlayerClass(player.availability)" >
                       </div>
                     </template>
                     {{player.first_name}}
+                  </router-link>
               </div>
             </div>
           </div>
