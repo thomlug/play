@@ -67,10 +67,12 @@
                   v-bind:style="{'max-width': (100/formationRowWidth) + '%'}">
                   <div class="player-container text-center">
                     <template v-if="getPlayer(formationRow, formationColumn).photo">
+                      <router-link v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
                       <img class="img-fluid rounded-circle play-photo" 
                         v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)"  
                         :src="getPlayer(formationRow, formationColumn).photo"/>
                       {{getPlayer(formationRow, formationColumn).first_name}}
+                      </router-link>
                     </template>
                     <template v-else>
                       <div class="circle player-unknown"> 

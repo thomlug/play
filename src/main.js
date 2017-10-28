@@ -15,6 +15,7 @@ import Competitions from './pages/Competitions.vue'
 import Marketing from './pages/Marketing.vue'
 import Fixtures from './pages/Fixtures.vue'
 import Results from './pages/Results.vue'
+import Profile from './pages/Profile.vue'
 import lodash from 'lodash'
 import VueLodash from 'vue-lodash'
 import moment from 'moment'
@@ -34,6 +35,7 @@ const routes = [
   {path: '/marketing', component: Marketing},
   {path: '/fixtures', component: Fixtures},
   {path: '/results/:match_id', component: Results, name:'results'},
+  {path: '/profile/:player_id', component: Profile, name:'profile'}
 ];
 
 const router = new VueRouter({routes});
