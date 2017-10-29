@@ -19,7 +19,21 @@
         </dd>
       <dt>Photo</dt>
       <dd><img class="profile-photo" :src="player.photo"/></dd>
+      <template v-if = "editable">
+        <dt> Upload new photo </dt>
+        <dd>
+          <form enctype="multipart/form-data" novalidate>
+            <div class="dropbox">
+              <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
+                <p v-if="isSaving">
+                  Uploading file...
+                </p>
+            </div>
+          </form>
+        </dd>
+        </template>
     </dl>
+     
 </div>
     
   </main-layout>
@@ -28,6 +42,7 @@
 <script>
   import {db} from '../firebase';
   import MainLayout from '../layouts/Main.vue'
+  const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
 
   export default {
     components: {
@@ -39,13 +54,29 @@
       },
       canEditProfile: function(){
         return this.player.userUid === this.currentUser.uid;
+      },
+      isInitial() {
+        return this.currentStatus === STATUS_INITIAL;
+      },
+      isSaving() {
+        return this.currentStatus === STATUS_SAVING;
+      },
+      isSuccess() {
+        return this.currentStatus === STATUS_SUCCESS;
+      },
+      isFailed() {
+        return this.currentStatus === STATUS_FAILED;
       }
     },
     data: function () {
       return {
         editable: false,
         player:  {},
-        playerId: this.$route.params.player_id
+        playerId: this.$route.params.player_id,
+        uploadedFiles: [],
+        uploadError: null,
+        currentStatus: null,
+        uploadFieldName: 'photos'
         }
     },
     firebase() {
@@ -65,8 +96,80 @@
           delete item['.key'];
           db.ref('player/'+this.$route.params.player_id).set(item);
           this.editable = false;
+      },
+      reset() {
+        // reset form to initial state
+        this.currentStatus = STATUS_INITIAL;
+        this.uploadedFiles = [];
+        this.uploadError = null;
+      },
+      saveFile(fileData) {
+        // upload data to the server
+        this.currentStatus = STATUS_SAVING;
+
+        this.upload(fileData)
+          .then(x => {
+            this.uploadedFiles = [].concat(x);
+            this.currentStatus = STATUS_SUCCESS;
+          })
+          .catch(err => {
+            this.uploadError = err.response;
+            this.currentStatus = STATUS_FAILED;
+          });
+      },
+      filesChange(e) {
+       
+         var files = e.target.files || e.dataTransfer.files;
+        if (!files.length)
+          return;
+
+        // save it
+        this.saveFile(files[0]);
+      },
+      upload(fileData){
+          var player = this.player;
+          var storageRef = firebase.storage().ref();
+          var testUploadRef = storageRef.child('images/' + player['.key']);
+          var uploadTask = testUploadRef.put(fileData);
+          var promise = new Promise((resolve, reject) => {
+          
+            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+              function(snapshot) {
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                  case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                  case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+                }
+              }, function(error) {
+
+              // A full list of error codes is available at
+              // https://firebase.google.com/docs/storage/web/handle-errors
+              switch (error.code) {
+                case 'storage/unauthorized':
+                  // User doesn't have permission to access the object
+                  reject("User doesn't have permission to access the object")
+                  break;
+              }
+              }, function() {
+              // Upload completed successfully, now we can get the download URL
+                var downloadURL = uploadTask.snapshot.downloadURL;
+                player.photo = downloadURL;
+                resolve(downloadURL);
+              });
+          });
+
+        return promise;
       }
-    }   
+    },
+    mounted() {
+      this.reset();
+    } 
   }
 </script>
 
