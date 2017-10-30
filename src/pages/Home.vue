@@ -324,4 +324,12 @@
   background-color: #22A4A8; 
   border-color: #138387; 
 } 
+
+/*adjust jumbotron front size*/
+@media (max-width: 900px){
+  .jumbotron h1 {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+}
 </style>
