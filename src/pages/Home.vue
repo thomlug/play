@@ -20,7 +20,7 @@
         <div class="card-block">
           <h4 class="card-title">Next Fixture</h4>
           <div class="row">
-            <div class="col-4">
+            <div class="col-5">
               <div v-if="!_.isUndefined(getNextFixture().homePhoto)">
                 <img :src="getNextFixture().homePhoto" class="play-photo team-photo">
               </div>
@@ -30,7 +30,7 @@
               <h3>{{getNextFixture().homeTeam}}</h3>
               </div>
             <div class="col-2">VS</div>
-            <div class="col-4">
+            <div class="col-5">
              <div v-if="!_.isUndefined(getNextFixture().awayPhoto)">
                 <img :src="getNextFixture().awayPhoto" class="play-photo team-photo">
               </div>
@@ -42,7 +42,7 @@
           </div>
           <div class="text-center">
             <h2>{{moment(getNextFixture().date).format("hh:mm A")}}</h2>
-            <h3>{{moment(getNextFixture().date).format("dddd")}}</h3>
+            <h3>{{moment(getNextFixture().date).format("dddd DD MMM YY")}}</h3>
           </div>
           <div class="text-center">
            <h4>{{getNextFixture().ground}}</h4>
