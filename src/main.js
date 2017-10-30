@@ -28,7 +28,7 @@ Vue.use(helpersPlugin);
 Vue.prototype.moment = moment
 
 const routes = [
-  {path: '/home', alias:'/', component: Home},
+  {path: '/home', alias:'', component: Home},
   {path: '/members', component: Members},
   {path: '/teams', component: Teams},
   {path: '/competitions', component: Competitions},

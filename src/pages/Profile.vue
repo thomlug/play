@@ -33,24 +33,7 @@
         </dd>
         </template>
     </dl>
-     <template>
-      <div class="hello">    
-        <picture-input 
-          ref="pictureInput" 
-          @change="onChange" 
-          width="256" 
-          height="256" 
-          margin="16" 
-          accept="image/jpeg,image/png" 
-          size="10" 
-          buttonClass="btn"
-          :customStrings="{
-            upload: '<h1>Bummer!</h1>',
-            drag: 'Drag a 😺 GIF or GTFO'
-          }">
-        </picture-input>
-      </div>
-</template>
+     
 </div>
     
   </main-layout>
@@ -59,13 +42,11 @@
 <script>
   import {db} from '../firebase';
   import MainLayout from '../layouts/Main.vue'
-  import PictureInput from 'vue-picture-input'
   const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
 
   export default {
     components: {
-      MainLayout,
-      PictureInput
+      MainLayout
     },
     computed:{
       currentUser: function(){
@@ -122,11 +103,11 @@
         this.uploadedFiles = [];
         this.uploadError = null;
       },
-      saveImageString(imageString, imageType) {
+      saveFile(fileData) {
         // upload data to the server
         this.currentStatus = STATUS_SAVING;
 
-        this.upload(imageString, imageType)
+        this.upload(fileData)
           .then(x => {
             this.uploadedFiles = [].concat(x);
             this.currentStatus = STATUS_SUCCESS;
@@ -136,19 +117,20 @@
             this.currentStatus = STATUS_FAILED;
           });
       },
-      onChange(){
-        if (this.$refs.pictureInput.image) {
-          this.saveImageString(this.$refs.pictureInput.image, this.$refs.pictureInput.fileType);
-        } else {
-          console.log('FileReader API not supported: use the <form>, Luke!')
-        }
+      filesChange(e) {
+       
+         var files = e.target.files || e.dataTransfer.files;
+        if (!files.length)
+          return;
+
+        // save it
+        this.saveFile(files[0]);
       },
-      upload(imageString, imageType){
+      upload(fileData){
           var player = this.player;
           var storageRef = firebase.storage().ref();
           var testUploadRef = storageRef.child('images/' + player['.key']);
-          var metadata = {contentType: imageType};
-          var uploadTask = testUploadRef.putString(imageString, 'data_url');
+          var uploadTask = testUploadRef.put(fileData);
           var promise = new Promise((resolve, reject) => {
           
             uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'

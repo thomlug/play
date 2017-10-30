@@ -12,7 +12,7 @@
             <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" to="home">Dashboard</router-link>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" to="members">Members</router-link>
             </li>
             <li class="nav-item">
@@ -26,7 +26,7 @@
             </li>
             <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" to="fixtures">Fixtures/Results</router-link>
-            </li>
+            </li> -->
           </ul>
         </div>
       </nav>
