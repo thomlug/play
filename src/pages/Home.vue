@@ -88,7 +88,8 @@
         <div class="card-block">
           <h4 class="card-title">Subs</h4>
             <div class="card-block row">
-              <div v-for="player in substitutePlayers()" :key="player['.key']" class="player-container text-center col-md-6">
+              <div v-for="player in substitutePlayers()" :key="player['.key']" class="col-6">
+                <div class="player-container text-center">
                 <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
                     <template v-if="player.photo">
                       <img class="img-fluid rounded-circle play-photo" 
@@ -101,6 +102,7 @@
                     </template>
                     {{player.first_name}}
                   </router-link>
+                </div>
               </div>
             </div>
           </div>
@@ -224,7 +226,7 @@
         return _.filter(this.players, function(p){return !_.isUndefined(p[teamKey])});;
       },
       calculateFormationClass(e){
-          var cols = 12/e;
+          var cols = Math.floor(12/e);
           return "col-"+cols + " col-md-"+cols;
       },
       activePlayers(){
@@ -284,13 +286,23 @@
 
 .player-unknown{
     border: 0.2em solid grey;
+    -webkit-filter: grayscale(100%);
 }
 
-.player-container{
-  max-width:128px;
-  margin: 0 auto;
-}
 
+@media (max-width: 768px) { 
+  .player-container{
+    max-width:64px;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 768px) { 
+  .player-container{
+    max-width:128px;
+    margin: 0 auto;
+  }
+
+}
 .team-photo{
   border: 0.2em solid #000;
 }
