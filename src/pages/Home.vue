@@ -47,8 +47,8 @@
         </div>
           
           <div class="card-block">
-            <h4 class="card-title">Update your status</h4>
-              <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available">Available</button>
+            <h4 class="card-title">Update your status <small>({{getCurrentPlayer().availability | camelToSentence}})</small></h4>
+              <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available active">Available</button>
               <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
               <button v-on:click="setCurrentPlayerAvailability('unknown')" type="button" class="btn btn-secondary">Unknown</button>
           </div>

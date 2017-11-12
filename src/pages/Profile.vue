@@ -33,7 +33,12 @@
         </dd>
         </template>
     </dl>
-     
+    <div v-if="canEditProfile">
+      <h4 class="card-title">Update your status <small>({{player.availability | camelToSentence}})</small></h4>
+      <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available">Available</button>
+      <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
+      <button v-on:click="setCurrentPlayerAvailability('unknown')" type="button" class="btn btn-secondary">Unknown</button>
+    </div>
 </div>
     
   </main-layout>
@@ -68,6 +73,12 @@
         return this.currentStatus === STATUS_FAILED;
       }
     },
+    filters: {
+      camelToSentence(value){
+          return value.replace(/([A-Z])/g, ' $1')
+            .replace(/^./, function(str){ return str.toUpperCase(); })
+      }
+    },
     data: function () {
       return {
         editable: false,
@@ -96,6 +107,9 @@
           delete item['.key'];
           db.ref('player/'+this.$route.params.player_id).set(item);
           this.editable = false;
+      },
+      setCurrentPlayerAvailability(availability){
+        this.$firebaseRefs.player.child('availability').set(availability);
       },
       reset() {
         // reset form to initial state
