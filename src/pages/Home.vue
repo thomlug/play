@@ -24,9 +24,9 @@
               <div v-else>
                 <div class="circle team-photo"></div>
               </div>
-              <h3>{{getNextFixture().homeTeam}}</h3>
+              <h3 class="text-center">{{getNextFixture().homeTeam}}</h3>
               </div>
-            <div class="col-2">VS</div>
+            <div class="col-2 vs-text text-center">VS</div>
             <div class="col-5">
              <div v-if="!_.isUndefined(getNextFixture().awayPhoto)">
                 <img :src="getNextFixture().awayPhoto" class="play-photo team-photo">
@@ -34,7 +34,7 @@
               <div v-else>
                 <div class="circle team-photo"></div>
               </div>
-              <h3>{{getNextFixture().awayTeam}}</h3>
+              <h3 class="text-center">{{getNextFixture().awayTeam}}</h3>
               </div>
           </div>
           <div class="text-center">
@@ -306,6 +306,11 @@
   padding: 50% 0;
   border-radius: 50%;
   line-height: 0;
+}
+
+.vs-text{
+  padding-top:10%;
+  font-weight: bold;
 }
 
 .btn-available{
