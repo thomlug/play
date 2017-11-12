@@ -215,9 +215,10 @@
       getNextFixture(){
         var teamKey = this.getCurrentTeam()[".key"];
         var component = this;
-        var fixture = _.find(this.fixtures, (f) => {
-          return f.status === 'active' && !_.isUndefined(f[teamKey]);
-        });
+        var fixture = _.orderBy(this.fixtures, 'date', 'desc')
+          .find(function(f) {
+            return f.status === 'active' && !_.isUndefined(f[teamKey]);
+          });
         
         return !_.isUndefined(fixture) ? fixture : {startDate: "unknown"};
       },
