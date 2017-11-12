@@ -1,8 +1,5 @@
 <template>
   <main-layout>
-    <div class="jumbotron">
-       <h1 class="display-3">{{getCurrentTeam().name}}</h1>
-    </div>
     <div class="row">
       <div v-for="card in cards" :key="card.Title" class="col-md-3">
         <div class="card">
