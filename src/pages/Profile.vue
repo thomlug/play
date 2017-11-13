@@ -199,7 +199,7 @@
 
 <style>
 .profile-photo{
-    max-height:128px;
-    max-width:128px;
+    max-height:256px;
+    max-width:256px;
 }
 </style>

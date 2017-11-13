@@ -18,21 +18,25 @@
           <h4 class="card-title">Next Fixture</h4>
           <div class="row">
             <div class="col-5">
-              <div v-if="!_.isUndefined(getNextFixture().homePhoto)">
-                <img :src="getNextFixture().homePhoto" class="play-photo team-photo">
-              </div>
-              <div v-else>
-                <div class="circle team-photo"></div>
+              <div class="team-photo-container">
+                <div v-if="!_.isUndefined(getNextFixture().homePhoto)">
+                  <img :src="getNextFixture().homePhoto" class="play-photo team-photo">
+                </div>
+                <div v-else>
+                  <div class="circle team-photo">{{getNextFixture().awayTeam.charAt(0)}}</div>
+                </div>
               </div>
               <h3 class="text-center">{{getNextFixture().homeTeam}}</h3>
               </div>
             <div class="col-2 vs-text text-center">VS</div>
             <div class="col-5">
-             <div v-if="!_.isUndefined(getNextFixture().awayPhoto)">
-                <img :src="getNextFixture().awayPhoto" class="play-photo team-photo">
-              </div>
-              <div v-else>
-                <div class="circle team-photo"></div>
+              <div class="team-photo-container">
+                <div v-if="!_.isUndefined(getNextFixture().awayPhoto)">
+                  <img :src="getNextFixture().awayPhoto" class="play-photo team-photo">
+                </div>
+                <div v-else>
+                  <div class="circle team-photo">{{getNextFixture().awayTeam.charAt(0)}}</div>
+                </div>
               </div>
               <h3 class="text-center">{{getNextFixture().awayTeam}}</h3>
               </div>
@@ -271,22 +275,22 @@
 <<style>
 .play-photo{
     max-width:100%;
-    margin: 0.2em;
+    margin: 3px;
     border-radius: 50em;
     -webkit-border-radius: 50em;
     -moz-border-radius: 50em;
 }
 
 .player-available{
-    border: 0.2em solid #2acad0;
+    border: 3px solid #2acad0;
 }
 
 .player-unavailable{
-    border: 0.2em solid red;
+    border: 3px solid red;
 }
 
 .player-unknown{
-    border: 0.2em solid grey;
+    border: 3px solid grey;
     -webkit-filter: grayscale(100%);
 }
 
@@ -296,29 +300,42 @@
     max-width:64px;
     margin: 0 auto;
   }
+  .circle{
+    height: 96px;
+    width: 96px;
+  }
+  .team-photo-container{
+    max-width:96px;
+  }
 }
 @media (min-width: 768px) { 
   .player-container{
     max-width:128px;
     margin: 0 auto;
   }
-
+  .circle{
+    height: 128px;
+    width: 128px;
+  }
+  .team-photo-container{
+    max-width:128px;
+  }
 }
 .team-photo{
-  border: 0.2em solid #000;
+  border: 3px solid #000;
 }
+
 .team-photo-container{
-  max-width:128px;
   margin: 0 auto;
 }
 .circle{
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  height: 0;
-  padding: 50% 0;
-  border-radius: 50%;
-  line-height: 0;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: lightgrey;
+  font-weight:bold;
+  font-size: 2em;
 }
 
 .vs-text{
