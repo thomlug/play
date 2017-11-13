@@ -17,6 +17,16 @@
           <span v-if="!editable">{{player.last_name}} </span>
             <input v-if="editable" v-model="player.last_name"/>
         </dd>
+      <dt>Phone</dt>
+      <dd> 
+        <a v-if="!editable" :href="'tel:'+player.phone">{{player.phone}} </a>
+        <input v-if="editable" v-model="player.phone"/>
+      </dd>
+      <dt>Email</dt>
+      <dd> 
+        <a v-if="!editable" :href="'mailto:'+player.email">{{player.email}} </a>
+        <input v-if="editable" v-model="player.email"/>
+      </dd>
       <dt>Photo</dt>
       <dd><img class="profile-photo" :src="player.photo"/></dd>
       <template v-if = "editable">
