@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid body">
          <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -70,7 +70,13 @@ ui.start('#firebaseui-auth-container', uiConfig);
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 .play-logo{
   max-height:50px;
+}
+
+.body{
+  font-family: 'Roboto', sans-serif;
 }
 </style>
