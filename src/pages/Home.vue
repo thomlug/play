@@ -23,7 +23,7 @@
                   <img :src="getNextFixture().homePhoto" class="play-photo team-photo">
                 </div>
                 <div v-else>
-                  <div class="circle team-photo">{{getNextFixture().awayTeam.charAt(0)}}</div>
+                  <div class="circle team-circle team-photo">{{getNextFixture().homeTeam | firstCharacter}}</div>
                 </div>
               </div>
               <h3 class="text-center">{{getNextFixture().homeTeam}}</h3>
@@ -35,7 +35,7 @@
                   <img :src="getNextFixture().awayPhoto" class="play-photo team-photo">
                 </div>
                 <div v-else>
-                  <div class="circle team-photo">{{getNextFixture().awayTeam.charAt(0)}}</div>
+                  <div class="circle team-circle team-photo">{{getNextFixture().awayTeam | firstCharacter}}</div>
                 </div>
               </div>
               <h3 class="text-center">{{getNextFixture().awayTeam}}</h3>
@@ -77,7 +77,8 @@
                     </template>
                     <template v-else>
                       <router-link v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
-                        <div class="circle player-unknown"> 
+                        <div class="circle player-circle" v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)">
+                          {{getPlayer(formationRow, formationColumn).first_name | firstCharacter}} 
                         </div>
                         {{getPlayer(formationRow, formationColumn).first_name}}
                       </router-link>
@@ -101,7 +102,8 @@
                         :src="player.photo"/>
                     </template>
                     <template v-else>
-                      <div class="circle" v-bind:class="calculatePlayerClass(player.availability)" >
+                      <div class="circle player-circle" v-bind:class="calculatePlayerClass(player.availability)" >
+                        {{player.first_name | firstCharacter}}
                       </div>
                     </template>
                     {{player.first_name}}
@@ -167,6 +169,12 @@
       camelToSentence(value){
           return value.replace(/([A-Z])/g, ' $1')
             .replace(/^./, function(str){ return str.toUpperCase(); })
+      },
+      firstCharacter(value){
+        if(!_.isUndefined(value)){
+          return value.charAt(0);
+        }
+        return '';
       }
     },
     computed:{
@@ -300,7 +308,11 @@
     max-width:64px;
     margin: 0 auto;
   }
-  .circle{
+  .player-circle{
+    height: 64px;
+    width: 64px;
+  }
+  .team-circle{
     height: 96px;
     width: 96px;
   }
@@ -313,7 +325,11 @@
     max-width:128px;
     margin: 0 auto;
   }
-  .circle{
+  .team-circle{
+    height: 128px;
+    width: 128px;
+  }
+  .player-circle{
     height: 128px;
     width: 128px;
   }
