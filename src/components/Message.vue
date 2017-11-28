@@ -132,7 +132,7 @@
 .self .msg {
     border-bottom-right-radius: 0px;
     box-shadow: 1px 2px 0px #c1cbcd;
-    background: #2acad0;
+    background: #2bcad0;
 }
 
 .self .msg > time, .self .msg > p {
@@ -159,7 +159,7 @@
 }
 
 .msg {
-    background: #eef8ff;
+    background: #465050;
     min-width: 90%;
     padding: 10px;
     border-radius: 2px;
@@ -168,7 +168,7 @@
 .msg .user {
     font-size: 14px;
     margin: 0 0 2px 0;
-    color: #666;
+    color: #ffffff;
     font-weight: 700;
     margin-top: -2px;
     margin-bottom: 5px;
@@ -192,7 +192,7 @@
 .msg p {
     font-size: 13px;
     margin: 0 0 2px 0;
-    color: #777;
+    color: #ffffff;
     transition: all .2s ease;
 }
 .msg img {
@@ -211,7 +211,7 @@
 
 .msg time {
     font-size: 0.7rem;
-    color: rgba(0,0,0,.35);
+    color: #ffffff;
     margin-top: 3px;
     float: right;
     cursor: default;

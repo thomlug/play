@@ -1,11 +1,12 @@
 <template>
     <main-layout>
         <div class="container">
-            <Message v-for="message in messages" :message="message" :key="message.created" />
-            <br/>
+            <div class="chat-pane" id="chat-pane">
+                <Message v-for="message in messages" :message="message" :key="message.created" />
+                <br/>
+            </div>
             <input class="send" @keyup.enter="addMessage" v-model="newMessage.text" placeholder="Type your message here"></textarea>
         </div>
-    
   </main-layout>
 </template>
 
@@ -29,6 +30,7 @@
     },
     data: function () {
         return {
+            messages:[],
             newMessage: {}
         }
     },
@@ -39,17 +41,35 @@
             this.newMessage.name = this.currentUser.displayName;
             chatRef.push(this.newMessage);
             this.newMessage.text = '';
+        },
+        scrollToEnd: function() {    	
+            var container = this.$el.querySelector("#chat-pane");
+            container.scrollTop = container.scrollHeight;
         }
     },
     firebase() {
       return{
-        messages: chatRef
+        messages: { 
+            source: chatRef,
+            readyCallback:function(){
+                this.scrollToEnd();
+            }
+        }
       };
+    },
+    watch:{
+        messages(){
+            this.scrollToEnd();
+        }
     }
   }
 </script>
 
 <style>
+.chat-pane{
+    overflow-y:auto;
+    max-height:70vh;
+}
 .send{
     width: 100%;
     height: 50px;
