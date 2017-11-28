@@ -16,6 +16,7 @@ import Marketing from './pages/Marketing.vue'
 import Fixtures from './pages/Fixtures.vue'
 import Results from './pages/Results.vue'
 import Profile from './pages/Profile.vue'
+import Chat from './pages/Chat.vue'
 import lodash from 'lodash'
 import VueLodash from 'vue-lodash'
 import moment from 'moment'
@@ -29,6 +30,7 @@ Vue.prototype.moment = moment
 
 const routes = [
   {path: '/home', alias:'', component: Home},
+  {path: '/chat', component: Chat},
   {path: '/members', component: Members},
   {path: '/teams', component: Teams},
   {path: '/competitions', component: Competitions},

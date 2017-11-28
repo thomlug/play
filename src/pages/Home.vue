@@ -354,6 +354,10 @@
   font-size: 2em;
 }
 
+.player-circle{
+  color: white;
+}
+
 .vs-text{
   padding-top:10%;
   font-weight: bold;

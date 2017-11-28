@@ -12,6 +12,9 @@
             <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" to="home">Dashboard</router-link>
             </li>
+            <li class="nav-item">
+              <router-link active-class="active" exact class="nav-item nav-link" to="chat">Chat</router-link>
+            </li>
             <!-- <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" to="members">Members</router-link>
             </li>
@@ -49,7 +52,8 @@
       signInSuccessUrl: '#/home',
       signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID         
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.FacebookAuthProvider.PROVIDER_ID        
       ],
       // Terms of service url.
       tosUrl: '<your-tos-url>'
