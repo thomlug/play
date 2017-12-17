@@ -2,7 +2,7 @@
   <main-layout>
       <div class="container">
     <h1>Play Profile</h1>
-    <div v-if="canEditProfile">
+    <div v-if="canEditProfile()">
       <button class="btn btn-primary" v-on:click="edit" v-if="!editable">Edit</button>
       <button class="btn btn-success" v-on:click="save" v-if="editable">Save</button>
     </div>
@@ -43,7 +43,7 @@
         </dd>
         </template>
     </dl>
-    <div v-if="canEditProfile">
+    <div v-if="canEditProfile()">
       <h4 class="card-title">Update your status <small>({{player.availability | camelToSentence}})</small></h4>
       <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available">Available</button>
       <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
@@ -64,12 +64,6 @@
       MainLayout
     },
     computed:{
-      currentUser: function(){
-        return firebase.auth().currentUser;
-      },
-      canEditProfile: function(){
-        return this.player.userUid === this.currentUser.uid;
-      },
       isInitial() {
         return this.currentStatus === STATUS_INITIAL;
       },
@@ -85,7 +79,10 @@
     },
     filters: {
       camelToSentence(value){
-          return value.replace(/([A-Z])/g, ' $1')
+        if(value == undefined){
+          return '';
+        }
+        return value.replace(/([A-Z])/g, ' $1')
             .replace(/^./, function(str){ return str.toUpperCase(); })
       }
     },
@@ -97,8 +94,9 @@
         uploadedFiles: [],
         uploadError: null,
         currentStatus: null,
-        uploadFieldName: 'photos'
-        }
+        uploadFieldName: 'photos',
+        
+      }
     },
     firebase() {
       return{
@@ -109,6 +107,13 @@
       };
     },
     methods:{
+      currentUser: function(){
+            return firebase.auth().currentUser;
+      },
+      canEditProfile: function(){
+        var currentUser = this.currentUser();
+        return this.player != null &&  currentUser != null && (this.player.userUid === currentUser.uid);
+      },
       edit: function(){
           this.editable = true;
       },
