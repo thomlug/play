@@ -1,5 +1,6 @@
 <template>
   <main-layout>
+    <div  v-if="playerIsLoggedIn()">
     <div class="row">
       <div v-for="card in cards" :key="card.Title" class="col-md-3">
         <div class="card">
@@ -125,6 +126,12 @@
           </div>
         </div>
       </div>
+      </div>
+      <div v-else>
+        <!--HACK: to getCurrentPlayer re-evaulated so that it actually checks you're logged in-->
+        <h1>Please log in (you may have to refresh after logging in)</h1>
+        {{ getCurrentPlayer().first_name}}
+      </div>
   </main-layout>
 </template>
   
@@ -177,11 +184,6 @@
         return '';
       }
     },
-    computed:{
-      currentUser: function(){
-        return firebase.auth().currentUser;
-      }
-    },
     firebase: {
       players:{
           source: db.ref('player')
@@ -211,8 +213,11 @@
               this.$refs.slick.reSlick();
           });
       },
+      playerIsLoggedIn(){
+        return firebase.auth().currentUser !== null;
+      },
       getCurrentPlayer(){
-        return _.find(this.players, (p) => {return p.userUid === this.currentUser.uid;});
+        return _.find(this.players, (p) => {return p.userUid === firebase.auth().currentUser.uid;}) || {availability: 'unknown'};
       },
       getNextGameInfo(){
         return this.getNextFixtureDetails().gameInfo || {};
@@ -225,7 +230,11 @@
         return _.head(this.teams);
       },
       getNextFixture(){
-        var teamKey = this.getCurrentTeam()[".key"];
+        var currentTeam = this.getCurrentTeam();
+        if(currentTeam === undefined){
+          return {startDate: "unknown"}
+        }
+        var teamKey = currentTeam[".key"];
         var component = this;
         var fixture = _.orderBy(this.fixtures, 'date', 'desc')
           .find(function(f) {
@@ -235,7 +244,11 @@
         return !_.isUndefined(fixture) ? fixture : {startDate: "unknown"};
       },
       getPlayersForCurrentTeam(){
-        var teamKey = this.getCurrentTeam()[".key"];
+        var currentTeam = this.getCurrentTeam();
+        if(currentTeam === undefined){
+          return [];
+        }
+        var teamKey = currentTeam[".key"];
         return _.filter(this.players, function(p){return !_.isUndefined(p[teamKey])});;
       },
       calculateFormationClass(e){
