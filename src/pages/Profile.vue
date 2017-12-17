@@ -28,7 +28,7 @@
         <input v-if="editable" v-model="player.email"/>
       </dd>
       <dt>Photo</dt>
-      <dd><img class="profile-photo" :src="player.photo"/></dd>
+      <dd><img class="profile-photo" :src="player.photo" :class="'player-' + player.availability"/></dd>
       <template v-if = "editable">
         <dt> Upload new photo </dt>
         <dd>
@@ -201,5 +201,19 @@
 .profile-photo{
     max-height:256px;
     max-width:256px;
+    border-radius: 50%;
+}
+
+.player-available{
+    border: 3px solid #2acad0;
+}
+
+.player-unavailable{
+    border: 3px solid red;
+}
+
+.player-unknown{
+    border: 3px solid grey;
+    -webkit-filter: grayscale(100%);
 }
 </style>
