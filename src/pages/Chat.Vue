@@ -52,6 +52,7 @@
         messages: { 
             source: chatRef,
             readyCallback:function(){
+                console.log('test');
                 this.scrollToEnd();
             }
         }
