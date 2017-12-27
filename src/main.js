@@ -13,9 +13,9 @@ import Members from './pages/Members.vue'
 import Teams from './pages/Teams.vue'
 import Competitions from './pages/Competitions.vue'
 import Marketing from './pages/Marketing.vue'
-import Fixtures from './pages/Fixtures.vue'
 import Results from './pages/Results.vue'
 import Profile from './pages/Profile.vue'
+import Fixtures from './components/Fixtures.vue'
 import Chat from './pages/Chat.vue'
 import lodash from 'lodash'
 import VueLodash from 'vue-lodash'
@@ -41,7 +41,7 @@ const routes = [
 ];
 
 const router = new VueRouter({routes});
-  
+
 
 const app = new Vue({
   el: '#app',
