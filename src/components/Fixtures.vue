@@ -1,83 +1,76 @@
 <template>
-  <div class="card">
-    <div class="card-block">
-      <div class="container-fluid">
         <div class="row">
           <div class="col-12">
             <ul>
               <li v-for="fixture in fixtures">
-
-                <div class="container">
                   <div class="row">
                     <div class="col-md-6 col-sm-12 left-content">
-                      <div class="col-12">
-                        <div class="row avatars item">
-                          <div class="col-5">
-                              <div v-if="!fixture.homePhoto">
-                                <avatar style="float:right" :size="120">
-                                  <h3 class="avatar-logo">{{ fixture.homeTeam | firstCharacter }}</h3>
-                                </avatar>
+                      <div class="card-deck">
+                        <div class="card aligner card-inverse item">
+                          <div class="card-block">
+                            <div class="row avatars aligner">
+                              <div class="col-5">
+                                  <div v-if="!fixture.homePhoto">
+                                    <avatar style="float:right" :size="120">
+                                      <h3 class="avatar-logo">{{ fixture.homeTeam | firstCharacter }}</h3>
+                                    </avatar>
+                                  </div>
+                                  <div v-else>
+                                    <avatar style="float:right":image="fixture.homePhoto" :size="120"></avatar>
+                                  </div>
                               </div>
-                              <div v-else>
-                                <avatar style="float:right":image="fixture.homePhoto" :size="120"></avatar>
+                              <div class="col-2">
+                                <h3>VS</h3>
                               </div>
-                          </div>
-                          <div class="col-2 vs-text">
-                            <h3>VS</h3>
-                          </div>
-                          <div class="col-5">
-                            <div v-if="!fixture.awayPhoto">
-                              <avatar style="float:left" :size="120">
-                                <h3 class="avatar-logo">{{ fixture.awayTeam | firstCharacter }}</h3>
-                              </avatar>
+                              <div class="col-5">
+                                <div v-if="!fixture.awayPhoto">
+                                  <avatar style="float:left" :size="120">
+                                    <h3 class="avatar-logo">{{ fixture.awayTeam | firstCharacter }}</h3>
+                                  </avatar>
+                                </div>
+                                <div v-else>
+                                  <avatar style="float:left":image="fixture.awayPhoto" :size="120"></avatar>
+                                </div>
+                              </div>
                             </div>
-                            <div v-else>
-                              <avatar style="float:left":image="fixture.awayPhoto" :size="120"></avatar>
-                            </div>
-                          </div>
-                        </div>
 
-                        <div class="row team-names item">
-                          <div class="col-6">
-                            <h3>{{ fixture.homeTeam }}</h3>
-                          </div>
-                          <div class="col-6">
-                            <h3>{{ fixture.awayTeam }}</h3>
+                            <div class="row aligner team-names">
+                              <div class="col-6">
+                                <h3>{{ fixture.homeTeam }}</h3>
+                              </div>
+                              <div class="col-6">
+                                <h3>{{ fixture.awayTeam }}</h3>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
-
-
                     </div>
 
-                    <div class="col-md-6 col-sm-12 right-content">
-                      <div class="col-12">
-                        <div class="row time">
-                          <div class="col-12 item">
+                      <div class="col-md-6 col-sm-12 right-content">
+                        <div class="card-deck">
+                          <div class="card card-inverse text-center item">
+                            <div class="card-block">
                               <h2>{{moment(fixture.date).format("hh:mm A")}}</h2>
                               <h3>{{moment(fixture.date).format("dddd DD MMM YY")}}</h3>
+                            </div>
                           </div>
                         </div>
 
-                        <div class="row location top-buffer">
-                          <div class="col-12 item ">
-                              <h3>{{ fixture.ground }}</h3>
+                      <div class="card-deck mt-1">
+                        <div class="card card-inverse text-center item">
+                          <div class="card-block">
+                            <h3>{{ fixture.ground }}</h3>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-
               </li>
             </ul>
 
           </div>
         </div>
-      </div>
-    </div>
-
-  </div>
 
 </template>
 
@@ -125,9 +118,7 @@
 
   .item {
     text-align: center;
-    background-color: #37474F;
-    padding-bottom: 99999px;
-    margin-bottom: -99999px;
+    background-color: #2E2F30;
   }
 
    /* Small devices (tablets, 768px and up) */
@@ -173,11 +164,6 @@
 
   .top-buffer { margin-top:10px; }
 
-  .vs-text{
-    padding-top:10%;
-    font-weight: bold;
-  }
-
   .avatar-logo{
     padding-top: 30%;
     font-weight: bold;
@@ -186,6 +172,10 @@
 
   .avatars{
     padding-top: 10px;
+  }
+
+  .avatar-logo{
+    color: #2E2F30;
   }
 
   li {
@@ -198,12 +188,11 @@
     overflow: auto;
   }
 
-
-
-  .card{
-    overflow-y: scroll;
-    overflow: auto;
-    overflow-x: hidden;
+  .aligner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
+
 
 </style>
