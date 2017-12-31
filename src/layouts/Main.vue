@@ -30,6 +30,9 @@
             <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" to="fixtures">Fixtures/Results</router-link>
             </li>
+            <li class="nav-item">
+              <router-link active-class="active" exact class="nav-item nav-link" to="new">New Fixture</router-link>
+            </li>
           </ul>
         </div>
       </nav>

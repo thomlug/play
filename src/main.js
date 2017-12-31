@@ -16,6 +16,7 @@ import Marketing from './pages/Marketing.vue'
 import Results from './pages/Results.vue'
 import Profile from './pages/Profile.vue'
 import Fixtures from './components/Fixtures.vue'
+import New from './pages/NewFixture.vue'
 import Chat from './pages/Chat.vue'
 import lodash from 'lodash'
 import VueLodash from 'vue-lodash'
@@ -36,6 +37,7 @@ const routes = [
   {path: '/competitions', component: Competitions},
   {path: '/marketing', component: Marketing},
   {path: '/fixtures', component: Fixtures},
+  {path: '/new', component: New},
   {path: '/results/:match_id', component: Results, name:'results'},
   {path: '/profile/:player_id', component: Profile, name:'profile'}
 ];

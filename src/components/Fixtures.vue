@@ -1,77 +1,73 @@
 <template>
-        <div class="row">
-          <div class="col-12">
-            <ul>
-              <li v-for="fixture in fixtures">
-                  <div class="row">
-                    <div class="col-md-6 col-sm-12 left-content">
-                      <div class="card-deck">
-                        <div class="card aligner card-inverse item">
-                          <div class="card-block">
-                            <div class="row avatars aligner">
-                              <div class="col-5">
-                                  <div v-if="!fixture.homePhoto">
-                                    <avatar style="float:right" :size="120">
-                                      <h3 class="avatar-logo">{{ fixture.homeTeam | firstCharacter }}</h3>
-                                    </avatar>
-                                  </div>
-                                  <div v-else>
-                                    <avatar style="float:right":image="fixture.homePhoto" :size="120"></avatar>
-                                  </div>
-                              </div>
-                              <div class="col-2">
-                                <h3>VS</h3>
-                              </div>
-                              <div class="col-5">
-                                <div v-if="!fixture.awayPhoto">
-                                  <avatar style="float:left" :size="120">
-                                    <h3 class="avatar-logo">{{ fixture.awayTeam | firstCharacter }}</h3>
-                                  </avatar>
-                                </div>
-                                <div v-else>
-                                  <avatar style="float:left":image="fixture.awayPhoto" :size="120"></avatar>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="row aligner team-names">
-                              <div class="col-6">
-                                <h3>{{ fixture.homeTeam }}</h3>
-                              </div>
-                              <div class="col-6">
-                                <h3>{{ fixture.awayTeam }}</h3>
-                              </div>
-                            </div>
+  <div class="row">
+    <ul>
+      <li v-for="fixture in fixtures">
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <div class="card-deck">
+                <div class="card aligner card-inverse item">
+                  <div class="card-block">
+                    <div class="row avatars aligner">
+                      <div class="col-5">
+                          <div v-if="!fixture.homePhoto">
+                            <avatar style="float:right" :size="120">
+                              <h3 class="avatar-logo">{{ fixture.homeTeam | firstCharacter }}</h3>
+                            </avatar>
                           </div>
+                          <div v-else>
+                            <avatar style="float:right":image="fixture.homePhoto" :size="120"></avatar>
+                          </div>
+                      </div>
+                      <div class="col-2">
+                        <h3>VS</h3>
+                      </div>
+                      <div class="col-5">
+                        <div v-if="!fixture.awayPhoto">
+                          <avatar style="float:left" :size="120">
+                            <h3 class="avatar-logo">{{ fixture.awayTeam | firstCharacter }}</h3>
+                          </avatar>
+                        </div>
+                        <div v-else>
+                          <avatar style="float:left":image="fixture.awayPhoto" :size="120"></avatar>
                         </div>
                       </div>
                     </div>
 
-                      <div class="col-md-6 col-sm-12 right-content">
-                        <div class="card-deck">
-                          <div class="card card-inverse text-center item">
-                            <div class="card-block">
-                              <h2>{{moment(fixture.date).format("hh:mm A")}}</h2>
-                              <h3>{{moment(fixture.date).format("dddd DD MMM YY")}}</h3>
-                            </div>
-                          </div>
-                        </div>
-
-                      <div class="card-deck mt-1">
-                        <div class="card card-inverse text-center item">
-                          <div class="card-block">
-                            <h3>{{ fixture.ground }}</h3>
-                          </div>
-                        </div>
+                    <div class="row aligner team-names">
+                      <div class="col-6">
+                        <h3>{{ fixture.homeTeam }}</h3>
+                      </div>
+                      <div class="col-6">
+                        <h3>{{ fixture.awayTeam }}</h3>
                       </div>
                     </div>
                   </div>
-              </li>
-            </ul>
+                </div>
+              </div>
+            </div>
 
+              <div class="col-md-6 col-sm-12">
+                <div class="card-deck">
+                  <div class="card card-inverse text-center item">
+                    <div class="card-block">
+                      <h2>{{moment(fixture.date).format("hh:mm A")}}</h2>
+                      <h3>{{moment(fixture.date).format("dddd DD MMM YY")}}</h3>
+                    </div>
+                  </div>
+                </div>
+
+              <div class="card-deck mt-1">
+                <div class="card card-inverse text-center item">
+                  <div class="card-block">
+                    <h3>{{ fixture.ground }}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -121,23 +117,20 @@
     background-color: #2E2F30;
   }
 
-   /* Small devices (tablets, 768px and up) */
-  @media (max-width: 768px)
+  /* @media (max-width: 768px)
   {
       div[class*="col"]{padding-left:5px; padding-right:5px; padding-top: 5px;}
   }
 
-  /* Medium devices (desktops, 992px and up) */
   @media (max-width: 992px)
   {
       div[class*="col"]{padding-left:10px; padding-right:10px;}
   }
 
-  /* Medium devices (desktops, 992px and up) */
   @media (min-width: 992px)
   {
       div[class*="col"]{padding-left:10px; padding-right:10px;}
-  }
+  } */
 
   .row [class*="col-"]{
     margin-bottom: -99999px;
@@ -148,30 +141,12 @@
     overflow: hidden;
   }
 
-  .time {
-    height: 50%;
-  }
-
-  .location{
-    height: 50%;
-  }
-
-  .competitions-section{
-    height: 100%;
-    padding-bottom: 99999px;
-    margin-bottom: -99999px;
-  }
-
   .top-buffer { margin-top:10px; }
 
   .avatar-logo{
     padding-top: 30%;
     font-weight: bold;
     font-size: 2em;
-  }
-
-  .avatars{
-    padding-top: 10px;
   }
 
   .avatar-logo{
