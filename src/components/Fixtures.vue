@@ -1,72 +1,76 @@
 <template>
   <div class="row">
-    <ul>
-      <li v-for="fixture in fixtures">
-          <div class="row">
-            <div class="col-md-6 col-sm-12">
-              <div class="card-deck">
-                <div class="card aligner card-inverse item">
-                  <div class="card-block">
-                    <div class="row avatars aligner">
-                      <div class="col-5">
-                          <div v-if="!fixture.homePhoto">
-                            <avatar style="float:right" :size="120">
-                              <h3 class="avatar-logo">{{ fixture.homeTeam | firstCharacter }}</h3>
-                            </avatar>
+    <div class="card">
+      <div class="card-body">
+        <ul>
+          <li v-for="fixture in fixtures">
+              <div class="row item">
+                <div class="col-md-6 col-sm-12">
+                  <div class="card-deck">
+                    <div class="card card-inverse item">
+                      <div class="card-block">
+                        <div class="row avatars aligner">
+                          <div class="col-5">
+                              <div v-if="!fixture.homePhoto">
+                                <avatar style="float:right" :size="80">
+                                  <h3 class="avatar-logo">{{ fixture.homeTeam | firstCharacter }}</h3>
+                                </avatar>
+                              </div>
+                              <div v-else>
+                                <avatar style="float:right":image="fixture.homePhoto" :size="80"></avatar>
+                              </div>
                           </div>
-                          <div v-else>
-                            <avatar style="float:right":image="fixture.homePhoto" :size="120"></avatar>
+                          <div class="col-2">
+                            <h3>VS</h3>
                           </div>
-                      </div>
-                      <div class="col-2">
-                        <h3>VS</h3>
-                      </div>
-                      <div class="col-5">
-                        <div v-if="!fixture.awayPhoto">
-                          <avatar style="float:left" :size="120">
-                            <h3 class="avatar-logo">{{ fixture.awayTeam | firstCharacter }}</h3>
-                          </avatar>
+                          <div class="col-5">
+                            <div v-if="!fixture.awayPhoto">
+                              <avatar style="float:left" :size="80">
+                                <h3 class="avatar-logo">{{ fixture.awayTeam | firstCharacter }}</h3>
+                              </avatar>
+                            </div>
+                            <div v-else>
+                              <avatar style="float:left":image="fixture.awayPhoto" :size="80"></avatar>
+                            </div>
+                          </div>
                         </div>
-                        <div v-else>
-                          <avatar style="float:left":image="fixture.awayPhoto" :size="120"></avatar>
+
+                        <div class="row aligner team-names">
+                          <div class="col-6">
+                            <h3>{{ fixture.homeTeam }}</h3>
+                          </div>
+                          <div class="col-6">
+                            <h3>{{ fixture.awayTeam }}</h3>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                  <div class="col-md-6 col-sm-12">
+                    <div class="card-deck">
+                      <div class="card card-inverse text-center item">
+                        <div class="card-block">
+                          <h2>{{moment(fixture.date).format("hh:mm A")}}</h2>
+                          <h3>{{moment(fixture.date).format("dddd DD MMM YY")}}</h3>
                         </div>
                       </div>
                     </div>
 
-                    <div class="row aligner team-names">
-                      <div class="col-6">
-                        <h3>{{ fixture.homeTeam }}</h3>
-                      </div>
-                      <div class="col-6">
-                        <h3>{{ fixture.awayTeam }}</h3>
+                  <div class="card-deck mt-1">
+                    <div class="card card-inverse text-center item">
+                      <div class="card-block">
+                        <h3>{{ fixture.ground }}</h3>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-
-              <div class="col-md-6 col-sm-12">
-                <div class="card-deck">
-                  <div class="card card-inverse text-center item">
-                    <div class="card-block">
-                      <h2>{{moment(fixture.date).format("hh:mm A")}}</h2>
-                      <h3>{{moment(fixture.date).format("dddd DD MMM YY")}}</h3>
-                    </div>
-                  </div>
-                </div>
-
-              <div class="card-deck mt-1">
-                <div class="card card-inverse text-center item">
-                  <div class="card-block">
-                    <h3>{{ fixture.ground }}</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-      </li>
-    </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 

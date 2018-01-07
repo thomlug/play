@@ -53,11 +53,7 @@
             <div class="heading text-center">
               <h3>All fixtures this week</h3>
             </div>
-            <div class="card card-outer">
-              <div class="card-block">
-                <fixtures></fixtures>
-              </div>
-            </div>
+              <fixtures></fixtures>
           </div>
         </div>
       </div>
