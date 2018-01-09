@@ -8,10 +8,11 @@
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
             <label for="homeTeam">Home Team</label>
-            <input
-              type="text"
-              id="homeTeam"
+            <select
               class="form-control" v-model="newFixture.homeTeam">
+              <option disabled value="">Please select the home team</option>
+              <option v-for="team in teams" v-if="team.name">{{team.name}}</option>
+            </select>
           </div>
 
           <!-- <div class="form-group">
@@ -26,10 +27,11 @@
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
             <label for="awayTeam">Away Team</label>
-            <input
-              type="text"
-              id="awayTeam"
+            <select
               class="form-control" v-model="newFixture.awayTeam">
+              <option disabled value="">Please select the away team</option>
+              <option v-for="team in teams" v-if="team.name">{{team.name}}</option>
+            </select>
           </div>
 
           <!-- <div class="form-group">
@@ -54,11 +56,11 @@
               class="form-control" v-model="newFixture.date">
           </div>
           <div class="form-group">
-            <label for="timeStart">Start Date</label>
+            <label for="timeStart">Start Time</label>
             <input
               type="time"
               id="timeStart"
-              class="form-control" v-model="newFixture.date">
+              class="form-control" v-model="time">
           </div>
         </div>
 
@@ -80,7 +82,6 @@
           id="ground"
           class="form-control" v-model="newFixture.ground">
       </div>
-
       <input type="submit" class="btn btn-primary" value="Add Fixture">
     </form>
   </div>
@@ -88,12 +89,16 @@
 
 <script>
 import {db} from '../firebase';
+import moment from 'moment';
 let matchRef = db.ref('match')
 
 export default {
   firebase:{
     fixtures:{
         source: matchRef
+    },
+    teams:{
+      source: db.ref('team')
     }
   },
   data() {
@@ -104,25 +109,44 @@ export default {
         homePhot: '',
         awayPhoto: '',
         date: '',
+        time: '',
         endDate: '',
         ground: ''
-      }
+      },
+      teams: {},
+      time: ''
     };
   },
   methods: {
     addFixture: function(){
+      this.formatDateTime();
       matchRef.push(this.newFixture);
       this.newFixture.awayPhoto = '';
       this.newFixture.homePhoto = '';
       this.newFixture.homeTeam = '';
       this.newFixture.awayTeam = '';
       this.newFixture.date = '';
+      this.time = '';
       this.newFixture.endDate = '';
       this.newFixture.ground = '';
+    },
+    formatDateTime: function(){
+      var date = new Date(this.newFixture.date);
+      var dateString = "0" + (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + " " + this.time;
+      date = moment(dateString, "MM/DD/YYYY HH:mm a")
+      date = new Date(date).toISOString();
+      this.newFixture.date = date;
     }
   }
 }
 </script>
 
 <style lang="css">
+  .item {
+    background-color: black;
+  }
+
+  .card{
+    display: inline-block;
+  }
 </style>

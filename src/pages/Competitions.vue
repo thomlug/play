@@ -20,7 +20,7 @@
                 <ul>
                   <li v-for="n in 3">
                     <div class="row aligner">
-                      <avatar :size="100"></avatar>
+                      <avatar :size="80"></avatar>
                         <div>
                           <h4>Comp {{ n }}</h4>
                         </div>
@@ -28,7 +28,7 @@
                           <input class="input" type="text">
                         </div>
                         <div>
-                          <img class="edit-con" src="../assets/pencil.png">
+                          <img class="edit-icon" src="../assets/pencil.png">
                         </div>
                     </div>
                   </li>
@@ -127,8 +127,8 @@
   }
 
   .edit-icon{
-    width: 10px;
-    height: 10px;
+    width: 50px;
+    height: 50px;
   }
 
   li {

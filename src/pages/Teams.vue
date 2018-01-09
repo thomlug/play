@@ -20,8 +20,7 @@
 
 <script>
     import {db} from '../firebase';
-    import MainLayout from '../layouts/Main.vue'
-
+    import MainLayout from '../layouts/Main.vue';
     export default {
       components: {
         MainLayout

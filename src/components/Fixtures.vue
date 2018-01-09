@@ -4,7 +4,7 @@
       <div class="card-body">
         <ul>
           <li v-for="fixture in fixtures">
-              <div class="row item">
+              <div class="row">
                 <div class="col-md-6 col-sm-12">
                   <div class="card-deck">
                     <div class="card card-inverse item">
@@ -76,8 +76,8 @@
 
 <script>
   import {db} from '../firebase';
-  import Avatar from './Avatar.vue'
-  import moment from 'moment'
+  import Avatar from './Avatar.vue';
+  import moment from 'moment';
 
   export default {
     components: {
