@@ -11,6 +11,7 @@ import App from './App.vue'
 import Home from './pages/Home.vue'
 import Members from './pages/Members.vue'
 import Teams from './pages/Teams.vue'
+import Team from './pages/Team.vue'
 import Competitions from './pages/Competitions.vue'
 import Marketing from './pages/Marketing.vue'
 import Fixtures from './pages/Fixtures.vue'
@@ -37,7 +38,8 @@ const routes = [
   {path: '/marketing', component: Marketing},
   {path: '/fixtures', component: Fixtures},
   {path: '/results/:match_id', component: Results, name:'results'},
-  {path: '/profile/:player_id', component: Profile, name:'profile'}
+  {path: '/profile/:player_id', component: Profile, name:'profile'},
+  {path: '/team/:team_id', component: Team, name:'team'}
 ];
 
 const router = new VueRouter({routes});
