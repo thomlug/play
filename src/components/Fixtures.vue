@@ -1,83 +1,84 @@
 <template>
   <div class="row">
-    <div class="card">
-      <div class="card-body">
-        <ul>
-          <li v-for="fixture in fixtures">
-              <div class="row">
-                <div class="col-md-6 col-sm-12">
-                  <div class="card-deck">
-                    <div class="card card-inverse item">
-                      <div class="card-block">
-                        <div class="row avatars aligner">
-                          <div class="col-5">
-                              <div v-if="!fixture.homePhoto">
-                                <avatar style="float:right" :size="80">
-                                  <h3 class="avatar-logo">{{ fixture.homeTeam | firstCharacter }}</h3>
-                                </avatar>
-                              </div>
-                              <div v-else>
-                                <avatar style="float:right":image="fixture.homePhoto" :size="80"></avatar>
-                              </div>
-                          </div>
-                          <div class="col-2">
-                            <h3>VS</h3>
-                          </div>
-                          <div class="col-5">
-                            <div v-if="!fixture.awayPhoto">
-                              <avatar style="float:left" :size="80">
-                                <h3 class="avatar-logo">{{ fixture.awayTeam | firstCharacter }}</h3>
-                              </avatar>
-                            </div>
-                            <div v-else>
-                              <avatar style="float:left":image="fixture.awayPhoto" :size="80"></avatar>
-                            </div>
-                          </div>
-                        </div>
+    <ul>
+      <li v-for="fixture in fixtures">
+        <div class="row">
 
-                        <div class="row aligner team-names">
-                          <div class="col-6">
-                            <h3>{{ fixture.homeTeam }}</h3>
+            <div class="col-md-6 col-sm-12">
+              <div class="card-deck">
+                <div class="card card-inverse item">
+                  <div class="card-block">
+                    <div class="row avatars aligner">
+                      <div class="col-5">
+                          <div v-if="!fixture.homePhoto">
+                            <avatar style="float:right" :size="80">
+                              <h3 class="avatar-logo">{{ fixture.homeTeam | firstCharacter }}</h3>
+                            </avatar>
                           </div>
-                          <div class="col-6">
-                            <h3>{{ fixture.awayTeam }}</h3>
+                          <div v-else>
+                            <avatar style="float:right":image="fixture.homePhoto" :size="80"></avatar>
                           </div>
-                        </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-
-                  <div class="col-md-6 col-sm-12">
-                    <div class="card-deck">
-                      <div class="card card-inverse text-center item">
-                        <div class="card-block">
-                          <h2>{{moment(fixture.date).format("hh:mm A")}}</h2>
-                          <h3>{{moment(fixture.date).format("dddd DD MMM YY")}}</h3>
+                      <div class="col-2">
+                        <h3>VS</h3>
+                      </div>
+                      <div class="col-5">
+                        <div v-if="!fixture.awayPhoto">
+                          <avatar style="float:left" :size="80">
+                            <h3 class="avatar-logo">{{ fixture.awayTeam | firstCharacter }}</h3>
+                          </avatar>
+                        </div>
+                        <div v-else>
+                          <avatar style="float:left":image="fixture.awayPhoto" :size="80"></avatar>
                         </div>
                       </div>
                     </div>
 
-                  <div class="card-deck mt-1">
-                    <div class="card card-inverse text-center item">
-                      <div class="card-block">
-                        <h3>{{ fixture.ground }}</h3>
+                    <div class="row aligner">
+                      <div class="name">
+                        <h4>{{ fixture.homeTeam }}</h4>
+                      </div>
+                      <div class="horizontal-space">
+                      </div>
+                      <div class="name">
+                        <h4>{{ fixture.awayTeam }}</h4>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <div class="card-deck">
+                  <div class="card card-inverse text-center item">
+                    <div class="card-block">
+                      <h2>{{moment(fixture.date).format("hh:mm A")}}</h2>
+                      <h3>{{moment(fixture.date).format("dddd DD MMM YY")}}</h3>
+                    </div>
+                  </div>
+                </div>
+
+              <div class="card-deck mt-1">
+                <div class="card card-inverse text-center item">
+                  <div class="card-block">
+                    <h3>{{ fixture.ground }}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
   import {db} from '../firebase';
   import Avatar from './Avatar.vue';
-  import moment from 'moment';
+  import moment from 'moment'
 
   export default {
     components: {
@@ -119,6 +120,7 @@
   .item {
     text-align: center;
     background-color: #2E2F30;
+    padding: 10px;
   }
 
   /* @media (max-width: 768px)
@@ -136,14 +138,16 @@
       div[class*="col"]{padding-left:10px; padding-right:10px;}
   } */
 
-  .row [class*="col-"]{
+  /* .row [class*="col-"]{
     margin-bottom: -99999px;
     padding-bottom: 99999px;
-  }
+  } */
 
-  .row{
+  /* .row{
     overflow: hidden;
-  }
+    display: flex;
+    flex-wrap: wrap;
+  } */
 
   .top-buffer { margin-top:10px; }
 
@@ -171,6 +175,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .name{
+    max-width:6em;
+  }
+
+  .horizontal-space {
+    width: 30%;
   }
 
 

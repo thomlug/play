@@ -1,24 +1,22 @@
 <template>
   <main-layout>
     <div class="col-12 outer">
-      <div class="row">
-        <div class="col-12">
+      <div class="row-align-center">
           <div class="card card-inverse text-center top-buffer bottom-buffer banner">
             <div class="card-block">
               <h1>Club/League 1</h1>
             </div>
           </div>
-        </div>
       </div>
       <div class="row">
         <div class="col-md-5 col-sm-12">
           <div class="col-12">
             <div class="top-buffer">
             </div>
-            <div class="card card-outer">
-              <div class="card-block">
+            <div class="card">
+              <div class="card-block card-outer">
                 <ul>
-                  <li v-for="n in 3">
+                  <li v-for="n in 4">
                     <div class="row aligner">
                       <avatar :size="80"></avatar>
                         <div>
@@ -53,7 +51,21 @@
             <div class="heading text-center">
               <h3>All fixtures this week</h3>
             </div>
-              <fixtures></fixtures>
+            <div class="card">
+              <div class="card-block card-outer">
+                <fixtures></fixtures>
+              </div>
+              <div class="card-footer">
+                <div class="row aligner">
+                    <div class="new-icon">
+                      <img src="../assets/plus-circle.png" alt="">
+                    </div>
+                    <div class>
+                      <h3>Enter new fixture</h3>
+                    </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -102,6 +114,7 @@
     overflow-y: scroll;
     overflow: auto;
     overflow-x: hidden;
+    max-height: 450px;
   }
 
   .aligner {
@@ -139,6 +152,10 @@
 
   ul{
     overflow: auto;
+  }
+
+  .input{
+    max-width: 150px;
   }
 
 

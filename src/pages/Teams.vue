@@ -1,17 +1,15 @@
 <template>
   <main-layout>
-    <div class="row align-items-center">
-      <div class="col-md-8 col-sm-12">
+    <div class="row aligner">
+      <div class="col-12">
         <p class="text-center">Teams</p>
-          <ul>
-            <li v-for="team in teams">
-              <div class="card" v-if="!isBlank(team.name)">
-                <div class="card-block text-center">
-                  <h3>{{team.name}}</h3>
-                </div>
+          <div class="card-group">
+            <div class="card" v-for="team in teams" v-if="!isBlank(team.name)">
+              <div class="card-block text-center">
+                <h3>{{team.name}}</h3>
               </div>
-            </li>
-          </ul>
+            </div>
+          </div>
       </div>
     </div>
 
@@ -44,9 +42,9 @@
 </script>
 
 <style media="screen">
-  li {
-    margin: 0;
-    padding: 0.2em;
-    list-style-type: none;
+  .aligner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>
