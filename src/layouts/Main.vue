@@ -10,13 +10,13 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <router-link active-class="active" exact class="nav-item nav-link" to="home">Dashboard</router-link>
+              <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'home'}">Dashboard</router-link>
             </li>
             <li class="nav-item">
-              <router-link active-class="active" exact class="nav-item nav-link" to="chat">Chat</router-link>
+              <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'chat'}">Chat</router-link>
             </li>
             <li class="nav-item">
-              <router-link active-class="active" exact class="nav-item nav-link" to="teams">Teams</router-link>
+              <router-link active-class="active" exact class="nav-item nav-link" :to="{name: 'teams'}">Teams</router-link>
             </li>
             <!-- <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" to="members">Members</router-link>

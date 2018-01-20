@@ -30,13 +30,13 @@ Vue.use(helpersPlugin);
 Vue.prototype.moment = moment
 
 const routes = [
-  {path: '/home', alias:'', component: Home},
-  {path: '/chat', component: Chat},
-  {path: '/members', component: Members},
-  {path: '/teams', component: Teams},
-  {path: '/competitions', component: Competitions},
-  {path: '/marketing', component: Marketing},
-  {path: '/fixtures', component: Fixtures},
+  {path: '/home', alias:'', component: Home, name:'home'},
+  {path: '/chat', component: Chat, name:'chat'},
+  {path: '/members', component: Members, name:'members'},
+  {path: '/teams', component: Teams, name:'teams'},
+  {path: '/competitions', component: Competitions, name: 'competitions'},
+  {path: '/marketing', component: Marketing, name: 'marketing'},
+  {path: '/fixtures', component: Fixtures, name: 'fixtures'},
   {path: '/results/:match_id', component: Results, name:'results'},
   {path: '/profile/:player_id', component: Profile, name:'profile'},
   {path: '/team/:team_id', component: Team, name:'team'}
@@ -46,22 +46,12 @@ const router = new VueRouter({routes});
   
 
 const app = new Vue({
-  el: '#app',
-  data: {
-    signedIn: false,
-    currentRoute: window.location.pathname,
-    data: {cards: [
-      {title: 'Active Competitions', subtitle: 'In your organisation'},
-      {title: 'Revenue', subtitle: 'Per Competition'},
-      {title: 'Total Revenue To Date', subtitle: 'In your organisation from payments'},
-      {title: 'Outstanding Payments', subtitle: 'From players in your organisation'},
-    ]}
-  },
+  el:"#app",
   router,
   render (h) {
     return h(App)
   }
-})
+});
 
 window.addEventListener('popstate', () => {
   app.currentRoute = window.location.pathname
