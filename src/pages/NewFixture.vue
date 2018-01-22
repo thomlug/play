@@ -72,6 +72,13 @@
               id="dateEnd"
               class="form-control" v-model="newFixture.endDate">
           </div>
+          <div class="form-group">
+            <label for="timeFinish">Finish Time</label>
+            <input
+              type="time"
+              id="timeFinish"
+              class="form-control" v-model="timeFinish">
+          </div>
         </div>
       </div>
 
@@ -110,6 +117,7 @@ export default {
         awayPhoto: '',
         date: '',
         time: '',
+        timeFinish: '',
         endDate: '',
         ground: ''
       },
@@ -127,6 +135,7 @@ export default {
       this.newFixture.awayTeam = '';
       this.newFixture.date = '';
       this.time = '';
+      this.timeFinish = '';
       this.newFixture.endDate = '';
       this.newFixture.ground = '';
     },

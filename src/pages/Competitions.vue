@@ -15,27 +15,55 @@
             </div>
             <div class="card">
               <div class="card-block card-outer">
-                <ul>
-                  <li v-for="n in 4">
-                    <div class="row aligner">
-                      <avatar :size="80"></avatar>
-                        <div>
-                          <h4>Comp {{ n }}</h4>
-                        </div>
-                        <div>
-                          <input class="input" type="text">
-                        </div>
-                        <div>
-                          <img class="edit-icon" src="../assets/pencil.png">
-                        </div>
+                <ul class="list-group">
+                  <li v-for="(competition,index) in competitions" class="list-group-item aligner">
+                    <div @click="(event) => { setCurrentCompetition(competition); loadTeamsList(index), visible=!visible}">
+                        <div class="row aligner">
+                          <avatar :size="80"></avatar>
+                            <div>
+                              <h4>{{ competition.name }}</h4>
+                            </div>
+                            <div>
+                              <input class="input" type="text">
+                            </div>
+                            <div>
+                              <img class="edit-icon" src="../assets/pencil.png">
+                            </div>
+                      </div>
                     </div>
+                      <div v-if="visible" class="col-8" style="float-right">
+                        <div v-for="team in teamslist" class="card">
+                          <div class="card-block">
+                            <div class="row aligner">
+                              <div class="fixed-avatar">
+                                <avatar :size="40"></avatar>
+                              </div>
+                              <h4 class="text-center"> {{team}}</h4>
+                              <div class="">
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card-footer">
+                          <div class="row aligner">
+                              <div @click="addNewTeam" class="new-icon">
+                                <img src="../assets/plus-circle.png" alt="">
+                              </div>
+                              <div class>
+                                <h3>Add Team</h3>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
                   </li>
                 </ul>
 
               </div>
                 <div class="card-footer">
                   <div class="row aligner">
-                      <div class="new-icon">
+                      <div @click="addNewComp" class="new-icon">
                         <img src="../assets/plus-circle.png" alt="">
                       </div>
                       <div class>
@@ -83,11 +111,62 @@
   import Avatar from '../components/Avatar.vue'
 
   export default {
+    data(){
+      return{
+        newComp:{
+          name: ''
+        },
+        teamslist: [],
+        currentcompetition: '',
+        visible: false
+      }
+    },
+
     components: {
       MainLayout,
       Slick,
       Fixtures,
       Avatar
+    },
+
+    computed: {
+      setTeamsList(){
+        this.teamslist = [];
+        for (var index=0; index < this.teams.length; index++){
+          var team = this.teams[index];
+          if (team.competition == this.currentcompetition){
+            this.teamslist.push(team.name);
+          }
+        }
+      }
+    },
+
+    firebase: {
+      competitions:{
+        source: db.ref('competition')
+      },
+      teams: {
+        source: db.ref('team')
+      }
+    },
+
+    methods: {
+      addNewComp(){
+        db.ref('competition').push(this.newComp);
+        this.newComp.name = '';
+      },
+
+      setCurrentCompetition(competition){
+        this.currentcompetition = competition.name;
+        console.log("hello");
+        console.log(this.currentcompetition);
+      },
+
+      loadTeamsList(index){
+        this.setTeamsList;
+        this.visibleItemIndex = index;
+        console.log(this.visibleItemIndex);
+      }
     }
   }
 </script>
@@ -156,6 +235,11 @@
 
   .input{
     max-width: 150px;
+  }
+
+  .fixed-avatar{
+    width: 50px;
+    flex: 0 0 50px;
   }
 
 
