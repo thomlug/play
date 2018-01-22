@@ -1,8 +1,9 @@
 <template>
     <main-layout>
         <div class="container">
+            <h1>{{getCurrentTeam().name}} chat</h1>
             <div class="chat-pane" id="chat-pane">
-                <Message v-for="message in messages" :message="message" :key="message.created" />
+                <Message v-for="message in getConversationMessages()" :message="message" :key="message.created" />
                 <br/>
             </div>
             <input class="send" @keyup.enter="addMessage" v-model="newMessage.text" placeholder="Type your message here"></textarea>
@@ -39,12 +40,25 @@
             this.newMessage.date = this.moment.utc().format();
             this.newMessage.sender_id = this.currentUser.uid;
             this.newMessage.name = this.currentUser.displayName;
+            this.newMessage.conversation = this.getCurrentTeam()['.key'];
             chatRef.push(this.newMessage);
             this.newMessage.text = '';
         },
         scrollToEnd: function() {    	
             var container = this.$el.querySelector("#chat-pane");
             container.scrollTop = container.scrollHeight;
+        },
+        getConversationMessages(){
+            var currentTeamId = _.isUndefined(this.getCurrentTeam()) ? '':  this.getCurrentTeam()['.key'];
+            return _.filter(this.messages, function(message){return message.conversation === currentTeamId;})
+        },
+        getCurrentTeam(){
+            var team = _.head(this.teams);
+            return _.isUndefined(team) ? {} : team;
+        },
+        getCurrentConversation(){
+            var currentTeamId = this.getCurrentTeam()['.key'];
+            return _.find(this.conversations, function(conversation){return conversation.team_id === currentTeamId;});
         }
     },
     firebase() {
@@ -52,10 +66,15 @@
         messages: { 
             source: chatRef,
             readyCallback:function(){
-                console.log('test');
                 this.scrollToEnd();
             }
-        }
+        },
+        conversations:{
+            source: db.ref('conversation')
+        },
+        teams:{
+            source: db.ref('team')
+        },
       };
     },
     watch:{
