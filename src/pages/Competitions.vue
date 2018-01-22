@@ -19,7 +19,10 @@
                   <li v-for="(competition,index) in competitions" class="list-group-item aligner">
                     <div @click="(event) => { setCurrentCompetition(competition); loadTeamsList(index), visible=!visible}">
                         <div class="row aligner">
-                          <avatar :size="80"></avatar>
+                          <div class="no-flex">
+                            <div class="avatar">
+                            </div>
+                          </div>
                             <div>
                               <h4>{{ competition.name }}</h4>
                             </div>
@@ -31,16 +34,16 @@
                             </div>
                       </div>
                     </div>
-                      <div v-if="visible" class="col-8" style="float-right">
+                      <div v-if="visible" class="col-12">
                         <div v-for="team in teamslist" class="card">
                           <div class="card-block">
                             <div class="row aligner">
-                              <div class="fixed-avatar">
-                                <avatar :size="40"></avatar>
+                              <div class="no-flex">
+                                <div class="avatar">
+                                </div>
                               </div>
-                              <h4 class="text-center"> {{team}}</h4>
-                              <div class="">
-
+                              <div class="no-flex">
+                                <h4 class="text-center"> {{team}}</h4>
                               </div>
                             </div>
                           </div>
@@ -85,8 +88,10 @@
               </div>
               <div class="card-footer">
                 <div class="row aligner">
-                    <div class="new-icon">
-                      <img src="../assets/plus-circle.png" alt="">
+                    <div class="new-icon">                      
+                      <router-link active-class="active" exact class="nav-item nav-link" to="new">
+                        <img src="../assets/plus-circle.png" alt="">
+                      </router-link>
                     </div>
                     <div class>
                       <h3>Enter new fixture</h3>
@@ -104,11 +109,12 @@
 <style src="slick-carousel/slick/slick.css"></style>
 <script>
   import {db} from '../firebase';
-  import MainLayout from '../layouts/Main.vue'
+  import MainLayout from '../layouts/Main.vue';
   import Slick from 'vue-slick';
-  import moment from 'moment'
-  import Fixtures from '../components/Fixtures.vue'
-  import Avatar from '../components/Avatar.vue'
+  import moment from 'moment';
+  import Fixtures from '../components/Fixtures.vue';
+  import Avatar from '../components/Avatar.vue';
+  import VLink from '../components/VLink.vue';
 
   export default {
     data(){
@@ -126,7 +132,8 @@
       MainLayout,
       Slick,
       Fixtures,
-      Avatar
+      Avatar,
+      VLink
     },
 
     computed: {
@@ -172,6 +179,13 @@
 </script>
 
 <style scoped>
+  // Extra small devices (portrait phones, less than 576px)
+  @media (max-width: 575px) {
+    .avatar{
+      width: 50px;
+      height: 50px;
+    }
+  }
 
   .outer {
     background-color: #E0E0E0;
@@ -237,9 +251,21 @@
     max-width: 150px;
   }
 
-  .fixed-avatar{
-    width: 50px;
-    flex: 0 0 50px;
+  .no-flex{
+    flex: 0 0;
+  }
+
+  .avatar{
+    /* width: 120px;
+    height: 120px; */
+    width: 80px;
+    height: 80px;
+    border: solid 2px;
+    border-radius: 50%;
+    background-color: #ECEFF1;
+    margin: 0 20px;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
 
