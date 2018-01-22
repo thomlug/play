@@ -89,7 +89,7 @@
           id="ground"
           class="form-control" v-model="newFixture.ground">
       </div>
-      <input type="submit" class="btn btn-primary" value="Add Fixture">
+        <input type="submit" class="btn btn-primary" value="Add Fixture">
     </form>
   </div>
 </template>
@@ -97,9 +97,14 @@
 <script>
 import {db} from '../firebase';
 import moment from 'moment';
+import VLink from '../components/VLink.vue';
 let matchRef = db.ref('match')
 
 export default {
+  components: {
+    VLink
+  },
+
   firebase:{
     fixtures:{
         source: matchRef
@@ -138,6 +143,7 @@ export default {
       this.timeFinish = '';
       this.newFixture.endDate = '';
       this.newFixture.ground = '';
+      router.push({name: "competitions"});
     },
     formatDateTime: function(){
       var date = new Date(this.newFixture.date);
