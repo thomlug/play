@@ -3,26 +3,27 @@
     <ul>
       <li v-for="fixture in fixtures">
         <div class="row">
-
             <div class="col-md-6 col-sm-12">
-              <div class="card-deck">
-                <div class="card card-inverse item">
-                  <div class="card-block">
-                    <div class="row avatars aligner">
-                      <div class="col-5">
-                          <div v-if="!fixture.homePhoto">
-                            <avatar style="float:right" :size="80">
-                              <h3 class="avatar-logo">{{ fixture.homeTeam | firstCharacter }}</h3>
-                            </avatar>
-                          </div>
-                          <div v-else>
-                            <avatar style="float:right":image="fixture.homePhoto" :size="80"></avatar>
-                          </div>
+              <div class="card card-inverse h-100 aligner2 item strip-bottom">
+                <div class="card-block">
+                  <div class="row">
+                    <div class="col-5 aligner">
+                      <div v-if="!fixture.homePhoto">
+                        <avatar style="float:right" :size="80">
+                          <h3 class="avatar-logo">{{ fixture.homeTeam | firstCharacter }}</h3>
+                        </avatar>
                       </div>
-                      <div class="col-2">
+                      <div v-else>
+                        <avatar style="float:right":image="fixture.homePhoto" :size="80"></avatar>
+                      </div>
+                      <div class="name">
+                        <h3>{{ fixture.homeTeam }}</h3>
+                      </div>
+                    </div>
+                      <div class="col-2 aligner">
                         <h3>VS</h3>
                       </div>
-                      <div class="col-5">
+                      <div class="col-5 aligner">
                         <div v-if="!fixture.awayPhoto">
                           <avatar style="float:left" :size="80">
                             <h3 class="avatar-logo">{{ fixture.awayTeam | firstCharacter }}</h3>
@@ -31,54 +32,42 @@
                         <div v-else>
                           <avatar style="float:left":image="fixture.awayPhoto" :size="80"></avatar>
                         </div>
-                      </div>
-                    </div>
-
-                    <div class="row aligner">
-                      <div class="name">
-                        <h4>{{ fixture.homeTeam }}</h4>
-                      </div>
-                      <div class="horizontal-space">
-                      </div>
-                      <div class="name">
-                        <h4>{{ fixture.awayTeam }}</h4>
+                        <div class="name">
+                          <h3>{{ fixture.awayTeam }}</h3>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div class="col-md-6 col-sm-12">
-                <div class="card-deck">
-                  <div class="card card-inverse text-center item">
+              <div class="col-md-6 col-sm-12">
+                  <div class="card card-inverse h-50 item">
                     <div class="card-block">
-                      <h2>{{moment(fixture.date).format("hh:mm A")}}</h2>
-                      <h3>{{moment(fixture.date).format("dddd DD MMM YY")}}</h3>
+                      <div class="card-text aligner">
+                        <h2>{{moment(fixture.date).format("hh:mm A")}}</h2>
+                        <h3>{{moment(fixture.date).format("dddd DD MMM YY")}}</h3>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-              <div class="card-deck mt-1">
-                <div class="card card-inverse text-center item">
+                <div class="card card-inverse h-50 item">
                   <div class="card-block">
-                    <h3>{{ fixture.ground }}</h3>
+                    <div class="card-text aligner">
+                      <h3>{{ fixture.ground }}</h3>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-
-
-        </div>
-      </li>
-    </ul>
-  </div>
+          </li>
+        </ul>
+      </div>
 </template>
 
 <script>
   import {db} from '../firebase';
   import Avatar from './Avatar.vue';
-  import moment from 'moment'
+  import moment from 'moment';
 
   export default {
     components: {
@@ -122,32 +111,28 @@
     background-color: #2E2F30;
     padding: 10px;
   }
-
-  /* @media (max-width: 768px)
-  {
-      div[class*="col"]{padding-left:5px; padding-right:5px; padding-top: 5px;}
-  }
-
-  @media (max-width: 992px)
-  {
-      div[class*="col"]{padding-left:10px; padding-right:10px;}
-  }
-
-  @media (min-width: 992px)
-  {
-      div[class*="col"]{padding-left:10px; padding-right:10px;}
-  } */
-
-  /* .row [class*="col-"]{
-    margin-bottom: -99999px;
-    padding-bottom: 99999px;
-  } */
-
-  /* .row{
-    overflow: hidden;
+  .aligner{
     display: flex;
-    flex-wrap: wrap;
-  } */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .aligner2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding: 2%;
+  }
+
+  .name{
+    flex: 1;
+  }
+
+  .mb-10{
+    margin-bottom: 10px;
+  }
 
   .top-buffer { margin-top:10px; }
 
