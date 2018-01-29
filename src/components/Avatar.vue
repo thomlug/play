@@ -23,7 +23,7 @@ export default {
   .logo {
     /* width: 120px;
     height: 120px; */
-    border: solid 2px;
+    border: 3px solid #2acad0;
     border-radius: 50%;
     background-color: #ECEFF1;
     margin: 0 20px;
