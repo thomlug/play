@@ -27,9 +27,6 @@
             <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" to="marketing">Marketing</router-link>
             </li>
-            <li class="nav-item">
-              <router-link active-class="active" exact class="nav-item nav-link" to="fixtures">Fixtures/Results</router-link>
-            </li>
           </ul>
         </div>
       </nav>

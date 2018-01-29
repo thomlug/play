@@ -3,7 +3,7 @@
     <div class="page-header">
       <h1>New Fixture</h1>
     </div>
-      <form v-on:submit.prevent="addFixture">
+      <form>
         <div class="row">
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
@@ -89,7 +89,10 @@
           id="ground"
           class="form-control" v-model="newFixture.ground">
       </div>
-        <input type="submit" class="btn btn-primary" value="Add Fixture">
+      <router-link to="competitions">
+        <button type="button" name="button" class="btn btn primary" @click="addFixture">Add Fixture</button>
+      </router-link>
+        <!-- <input type="submit" class="btn btn-primary" value="Add Fixture"> -->
     </form>
   </div>
 </template>
@@ -121,12 +124,9 @@ export default {
         homePhot: '',
         awayPhoto: '',
         date: '',
-        time: '',
-        timeFinish: '',
         endDate: '',
         ground: ''
       },
-      teams: {},
       time: ''
     };
   },
@@ -143,7 +143,6 @@ export default {
       this.timeFinish = '';
       this.newFixture.endDate = '';
       this.newFixture.ground = '';
-      router.push({name: "competitions"});
     },
     formatDateTime: function(){
       var date = new Date(this.newFixture.date);

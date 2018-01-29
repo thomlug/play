@@ -36,7 +36,6 @@ const routes = [
   {path: '/teams', component: Teams},
   {path: '/competitions', component: Competitions},
   {path: '/marketing', component: Marketing},
-  {path: '/fixtures', component: Fixtures},
   {path: '/new', component: New},
   {path: '/results/:match_id', component: Results, name:'results'},
   {path: '/profile/:player_id', component: Profile, name:'profile'}

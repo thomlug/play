@@ -41,7 +41,7 @@
                 </div>
               </div>
               <div class="col-md-6 col-sm-12">
-                  <div class="card card-inverse h-50 item">
+                  <div class="card card-inverse h-45 item mb-10">
                     <div class="card-block">
                       <div class="card-text aligner">
                         <h2>{{moment(fixture.date).format("hh:mm A")}}</h2>
@@ -50,7 +50,7 @@
                     </div>
                   </div>
 
-                <div class="card card-inverse h-50 item">
+                <div class="card card-inverse h-45 item">
                   <div class="card-block">
                     <div class="card-text aligner">
                       <h3>{{ fixture.ground }}</h3>
@@ -106,6 +106,18 @@
 
 <style media="screen" scoped>
 
+  .strip-bottom{
+    margin-bottom: 2px;
+  }
+
+  // Extra small devices (portrait phones, less than 576px)
+  @media (max-width: 480px) {
+    .strip-bottom{
+        margin-bottom: 5px;
+        height: 90%;
+    }
+  }
+
   .item {
     text-align: center;
     background-color: #2E2F30;
@@ -131,7 +143,7 @@
   }
 
   .mb-10{
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 
   .top-buffer { margin-top:10px; }
@@ -165,10 +177,5 @@
   .name{
     max-width:6em;
   }
-
-  .horizontal-space {
-    width: 30%;
-  }
-
 
 </style>
