@@ -50,7 +50,7 @@
            <h4>{{getNextFixture().ground}}</h4>
           </div>
         </div>
-          
+
           <div class="card-block">
             <h4 class="card-title">Update your status <small>({{getCurrentPlayer().availability | camelToSentence}})</small></h4>
               <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available active">Available</button>
@@ -63,15 +63,15 @@
             <h4 class="card-title">Starting lineup</h4>
             <div class="card-block">
               <div class="row" v-for="(formationRowWidth, formationRow) in getNextFixtureDetails().formation" :key="formationRow">
-                <div v-for="formationColumn in formationRowWidth" :key="formationColumn" 
-                  class="center-block text-center" 
-                  v-bind:class="calculateFormationClass(formationRowWidth)" 
+                <div v-for="formationColumn in formationRowWidth" :key="formationColumn"
+                  class="center-block text-center"
+                  v-bind:class="calculateFormationClass(formationRowWidth)"
                   v-bind:style="{'max-width': (100/formationRowWidth) + '%'}">
                   <div class="player-container text-center">
                     <template v-if="getPlayer(formationRow, formationColumn).photo">
                       <router-link v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
-                      <img class="img-fluid rounded-circle play-photo" 
-                        v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)"  
+                      <img class="img-fluid rounded-circle play-photo"
+                        v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)"
                         :src="getPlayer(formationRow, formationColumn).photo"/>
                       {{getPlayer(formationRow, formationColumn).first_name}}
                       </router-link>
@@ -79,7 +79,7 @@
                     <template v-else>
                       <router-link v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
                         <div class="circle player-circle" v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)">
-                          {{getPlayer(formationRow, formationColumn).first_name | firstCharacter}} 
+                          {{getPlayer(formationRow, formationColumn).first_name | firstCharacter}}
                         </div>
                         {{getPlayer(formationRow, formationColumn).first_name}}
                       </router-link>
@@ -98,8 +98,8 @@
                 <div class="player-container text-center">
                 <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
                     <template v-if="player.photo">
-                      <img class="img-fluid rounded-circle play-photo" 
-                        v-bind:class="calculatePlayerClass(player.availability)" 
+                      <img class="img-fluid rounded-circle play-photo"
+                        v-bind:class="calculatePlayerClass(player.availability)"
                         :src="player.photo"/>
                     </template>
                     <template v-else>
@@ -134,14 +134,14 @@
       </div>
   </main-layout>
 </template>
-  
+
 <style src="slick-carousel/slick/slick.css"></style>
 <script>
   import {db} from '../firebase';
   import MainLayout from '../layouts/Main.vue'
   import Slick from 'vue-slick';
   import moment from 'moment'
-  
+
   export default {
     components: {
       MainLayout,
@@ -168,8 +168,8 @@
                         edgeFriction: 0.30,
                         swipe: true
                     },
-          players: {},  
-          teams: {}          
+          players: {},
+          teams: {}
       };
     },
     filters: {
@@ -243,7 +243,7 @@
           .find(function(f) {
             return f.status === 'active' && !_.isUndefined(f[teamKey]);
           });
-        
+
         return !_.isUndefined(fixture) ? fixture : {startDate: "unknown"};
       },
       getPlayersForCurrentTeam(){
@@ -264,7 +264,7 @@
       substitutePlayers(){
         var component = this;
         return _.filter(this.getPlayersForCurrentTeam(), function(p){
-            return !_.isUndefined(p.position) 
+            return !_.isUndefined(p.position)
             && _.every(p.position, function(pos){return pos === 0;});
           });
       },
@@ -319,7 +319,7 @@
 }
 
 
-@media (max-width: 768px) { 
+@media (max-width: 768px) {
   .player-container{
     max-width:64px;
     margin: 0 auto;
@@ -336,7 +336,7 @@
     max-width:96px;
   }
 }
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
   .player-container{
     max-width:128px;
     margin: 0 auto;
@@ -384,14 +384,14 @@
   border-color: #138387;
 }
 
-.btn-available:hover, 
-.btn-available:focus, 
-.btn-available:active, 
-.btn-available.active, 
-.open .dropdown-toggle.btn-available { 
-  background-color: #22A4A8; 
-  border-color: #138387; 
-} 
+.btn-available:hover,
+.btn-available:focus,
+.btn-available:active,
+.btn-available.active,
+.open .dropdown-toggle.btn-available {
+  background-color: #22A4A8;
+  border-color: #138387;
+}
 
 /*adjust jumbotron front size*/
 @media (max-width: 900px){

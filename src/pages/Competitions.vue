@@ -1,15 +1,233 @@
 <template>
   <main-layout>
-    <p>Competitions</p>
+      <div class="row-align-center">
+          <div class="card card-inverse text-center top-buffer bottom-buffer banner">
+            <div class="card-block">
+              <h1>Club/League 1</h1>
+            </div>
+          </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5 col-sm-12 col-xs-12">
+          <div class="col-12">
+            <div class="top-buffer">
+            </div>
+            <div class="card">
+              <div class="card-block card-outer">
+                <competition-item v-for="competition in competitions" :competition="competition"></competition-item>
+              </div>
+                <div class="card-footer">
+                  <div class="row aligner">
+                      <div class="new-icon" data-toggle="modal" data-target="#addNewCompetitionModal">
+                        <img src="../assets/plus-circle.png" alt="">
+                      </div>
+                      <div class>
+                        <h3>New comp</h3>
+                      </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-7 col-sm-12 col-xs-12">
+          <div class="col-12">
+            <div class="heading text-center">
+              <h3>All fixtures this week</h3>
+            </div>
+            <div class="card">
+              <div class="card-block card-outer">
+                <fixtures></fixtures>
+              </div>
+              <div class="card-footer">
+                <div class="row aligner">
+                    <div class="new-icon">
+                      <router-link active-class="active" exact class="nav-item nav-link" to="new">
+                        <img src="../assets/plus-circle.png" alt="">
+                      </router-link>
+                    </div>
+                    <div class>
+                      <h3>New fixture</h3>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="addNewCompetitionModal" tabindex="-1" role="dialog" aria-labelledby="addNewCompetitionModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addNewCompetitionModalLabel">Competition</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form v-on:submit.prevent="addNewComp">
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="name" class="form-control-label">Competition Name:</label>
+                  <input type="text" class="form-control" id="name" v-model="newComp.name">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-primary" value="Save">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
   </main-layout>
 </template>
 
+<style src="slick-carousel/slick/slick.css"></style>
 <script>
-  import MainLayout from '../layouts/Main.vue'
+  import {db} from '../firebase';
+  import MainLayout from '../layouts/Main.vue';
+  import Slick from 'vue-slick';
+  import moment from 'moment';
+  import Fixtures from '../components/Fixtures.vue';
+  import Avatar from '../components/Avatar.vue';
+  import VLink from '../components/VLink.vue';
+  import CompetitionItem from '../components/CompetitionItem.vue'
 
   export default {
+    data(){
+      return{
+        newComp:{
+          name: ''
+        },
+        currentCompetition: {}
+      }
+    },
+
     components: {
-      MainLayout
+      MainLayout,
+      Slick,
+      Fixtures,
+      Avatar,
+      VLink,
+      CompetitionItem
+    },
+
+    firebase: {
+      competitions:{
+        source: db.ref('competition'),
+      },
+      teams: {
+        source: db.ref('team')
+      }
+    },
+
+    methods: {
+      addNewComp(){
+        db.ref('competition').push(this.newComp);
+        this.newComp.name = '';
+      },
+
+      setCurrentCompetition(competition){
+        this.currentCompetition = competition;
+        console.log(this.currentCompetition);
+      }
     }
   }
+
 </script>
+
+<style scoped>
+  // Extra small devices (portrait phones, less than 576px)
+  @media (max-width: 575px) {
+    .avatar{
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .outer {
+    background-color: #E0E0E0;
+  }
+
+  .card {
+    max-height: 500px;
+  }
+
+  .top-buffer{
+    margin-top: 37px;
+  }
+
+  .bottom-buffer{
+    margin-bottom: 30px;
+  }
+
+  .card-outer{
+    overflow-y: scroll;
+    overflow: auto;
+    overflow-x: hidden;
+    max-height: 450px;
+  }
+
+  .aligner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 5px; */
+  }
+
+  .aligner > div {
+    flex: 1 1 auto;
+    margin: 10px;
+  }
+
+  .input{
+    background-color: #1E88E5;
+  }
+
+  .banner{
+    background-color: #2E2F30;
+    border-color: #333;
+    color: #ffffff;
+    height: 150px;
+  }
+
+  .edit-icon{
+    width: 50px;
+    height: 50px;
+  }
+
+  li {
+    margin: 0;
+    padding: 0.2em;
+    list-style-type: none;
+  }
+
+  ul{
+    overflow: auto;
+  }
+
+  .input{
+    max-width: 150px;
+  }
+
+  .no-flex{
+    flex: 0 0;
+  }
+
+  .avatar{
+    width: 80px;
+    height: 80px;
+    border: 3px solid #2acad0;
+    border-radius: 50%;
+    background-color: #ECEFF1;
+    margin: 0 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+
+
+</style>
