@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="page-header">
-      <h1>New Fixture</h1>
+      <h1>New Fixture in {{newFixture.competition}}</h1>
     </div>
       <form>
         <div class="row">
@@ -11,7 +11,7 @@
             <select
               class="form-control" v-model="newFixture.homeTeam">
               <option disabled value="">Please select the home team</option>
-              <option v-for="team in teams" v-if="team.name">{{team.name}}</option>
+              <option v-for="team in teams" v-if="team.name && team.competition == newFixture.competition">{{team.name}}</option>
             </select>
           </div>
 
@@ -30,7 +30,7 @@
             <select
               class="form-control" v-model="newFixture.awayTeam">
               <option disabled value="">Please select the away team</option>
-              <option v-for="team in teams" v-if="team.name">{{team.name}}</option>
+              <option v-for="team in teams" v-if="team.name && team.competition == newFixture.competition">{{team.name}}</option>
             </select>
           </div>
 
@@ -123,6 +123,7 @@ export default {
         awayTeam: '',
         homePhot: '',
         awayPhoto: '',
+        competition: this.$route.params.competition,
         date: '',
         endDate: '',
         ground: ''

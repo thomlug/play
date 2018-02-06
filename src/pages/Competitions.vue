@@ -15,7 +15,7 @@
             </div>
             <div class="card">
               <div class="card-block card-outer">
-                <competition-item v-for="competition in competitions" :competition="competition"></competition-item>
+                <competition-item v-for="competition in competitions" :competition="competition" @newCompetitionClicked="currentCompetition = $event"></competition-item>
               </div>
                 <div class="card-footer">
                   <div class="row aligner">
@@ -34,22 +34,24 @@
         <div class="col-md-7 col-sm-12 col-xs-12">
           <div class="col-12">
             <div class="heading text-center">
-              <h3>All fixtures this week</h3>
+              <h3 v-if="currentCompetition">All fixtures this week for {{ currentCompetition }}</h3>
+              <h3 v-else>No competition currently selected</h3>
             </div>
             <div class="card">
               <div class="card-block card-outer">
-                <fixtures></fixtures>
+                <fixtures v-for="fixture in fixtures" :fixture="fixture"
+                          :competition="currentCompetition" v-if="fixture.competition == currentCompetition"></fixtures>
               </div>
               <div class="card-footer">
                 <div class="row aligner">
-                    <div class="new-icon">
-                      <router-link active-class="active" exact class="nav-item nav-link" to="new">
-                        <img src="../assets/plus-circle.png" alt="">
-                      </router-link>
-                    </div>
-                    <div class>
-                      <h3>New fixture</h3>
-                    </div>
+                  <div class="new-icon">
+                    <router-link :to="{name: 'newfixture', params: {competition: currentCompetition}}">
+                      <img src="../assets/plus-circle.png" alt="">
+                    </router-link>
+                  </div>
+                  <div class>
+                    <h3>New fixture</h3>
+                  </div>
                 </div>
               </div>
             </div>
@@ -102,7 +104,7 @@
         newComp:{
           name: ''
         },
-        currentCompetition: {}
+        currentCompetition: ''
       }
     },
 
@@ -117,10 +119,13 @@
 
     firebase: {
       competitions:{
-        source: db.ref('competition'),
+        source: db.ref('competition')
       },
       teams: {
         source: db.ref('team')
+      },
+      fixtures: {
+        source: db.ref('match')
       }
     },
 
@@ -128,11 +133,6 @@
       addNewComp(){
         db.ref('competition').push(this.newComp);
         this.newComp.name = '';
-      },
-
-      setCurrentCompetition(competition){
-        this.currentCompetition = competition;
-        console.log(this.currentCompetition);
       }
     }
   }
