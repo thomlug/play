@@ -106,6 +106,11 @@ export default {
   methods: {
     toggleShow(){
       this.show = !this.show
+      this.$emit('newCompetitionClicked', this.competition.name);
+    },
+
+    setClickedCompetition(){
+      
     },
 
     addNewTeam(){
