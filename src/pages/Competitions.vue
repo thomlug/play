@@ -34,12 +34,12 @@
         <div class="col-md-7 col-sm-12 col-xs-12">
           <div class="col-12">
             <div class="heading text-center">
-              <h3 v-if="currentCompetition">All fixtures this week for {{ currentCompetition }}</h3>
+              <h3 v-if="currentCompetition">Upcoming weekly fixtures in {{ currentCompetition }}</h3>
               <h3 v-else>No competition currently selected</h3>
             </div>
             <div class="card">
               <div class="card-block card-outer">
-                <fixtures v-for="fixture in fixtures" :fixture="fixture"
+                <fixtures v-for="fixture in weeklyFixtures" :fixture="fixture"
                           :competition="currentCompetition" v-if="fixture.competition == currentCompetition"></fixtures>
               </div>
               <div class="card-footer">
@@ -104,7 +104,8 @@
         newComp:{
           name: ''
         },
-        currentCompetition: ''
+        currentCompetition: '',
+        weeklyFixtures: []
       }
     },
 
@@ -125,7 +126,11 @@
         source: db.ref('team')
       },
       fixtures: {
-        source: db.ref('match')
+        source: db.ref('match').orderByChild('date'),
+        readyCallback(){
+          this.fixtures.reverse();
+          this.setWeeklyFixtures();
+        }
       }
     },
 
@@ -133,6 +138,18 @@
       addNewComp(){
         db.ref('competition').push(this.newComp);
         this.newComp.name = '';
+      },
+
+      setWeeklyFixtures(){
+        console.log('hello');
+        var endDate = moment().add(7, 'days');
+        var startDate = moment();
+        for (var i=0; i < this.fixtures.length; i++){
+          var date = moment(this.fixtures[i].date);
+          if (date.isBetween(startDate, endDate, null, '[]')){
+            this.weeklyFixtures.push(this.fixtures[i]);
+          }
+        }
       }
     }
   }
