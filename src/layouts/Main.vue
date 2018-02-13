@@ -21,7 +21,7 @@
             <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" to="members">Members</router-link>
             </li>
-            
+
             <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" to="competitions">Competitions</router-link>
             </li>
@@ -48,6 +48,11 @@
   var uiConfig = {
   signInFlow: 'popup',
       signInSuccessUrl: '#/home',
+      callbacks:{
+        signInSuccess: function(){
+            ui.reset();
+        }
+      },
       signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
