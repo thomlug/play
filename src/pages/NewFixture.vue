@@ -3,7 +3,7 @@
     <div class="page-header">
       <h1>New Fixture in {{newFixture.competition}}</h1>
     </div>
-    <form>
+    <form @submit.prevent="addFixture">
       <div class="row">
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
@@ -53,11 +53,11 @@
 
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
-            <label for="timeFinish">Finish Time</label>
+            <label for="finishTime">Finish Time</label>
             <input
               type="time"
-              id="timeFinish"
-              class="form-control" v-model="timeFinish">
+              id="finishTime"
+              class="form-control" v-model="newFixture.finishTime">
           </div>
         </div>
       </div>
@@ -108,8 +108,8 @@ export default {
         homePhot: '',
         awayPhoto: '',
         competition: this.$route.params.competition,
+        finishTime: '',
         date: '',
-        endDate: '',
         ground: ''
       },
       time: ''
@@ -118,6 +118,7 @@ export default {
   methods: {
     addFixture: function(){
       this.formatDateTime();
+      console.log(this.newFixture.ground);
       matchRef.push(this.newFixture);
       this.newFixture.awayPhoto = '';
       this.newFixture.homePhoto = '';
@@ -125,8 +126,7 @@ export default {
       this.newFixture.awayTeam = '';
       this.newFixture.date = '';
       this.time = '';
-      this.timeFinish = '';
-      this.newFixture.endDate = '';
+      this.newFixture.finishTime = '';
       this.newFixture.ground = '';
     },
     formatDateTime: function(){

@@ -1,7 +1,7 @@
 <template>
   <main-layout>
       <div class="row-align-center">
-          <div class="card card-inverse text-center top-buffer bottom-buffer banner">
+          <div class="card col-12 card-inverse text-center top-buffer bottom-buffer banner">
             <div class="card-block">
               <h1>Club/League 1</h1>
             </div>
@@ -9,50 +9,44 @@
       </div>
 
       <div class="row">
-        <div class="col-md-5 col-sm-12 col-xs-12">
-          <div class="col-12">
-            <div class="top-buffer">
-            </div>
-            <div class="card">
-              <div class="card-block card-outer">
-                <competition-item v-for="competition in competitions" :competition="competition" @newCompetitionClicked="currentCompetition = $event"></competition-item>
-              </div>
-                <div class="card-footer">
-                  <div class="row aligner">
-                      <div class="new-icon" data-toggle="modal" data-target="#addNewCompetitionModal">
-                        <img src="../assets/plus-circle.png" alt="">
-                      </div>
-                      <div class>
-                        <h3>New comp</h3>
-                      </div>
-                  </div>
+        <div class="card col-md-5 col-sm-12 col-xs-12">
+          <div class="top-buffer">
+          </div>
+          <div class="card-block card-outer">
+            <competition-item v-for="competition in competitions" :competition="competition" @newCompetitionClicked="currentCompetition = $event"></competition-item>
+          </div>
+          <div class="card-footer">
+            <div class="row aligner">
+                <div class="new-icon" data-toggle="modal" data-target="#addNewCompetitionModal">
+                  <img src="../assets/plus-circle.png" alt="">
+                </div>
+                <div class>
+                  <h3>New comp</h3>
                 </div>
             </div>
           </div>
         </div>
 
-        <div class="col-md-7 col-sm-12 col-xs-12">
-          <div class="col-12">
-            <div class="heading text-center">
-              <h3 v-if="currentCompetition">Upcoming weekly fixtures in {{ currentCompetition }}</h3>
-              <h3 v-else>No competition currently selected</h3>
+        <div class="card col-md-7 col-sm-12 col-xs-12">
+          <div class="heading text-center">
+            <h3 v-if="currentCompetition">Upcoming weekly fixtures in {{ currentCompetition }}</h3>
+            <h3 v-else>No competition currently selected</h3>
+          </div>
+          <div class="card-block card-outer">
+            <div class="container-fluid">
+              <fixtures v-for="fixture in weeklyFixtures" :fixture="fixture"
+                        :competition="currentCompetition" v-if="fixture.competition == currentCompetition"></fixtures>
             </div>
-            <div class="card">
-              <div class="card-block card-outer">
-                <fixtures v-for="fixture in weeklyFixtures" :fixture="fixture"
-                          :competition="currentCompetition" v-if="fixture.competition == currentCompetition"></fixtures>
+          </div>
+          <div class="card-footer">
+            <div class="row aligner">
+              <div class="new-icon">
+                <router-link :to="{name: 'newfixture', params: {competition: currentCompetition}}">
+                  <img src="../assets/plus-circle.png" alt="">
+                </router-link>
               </div>
-              <div class="card-footer">
-                <div class="row aligner">
-                  <div class="new-icon">
-                    <router-link :to="{name: 'newfixture', params: {competition: currentCompetition}}">
-                      <img src="../assets/plus-circle.png" alt="">
-                    </router-link>
-                  </div>
-                  <div class>
-                    <h3>New fixture</h3>
-                  </div>
-                </div>
+              <div class>
+                <h3>New fixture</h3>
               </div>
             </div>
           </div>
@@ -141,7 +135,6 @@
       },
 
       setWeeklyFixtures(){
-        console.log('hello');
         var endDate = moment().add(7, 'days');
         var startDate = moment();
         for (var i=0; i < this.fixtures.length; i++){
@@ -170,7 +163,7 @@
   }
 
   .card {
-    max-height: 500px;
+    /* max-height: 500px; */
   }
 
   .top-buffer{
