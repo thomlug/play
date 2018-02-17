@@ -14,117 +14,147 @@
     </div>
 
     <div class="row">
-      <div class="card col-xl-3">
-        <div class="card-block">
-          <h4 class="card-title">Next Fixture</h4>
-          <div class="row">
-            <div class="col-5">
-              <div class="team-photo-container">
-                <div v-if="!_.isUndefined(getNextFixture().homePhoto)">
-                  <img :src="getNextFixture().homePhoto" class="play-photo team-photo">
+      <div class="col-xl-3">
+        <div class="card card-item">
+          <div class="card-block">
+            <h4 class="card-title">Next Fixture</h4>
+            <div class="row">
+              <div class="col-5">
+                <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().homeTeam)">
+                  <div v-if="!_.isUndefined(getNextFixture().homePhoto)">
+                    <img :src="getNextFixture().homePhoto" class="play-photo team-photo">
+                  </div>
+                  <div v-else>
+                    <div class="circle team-circle team-photo">{{getNextFixture().homeTeam | firstCharacter}}</div>
+                  </div>
                 </div>
-                <div v-else>
-                  <div class="circle team-circle team-photo">{{getNextFixture().homeTeam | firstCharacter}}</div>
+                <div class="team-name">
+                  <h5 class="text-center">{{getNextFixture().homeTeam}}</h5>
                 </div>
-              </div>
-              <h3 class="text-center">{{getNextFixture().homeTeam}}</h3>
-              </div>
-            <div class="col-2 vs-text text-center">VS</div>
-            <div class="col-5">
-              <div class="team-photo-container">
-                <div v-if="!_.isUndefined(getNextFixture().awayPhoto)">
-                  <img :src="getNextFixture().awayPhoto" class="play-photo team-photo">
+
                 </div>
-                <div v-else>
-                  <div class="circle team-circle team-photo">{{getNextFixture().awayTeam | firstCharacter}}</div>
+              <div class="col-2 aligner text-center">VS</div>
+              <div class="col-5">
+                <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().awayTeam)">
+                  <div v-if="!_.isUndefined(getNextFixture().awayPhoto)">
+                    <img :src="getNextFixture().awayPhoto" class="play-photo team-photo">
+                  </div>
+                  <div v-else>
+                    <div class="circle team-circle team-photo">{{getNextFixture().awayTeam | firstCharacter}}</div>
+                  </div>
                 </div>
-              </div>
-              <h3 class="text-center">{{getNextFixture().awayTeam}}</h3>
-              </div>
+                <div class="team-name">
+                  <h5 class="text-center">{{getNextFixture().awayTeam}}</h5>
+                </div>
+                </div>
+            </div>
           </div>
-          <div class="text-center">
-            <h2>{{moment(getNextFixture().date).format("hh:mm A")}}</h2>
-            <h3>{{moment(getNextFixture().date).format("dddd DD MMM YY")}}</h3>
-          </div>
-          <div class="text-center">
-           <h4>{{getNextFixture().ground}}</h4>
+        </div>
+        <div class="card card-item">
+          <div class="card-block">
+            <div class="text-center">
+              <h2>{{moment(getNextFixture().date).format("hh:mm A")}}</h2>
+              <h3>{{moment(getNextFixture().date).format("dddd DD MMM YY")}}</h3>
+            </div>
+            <div class="text-center">
+             <h4>{{getNextFixture().ground}}</h4>
+            </div>
           </div>
         </div>
 
+        <div class="card card-item">
           <div class="card-block">
-            <h4 class="card-title">Update your status <small>({{getCurrentPlayer().availability | camelToSentence}})</small></h4>
+            <h4 class="card-title">Update Your Status <small>({{getCurrentPlayer().availability | camelToSentence}})</small></h4>
+            <div class="aligner row-aligner">
               <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available active">Available</button>
               <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
-              <button v-on:click="setCurrentPlayerAvailability('unknown')" type="button" class="btn btn-secondary">Unknown</button>
+            </div>
           </div>
+        </div>
       </div>
-      <div class="card col-xl-6">
+      <div class="col-xl-6">
+        <div class="card card-item">
           <div class="card-block">
-            <h4 class="card-title">Starting lineup</h4>
-            <div class="card-block">
-              <div class="row" v-for="(formationRowWidth, formationRow) in getNextFixtureDetails().formation" :key="formationRow">
-                <div v-for="formationColumn in formationRowWidth" :key="formationColumn"
-                  class="center-block text-center"
-                  v-bind:class="calculateFormationClass(formationRowWidth)"
-                  v-bind:style="{'max-width': (100/formationRowWidth) + '%'}">
-                  <div class="player-container text-center">
-                    <template v-if="getPlayer(formationRow, formationColumn).photo">
-                      <router-link v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
-                      <img class="img-fluid rounded-circle play-photo"
-                        v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)"
-                        :src="getPlayer(formationRow, formationColumn).photo"/>
-                      {{getPlayer(formationRow, formationColumn).first_name}}
-                      </router-link>
-                    </template>
-                    <template v-else>
-                      <router-link v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
-                        <div class="circle player-circle" v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)">
-                          {{getPlayer(formationRow, formationColumn).first_name | firstCharacter}}
-                        </div>
-                        {{getPlayer(formationRow, formationColumn).first_name}}
-                      </router-link>
-                    </template>
-                  </div>
-                </div>
+            <h4 class="card-title">Starting Lineup</h4>
           </div>
         </div>
-        </div>
-      </div>
-      <div class="card col-xl-3">
-        <div class="card-block">
-          <h4 class="card-title">Subs</h4>
-            <div class="card-block row">
-              <div v-for="player in substitutePlayers()" :key="player['.key']" class="col-6">
+
+        <div class="card">
+          <img class="card-img" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/football-background.png?alt=media&token=15b6acfa-9a04-485e-b37a-51304c13989f" alt="Card image">
+          <div class="card-block card-img-overlay">
+            <div class="row" v-for="(formationRowWidth, formationRow) in getNextFixtureDetails().formation" :key="formationRow">
+              <div v-for="formationColumn in formationRowWidth" :key="formationColumn"
+                class="center-block text-center"
+                v-bind:class="calculateFormationClass(formationRowWidth)"
+                v-bind:style="{'max-width': (100/formationRowWidth) + '%'}">
                 <div class="player-container text-center">
-                <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
-                    <template v-if="player.photo">
-                      <img class="img-fluid rounded-circle play-photo"
-                        v-bind:class="calculatePlayerClass(player.availability)"
-                        :src="player.photo"/>
-                    </template>
-                    <template v-else>
-                      <div class="circle player-circle" v-bind:class="calculatePlayerClass(player.availability)" >
-                        {{player.first_name | firstCharacter}}
+                  <template v-if="getPlayer(formationRow, formationColumn).photo">
+                    <router-link v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
+                    <img class="img-fluid rounded-circle play-photo"
+                      v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)"
+                      :src="getPlayer(formationRow, formationColumn).photo"/>
+                    {{getPlayer(formationRow, formationColumn).first_name}}
+                    </router-link>
+                  </template>
+                  <template v-else>
+                    <router-link v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
+                      <div class="circle player-circle" v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)">
+                        {{getPlayer(formationRow, formationColumn).first_name | firstCharacter}}
                       </div>
-                    </template>
-                    {{player.first_name}}
-                  </router-link>
+                      {{getPlayer(formationRow, formationColumn).first_name}}
+                    </router-link>
+                  </template>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+      </div>
+      <div class="col-xl-3">
+        <div class="card card-item">
+          <div class="card-block">
+            <h4 class="card-title">Subs</h4>
+              <div class="card-block row">
+                <div v-for="player in substitutePlayers()" :key="player['.key']" class="col-6">
+                  <div class="player-container text-center">
+                  <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
+                      <template v-if="player.photo">
+                        <img class="img-fluid rounded-circle play-photo"
+                          v-bind:class="calculatePlayerClass(player.availability)"
+                          :src="player.photo"/>
+                      </template>
+                      <template v-else>
+                        <div class="circle player-circle" v-bind:class="calculatePlayerClass(player.availability)" >
+                          {{player.first_name | firstCharacter}}
+                        </div>
+                      </template>
+                      {{player.first_name}}
+                    </router-link>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="card card-item">
           <div class="card-block">
           <h4 class="card-title">Game Info</h4>
             <div class="card-block">
-              <dl class="dl-horizontal">
+              <dl class="dl-horizontal list-group list-group-flush">
                 <template v-for="(value, key) in getNextGameInfo()">
-                  <dt>{{key | camelToSentence}}</dt>
-                  <dd>{{value}}</dd>
+                  <div class="list-group-item">
+                    <div>
+                      <dt>{{key | camelToSentence}}</dt>
+                      <dd>{{value}}</dd>
+                    </div>
+                  </div>
                 </template>
               </dl>
             </div>
           </div>
         </div>
+      </div>
       </div>
       </div>
       <div v-else>
@@ -291,18 +321,53 @@
         else{
           return "player-unknown";
         }
+      },
+      goToTeamProfile(team){
+        console.log(team);
+        for (var i =0; i < this.teams.length; i++){
+          if (team == this.teams[i].name){
+            this.$router.push({name: 'team', params: {team_id: this.teams[i]['.key']}});
+            console.log(this.teams[i]);
+          }
+        }
       }
     },
   }
 </script>
 
-<<style>
+<style scoped>
+.card-item{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-img{
+  opacity: .9;
+}
+
+.team-name{
+  margin-top: 25px;
+}
+
+.aligner{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.row-aligner{
+  flex-direction: row;
+}
+
 .play-photo{
     max-width:100%;
     margin: 3px;
     border-radius: 50em;
     -webkit-border-radius: 50em;
     -moz-border-radius: 50em;
+    box-shadow: 4px 4px 5px #424242;
 }
 
 .player-available{
@@ -354,7 +419,8 @@
   }
 }
 .team-photo{
-  border: 3px solid #000;
+  box-shadow: 4px 4px 5px #BDBDBD;
+  color: #9E9E9E;
 }
 
 .team-photo-container{
@@ -367,7 +433,7 @@
   border-radius: 50%; /* may require vendor prefixes */
   background: lightgrey;
   font-weight:bold;
-  font-size: 2em;
+  font-size: 4em;
 }
 
 .player-circle{
@@ -399,5 +465,15 @@
     font-size: 2.5rem;
     line-height: 1;
   }
+}
+
+a{
+  color: #EEEEEE;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+  color: inherit;
 }
 </style>
