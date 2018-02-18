@@ -1,0 +1,64 @@
+[debug] [2018-01-20T02:50:07.770Z] ----------------------------------------------------------------------
+[debug] [2018-01-20T02:50:07.771Z] Command:      C:\Program Files\nodejs\node.exe C:\Users\Thomas\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-01-20T02:50:07.771Z] CLI Version:  3.9.1
+[debug] [2018-01-20T02:50:07.771Z] Platform:     win32
+[debug] [2018-01-20T02:50:07.771Z] Node Version: v8.1.3
+[debug] [2018-01-20T02:50:07.772Z] Time:         Sat Jan 20 2018 15:50:07 GMT+1300 (New Zealand Summer Time)
+[debug] [2018-01-20T02:50:07.772Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-01-20T02:50:07.781Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-01-20T02:50:07.782Z] > authorizing via signed-in user
+[debug] [2018-01-20T02:50:07.783Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/play-14e3e  
+ Sat Jan 20 2018 15:50:07 GMT+1300 (New Zealand Summer Time)
+[debug] [2018-01-20T02:50:09.361Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-20T02:50:09.364Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/play-14e3e/tokens  
+ Sat Jan 20 2018 15:50:09 GMT+1300 (New Zealand Summer Time)
+[debug] [2018-01-20T02:50:10.292Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'D:\PlayManagerDevelopment\play-webpack'...
+[info] 
+[debug] [2018-01-20T02:50:10.295Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/play-14e3e  
+ Sat Jan 20 2018 15:50:10 GMT+1300 (New Zealand Summer Time)
+[debug] [2018-01-20T02:50:11.943Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-20T02:50:11.944Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/952744572741/clients/_:getWebAppConfig  
+ Sat Jan 20 2018 15:50:11 GMT+1300 (New Zealand Summer Time)
+[debug] [2018-01-20T02:50:13.371Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+
+[debug] [2018-02-06T02:36:49.008Z] ----------------------------------------------------------------------
+[debug] [2018-02-06T02:36:49.010Z] Command:      C:\Program Files\nodejs\node.exe C:\Users\Thomas\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-02-06T02:36:49.010Z] CLI Version:  3.9.1
+[debug] [2018-02-06T02:36:49.010Z] Platform:     win32
+[debug] [2018-02-06T02:36:49.010Z] Node Version: v8.1.3
+[debug] [2018-02-06T02:36:49.010Z] Time:         Tue Feb 06 2018 15:36:49 GMT+1300 (New Zealand Summer Time)
+[debug] [2018-02-06T02:36:49.010Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-02-06T02:36:49.026Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-02-06T02:36:49.026Z] > authorizing via signed-in user
+[debug] [2018-02-06T02:36:49.028Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-02-06T02:36:49.028Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/SrNrFHJONscSW0n2JF29-ZwfwGegRswxr-KCCBnv73c',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Tue Feb 06 2018 15:36:49 GMT+1300 (New Zealand Summer Time)
+[debug] [2018-02-06T02:36:49.490Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-06T02:36:49.508Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/play-14e3e  
+ Tue Feb 06 2018 15:36:49 GMT+1300 (New Zealand Summer Time)
+[debug] [2018-02-06T02:36:50.828Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-06T02:36:50.830Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/play-14e3e/tokens  
+ Tue Feb 06 2018 15:36:50 GMT+1300 (New Zealand Summer Time)
+[debug] [2018-02-06T02:36:51.736Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'D:\PlayManagerDevelopment\play-webpack'...
+[info] 
+[debug] [2018-02-06T02:36:51.744Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/play-14e3e  
+ Tue Feb 06 2018 15:36:51 GMT+1300 (New Zealand Summer Time)
+[debug] [2018-02-06T02:36:53.439Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-06T02:36:53.440Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/952744572741/clients/_:getWebAppConfig  
+ Tue Feb 06 2018 15:36:53 GMT+1300 (New Zealand Summer Time)
+[debug] [2018-02-06T02:36:54.673Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+
