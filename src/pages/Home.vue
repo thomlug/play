@@ -59,35 +59,71 @@
           </div>
       </div>
       <div class="card col-xl-6">
+        <div class="card-block">
+          <h4 class="card-title">Starting lineup</h4>
           <div class="card-block">
-            <h4 class="card-title">Starting lineup</h4>
-            <div class="card-block">
-              <div class="row" v-for="(formationRowWidth, formationRow) in getNextFixtureDetails().formation" :key="formationRow">
-                <div v-for="formationColumn in formationRowWidth" :key="formationColumn" 
-                  class="center-block text-center" 
-                  v-bind:class="calculateFormationClass(formationRowWidth)" 
-                  v-bind:style="{'max-width': (100/formationRowWidth) + '%'}">
-                  <div class="player-container text-center">
-                    <template v-if="getPlayer(formationRow, formationColumn).photo">
-                      <router-link v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
-                      <img class="img-fluid rounded-circle play-photo" 
-                        v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)"  
-                        :src="getPlayer(formationRow, formationColumn).photo"/>
+            <!-- <draggable 
+              :move="dragPlayer" 
+              @start="drag=true" 
+              @end="drag=false" class="row" 
+              v-for="(formationRowWidth, formationRow) in getNextFixtureDetails().formation" 
+              :key="formationRow">
+              <div v-for="formationColumn in formationRowWidth" :key="formationColumn" 
+                class="center-block text-center" 
+                v-bind:class="calculateFormationClass(formationRowWidth)" 
+                v-bind:style="{'max-width': (100/formationRowWidth) + '%'}">
+                <div class="player-container text-center">
+                  <template v-if="getPlayer(formationRow, formationColumn).photo">
+                    <router-link v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
+                    <img class="img-fluid rounded-circle play-photo" 
+                      v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)"  
+                      :src="getPlayer(formationRow, formationColumn).photo"/>
+                    {{getPlayer(formationRow, formationColumn).first_name}}
+                    </router-link>
+                  </template>
+                  <template v-else>
+                    <router-link v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
+                      <div class="circle player-circle" v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)">
+                        {{getPlayer(formationRow, formationColumn).first_name | firstCharacter}} 
+                      </div>
                       {{getPlayer(formationRow, formationColumn).first_name}}
-                      </router-link>
-                    </template>
-                    <template v-else>
-                      <router-link v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
-                        <div class="circle player-circle" v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)">
-                          {{getPlayer(formationRow, formationColumn).first_name | firstCharacter}} 
-                        </div>
-                        {{getPlayer(formationRow, formationColumn).first_name}}
-                      </router-link>
-                    </template>
-                  </div>
+                    </router-link>
+                  </template>
                 </div>
+              </div>
+            </draggable> -->
+
+            <draggable 
+              :move="dragPlayer" 
+              @start="drag=true" 
+              @end="drag=false" class="row"
+              v-model="players">
+             
+              <div  v-for="player in players"
+                :key="player['.key']"
+                class="center-block text-center" 
+                v-bind:class="calculateFormationClass(player)">
+                <div class="player-container text-center">
+                  <template v-if="player.photo">
+                    <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
+                    <img class="img-fluid rounded-circle play-photo" 
+                      v-bind:class="calculatePlayerClass(player.availability)"  
+                      :src="player.photo"/>
+                    {{player.first_name}}
+                    </router-link>
+                  </template>
+                  <template v-else>
+                    <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
+                      <div class="circle player-circle" v-bind:class="calculatePlayerClass(player.availability)">
+                        {{player.first_name | firstCharacter}} 
+                      </div>
+                      {{player.first_name}}
+                    </router-link>
+                  </template>
+                </div>
+              </div>
+            </draggable>
           </div>
-        </div>
         </div>
       </div>
       <div class="card col-xl-3">
@@ -132,6 +168,9 @@
         <h1>Please log in (you may have to refresh after logging in)</h1>
         {{ getCurrentPlayer().first_name}}
       </div>
+      <draggable v-model="players" >
+        <div v-for="element in players" :key="element.id">{{element.first_name}}</div>
+      </draggable>
   </main-layout>
 </template>
   
@@ -141,11 +180,13 @@
   import MainLayout from '../layouts/Main.vue'
   import Slick from 'vue-slick';
   import moment from 'moment'
+  import draggable from 'vuedraggable'
   
   export default {
     components: {
       MainLayout,
-      Slick
+      Slick,
+      draggable
     },
     data: function(){
         return {
@@ -202,6 +243,10 @@
       }
     },
     methods: {
+      dragPlayer: function(evt, originalEvent){
+        console.log(evt);
+        console.log(originalEvent);
+      },  
       next() {
           this.$refs.slick.next();
       },
