@@ -72,6 +72,7 @@
           </div>
         </div>
       </div>
+<<<<<<< HEAD
       <div class="col-xl-6">
         <div class="card card-item">
           <div class="card-block">
@@ -116,6 +117,73 @@
                   </div>
                 </div>
               </draggable>
+=======
+      <div class="card col-xl-6">
+        <div class="card-block">
+          <h4 class="card-title">Starting lineup</h4>
+          <div class="card-block">
+            <!-- <draggable 
+              :move="dragPlayer" 
+              @start="drag=true" 
+              @end="drag=false" class="row" 
+              v-for="(formationRowWidth, formationRow) in getNextFixtureDetails().formation" 
+              :key="formationRow">
+              <div v-for="formationColumn in formationRowWidth" :key="formationColumn" 
+                class="center-block text-center" 
+                v-bind:class="calculateFormationClass(formationRowWidth)" 
+                v-bind:style="{'max-width': (100/formationRowWidth) + '%'}">
+                <div class="player-container text-center">
+                  <template v-if="getPlayer(formationRow, formationColumn).photo">
+                    <router-link v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
+                    <img class="img-fluid rounded-circle play-photo" 
+                      v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)"  
+                      :src="getPlayer(formationRow, formationColumn).photo"/>
+                    {{getPlayer(formationRow, formationColumn).first_name}}
+                    </router-link>
+                  </template>
+                  <template v-else>
+                    <router-link v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
+                      <div class="circle player-circle" v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)">
+                        {{getPlayer(formationRow, formationColumn).first_name | firstCharacter}} 
+                      </div>
+                      {{getPlayer(formationRow, formationColumn).first_name}}
+                    </router-link>
+                  </template>
+                </div>
+              </div>
+            </draggable> -->
+
+            <draggable 
+              :move="dragPlayer" 
+              @start="drag=true" 
+              @end="drag=false" class="row"
+              v-model="players">
+             
+              <div  v-for="player in players"
+                :key="player['.key']"
+                class="center-block text-center" 
+                v-bind:class="calculateFormationClass(player)">
+                <div class="player-container text-center">
+                  <template v-if="player.photo">
+                    <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
+                    <img class="img-fluid rounded-circle play-photo" 
+                      v-bind:class="calculatePlayerClass(player.availability)"  
+                      :src="player.photo"/>
+                    {{player.first_name}}
+                    </router-link>
+                  </template>
+                  <template v-else>
+                    <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
+                      <div class="circle player-circle" v-bind:class="calculatePlayerClass(player.availability)">
+                        {{player.first_name | firstCharacter}} 
+                      </div>
+                      {{player.first_name}}
+                    </router-link>
+                  </template>
+                </div>
+              </div>
+            </draggable>
+>>>>>>> 81b20b809ff955534a10ba729d9a0b5ca17626e1
           </div>
         </div>
       </div>
@@ -170,11 +238,15 @@
         <h1>Please log in (you may have to refresh after logging in)</h1>
         {{ getCurrentPlayer().first_name}}
       </div>
+      <draggable v-model="players" >
+        <div v-for="element in players" :key="element.id">{{element.first_name}}</div>
+      </draggable>
   </main-layout>
 </template>
 
 <style src="slick-carousel/slick/slick.css"></style>
 <script>
+<<<<<<< HEAD
 import { db } from "../firebase";
 import MainLayout from "../layouts/Main.vue";
 import Slick from "vue-slick";
@@ -207,6 +279,52 @@ export default {
         draggable: true,
         edgeFriction: 0.3,
         swipe: true
+=======
+  import {db} from '../firebase';
+  import MainLayout from '../layouts/Main.vue'
+  import Slick from 'vue-slick';
+  import moment from 'moment'
+  import draggable from 'vuedraggable'
+  
+  export default {
+    components: {
+      MainLayout,
+      Slick,
+      draggable
+    },
+    data: function(){
+        return {
+          cards:[],
+          // cards: [
+          //   {title: 'Active Competitions', subtitle: 'In your organisation'},
+          //   {title: 'Revenue', subtitle: 'Per Competition'},
+          //   {title: 'Total Revenue To Date', subtitle: 'In your organisation from payments'},
+          //   {title: 'Outstanding Payments', subtitle: 'From players in your organisation'},
+          // ],
+          slickOptions: {
+                        //options can be used from the plugin documentation
+                        slidesToShow: 4,
+                        infinite: true,
+                        accessibility: true,
+                        adaptiveHeight: false,
+                        arrows: true,
+                        dots: true,
+                        draggable: true,
+                        edgeFriction: 0.30,
+                        swipe: true
+                    },
+          players: {},  
+          teams: {}          
+      };
+    },
+    filters: {
+      camelToSentence(value){
+        if(value == undefined){
+          return '';
+        }
+          return value.replace(/([A-Z])/g, ' $1')
+            .replace(/^./, function(str){ return str.toUpperCase(); })
+>>>>>>> 81b20b809ff955534a10ba729d9a0b5ca17626e1
       },
       gridPlayers: new Array(25),
       players: {},
@@ -242,6 +360,7 @@ export default {
         
       }
     },
+<<<<<<< HEAD
     teams: {
       source: db.ref("team")
     },
@@ -263,6 +382,16 @@ export default {
     next() {
       this.$refs.slick.next();
     },
+=======
+    methods: {
+      dragPlayer: function(evt, originalEvent){
+        console.log(evt);
+        console.log(originalEvent);
+      },  
+      next() {
+          this.$refs.slick.next();
+      },
+>>>>>>> 81b20b809ff955534a10ba729d9a0b5ca17626e1
 
     prev() {
       this.$refs.slick.prev();
