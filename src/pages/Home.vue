@@ -75,6 +75,7 @@
       <div class="col-xl-6">
         <div class="card card-item">
           <div class="card-block">
+            <button class="float-right btn btn-primary" v-on:click="toggleEditPlayersPositions()">{{editPlayerButtonText}}</button>
             <h4 class="card-title">Starting Lineup</h4>
           </div>
         </div>
@@ -89,20 +90,20 @@
                 v-bind:style="{'max-width': (100/formationRowWidth) + '%'}">
                 <div class="player-container text-center">
                   <template v-if="getPlayer(formationRow, formationColumn).photo">
-                    <router-link v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
+                    <div @click="checkPlayerNavigation(getPlayer(formationRow, formationColumn))" v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
                     <img class="img-fluid rounded-circle play-photo"
-                      v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)"
+                      v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn))"
                       :src="getPlayer(formationRow, formationColumn).photo"/>
                     {{getPlayer(formationRow, formationColumn).first_name}}
-                    </router-link>
+                    </div>
                   </template>
                   <template v-else>
-                    <router-link v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
-                      <div class="circle player-circle" v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn).availability)">
+                    <div v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
+                      <div @click="checkPlayerNavigation(getPlayer(formationRow, formationColumn))" class="circle player-circle" v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn))">
                         {{getPlayer(formationRow, formationColumn).first_name | firstCharacter}}
                       </div>
                       {{getPlayer(formationRow, formationColumn).first_name}}
-                    </router-link>
+                    </div>
                   </template>
                 </div>
               </div>
@@ -118,19 +119,19 @@
               <div class="card-block row">
                 <div v-for="player in substitutePlayers()" :key="player['.key']" class="col-6">
                   <div class="player-container text-center">
-                  <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
+                    <div @click="checkPlayerNavigation(player)" v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
                       <template v-if="player.photo">
                         <img class="img-fluid rounded-circle play-photo"
-                          v-bind:class="calculatePlayerClass(player.availability)"
+                          v-bind:class="calculatePlayerClass(player)"
                           :src="player.photo"/>
                       </template>
                       <template v-else>
-                        <div class="circle player-circle" v-bind:class="calculatePlayerClass(player.availability)" >
+                        <div class="circle player-circle" v-bind:class="calculatePlayerClass(player)" >
                           {{player.first_name | firstCharacter}}
                         </div>
                       </template>
                       {{player.first_name}}
-                    </router-link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -199,8 +200,15 @@
                         swipe: true
                     },
           players: {},
-          teams: {}
+          teams: {},
+          editPlayerMode: false,
+          player1Swap: null
       };
+    },
+    computed:{
+      editPlayerButtonText: function(){
+        return this.editPlayerMode ? "Stop Editing Players" : "Edit Players Positions"
+      }
     },
     filters: {
       camelToSentence(value){
@@ -232,6 +240,31 @@
       }
     },
     methods: {
+      playerSwap(player){
+        if(!this.editPlayerMode){
+          return;
+        }
+
+         if(this.player1Swap === null){
+            this.player1Swap = {key: player['.key'], position: player.position};
+          }
+          else{
+            this.$firebaseRefs.players.child(this.player1Swap.key).child('position').set(player.position);
+            this.$firebaseRefs.players.child(player['.key']).child('position').set(this.player1Swap.position);
+            this.player1Swap = null;
+          }
+      },
+      checkPlayerNavigation(player){
+        if(this.editPlayerMode){
+         return this.playerSwap(player);
+        }
+        else{
+          this.$router.push({name: 'profile', params: {player_id: player['.key']}});
+        }
+      },
+      toggleEditPlayersPositions(){
+        this.editPlayerMode = !this.editPlayerMode;
+      },
       next() {
           this.$refs.slick.next();
       },
@@ -308,7 +341,11 @@
         var player = this.getCurrentPlayer();
         this.$firebaseRefs.players.child(player['.key']).child('availability').set(availability);
       },
-      calculatePlayerClass(availability){
+      calculatePlayerClass(player){
+        if(this.editPlayerMode && this.player1Swap!==null && player['.key'] === this.player1Swap.key){
+          return "player-selected";
+        }
+        var availability = player.availability;
         if(_.isUndefined(availability) || _.isEmpty(availability) || availability === "unknown"){
           return "player-unknown";
         }
@@ -324,6 +361,7 @@
       },
       goToTeamProfile(team){
         console.log(team);
+        //TODO: Replace this with a _.find or similar and use ===
         for (var i =0; i < this.teams.length; i++){
           if (team == this.teams[i].name){
             this.$router.push({name: 'team', params: {team_id: this.teams[i]['.key']}});
@@ -370,6 +408,10 @@
     box-shadow: 4px 4px 5px #424242;
 }
 
+.player-selected{
+    border: 5px solid #FFD700;
+}
+
 .player-available{
     border: 3px solid #2acad0;
 }
@@ -383,6 +425,9 @@
     -webkit-filter: grayscale(100%);
 }
 
+.player-container{
+  cursor: pointer;
+}
 
 @media (max-width: 768px) {
   .player-container{
