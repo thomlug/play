@@ -1,5 +1,6 @@
 <template>
     <ol class="chat">
+        <div v-if="getPosition === 'other'" class="avatar"><img :src="message.photo" draggable="false"/></div>
          <li :class="getPosition">
             <div class="msg">
                 <div class="user">{{message.name}}</div>
@@ -50,6 +51,32 @@
     padding: 0.5rem;
     overflow: hidden;
     display: flex;
+}
+.chat .avatar {
+    float: left;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    display: block;
+    z-index: 2;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    background-color: rgba(255,255,255,0.9);
+}
+.chat .avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    background-color: rgba(255,255,255,0.9);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 .chat .day {
     position: relative;

@@ -3,7 +3,7 @@
         <div class="container">
             <h1>{{getCurrentTeam().name}} chat</h1>
             <div class="chat-pane" id="chat-pane">
-                <Message v-for="message in getConversationMessages()" :message="message" :key="message.created" />
+                <Message v-for="message in getConversationMessages()" :message="message" :key="message['.key']" />
                 <br/>
             </div>
             <div class="row chat-box-row">
@@ -57,7 +57,19 @@
         },
         getConversationMessages(){
             var currentTeamId = _.isUndefined(this.getCurrentTeam()) ? '':  this.getCurrentTeam()['.key'];
-            return _.filter(this.messages, function(message){return message.conversation === currentTeamId;})
+            var filteredMessages = _.chain(this.messages)
+             .each((message) => {
+                    message.photo = this.getPhotoForUser(message.sender_id);
+                })
+                .filter(function(message){return message.conversation === currentTeamId;})
+               .value();
+            return filteredMessages;
+        },
+        getPhotoForUser(userUid){
+            var player = _.find(this.players, function(player){return player.userUid === userUid;});
+            if(player !== undefined){
+                return player.photo;
+            }
         },
         getCurrentTeam(){
             var team = _.head(this.teams);
@@ -82,6 +94,9 @@
         teams:{
             source: db.ref('team')
         },
+        players:{
+          source: db.ref('player')
+        }
       };
     },
     watch:{
