@@ -15,6 +15,8 @@
                 </div>
             </div>
         </div>
+
+        <button @click="scrollToEnd">Scroll to end</button>
   </main-layout>
 </template>
 
@@ -36,6 +38,12 @@
         return firebase.auth().currentUser;
       },
     },
+    watch:{
+        messages: function(){
+            console.log('scrolling');
+            this.$nextTick(this.scrollToEnd);
+        }
+    },
     data: function () {
         return {
             messages:[],
@@ -47,7 +55,7 @@
             if(this.newMessage.text==='' || this.newMessage.text === undefined){
                 return;
             }
-            
+
             this.newMessage.date = this.moment.utc().format();
             this.newMessage.sender_id = this.currentUser.uid;
             this.newMessage.name = this.currentUser.displayName;
