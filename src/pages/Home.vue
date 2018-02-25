@@ -139,14 +139,19 @@
 
         <div class="card card-item">
           <div class="card-block">
-          <h4 class="card-title">Game Info</h4>
+            <button class="float-right btn btn-primary" v-on:click="toggleEditGameInfo()">{{editGameInfoButtonText}}</button>
+            <h4 class="card-title">Game Info</h4>
             <div class="card-block">
               <dl class="dl-horizontal list-group list-group-flush">
-                <template v-for="(value, key) in getNextGameInfo()">
-                  <div class="list-group-item">
-                    <div>
-                      <dt>{{key | camelToSentence}}</dt>
-                      <dd>{{value}}</dd>
+                <template v-for="item in gameInfo">
+                  <div class="list-group-item" :key="item.key">
+                    <div v-if="!editGameInfoMode">
+                      <dt>{{item.key | camelToSentence}}</dt>
+                      <dd>{{item.value}}</dd>
+                    </div>
+                    <div v-else>
+                      <dt>{{item.key | camelToSentence}}</dt>
+                      <dd><input v-model="item.value"/></dd>
                     </div>
                   </div>
                 </template>
@@ -201,12 +206,17 @@
           players: {},
           teams: {},
           editPlayerMode: false,
-          player1Swap: null
+          editGameInfoMode: false,
+          player1Swap: null,
+          gameInfo: []
       };
     },
     computed:{
       editPlayerButtonText: function(){
-        return this.editPlayerMode ? "Stop Editing Players" : "Edit Players Positions"
+        return this.editPlayerMode ? "Stop Editing Players" : "Edit Players Positions";
+      },
+      editGameInfoButtonText: function(){
+        return this.editGameInfoMode ? "Save Changes" : "Edit Game Info";
       }
     },
     filters: {
@@ -235,7 +245,10 @@
           source: db.ref('match')
       },
       teamFixtures:{
-          source: db.ref('teamFixture')
+          source: db.ref('teamFixture'),
+          readyCallback: function(){
+            this.gameInfo = _.head(this.teamFixtures).gameInfo;
+          }
       }
     },
     methods: {
@@ -263,6 +276,9 @@
       },
       toggleEditPlayersPositions(){
         this.editPlayerMode = !this.editPlayerMode;
+      },
+      toggleEditGameInfo(){
+        this.editGameInfoMode = !this.editGameInfoMode;
       },
       next() {
           this.$refs.slick.next();
