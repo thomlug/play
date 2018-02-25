@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row backdrop">
       <div class="col-xl-3">
         <div class="card card-item">
           <div class="card-block">
@@ -80,9 +80,8 @@
           </div>
         </div>
 
-        <div class="card">
-          <img class="card-img" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/football-background.png?alt=media&token=15b6acfa-9a04-485e-b37a-51304c13989f" alt="Card image">
-          <div class="card-block card-img-overlay">
+        <div class="card lineup">
+          <div class="card-block">
             <div class="row" v-for="(formationRowWidth, formationRow) in getNextFixtureDetails().formation" :key="formationRow">
               <div v-for="formationColumn in formationRowWidth" :key="formationColumn"
                 class="center-block text-center"
@@ -360,12 +359,10 @@
         }
       },
       goToTeamProfile(team){
-        console.log(team);
         //TODO: Replace this with a _.find or similar and use ===
         for (var i =0; i < this.teams.length; i++){
           if (team == this.teams[i].name){
             this.$router.push({name: 'team', params: {team_id: this.teams[i]['.key']}});
-            console.log(this.teams[i]);
           }
         }
       }
@@ -397,6 +394,10 @@
 
 .row-aligner{
   flex-direction: row;
+}
+
+.backdrop{
+  background-color: #EEEEEE;
 }
 
 .play-photo{
@@ -470,6 +471,7 @@
 
 .team-photo-container{
   margin: 0 auto;
+  cursor: pointer;
 }
 .circle{
   display: table-cell;

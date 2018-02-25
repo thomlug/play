@@ -118,7 +118,6 @@ export default {
   methods: {
     addFixture: function(){
       this.formatDateTime();
-      console.log(this.newFixture.ground);
       matchRef.push(this.newFixture);
       this.newFixture.awayPhoto = '';
       this.newFixture.homePhoto = '';
