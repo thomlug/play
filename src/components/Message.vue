@@ -199,7 +199,7 @@
 
 .msg {
     background: #f5f5f5;
-    min-width: 90%;
+    width: 90%;
     padding: 10px;
     border-radius: 2px;
     word-break: break-all;

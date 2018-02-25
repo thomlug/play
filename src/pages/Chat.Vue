@@ -44,6 +44,10 @@
     },
     methods: {
         addMessage: function () {
+            if(this.newMessage.text==='' || this.newMessage.text === undefined){
+                return;
+            }
+            
             this.newMessage.date = this.moment.utc().format();
             this.newMessage.sender_id = this.currentUser.uid;
             this.newMessage.name = this.currentUser.displayName;
