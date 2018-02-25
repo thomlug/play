@@ -112,6 +112,18 @@
     border-top-left-radius: 0px;
     box-shadow: -1px 2px 0px #c1cbcd;
 }
+
+.other .msg p{
+    color:#252C33;
+}
+
+.other .msg .user{
+    color:#2bcad0;
+}
+.other .msg time {
+    color:#252C33;
+}
+
 .other:before {
     content: "";
     position: relative;
@@ -159,7 +171,7 @@
 }
 
 .msg {
-    background: #465050;
+    background: #f5f5f5;
     min-width: 90%;
     padding: 10px;
     border-radius: 2px;

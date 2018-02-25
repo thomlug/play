@@ -6,7 +6,14 @@
                 <Message v-for="message in getConversationMessages()" :message="message" :key="message.created" />
                 <br/>
             </div>
-            <input class="send" @keyup.enter="addMessage" v-model="newMessage.text" placeholder="Type your message here"></textarea>
+            <div class="row chat-box-row">
+                <div class="col-10">
+                    <input class="send" @keyup.enter="addMessage" v-model="newMessage.text" placeholder="Type your message here"/>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-default float-right" @click="addMessage">Send</button>
+                </div>
+            </div>
         </div>
   </main-layout>
 </template>
@@ -89,6 +96,7 @@
 .chat-pane{
     overflow-y:auto;
     max-height:70vh;
+    background: darkslategrey;
 }
 .send{
     width: 100%;
@@ -101,5 +109,9 @@
     padding-right: 55px;
     color: #666;
     font-weight: 400;
+}
+
+.chat-box-row{
+    margin-top: 10px;
 }
 </style>
