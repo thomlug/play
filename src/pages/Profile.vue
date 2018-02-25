@@ -1,56 +1,65 @@
 <template>
   <main-layout>
-      <div class="container">
-    <h1>Play Profile</h1>
-    <div v-if="canEditProfile()">
-      <button class="btn btn-primary" v-on:click="edit" v-if="!editable">Edit</button>
-      <button class="btn btn-success" v-on:click="save" v-if="editable">Save</button>
-    </div>
-    <dl class="dl-horizontal">
-      <dt>First Name</dt>
-      <dd> 
-        <span v-if="!editable">{{player.first_name}} </span>
-        <input v-if="editable" v-model="player.first_name"/>
-      </dd>
-      <dt> Last Name</dt>
-        <dd> 
-          <span v-if="!editable">{{player.last_name}} </span>
-            <input v-if="editable" v-model="player.last_name"/>
-        </dd>
-      <dt>Phone</dt>
-      <dd> 
-        <a v-if="!editable" :href="'tel:'+player.phone">{{player.phone}} </a>
-        <input v-if="editable" v-model="player.phone"/>
-      </dd>
-      <dt>Email</dt>
-      <dd> 
-        <a v-if="!editable" :href="'mailto:'+player.email">{{player.email}} </a>
-        <input v-if="editable" v-model="player.email"/>
-      </dd>
-      <dt>Photo</dt>
-      <dd><img class="profile-photo" :src="player.photo" :class="'player-' + player.availability"/></dd>
-      <template v-if = "editable">
-        <dt> Upload new photo </dt>
-        <dd>
-          <form enctype="multipart/form-data" novalidate>
-            <div class="dropbox">
-              <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
-                <p v-if="isSaving">
-                  Uploading file...
-                </p>
+    <div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-12"></div>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="player-container">
+          <div class="banner text-center">
+            <h1>Player Profile</h1>
+          </div>
+          <div class="card-body">
+            <div v-if="canEditProfile()">
+              <button class="btn btn-primary" v-on:click="edit" v-if="!editable">Edit</button>
+              <button class="btn btn-success" v-on:click="save" v-if="editable">Save</button>
             </div>
-          </form>
-        </dd>
-        </template>
-    </dl>
-    <div v-if="canEditProfile()">
-      <h4 class="card-title">Update your status <small>({{player.availability | camelToSentence}})</small></h4>
-      <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available">Available</button>
-      <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
-      <button v-on:click="setCurrentPlayerAvailability('unknown')" type="button" class="btn btn-secondary">Unknown</button>
+            <img class="profile-photo" :src="player.photo" :class="'player-' + player.availability"/>
+            <div class="data-container column-flex-center">
+              <span class="text-center" v-if="!editable">
+                <h4>{{player.first_name}} {{player.last_name}}</h4>
+              </span>
+              <input v-if="editable" v-model="player.first_name"/>
+              <input v-if="editable" v-model="player.last_name"/>
+
+              <!-- <span v-if="!editable">{{player.age}}</span>
+              <input v-if="editable" v-model="player.age"/> -->
+
+
+              <span class="position" v-if="!editable">{{player.preffered_position}}</span>
+              <input v-if="editable" v-model="player.preffered_position"/>
+
+              <div class="contact-container column-flex-center">
+                <a v-if="!editable" :href="'tel:'+player.phone">{{player.phone}} </a>
+                <input v-if="editable" v-model="player.phone"/>
+
+                <a v-if="!editable" :href="'mailto:'+player.email">{{player.email}} </a>
+                <input v-if="editable" v-model="player.email"/>
+              </div>
+
+              <template v-if = "editable">
+                <dd>
+                  <form enctype="multipart/form-data" novalidate>
+                    <div class="dropbox">
+                      <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
+                        <p v-if="isSaving">
+                          Uploading file...
+                        </p>
+                    </div>
+                  </form>
+                </dd>
+                </template>
+            </div>
+            <div v-if="canEditProfile()">
+              <h4 class="card-title">Update your status <small>({{player.availability | camelToSentence}})</small></h4>
+              <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available">Available</button>
+              <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
+              <button v-on:click="setCurrentPlayerAvailability('unknown')" type="button" class="btn btn-secondary">Unknown</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3 col-xs-12"></div>
     </div>
-</div>
-    
+
   </main-layout>
 </template>
 
@@ -95,7 +104,7 @@
         uploadError: null,
         currentStatus: null,
         uploadFieldName: 'photos',
-        
+
       }
     },
     firebase() {
@@ -147,7 +156,7 @@
           });
       },
       filesChange(e) {
-       
+
          var files = e.target.files || e.dataTransfer.files;
         if (!files.length)
           return;
@@ -161,7 +170,7 @@
           var testUploadRef = storageRef.child('images/' + player['.key']);
           var uploadTask = testUploadRef.put(fileData);
           var promise = new Promise((resolve, reject) => {
-          
+
             uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
               function(snapshot) {
                 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
@@ -198,15 +207,16 @@
     },
     mounted() {
       this.reset();
-    } 
+    }
   }
 </script>
 
-<style>
+<style scoped>
 .profile-photo{
     max-height:256px;
     max-width:256px;
     border-radius: 50%;
+    box-shadow: 1px 2px 12px 0px rgba(0,0,0,0.75);
 }
 
 .player-available{
@@ -220,5 +230,41 @@
 .player-unknown{
     border: 3px solid grey;
     -webkit-filter: grayscale(100%);
+}
+
+.player-container{
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 4px 31px -3px rgba(128,126,128,1);
+}
+
+.banner{
+  margin-bottom: 50px;
+  width: 100%;
+  background-color: #2BCAD0;
+  color: #ffffff;
+}
+
+.column-flex-center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.data-container{
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+.contact-container{
+  margin-top: 40px;
+}
+
+.position{
+  color: #9E9E9E;
 }
 </style>
