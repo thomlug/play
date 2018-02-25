@@ -87,4 +87,11 @@ ui.start('#firebaseui-auth-container', uiConfig);
   font-family: 'Roboto', sans-serif;
 }
 
+.profile-photo{
+    max-height:256px;
+    max-width:256px;
+    border-radius: 50%;
+    box-shadow: 1px 2px 12px 0px rgba(0,0,0,0.75);
+}
+
 </style>

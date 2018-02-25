@@ -1,45 +1,46 @@
 <template>
   <main-layout>
-      <div class="container">
-    <h1>Team Profile</h1>
-    <div v-if="canEditProfile()">
-      <button class="btn btn-primary" v-on:click="edit" v-if="!editable">Edit</button>
-      <button class="btn btn-success" v-on:click="save" v-if="editable">Save</button>
-    </div>
-    <dl class="dl-horizontal">
-      <dt>Team Name</dt>
-      <dd> 
-        <span v-if="!editable">{{team.name}} </span>
-        <input v-if="editable" v-model="team.name"/>
-      </dd>
-      <dt>Sport</dt>
-      <dd> 
-        <span v-if="!editable">{{team.sport}} </span>
-        <input v-if="editable" v-model="team.sport"/>
-      </dd>
-      <dt>Number of players</dt>
-      <dd> 
-        <span v-if="!editable">{{team.numberOfPlayers}} </span>
-        <input v-if="editable" v-model="team.numberOfPlayers"/>
-      </dd>
-      <dt>Photo</dt>
-      <dd><img class="profile-photo" :src="team.photo"/></dd>
-      <template v-if = "editable">
-        <dt> Upload new photo </dt>
-        <dd>
-          <form enctype="multipart/form-data" novalidate>
-            <div class="dropbox">
-              <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
-                <p v-if="isSaving">
-                  Uploading file...
-                </p>
+    <div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-12"></div>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="team-container">
+          <div class="banner text-center">
+            <h1>Team Profile</h1>
+          </div
+          <div class="card-body">
+            <img class="profile-photo" :src="team.photo"/>
+            <div class="data-container column-flex-center">
+              <span v-if="!editable">{{team.name}} </span>
+              <input v-if="editable" v-model="team.name"/>
+
+              <span v-if="!editable">{{team.sport}} </span>
+              <input v-if="editable" v-model="team.sport"/>
+
+              <span v-if="!editable">{{team.numberOfPlayers}} </span>
+              <input v-if="editable" v-model="team.numberOfPlayers"/>
             </div>
-          </form>
-        </dd>
-        </template>
-    </dl>
-</div>
-    
+            <div v-if="canEditProfile()">
+              <button class="btn btn-primary" v-on:click="edit" v-if="!editable">Edit</button>
+              <button class="btn btn-success" v-on:click="save" v-if="editable">Save</button>
+            </div>
+          </div>
+          <template v-if = "editable">
+            <h5> Upload new photo </h5>
+            <form enctype="multipart/form-data" novalidate>
+              <div class="dropbox">
+                <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
+                  <p v-if="isSaving">
+                    Uploading file...
+                  </p>
+              </div>
+            </form>
+            </template>
+          </div>
+
+      </div>
+      <div class="col-md-3 col-sm-3 col-xs-12"></div>
+    </div>
+
   </main-layout>
 </template>
 
@@ -84,7 +85,7 @@
         uploadError: null,
         currentStatus: null,
         uploadFieldName: 'photos',
-        
+
       }
     },
     firebase() {
@@ -133,7 +134,7 @@
           });
       },
       filesChange(e) {
-       
+
          var files = e.target.files || e.dataTransfer.files;
         if (!files.length)
           return;
@@ -147,7 +148,7 @@
           var testUploadRef = storageRef.child('images/' + team['.key']);
           var uploadTask = testUploadRef.put(fileData);
           var promise = new Promise((resolve, reject) => {
-          
+
             uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
               function(snapshot) {
                 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
@@ -184,7 +185,7 @@
     },
     mounted() {
       this.reset();
-    } 
+    }
   }
 </script>
 
@@ -193,5 +194,33 @@
     max-height:256px;
     max-width:256px;
     border-radius: 50%;
+}
+
+.team-container{
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 4px 31px -3px rgba(128,126,128,1);
+}
+
+.banner{
+  margin-bottom: 50px;
+  width: 100%;
+  background-color: #2BCAD0;
+  color: #ffffff;
+}
+
+.column-flex-center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.data-container{
+  margin-top: 10px;
+  margin-bottom: 40px;
 }
 </style>
