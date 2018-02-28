@@ -8,6 +8,7 @@ import helpersPlugin from './components/helpersPlugin.vue';
 
 import App from './App.vue'
 
+import Signup from './pages/Signup.vue'
 import Home from './pages/Home.vue'
 import Members from './pages/Members.vue'
 import Teams from './pages/Teams.vue'
@@ -31,7 +32,8 @@ Vue.use(helpersPlugin);
 Vue.prototype.moment = moment
 
 const routes = [
-  {path: '/home', alias:'', component: Home, name:'home'},
+  {path: '/signup', alias:'', component: Signup, name:'signup'},
+  {path: '/home', component: Home, name:'home'},
   {path: '/chat', component: Chat, name:'chat'},
   {path: '/members', component: Members, name:'members'},
   {path: '/teams', component: Teams, name:'teams'},
