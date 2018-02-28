@@ -3,11 +3,20 @@
         <div class="container">
             <h1>{{getCurrentTeam().name}} chat</h1>
             <div class="chat-pane" id="chat-pane">
-                <Message v-for="message in getConversationMessages()" :message="message" :key="message.created" />
+                <Message v-for="message in getConversationMessages()" :message="message" :key="message['.key']" />
                 <br/>
             </div>
-            <input class="send" @keyup.enter="addMessage" v-model="newMessage.text" placeholder="Type your message here"></textarea>
+            <div class="row chat-box-row">
+                <div class="col-10">
+                    <input class="send" @keyup.enter="addMessage" v-model="newMessage.text" placeholder="Type your message here"/>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-default float-right" @click="addMessage">Send</button>
+                </div>
+            </div>
         </div>
+
+        <button @click="scrollToEnd">Scroll to end</button>
   </main-layout>
 </template>
 
@@ -29,6 +38,12 @@
         return firebase.auth().currentUser;
       },
     },
+    watch:{
+        messages: function(){
+            console.log('scrolling');
+            this.$nextTick(this.scrollToEnd);
+        }
+    },
     data: function () {
         return {
             messages:[],
@@ -37,6 +52,10 @@
     },
     methods: {
         addMessage: function () {
+            if(this.newMessage.text==='' || this.newMessage.text === undefined){
+                return;
+            }
+
             this.newMessage.date = this.moment.utc().format();
             this.newMessage.sender_id = this.currentUser.uid;
             this.newMessage.name = this.currentUser.displayName;
@@ -50,7 +69,19 @@
         },
         getConversationMessages(){
             var currentTeamId = _.isUndefined(this.getCurrentTeam()) ? '':  this.getCurrentTeam()['.key'];
-            return _.filter(this.messages, function(message){return message.conversation === currentTeamId;})
+            var filteredMessages = _.chain(this.messages)
+             .each((message) => {
+                    message.photo = this.getPhotoForUser(message.sender_id);
+                })
+                .filter(function(message){return message.conversation === currentTeamId;})
+               .value();
+            return filteredMessages;
+        },
+        getPhotoForUser(userUid){
+            var player = _.find(this.players, function(player){return player.userUid === userUid;});
+            if(player !== undefined){
+                return player.photo;
+            }
         },
         getCurrentTeam(){
             var team = _.head(this.teams);
@@ -75,6 +106,9 @@
         teams:{
             source: db.ref('team')
         },
+        players:{
+          source: db.ref('player')
+        }
       };
     },
     watch:{
@@ -89,6 +123,7 @@
 .chat-pane{
     overflow-y:auto;
     max-height:70vh;
+    background: darkslategrey;
 }
 .send{
     width: 100%;
@@ -101,5 +136,9 @@
     padding-right: 55px;
     color: #666;
     font-weight: 400;
+}
+
+.chat-box-row{
+    margin-top: 10px;
 }
 </style>
