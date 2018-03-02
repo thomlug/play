@@ -1,13 +1,13 @@
 <template>
   <play-form>
-      <div class="container">
-          <form class="login-form">
-              <input placeholder="Email" label="Email" id="email" type="email" class="email form-element text-center" v-model="email" required>
-              <input placeholder="Password" label="Password" id="password" type="password" class="password form-element text-center" v-model="password" required>
-              <input placeholder="Confirm Password" label="Confirm Password" id="confirmPassword" type="password" class="confirmPassword form-element text-center" v-model="confirmPassword">
-              <button type="submit" class="submit-button btn btn-submit form-element">Sign Up</button>
-          </form>
-      </div>
+    <div class="col">
+        <form class="login-form">
+            <input placeholder="Email" label="Email" id="email" type="email" class="email form-element text-center" v-model="email" required>
+            <input placeholder="Password" label="Password" id="password" type="password" class="password form-element text-center" v-model="password" required>
+            <input placeholder="Confirm Password" label="Confirm Password" id="confirmPassword" type="password" class="confirmPassword form-element text-center" v-model="confirmPassword">
+            <button type="submit" class="submit-button btn btn-submit form-element">Sign Up</button>
+        </form>  
+    </div>            
   </play-form>
 </template>
 
