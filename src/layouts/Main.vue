@@ -4,7 +4,7 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="#/home">
           <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="img-fluid play-logo">
           </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -28,6 +28,9 @@
             <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" to="marketing">Marketing</router-link>
             </li>
+            <li @click="logOut" class="nav-item nav-link logout">
+              Log Out
+            </li>
           </ul>
         </div>
       </nav>
@@ -42,38 +45,14 @@
   export default {
     components: {
       VLink
+    },
+    methods: {
+      logOut(){
+        firebase.auth().signOut();
+      }
     }
   }
-
-  var uiConfig = {
-  signInFlow: 'popup',
-      signInSuccessUrl: '#/home',
-      callbacks:{
-        signInSuccess: function(){
-            ui.reset();
-        }
-      },
-      signInOptions: [
-        // Leave the lines as is for the providers you want to offer your users.
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.FacebookAuthProvider.PROVIDER_ID
-      ],
-      // Terms of service url.
-      tosUrl: '<your-tos-url>'
-};
-
-// Initialize the FirebaseUI Widget using Firebase.
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
-// The start method will wait until the DOM is loaded.
-ui.start('#firebaseui-auth-container', uiConfig);
-
-// firebase.auth().onAuthStateChanged(function(user) {
-//   if (user) {
-//     this.data.signedIn = true;
-//   } else {
-//     this.data.signedIn = false;
-//   }
-// });
+  
 </script>
 
 <style>
@@ -92,6 +71,10 @@ ui.start('#firebaseui-auth-container', uiConfig);
     max-width:256px;
     border-radius: 50%;
     box-shadow: 1px 2px 12px 0px rgba(0,0,0,0.75);
+}
+
+.logout:hover{
+  cursor: pointer;
 }
 
 </style>

@@ -8,6 +8,7 @@ import helpersPlugin from './components/helpersPlugin.vue';
 
 import App from './App.vue'
 
+import Login from './pages/Login.vue'
 import Signup from './pages/Signup.vue'
 import Home from './pages/Home.vue'
 import Members from './pages/Members.vue'
@@ -32,7 +33,8 @@ Vue.use(helpersPlugin);
 Vue.prototype.moment = moment
 
 const routes = [
-  {path: '/signup', alias:'', component: Signup, name:'signup'},
+  {path: '/login', alias:'', component: Login, name:'login'},
+  {path: '/signup', component: Signup, name:'signup'},
   {path: '/home', component: Home, name:'home'},
   {path: '/chat', component: Chat, name:'chat'},
   {path: '/members', component: Members, name:'members'},
@@ -50,6 +52,15 @@ const router = new VueRouter({routes});
 
 
 const app = new Vue({
+  created() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user) {
+        this.$router.push('/home')
+      } else {
+        this.$router.push('/login')
+      }
+     });
+    },
   el:"#app",
   router,
   render (h) {
