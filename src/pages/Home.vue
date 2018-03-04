@@ -16,10 +16,10 @@
     <div class="row backdrop">
       <div class="col-xl-3">
         <div class="card card-item">
-          <div class="card-block">
-            <h4 class="card-title">Next Fixture</h4>
-            <div class="row">
-              <div class="col-5">
+          <div class="fixture-container">
+            <h4 class="fixture-title">Next Fixture</h4>
+            <div class="centered-col fixture-content">
+              <div class="centered-col">
                 <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().homeTeam)">
                   <div v-if="!_.isUndefined(getNextFixture().homePhoto)">
                     <img :src="getNextFixture().homePhoto" class="play-photo team-photo">
@@ -31,10 +31,9 @@
                 <div class="team-name">
                   <h5 class="text-center">{{getNextFixture().homeTeam}}</h5>
                 </div>
-
-                </div>
-              <div class="col-2 aligner text-center">VS</div>
-              <div class="col-5">
+              </div>
+              <div class="centered-col vs-text text-center">VS</div>
+              <div class="centered-col">
                 <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().awayTeam)">
                   <div v-if="!_.isUndefined(getNextFixture().awayPhoto)">
                     <img :src="getNextFixture().awayPhoto" class="play-photo team-photo">
@@ -371,29 +370,43 @@
 </script>
 
 <style scoped>
+
+.centered-col{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fixture-container{
+  align-items:stretch;
+}
+
+.fixture-title{
+  margin-left: 1rem;
+}
+
+.fixture-content{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.vs-text{
+  font-size: 1.25em;
+  justify-content: flex-start;
+  margin-top: -2rem;
+}
+
 .card-item{
   margin-top: 15px;
   margin-bottom: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.card-img{
-  opacity: .9;
-}
-
 .team-name{
   margin-top: 25px;
-}
-
-.aligner{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.row-aligner{
-  flex-direction: row;
 }
 
 .backdrop{
@@ -485,11 +498,6 @@
 
 .player-circle{
   color: white;
-}
-
-.vs-text{
-  padding-top:10%;
-  font-weight: bold;
 }
 
 .btn-available{
