@@ -1,6 +1,6 @@
 <template>
-    <div class="signup-page">
-        <div class="signup-page-content">
+    <div id="signup-page">
+        <div id="signup-page-content">
             <div class="signup-page-block signup-page-registerBlock">
                 <play-form>
                         <div class="col">
@@ -11,7 +11,8 @@
                                 <input placeholder="Confirm Password" label="Confirm Password" id="confirmPassword" type="password" class="confirmPassword form-element text-center" v-model="confirmPassword">
                                 <button type="submit" class="submit-button btn btn-submit form-element">Sign Up</button>
                             </form>  
-                        </div>            
+                        </div>   
+                        <p class="have-account" slot="additional-info">Already have an account? <router-link :to="{name: 'login'}">Log in</router-link> </p>         
                     </play-form>
             </div>
     
@@ -76,15 +77,15 @@ export default {
 
 <style scoped>
 
-    .signup-page{
+    #signup-page{
         display: flex;
         flex-direction: column;
-        min-height: 46rem;
+        height: 46rem;
         margin-bottom: 0;
         overflow: hidden;
     }
 
-    .signup-page-content{
+    #signup-page-content{
         display: flex;
         flex-direction: row-reverse;
         flex-grow: 1;
@@ -104,7 +105,6 @@ export default {
         align-items: center;
         justify-content: center;
     }
-
 
     .register-form{
         display: flex;
@@ -143,5 +143,10 @@ export default {
     .signup-page-bannerMotto{
         font-size: 1rem;
         color: #2BCAD0;
+    }
+
+    .have-account{
+        margin-top: 1rem;
+        font-size: 0.8rem;
     }
 </style>
