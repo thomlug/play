@@ -3,60 +3,64 @@
     <div class="row">
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
       <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="player-container">
-          <div class="banner text-center">
+        <div class="player-profile-box">
+          <div class="player-profile-banner text-center">
             <h1>Player Profile</h1>
-          </div>
-          <div class="card-body">
-            <div v-if="canEditProfile()">
-              <button class="btn btn-primary" v-on:click="edit" v-if="!editable">Edit</button>
-              <button class="btn btn-success" v-on:click="save" v-if="editable">Save</button>
+          </div>          
+            <div class="player-profile-header" v-if="canEditProfile()">
+              <img src="../assets/pencil.png" class="edit-icon" @click="edit" v-if="!editable">
+              <button class="btn btn-success" @click="save" v-if="editable">Save</button>
             </div>
-            <img class="profile-photo" :src="player.photo" :class="'player-' + player.availability"/>
-            <div class="data-container column-flex-center">
-              <span class="text-center" v-if="!editable">
-                <h4>{{player.first_name}} {{player.last_name}}</h4>
-              </span>
-              <input v-if="editable" v-model="player.first_name"/>
-              <input v-if="editable" v-model="player.last_name"/>
+            <div class="player-profile-content">
+              <img class="profile-photo" :src="player.photo" :class="'player-' + player.availability"/> 
+              <div class="content-block">
+                <span class="text-center" v-if="!editable">
+                  <h4>{{player.first_name}} {{player.last_name}}</h4>
+                </span>
+                <input placeholder="First name"  v-if="editable" v-model="player.first_name"/>
+                <input placeholder="Last name" v-if="editable" v-model="player.last_name"/>
+              </div>
 
               <!-- <span v-if="!editable">{{player.age}}</span>
               <input v-if="editable" v-model="player.age"/> -->
 
 
-              <span class="position" v-if="!editable">{{player.preffered_position}}</span>
-              <input v-if="editable" v-model="player.preffered_position"/>
+              <div class="content-block">
+                <span class="position" v-if="!editable">{{player.preffered_position}}</span>
+                <input placeholder="Preffered position" v-if="editable" v-model="player.preffered_position"/>
+              </div>
 
-              <div class="contact-container column-flex-center">
-                <a v-if="!editable" :href="'tel:'+player.phone">{{player.phone}} </a>
-                <input v-if="editable" v-model="player.phone"/>
+              <div class="content-block">
+                <a  v-if="!editable" :href="'tel:'+player.phone">{{player.phone}} </a>
+                <input placeholder="Phone number"  v-if="editable" v-model="player.phone"/>
+              </div>
 
-                <a v-if="!editable" :href="'mailto:'+player.email">{{player.email}} </a>
-                <input v-if="editable" v-model="player.email"/>
+              <div class="content-block">
+                <a  v-if="!editable" :href="'mailto:'+player.email">{{player.email}} </a>
+                <input placeholder="Email" v-if="editable" v-model="player.email"/>
               </div>
 
               <template v-if = "editable">
-                <dd>
-                  <form enctype="multipart/form-data" novalidate>
-                    <div class="dropbox">
-                      <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
-                        <p v-if="isSaving">
-                          Uploading file...
-                        </p>
-                    </div>
-                  </form>
-                </dd>
-                </template>
-            </div>
-            <div v-if="canEditProfile()">
-              <h4 class="card-title">Update your status <small>({{player.availability | camelToSentence}})</small></h4>
-              <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available">Available</button>
-              <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
-              <button v-on:click="setCurrentPlayerAvailability('unknown')" type="button" class="btn btn-secondary">Unknown</button>
-            </div>
+                <form enctype="multipart/form-data" novalidate>
+                  <div class="dropbox">
+                    <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
+                      <p v-if="isSaving">
+                        Uploading file...
+                      </p>
+                  </div>
+                </form>
+              </template>
+              <div v-if="canEditProfile()">
+                <h4 class="card-title">Update your status <small>({{player.availability | camelToSentence}})</small></h4>
+                <div class="availability-container">
+                  <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available">Available</button>
+                  <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
+                </div>
+              </div>
+            </div>                       
+            
           </div>
         </div>
-      </div>
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
     </div>
 
@@ -232,39 +236,62 @@
     -webkit-filter: grayscale(100%);
 }
 
-.player-container{
+.player-profile-box{
   margin-top: 5vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   box-shadow: 2px 4px 31px -3px rgba(128,126,128,1);
 }
 
-.banner{
-  margin-bottom: 50px;
+.player-profile-banner{
   width: 100%;
   background-color: #2BCAD0;
   color: #ffffff;
 }
 
-.column-flex-center{
+.player-profile-header{
+  margin: 1rem 2.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  float:right;
+}
+
+.player-profile-content{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.data-container{
-  margin-top: 10px;
-  margin-bottom: 40px;
+.availability-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.contact-container{
-  margin-top: 40px;
+.content-block{
+  margin: 0.4rem 0;
 }
 
 .position{
   color: #9E9E9E;
 }
+
+.edit-icon{
+  height:3rem;
+  border-radius: 20%;
+  border: 1px solid #E0E0E0;
+  background: #757575;
+}
+
+.edit-icon:hover{
+  cursor: pointer;
+}
+
+
 </style>
