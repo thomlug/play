@@ -1,7 +1,7 @@
 <template>
   <play-form>
     <div class="col">
-        <form class="login-form">
+        <form @submit.prevent="onSignUp" class="login-form">
             <input placeholder="Email" label="Email" id="email" type="email" class="email form-element text-center" v-model="email" required>
             <input placeholder="Password" label="Password" id="password" type="password" class="password form-element text-center" v-model="password" required>
             <input placeholder="Confirm Password" label="Confirm Password" id="confirmPassword" type="password" class="confirmPassword form-element text-center" v-model="confirmPassword">
@@ -14,9 +14,32 @@
 <script>
 import PlayForm from '../components/PlayForm.vue';
 export default {
-  components: {
+    data: function(){
+        return {
+            email: '',
+            password: '',
+            confirmPassword: ''
+        }
+    },
+    components: {
       PlayForm
-  }
+    },
+
+    methods: {
+        onSignUp(){
+            firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+                .then(
+                    user => {
+                        
+                    }
+                )
+                .catch(
+                    error => {
+                        console.log(error);
+                    }
+                )
+        }
+    }
 }
 </script>
 
