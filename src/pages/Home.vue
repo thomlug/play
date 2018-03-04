@@ -15,7 +15,7 @@
 
     <div class="row backdrop">
       <div class="col-xl-3">
-        <div class="card card-item">
+        <div class="card play-card">
           <div class="fixture-container">
             <h4 class="fixture-title">Next Fixture</h4>
             <div class="centered-col fixture-content">
@@ -25,7 +25,7 @@
                     <img :src="getNextFixture().homePhoto" class="play-photo team-photo">
                   </div>
                   <div v-else>
-                    <div class="circle team-circle team-photo">{{getNextFixture().homeTeam | firstCharacter}}</div>
+                    <div class="circle team-circle play-photo">{{getNextFixture().homeTeam | firstCharacter}}</div>
                   </div>
                 </div>
                 <div class="team-name">
@@ -39,7 +39,7 @@
                     <img :src="getNextFixture().awayPhoto" class="play-photo team-photo">
                   </div>
                   <div v-else>
-                    <div class="circle team-circle team-photo">{{getNextFixture().awayTeam | firstCharacter}}</div>
+                    <div class="circle team-circle play-photo">{{getNextFixture().awayTeam | firstCharacter}}</div>
                   </div>
                 </div>
                 <div class="team-name">
@@ -49,7 +49,7 @@
             </div>
           </div>
         </div>
-        <div class="card card-item">
+        <div class="card play-card">
           <div class="card-block">
             <div class="text-center">
               <h2>{{moment(getNextFixture().date).format("hh:mm A")}}</h2>
@@ -61,10 +61,10 @@
           </div>
         </div>
 
-        <div class="card card-item">
+        <div class="card play-card">
           <div class="card-block">
             <h4 class="card-title">Update Your Status <small>({{getCurrentPlayer().availability | camelToSentence}})</small></h4>
-            <div class="aligner row-aligner">
+            <div class="status-container">
               <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available active">Available</button>
               <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
             </div>
@@ -72,14 +72,14 @@
         </div>
       </div>
       <div class="col-xl-6">
-        <div class="card card-item">
+        <div class="card play-card">
           <div class="card-block">
             <button class="float-right btn btn-primary" v-on:click="toggleEditPlayersPositions()">{{editPlayerButtonText}}</button>
             <h4 class="card-title">Starting Lineup</h4>
           </div>
         </div>
 
-        <div class="card lineup">
+        <div class="card play-card lineup">
           <div class="card-block">
             <div class="row" v-for="(formationRowWidth, formationRow) in getNextFixtureDetails().formation" :key="formationRow">
               <div v-for="formationColumn in formationRowWidth" :key="formationColumn"
@@ -111,7 +111,7 @@
 
       </div>
       <div class="col-xl-3">
-        <div class="card card-item">
+        <div class="card play-card">
           <div class="card-block">
             <h4 class="card-title">Subs</h4>
               <div class="card-block row">
@@ -136,7 +136,7 @@
             </div>
         </div>
 
-        <div class="card card-item">
+        <div class="card play-card">
           <div class="card-block">
           <h4 class="card-title">Game Info</h4>
             <div class="card-block">
@@ -399,10 +399,10 @@
   margin-top: -2rem;
 }
 
-.card-item{
+.play-card{
   margin-top: 15px;
   margin-bottom: 15px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .team-name{
@@ -417,9 +417,13 @@
     max-width:100%;
     margin: 3px;
     border-radius: 50em;
-    -webkit-border-radius: 50em;
-    -moz-border-radius: 50em;
-    box-shadow: 4px 4px 5px #424242;
+    -webkit-box-shadow: 10px 9px 4px -8px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 9px 4px -8px rgba(0,0,0,0.75);
+box-shadow: 10px 9px 4px -8px rgba(0,0,0,0.75);
+}
+
+.team-circle{
+  color: #9E9E9E;
 }
 
 .player-selected{
@@ -441,6 +445,13 @@
 
 .player-container{
   cursor: pointer;
+}
+
+.status-container{
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-around;
 }
 
 @media (max-width: 768px) {
