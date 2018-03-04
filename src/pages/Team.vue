@@ -3,39 +3,36 @@
     <div class="row">
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
       <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="team-container">
-          <div class="banner text-center">
+        <div class="team-profile-box">
+          <div class="team-profile-banner text-center">
             <h1>Team Profile</h1>
-          </div
-          <div class="card-body">
-            <img class="profile-photo" :src="team.photo"/>
-            <div class="data-container column-flex-center">
-              <span v-if="!editable">{{team.name}} </span>
-              <input v-if="editable" v-model="team.name"/>
-
-              <span v-if="!editable">{{team.sport}} </span>
-              <input v-if="editable" v-model="team.sport"/>
-
-              <span v-if="!editable">{{team.numberOfPlayers}} </span>
-              <input v-if="editable" v-model="team.numberOfPlayers"/>
-            </div>
-            <div v-if="canEditProfile()">
-              <button class="btn btn-primary" v-on:click="edit" v-if="!editable">Edit</button>
-              <button class="btn btn-success" v-on:click="save" v-if="editable">Save</button>
-            </div>
           </div>
-          <template v-if = "editable">
-            <h5> Upload new photo </h5>
-            <form enctype="multipart/form-data" novalidate>
-              <div class="dropbox">
-                <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
-                  <p v-if="isSaving">
-                    Uploading file...
-                  </p>
+          <div class="team-profile-header">
+              <div v-if="canEditProfile()">
+                <button class="btn btn-primary" v-on:click="edit" v-if="!editable">Edit</button>
+                <button class="btn btn-success" v-on:click="save" v-if="editable">Save</button>
               </div>
-            </form>
-            </template>
+            </div>  
+          <div class="team-profile-content">            
+            <img class="content-block profile-photo" :src="team.photo"/>
+            <span class="content-block" v-if="!editable"><h4>{{team.name}}</h4> </span>
+            <input class="content-block" v-if="editable" v-model="team.name"/>
+
+            <span class="content-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
+            <input class="content-block" v-if="editable" v-model="team.numberOfPlayers"/> 
+            <template v-if = "editable">
+              <h5 class="content-block" > Upload new photo </h5>
+              <form class="content-block" enctype="multipart/form-data" novalidate>
+                <div class="dropbox">
+                  <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
+                    <p v-if="isSaving">
+                      Uploading file...
+                    </p>
+                </div>
+              </form>
+              </template>
           </div>
+        </div>
 
       </div>
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
@@ -196,31 +193,42 @@
     border-radius: 50%;
 }
 
-.team-container{
+.team-profile-box{
   margin-top: 5vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   box-shadow: 2px 4px 31px -3px rgba(128,126,128,1);
 }
 
-.banner{
-  margin-bottom: 50px;
+.team-profile-banner{
   width: 100%;
   background-color: #2BCAD0;
   color: #ffffff;
 }
 
-.column-flex-center{
+.team-profile-header{
+  margin: 1rem 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  float:right;
+}
+
+.team-profile-content{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.data-container{
-  margin-top: 10px;
-  margin-bottom: 40px;
+.content-block{
+  margin: 0.4rem 0;
+}
+
+.player-number{
+  color:#BDBDBD;
 }
 </style>

@@ -18,7 +18,7 @@
                                 </div>
                               </div>
                               <div v-else>
-                                <div style="float:right":image="team.photo" :size="80"></div>
+                                <div style="float:right" :image="team.photo" :size="80"></div>
                               </div>
                           </div>
                           <div>
