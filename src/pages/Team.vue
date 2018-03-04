@@ -9,7 +9,7 @@
           </div>
           <div class="team-profile-header">
               <div v-if="canEditProfile()">
-                <button class="btn btn-primary" v-on:click="edit" v-if="!editable">Edit</button>
+                <img src="../assets/pencil.png" class="edit-icon" @click="edit" v-if="!editable">
                 <button class="btn btn-success" v-on:click="save" v-if="editable">Save</button>
               </div>
             </div>  
@@ -207,7 +207,7 @@
 }
 
 .team-profile-header{
-  margin: 1rem 0.5rem;
+  margin: 1rem 2.5rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -230,5 +230,16 @@
 
 .player-number{
   color:#BDBDBD;
+}
+
+.edit-icon{
+  height:3rem;
+  border-radius: 20%;
+  border: 1px solid #E0E0E0;
+  background: #757575;
+}
+
+.edit-icon:hover{
+  cursor: pointer;
 }
 </style>
