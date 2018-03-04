@@ -57,7 +57,7 @@ const app = new Vue({
       if(user) {
         this.$router.push('/home')
       } else {
-        this.$router.push('/signup')
+        this.$router.push('/login')
       }
      });
     },
