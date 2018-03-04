@@ -417,9 +417,16 @@
     max-width:100%;
     margin: 3px;
     border-radius: 50em;
-    -webkit-box-shadow: 10px 9px 4px -8px rgba(0,0,0,0.75);
--moz-box-shadow: 10px 9px 4px -8px rgba(0,0,0,0.75);
-box-shadow: 10px 9px 4px -8px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 7px 9px 4px -8px rgba(0,0,0,0.75);
+-moz-box-shadow: 7px 9px 4px -8px rgba(0,0,0,0.75);
+box-shadow: 7px 9px 4px -8px rgba(0,0,0,0.75);
+}
+
+.play-photo:hover{
+  -webkit-box-shadow: 7px 9px 16px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: 7px 9px 16px -4px rgba(0,0,0,0.75);
+  box-shadow: 7px 9px 16px -4px rgba(0,0,0,0.75);
+  cursor: pointer;
 }
 
 .team-circle{
@@ -441,10 +448,6 @@ box-shadow: 10px 9px 4px -8px rgba(0,0,0,0.75);
 .player-unknown{
     border: 3px solid grey;
     -webkit-filter: grayscale(100%);
-}
-
-.player-container{
-  cursor: pointer;
 }
 
 .status-container{
@@ -495,7 +498,6 @@ box-shadow: 10px 9px 4px -8px rgba(0,0,0,0.75);
 
 .team-photo-container{
   margin: 0 auto;
-  cursor: pointer;
 }
 .circle{
   display: table-cell;
