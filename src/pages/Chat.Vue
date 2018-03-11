@@ -3,7 +3,7 @@
         <div class="container">
             <div class="chat-pane">
                 <div class="chat-pane-banner text-center">
-                    <h1>{{getCurrentTeam().name}} chat</h1>
+                    <h1>{{getCurrentTeam().name}}</h1>
                 </div>
                 <div class="chat-pane-body" id="chat-pane">
                     <Message v-for="message in getConversationMessages()" :message="message" :key="message['.key']" />
