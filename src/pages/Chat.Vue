@@ -1,17 +1,21 @@
 <template>
     <main-layout>
         <div class="container">
-            <h1>{{getCurrentTeam().name}} chat</h1>
-            <div class="chat-pane" id="chat-pane">
-                <Message v-for="message in getConversationMessages()" :message="message" :key="message['.key']" />
-                <br/>
-            </div>
-            <div class="row chat-box-row">
-                <div class="col-10">
-                    <input class="send" @keyup.enter="addMessage" v-model="newMessage.text" placeholder="Type your message here"/>
+            <div class="chat-pane">
+                <div class="chat-pane-banner text-center">
+                    <h1>{{getCurrentTeam().name}} chat</h1>
                 </div>
-                <div class="col-2">
-                    <button class="btn btn-default float-right" @click="addMessage">Send</button>
+                <div class="chat-pane-body" id="chat-pane">
+                    <Message v-for="message in getConversationMessages()" :message="message" :key="message['.key']" />
+                    <br/>
+                </div>
+                <div class="row chat-box-row">
+                    <div class="col-10">
+                        <input class="send" @keyup.enter="addMessage" v-model="newMessage.text" placeholder="Type your message here"/>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-default float-right" @click="addMessage">Send</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -128,6 +132,19 @@
 
 <style>
 .chat-pane{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 4px 31px -3px rgba(128,126,128,1);
+}
+
+.chat-pane-banner{
+    width: 100%;
+    background-color: #2BCAD0;
+    color: #ffffff;
+}
+
+.chat-pane-body{
     overflow-y:auto;
     max-height:70vh;
     background: darkslategrey;
