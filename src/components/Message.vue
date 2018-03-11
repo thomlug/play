@@ -1,9 +1,13 @@
 <template>
     <ol class="chat">
-        <div v-if="getPosition === 'other'" class="avatar"><img :src="message.photo" draggable="false"/></div>
+        <div v-if="getPosition === 'other'" class="avatar">
+            <img :src="message.photo" @click="goToPlayerProfile(message.playerId)" :class="{clickable: !_.isUndefined(message.playerId)}" draggable="false"/>
+        </div>
          <li :class="getPosition">
             <div class="msg">
-                <div class="user">{{message.name}}</div>
+                <div class="user"  @click="goToPlayerProfile(message.playerId)" :class="{clickable: !_.isUndefined(message.playerId)}">
+                    {{message.name}}
+                </div>
                 <p>{{ message.text }}</p>
                 <time>{{message.date | utcToLocal}}</time>
             </div>
@@ -36,12 +40,23 @@
           return 'other'
         }
       }
+    },
+    methods:{
+        goToPlayerProfile(playerId){
+            if(!_.isUndefined(playerId) && playerId !== ''){
+                this.$router.push({name: 'profile', params: {player_id: playerId}});
+            }
+        }
     }
   }
 </script>
 
-// Styling from https://codepen.io/Varo/pen/YPmwpQ
 <style scoped>
+.clickable{
+    cursor: pointer;
+}
+
+/* Styling from https://codepen.io/Varo/pen/YPmwpQ */
 .chat {
     list-style: none;
     background: none;

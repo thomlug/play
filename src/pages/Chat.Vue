@@ -72,6 +72,7 @@
             var filteredMessages = _.chain(this.messages)
              .each((message) => {
                     message.photo = this.getPhotoForUser(message.sender_id);
+                    message.playerId = this.getPlayerIdForUser(message.sender_id);
                 })
                 .filter(function(message){return message.conversation === currentTeamId;})
                .value();
@@ -81,6 +82,12 @@
             var player = _.find(this.players, function(player){return player.userUid === userUid;});
             if(player !== undefined){
                 return player.photo;
+            }
+        },
+        getPlayerIdForUser(userUid){
+            var player = _.find(this.players, function(player){return player.userUid === userUid;});
+            if(player !== undefined){
+                return player['.key'];
             }
         },
         getCurrentTeam(){
