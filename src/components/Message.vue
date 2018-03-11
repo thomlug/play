@@ -1,9 +1,13 @@
 <template>
     <ol class="chat">
-        <div v-if="getPosition === 'other'" class="avatar"><img :src="message.photo" draggable="false"/></div>
+        <div v-if="getPosition === 'other'" class="avatar">
+            <img :src="message.photo" @click="goToPlayerProfile(message.playerId)" :class="{clickable: !_.isUndefined(message.playerId)}" draggable="false"/>
+        </div>
          <li :class="getPosition">
             <div class="msg">
-                <div class="user">{{message.name}}</div>
+                <div class="user"  @click="goToPlayerProfile(message.playerId)" :class="{clickable: !_.isUndefined(message.playerId)}">
+                    {{message.name}}
+                </div>
                 <p>{{ message.text }}</p>
                 <time>{{message.date | utcToLocal}}</time>
             </div>
@@ -25,7 +29,7 @@
     },
     filters: {
       utcToLocal(time){
-          return moment(time).format('LTS LL');
+          return moment(time).format('LT MMM Do');
       },
     },
     computed: {
@@ -36,12 +40,23 @@
           return 'other'
         }
       }
+    },
+    methods:{
+        goToPlayerProfile(playerId){
+            if(!_.isUndefined(playerId) && playerId !== ''){
+                this.$router.push({name: 'profile', params: {player_id: playerId}});
+            }
+        }
     }
   }
 </script>
 
-// Styling from https://codepen.io/Varo/pen/YPmwpQ
 <style scoped>
+.clickable{
+    cursor: pointer;
+}
+
+/* Styling from https://codepen.io/Varo/pen/YPmwpQ */
 .chat {
     list-style: none;
     background: none;
@@ -54,8 +69,8 @@
 }
 .chat .avatar {
     float: left;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     position: relative;
     display: block;
     z-index: 2;
@@ -66,8 +81,8 @@
     background-color: rgba(255,255,255,0.9);
 }
 .chat .avatar img {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 100%;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
@@ -77,6 +92,7 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    border: 2px solid #2acad0;
 }
 .chat .day {
     position: relative;
@@ -148,7 +164,7 @@
     color:#2bcad0;
 }
 .other .msg time {
-    color:#252C33;
+    color:#999;
 }
 
 .other:before {
@@ -174,7 +190,10 @@
     background: #2bcad0;
 }
 
-.self .msg > time, .self .msg > p {
+.self .msg > time{
+    color: #dddddd;
+}
+.self .msg > p {
     color: #ffffff;
 }
 
@@ -191,7 +210,7 @@
     right: 0px;
     width: 0px;
     height: 0px;
-    border: 5px solid #eef8ff;
+    border: 5px solid #2bcad0;
     border-right-color: transparent;
     border-top-color: transparent;
     box-shadow: 0px 2px 0px #c1cbcd;
@@ -201,7 +220,7 @@
     background: #f5f5f5;
     width: 90%;
     padding: 10px;
-    border-radius: 2px;
+    border-radius: 5px;
     word-break: break-all;
 }
 .msg .user {
@@ -249,7 +268,7 @@
 }
 
 .msg time {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     color: #ffffff;
     margin-top: 3px;
     float: right;
