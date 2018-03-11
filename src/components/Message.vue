@@ -191,7 +191,7 @@
     right: 0px;
     width: 0px;
     height: 0px;
-    border: 5px solid #eef8ff;
+    border: 5px solid #2bcad0;
     border-right-color: transparent;
     border-top-color: transparent;
     box-shadow: 0px 2px 0px #c1cbcd;
@@ -201,7 +201,7 @@
     background: #f5f5f5;
     width: 90%;
     padding: 10px;
-    border-radius: 2px;
+    border-radius: 5px;
     word-break: break-all;
 }
 .msg .user {
