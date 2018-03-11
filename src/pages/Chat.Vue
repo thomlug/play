@@ -14,7 +14,7 @@
                         <input class="send" @keyup.enter="addMessage" v-model="newMessage.text" placeholder="Type your message here"/>
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-default float-right" @click="addMessage">Send</button>
+                        <button class="btn btn-default float-right send-button" @click="addMessage">Send</button>
                     </div>
                 </div>
             </div>
@@ -160,6 +160,10 @@
     padding-right: 55px;
     color: #666;
     font-weight: 400;
+}
+
+.send-button{
+    margin-right: 15px;
 }
 
 .chat-box-row{

@@ -60,8 +60,9 @@
 .chat {
     list-style: none;
     background: none;
-    margin: 0;
+    margin: 0 0 0 -20px;
 }
+
 .chat li {
     padding: 0.5rem;
     overflow: hidden;
@@ -153,7 +154,6 @@
 
 .other .msg {
     border-top-left-radius: 0px;
-    box-shadow: -1px 2px 0px #c1cbcd;
 }
 
 .other .msg p{
@@ -186,7 +186,6 @@
 }
 .self .msg {
     border-bottom-right-radius: 0px;
-    box-shadow: 1px 2px 0px #c1cbcd;
     background: #2bcad0;
 }
 
@@ -213,14 +212,13 @@
     border: 5px solid #2bcad0;
     border-right-color: transparent;
     border-top-color: transparent;
-    box-shadow: 0px 2px 0px #c1cbcd;
 }
 
 .msg {
     background: #f5f5f5;
     width: 90%;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
     word-break: break-all;
 }
 .msg .user {
