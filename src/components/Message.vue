@@ -77,6 +77,7 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    border: 2px solid #2acad0;
 }
 .chat .day {
     position: relative;
