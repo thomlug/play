@@ -29,7 +29,7 @@
     },
     filters: {
       utcToLocal(time){
-          return moment(time).format('LTS LL');
+          return moment(time).format('LT MMM Do');
       },
     },
     computed: {
@@ -164,7 +164,7 @@
     color:#2bcad0;
 }
 .other .msg time {
-    color:#252C33;
+    color:#999;
 }
 
 .other:before {
@@ -190,7 +190,10 @@
     background: #2bcad0;
 }
 
-.self .msg > time, .self .msg > p {
+.self .msg > time{
+    color: #dddddd;
+}
+.self .msg > p {
     color: #ffffff;
 }
 
@@ -265,7 +268,7 @@
 }
 
 .msg time {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     color: #ffffff;
     margin-top: 3px;
     float: right;
