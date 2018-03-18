@@ -219,7 +219,6 @@
     width: 90%;
     padding: 10px;
     border-radius: 10px;
-    word-break: break-all;
 }
 .msg .user {
     font-size: 14px;
