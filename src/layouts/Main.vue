@@ -106,8 +106,6 @@
 
 .logout:hover{
   cursor: pointer;
-  font-size: 0.8rem;
-  font-weight: 300;
 }
 
 a{

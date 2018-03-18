@@ -1,33 +1,25 @@
 <template lang="html">
-    <div class="logo" :style="styleObject"><slot></slot></div>
+    <img :src="this.image">
 </template>
 
 <script>
 export default {
-  props: ['image', 'size'],
-  computed: {
-    styleObject: function() {
-      var url = this.image;
-      var size = this.size
-      return {
-        'background-image': 'url("' + url + '")',
-        'width': size + 'px',
-        'height': size + 'px'
-      };
-    }
-  },
-}
+  props: {
+    image: String
+  }
+};
 </script>
 
-<style lang="css">
-  .logo {
-    /* width: 120px;
-    height: 120px; */
-    border: 3px solid #2acad0;
-    border-radius: 50%;
-    background-color: #ECEFF1;
-    margin: 0 20px;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
+<style lang="css" scoped>
+img {
+  border-radius: 50%;
+  box-shadow: 1px 2px 12px 0px rgba(0, 0, 0, 0.75);
+}
+
+img:hover{
+  -webkit-box-shadow: 7px 9px 16px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: 7px 9px 16px -4px rgba(0,0,0,0.75);
+  box-shadow: 7px 9px 16px -4px rgba(0,0,0,0.75);
+  cursor: pointer;
+}
 </style>

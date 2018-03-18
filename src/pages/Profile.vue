@@ -16,7 +16,7 @@
             </div>
 
             <div class="player-profile-content">
-              <img class="profile-photo" :src="player.photo" :class="'player-' + player.availability"/> 
+              <Avatar class="profile" :image="player.photo" :class="'player-' + player.availability"/> 
               <div class="content-block">
               <template v-if = "editable">
                 <form enctype="multipart/form-data" novalidate>
@@ -108,11 +108,13 @@
   import {db} from '../firebase';
   import MainLayout from '../layouts/Main.vue'
   import moment from 'moment'
+  import Avatar from '../components/Avatar.vue';
   const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
 
   export default {
     components: {
-      MainLayout
+      MainLayout,
+      Avatar
     },
     computed:{
       isInitial() {
@@ -256,13 +258,10 @@
 
 <style scoped>
 
-
-
-.profile-photo{
-    max-height:256px;
-    max-width:256px;
-    border-radius: 50%;
-    box-shadow: 3px 3px 3px -3px rgba(0,0,0,0.75);
+.profile {
+  margin: 2rem 0;
+  max-width: 256px;
+  max-height: 256px;
 }
 
 .player-available{
