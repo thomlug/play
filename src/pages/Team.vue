@@ -14,7 +14,16 @@
               </div>
             </div>  
           <div class="team-profile-content">            
-            <img class="content-block profile-photo" :src="team.photo"/>
+            <Avatar class="content-block profile-photo" :image="team.photo"/>
+            <span class="content-block" v-if="!editable"><h4>{{team.name}}</h4> </span>
+            <input class="content-block" v-if="editable" v-model="team.name"/>
+            
+            <span class="content-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
+            <input class="content-block" v-if="editable" v-model="team.numberOfPlayers"/> 
+            <h4 class="content-block">Mangers</h4>
+            <div class="managers-block">              
+              <Avatar v-for="(manager,key) in teamManagers" @click.native="goToPlayer(manager)" :key="key" class="manager-photo" :image="manager.photo"/>
+            </div>
             <template v-if = "editable">
 
               <form class="content-block" enctype="multipart/form-data" novalidate>
@@ -56,181 +65,225 @@
 </template>
 
 <script>
-  import {db} from '../firebase';
-  import MainLayout from '../layouts/Main.vue'
-  const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
+import { db } from "../firebase";
+import MainLayout from "../layouts/Main.vue";
+import Avatar from '../components/Avatar.vue';
 
-  export default {
-    components: {
-      MainLayout
+const STATUS_INITIAL = 0,
+  STATUS_SAVING = 1,
+  STATUS_SUCCESS = 2,
+  STATUS_FAILED = 3;
+
+export default {
+  components: {
+    MainLayout,
+    Avatar
+  },
+  computed: {
+    isInitial() {
+      return this.currentStatus === STATUS_INITIAL;
     },
-    computed:{
-      isInitial() {
-        return this.currentStatus === STATUS_INITIAL;
-      },
-      isSaving() {
-        return this.currentStatus === STATUS_SAVING;
-      },
-      isSuccess() {
-        return this.currentStatus === STATUS_SUCCESS;
-      },
-      isFailed() {
-        return this.currentStatus === STATUS_FAILED;
-      }
+    isSaving() {
+      return this.currentStatus === STATUS_SAVING;
     },
-    filters: {
-      camelToSentence(value){
-        if(value == undefined){
-          return '';
-        }
-        return value.replace(/([A-Z])/g, ' $1')
-            .replace(/^./, function(str){ return str.toUpperCase(); })
-      }
+    isSuccess() {
+      return this.currentStatus === STATUS_SUCCESS;
     },
-    data: function () {
-      return {
-        editable: false,
-        team:  {},
-        teamId: this.$route.params.team_id,
-        uploadedFiles: [],
-        uploadError: null,
-        currentStatus: null,
-        uploadFieldName: 'photos',
-
-      }
-    },
-    firebase() {
-      return{
-        team:{
-            source: db.ref('team/'+this.$route.params.team_id),
-            asObject: true
-        }
-      };
-    },
-    methods:{
-      currentUser: function(){
-            return firebase.auth().currentUser;
-      },
-      canEditProfile: function(){
-        var currentUser = this.currentUser();
-        return this.team != null &&  currentUser != null;
-      },
-      edit: function(){
-          this.editable = true;
-      },
-      save: function(){
-          var item = {... this.team};
-          delete item['.key'];
-          db.ref('team/'+this.$route.params.team_id).set(item);
-          this.editable = false;
-      },
-      reset() {
-        // reset form to initial state
-        this.currentStatus = STATUS_INITIAL;
-        this.uploadedFiles = [];
-        this.uploadError = null;
-      },
-      saveFile(fileData) {
-        // upload data to the server
-        this.currentStatus = STATUS_SAVING;
-
-        this.upload(fileData)
-          .then(x => {
-            this.uploadedFiles = [].concat(x);
-            this.currentStatus = STATUS_SUCCESS;
-          })
-          .catch(err => {
-            this.uploadError = err.response;
-            this.currentStatus = STATUS_FAILED;
-          });
-      },
-      filesChange(e) {
-
-         var files = e.target.files || e.dataTransfer.files;
-        if (!files.length)
-          return;
-
-        // save it
-        this.saveFile(files[0]);
-      },
-      upload(fileData){
-          var team = this.team;
-          var storageRef = firebase.storage().ref();
-          var testUploadRef = storageRef.child('images/' + team['.key']);
-          var uploadTask = testUploadRef.put(fileData);
-          var promise = new Promise((resolve, reject) => {
-
-            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-              function(snapshot) {
-                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
-                switch (snapshot.state) {
-                  case firebase.storage.TaskState.PAUSED: // or 'paused'
-                    console.log('Upload is paused');
-                    break;
-                  case firebase.storage.TaskState.RUNNING: // or 'running'
-                    console.log('Upload is running');
-                    break;
-                }
-              }, function(error) {
-
-              // A full list of error codes is available at
-              // https://firebase.google.com/docs/storage/web/handle-errors
-              switch (error.code) {
-                case 'storage/unauthorized':
-                  // User doesn't have permission to access the object
-                  reject("User doesn't have permission to access the object")
-                  break;
-              }
-              }, function() {
-              // Upload completed successfully, now we can get the download URL
-                var downloadURL = uploadTask.snapshot.downloadURL;
-                team.photo = downloadURL;
-                resolve(downloadURL);
-              });
-          });
-
-        return promise;
-      }
-    },
-    mounted() {
-      this.reset();
+    isFailed() {
+      return this.currentStatus === STATUS_FAILED;
     }
+  },
+  filters: {
+    camelToSentence(value) {
+      if (value == undefined) {
+        return "";
+      }
+      return value.replace(/([A-Z])/g, " $1").replace(/^./, function(str) {
+        return str.toUpperCase();
+      });
+    }
+  },
+  data: function() {
+    return {
+      editable: false,
+      teamId: this.$route.params.team_id,
+      uploadedFiles: [],
+      uploadError: null,
+      currentStatus: null,
+      uploadFieldName: "photos",
+      teamManagers: []
+    };
+  },
+  firebase() {
+    return {
+      team: {
+        source: db.ref("team/" + this.$route.params.team_id),
+        asObject: true,
+        readyCallback() {
+          // this.getManagers();
+        }
+      },
+      players: {
+        source: db.ref("player"),
+        asObject: true,
+        readyCallback() {
+          this.getManagers();
+        }
+      }
+    };
+  },
+  methods: {
+    currentUser: function() {
+      return firebase.auth().currentUser;
+    },
+    canEditProfile: function() {
+      var currentUser = this.currentUser();
+      return this.team != null && currentUser != null;
+    },
+    edit: function() {
+      this.editable = true;
+    },
+    save: function() {
+      var item = { ...this.team };
+      delete item[".key"];
+      db.ref("team/" + this.$route.params.team_id).set(item);
+      this.editable = false;
+    },
+    reset() {
+      // reset form to initial state
+      this.currentStatus = STATUS_INITIAL;
+      this.uploadedFiles = [];
+      this.uploadError = null;
+    },
+    saveFile(fileData) {
+      // upload data to the server
+      this.currentStatus = STATUS_SAVING;
+
+      this.upload(fileData)
+        .then(x => {
+          this.uploadedFiles = [].concat(x);
+          this.currentStatus = STATUS_SUCCESS;
+        })
+        .catch(err => {
+          this.uploadError = err.response;
+          this.currentStatus = STATUS_FAILED;
+        });
+    },
+    filesChange(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length) return;
+
+      // save it
+      this.saveFile(files[0]);
+    },
+    upload(fileData) {
+      var team = this.team;
+      var storageRef = firebase.storage().ref();
+      var testUploadRef = storageRef.child("images/" + team[".key"]);
+      var uploadTask = testUploadRef.put(fileData);
+      var promise = new Promise((resolve, reject) => {
+        uploadTask.on(
+          firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+          function(snapshot) {
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress =
+              snapshot.bytesTransferred / snapshot.totalBytes * 100;
+            console.log("Upload is " + progress + "% done");
+            switch (snapshot.state) {
+              case firebase.storage.TaskState.PAUSED: // or 'paused'
+                console.log("Upload is paused");
+                break;
+              case firebase.storage.TaskState.RUNNING: // or 'running'
+                console.log("Upload is running");
+                break;
+            }
+          },
+          function(error) {
+            // A full list of error codes is available at
+            // https://firebase.google.com/docs/storage/web/handle-errors
+            switch (error.code) {
+              case "storage/unauthorized":
+                // User doesn't have permission to access the object
+                reject("User doesn't have permission to access the object");
+                break;
+            }
+          },
+          function() {
+            // Upload completed successfully, now we can get the download URL
+            var downloadURL = uploadTask.snapshot.downloadURL;
+            team.photo = downloadURL;
+            resolve(downloadURL);
+          }
+        );
+      });
+
+      return promise;
+    },
+
+    //Get the manager id from the team and find the related player 
+    getManagers: function() {
+      for (var managerId of this.team.manager) {
+        this.teamManagers.push(
+          _.find(this.players, m => {
+            return m.userUid === managerId;
+          })
+        );
+      }
+    },
+
+    goToPlayer(manager){
+      this.$router.push({name: 'profile', params: {player_id: manager['.key']}});
+    }
+  },
+  mounted() {
+    this.reset();
   }
+};
 </script>
 
 <style>
-.profile-photo{
-    max-height:256px;
-    max-width:256px;
-    border-radius: 50%;
+.profile-photo {
+  max-height: 10rem;
+  max-width: 10rem;
 }
 
-.team-profile-box{
-  margin-top: 1vh;
+.manager-photo{
+  max-height: 80px;
+  max-width: 80px;
+  border-radius: 50%;
+  margin: 1rem 1rem;
+}
+
+.team-profile-box {
+  margin-top: 5vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 3px 3px 3px -3px rgba(128,126,128,1);
+  box-shadow: 2px 4px 31px -3px rgba(128, 126, 128, 1);
 }
 
-.team-profile-banner{
+.managers-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.team-profile-banner {
   width: 100%;
-  background-color: #2BCAD0;
+  background-color: #2bcad0;
   color: #ffffff;
   box-shadow: 1px 3px 3px -3px grey;
 }
 
-.team-profile-header{
+.team-profile-header {
   margin: 1rem 2.5rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  float:right;
+  float: right;
 }
 
-.team-profile-content{
+.team-profile-content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -239,17 +292,12 @@
   margin-bottom: 2rem;
 }
 
-img{
-   margin-bottom: 0rem;
-   cursor: pointer;
-}
-
-.content-block{
+.content-block {
   margin: 0.4rem 0;
 }
 
-.player-number{
-  color:#BDBDBD;
+.player-number {
+  color: #bdbdbd;
 }
 
 .edit-icon{
@@ -259,7 +307,7 @@ img{
   background: none;
 }
 
-.edit-icon:hover{
+.edit-icon:hover {
   cursor: pointer;
   border: white;
   border-width: 3px;
