@@ -293,5 +293,9 @@
   cursor: pointer;
 }
 
+.btn-available{
+  background-color: #2acad0;
+  border-color: #138387;
+}
 
 </style>
