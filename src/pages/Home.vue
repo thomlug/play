@@ -605,6 +605,7 @@ dd{
   color: rgb(175, 175, 175);
   font-weight: 200;
   font-size: .75rem;
+  text-transform: capitalize;
 }
 
 h1{
