@@ -401,6 +401,7 @@
 /* justin */
 .body{
   font-size: 0.9rem;
+  background: #292b2c;
 }
 .play-card{
   margin-top: 15px;
@@ -411,6 +412,9 @@
   color: #3e3935 ;
 }
 
+.card-block{
+  background: white;
+}
 .team-name{
   margin-top: 25px;
 }
@@ -497,6 +501,7 @@ box-shadow: 7px 9px 4px -8px rgba(0,0,0,0.75);
     max-width:128px;
   }
 }
+
 .team-photo{
   box-shadow: 4px 4px 5px #BDBDBD;
   color: #9E9E9E;
@@ -505,6 +510,7 @@ box-shadow: 7px 9px 4px -8px rgba(0,0,0,0.75);
 .team-photo-container{
   margin: 0 auto;
 }
+
 .home-circle{
   display: table-cell;
   text-align: center;
@@ -516,6 +522,7 @@ box-shadow: 7px 9px 4px -8px rgba(0,0,0,0.75);
   font-family: 'Roboto', sans-serif;
   color: white;
 }
+
 .home-circle:hover{
   display: table-cell;
   text-align: center;
@@ -527,6 +534,7 @@ box-shadow: 7px 9px 4px -8px rgba(0,0,0,0.75);
   font-family: 'Roboto', sans-serif;
   color: 50575e;
 }
+
 .away-circle{
   display: table-cell;
   text-align: center;
@@ -613,7 +621,6 @@ h1{
 }
 
 h2{
-
 }
 
 h3{

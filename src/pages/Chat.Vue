@@ -138,7 +138,9 @@
     flex-direction: column;
     box-shadow: 2px 4px 31px -3px rgba(128,126,128,1);
 }
-
+.container{
+    height: 443px;
+}
 .chat-pane-banner{
     width: 100%;
     background-color: #2BCAD0;
@@ -149,6 +151,7 @@
     overflow-y:auto;
     max-height:70vh;
     background: #50575e;
+    /* background-image: */
 }
 .send{
     width: 100%;
@@ -159,8 +162,9 @@
     outline: none;
     padding-left: 55px;
     padding-right: 55px;
-    color: lightgrey;
+    color:#50575e;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .send-button{
@@ -170,12 +174,12 @@
     background: none;
     border: #2bcad0;
     border-width: 1px;
+    cursor: pointer;
 }
 
 .chat-box-row{
     margin-top: 0px;
 }
-
 
 h1{
   text-transform:uppercase;

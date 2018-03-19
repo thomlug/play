@@ -78,16 +78,18 @@
     border-radius: 50%;
     box-shadow: 1px 2px 12px 0px rgba(0,0,0,0.75);
 }
-
+.navbar{
+  padding: 0rem 1rem;
+}
 .navbar-toggler {
-  padding: .50rem .50rem;
+  padding: .750rem .50rem;
   line-height: 1rem;
   border: none;
   cursor: pointer;
 }
 
 .navbar-toggler:hover {
-  padding: .50rem .50rem;
+  padding: .750rem .50rem;
   line-height: 1rem;
   border:turquoise;
 }
