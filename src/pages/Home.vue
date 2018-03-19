@@ -510,11 +510,11 @@ box-shadow: 7px 9px 4px -8px rgba(0,0,0,0.75);
   text-align: center;
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
-  background:lightgrey;
+  background:#2bcad0;
   font-weight:bold;
   font-size: 4rem;
   font-family: 'Roboto', sans-serif;
-  color: darkgrey;
+  color: white;
 }
 .home-circle:hover{
   display: table-cell;
@@ -525,7 +525,7 @@ box-shadow: 7px 9px 4px -8px rgba(0,0,0,0.75);
   font-weight:bold;
   font-size: 4rem;
   font-family: 'Roboto', sans-serif;
-  color: white;
+  color: 50575e;
 }
 .away-circle{
   display: table-cell;

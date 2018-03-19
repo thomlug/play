@@ -133,7 +133,7 @@
 
 <style>
 .chat-pane{
-    margin-top: 5vh;
+    margin-top: 1vh;
     display: flex;
     flex-direction: column;
     box-shadow: 2px 4px 31px -3px rgba(128,126,128,1);
@@ -169,10 +169,14 @@
 }
 
 .chat-box-row{
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
+
 h1{
-    text-transform: uppercase;
+  text-transform:uppercase;
+  margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
+  font-size: 2rem;
 }
 </style>

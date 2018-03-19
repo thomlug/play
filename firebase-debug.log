@@ -4,6 +4,7 @@
 [debug] [2018-03-18T05:21:43.064Z] Platform:      darwin
 [debug] [2018-03-18T05:21:43.064Z] Node Version:  v8.10.0
 [debug] [2018-03-18T05:21:43.065Z] Time:          Sun Mar 18 2018 18:21:43 GMT+1300 (NZDT)
+[debug] [2018-03-18T05:21:43.065Z] ----------------------------------------------------------------------
 [debug] 
 [debug] [2018-03-18T05:21:43.080Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
 [debug] [2018-03-18T05:21:43.080Z] > authorizing via signed-in user

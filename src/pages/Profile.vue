@@ -237,7 +237,7 @@
 }
 
 .player-profile-box{
-  margin-top: 5vh;
+  margin-top: 1vh;
   display: flex;
   flex-direction: column;
   box-shadow: 2px 4px 31px -3px rgba(128,126,128,1);
@@ -298,6 +298,7 @@
 .btn-available{
   background-color: #2bcad0;
   border-color: #2bcad0;
+  border-radius: 0;
 }
 
 .btn-available:hover{
@@ -320,5 +321,8 @@
 /* header styles */
 h1{
   text-transform:uppercase;
+  margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
+  font-size: 2rem;
 }
 </style>
