@@ -1,41 +1,40 @@
-[debug] [2018-03-18T03:26:29.373Z] ----------------------------------------------------------------------
-[debug] [2018-03-18T03:26:29.376Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
-[debug] [2018-03-18T03:26:29.376Z] CLI Version:   3.17.6
-[debug] [2018-03-18T03:26:29.376Z] Platform:      darwin
-[debug] [2018-03-18T03:26:29.376Z] Node Version:  v8.10.0
-[debug] [2018-03-18T03:26:29.377Z] Time:          Sun Mar 18 2018 16:26:29 GMT+1300 (NZDT)
-[debug] [2018-03-18T03:26:29.377Z] ----------------------------------------------------------------------
+[debug] [2018-03-18T05:21:43.060Z] ----------------------------------------------------------------------
+[debug] [2018-03-18T05:21:43.064Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-03-18T05:21:43.064Z] CLI Version:   3.17.6
+[debug] [2018-03-18T05:21:43.064Z] Platform:      darwin
+[debug] [2018-03-18T05:21:43.064Z] Node Version:  v8.10.0
+[debug] [2018-03-18T05:21:43.065Z] Time:          Sun Mar 18 2018 18:21:43 GMT+1300 (NZDT)
 [debug] 
-[debug] [2018-03-18T03:26:29.390Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-03-18T03:26:29.390Z] > authorizing via signed-in user
-[debug] [2018-03-18T03:26:29.391Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2018-03-18T03:26:29.392Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+[debug] [2018-03-18T05:21:43.080Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-03-18T05:21:43.080Z] > authorizing via signed-in user
+[debug] [2018-03-18T05:21:43.082Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-03-18T05:21:43.082Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
  { refresh_token: '1/LGvMYSXtcF2R5L31zvpMQElarYt8uRxDYD9dYDuX3ko',
   client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
   client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
   grant_type: 'refresh_token',
   scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
- Sun Mar 18 2018 16:26:29 GMT+1300 (NZDT)
-[debug] [2018-03-18T03:26:30.518Z] <<< HTTP RESPONSE 200
-[debug] [2018-03-18T03:26:30.568Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/play-14e3e  
+ Sun Mar 18 2018 18:21:43 GMT+1300 (NZDT)
+[debug] [2018-03-18T05:21:43.935Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-18T05:21:43.969Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/play-14e3e  
   
- Sun Mar 18 2018 16:26:30 GMT+1300 (NZDT)
-[debug] [2018-03-18T03:26:34.157Z] <<< HTTP RESPONSE 200
-[debug] [2018-03-18T03:26:34.158Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/play-14e3e/tokens  
+ Sun Mar 18 2018 18:21:43 GMT+1300 (NZDT)
+[debug] [2018-03-18T05:21:45.990Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-18T05:21:45.991Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/play-14e3e/tokens  
   
- Sun Mar 18 2018 16:26:34 GMT+1300 (NZDT)
-[debug] [2018-03-18T03:26:35.994Z] <<< HTTP RESPONSE 200
-[debug] [2018-03-18T03:26:35.995Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/play-14e3e  
+ Sun Mar 18 2018 18:21:45 GMT+1300 (NZDT)
+[debug] [2018-03-18T05:21:47.183Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-18T05:21:47.185Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/play-14e3e  
   
- Sun Mar 18 2018 16:26:35 GMT+1300 (NZDT)
-[debug] [2018-03-18T03:26:37.643Z] <<< HTTP RESPONSE 200
+ Sun Mar 18 2018 18:21:47 GMT+1300 (NZDT)
+[debug] [2018-03-18T05:21:49.436Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/Users/admin/Desktop/PlayCode/play'...
 [info] 
-[debug] [2018-03-18T03:26:37.646Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/952744572741/clients/_:getWebAppConfig  
+[debug] [2018-03-18T05:21:49.439Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/952744572741/clients/_:getWebAppConfig  
   
- Sun Mar 18 2018 16:26:37 GMT+1300 (NZDT)
-[debug] [2018-03-18T03:26:39.332Z] <<< HTTP RESPONSE 200
+ Sun Mar 18 2018 18:21:49 GMT+1300 (NZDT)
+[debug] [2018-03-18T05:21:51.282Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: public
 [info] ✔  hosting: Local server: http://localhost:5000
 

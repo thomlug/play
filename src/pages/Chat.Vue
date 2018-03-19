@@ -5,6 +5,7 @@
                 <div class="chat-pane-banner text-center">
                     <h1>{{getCurrentTeam().name}}</h1>
                 </div>
+
                 <div class="chat-pane-body" id="chat-pane">
                     <Message v-for="message in getConversationMessages()" :message="message" :key="message['.key']" />
                     <br/>
@@ -147,7 +148,7 @@
 .chat-pane-body{
     overflow-y:auto;
     max-height:70vh;
-    background: darkslategrey;
+    background: #50575e;
 }
 .send{
     width: 100%;
@@ -164,9 +165,14 @@
 
 .send-button{
     margin-right: 15px;
+    color: #2bcad0;
 }
 
 .chat-box-row{
     margin-top: 10px;
+}
+
+h1{
+    text-transform: uppercase;
 }
 </style>

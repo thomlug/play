@@ -12,11 +12,11 @@
         </div>
       </div>
     </div>
-
+<!-- next fixture -->
     <div class="row backdrop">
       <div class="col-xl-3">
         <div class="card play-card">
-          <div class="fixture-container">
+      <div class="card-block">
             <h4 class="fixture-title">Next Fixture</h4>
             <div class="centered-col fixture-content">
               <div class="centered-col">
@@ -25,7 +25,7 @@
                     <img :src="getNextFixture().homePhoto" class="play-photo team-photo">
                   </div>
                   <div v-else>
-                    <div class="circle team-circle play-photo">{{getNextFixture().homeTeam | firstCharacter}}</div>
+                    <div class="home-circle team-circle play-photo">{{getNextFixture().homeTeam | firstCharacter}}</div>
                   </div>
                 </div>
                 <div class="team-name">
@@ -39,7 +39,7 @@
                     <img :src="getNextFixture().awayPhoto" class="play-photo team-photo">
                   </div>
                   <div v-else>
-                    <div class="circle team-circle play-photo">{{getNextFixture().awayTeam | firstCharacter}}</div>
+                    <div class="away-circle team-circle play-photo">{{getNextFixture().awayTeam | firstCharacter}}</div>
                   </div>
                 </div>
                 <div class="team-name">
@@ -53,14 +53,14 @@
           <div class="card-block">
             <div class="text-center">
               <h2>{{moment(getNextFixture().date).format("hh:mm A")}}</h2>
-              <h3>{{moment(getNextFixture().date).format("dddd DD MMM YY")}}</h3>
+              <h6>{{moment(getNextFixture().date).format("dddd DD MMM YY")}}</h6>
             </div>
             <div class="text-center">
-             <h4>{{getNextFixture().ground}}</h4>
+             <h5>{{getNextFixture().ground}}</h5>
             </div>
           </div>
         </div>
-
+<!-- update your status -->
         <div class="card play-card">
           <div class="card-block">
             <h4 class="card-title">Update Your Status <small>({{getCurrentPlayer().availability | camelToSentence}})</small></h4>
@@ -78,7 +78,7 @@
             <h4 class="card-title">Starting Lineup</h4>
           </div>
         </div>
-
+<!-- starting line-up -->
         <div class="card play-card lineup">
           <div class="card-block">
             <div class="row" v-for="(formationRowWidth, formationRow) in getNextFixtureDetails().formation" :key="formationRow">
@@ -108,7 +108,7 @@
             </div>
           </div>
         </div>
-
+<!-- subs -->
       </div>
       <div class="col-xl-3">
         <div class="card play-card">
@@ -135,7 +135,7 @@
               </div>
             </div>
         </div>
-
+<!-- game info -->
         <div class="card play-card">
           <div class="card-block">
           <h4 class="card-title">Game Info</h4>
@@ -158,7 +158,7 @@
       </div>
       <div v-else>
         <!--HACK: to getCurrentPlayer re-evaulated so that it actually checks you're logged in-->
-        <h1>Please log in (you may have to refresh after logging in)</h1>
+        <h6>Please log in (you may have to refresh after logging in)</h6>
         {{ getCurrentPlayer().first_name}}
       </div>
   </main-layout>
@@ -205,7 +205,7 @@
     },
     computed:{
       editPlayerButtonText: function(){
-        return this.editPlayerMode ? "Stop Editing Players" : "Edit Players Positions"
+        return this.editPlayerMode ? "Done Editing" : "Edit Formation"
       }
     },
     filters: {
@@ -398,11 +398,17 @@
   justify-content: flex-start;
   margin-top: -2rem;
 }
-
+/* justin */
+.body{
+  font-size: 0.9rem;
+}
 .play-card{
   margin-top: 15px;
   margin-bottom: 15px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  /* justin */
+  text-transform: uppercase;
+  color: #3e3935 ;
 }
 
 .team-name{
@@ -434,19 +440,19 @@ box-shadow: 7px 9px 4px -8px rgba(0,0,0,0.75);
 }
 
 .player-selected{
-    border: 5px solid #FFD700;
+    border: 3px solid rgb(223, 210, 39);
 }
 
 .player-available{
-    border: 3px solid #2acad0;
+    border: 2px solid #2bcad0;
 }
 
 .player-unavailable{
-    border: 3px solid red;
+    border: 2px solid red;
 }
 
 .player-unknown{
-    border: 3px solid grey;
+    border: 2px solid grey;
     -webkit-filter: grayscale(100%);
 }
 
@@ -499,40 +505,129 @@ box-shadow: 7px 9px 4px -8px rgba(0,0,0,0.75);
 .team-photo-container{
   margin: 0 auto;
 }
-.circle{
+.home-circle{
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%; /* may require vendor prefixes */
+  background:lightgrey;
+  font-weight:bold;
+  font-size: 4rem;
+  font-family: 'Roboto', sans-serif;
+  color: darkgrey;
+}
+.home-circle:hover{
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: #2bcad0;
+  font-weight:bold;
+  font-size: 4rem;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+}
+.away-circle{
   display: table-cell;
   text-align: center;
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
   background: lightgrey;
   font-weight:bold;
-  font-size: 4em;
+  font-size: 4rem;
+  font-family: 'Roboto', sans-serif;
+  color: darkgrey;
+}
+
+.away-circle:hover{
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: lightgrey;
+  font-weight:bold;
+  font-size: 4rem;
+  font-family: 'Roboto', sans-serif;
+  color: White;
 }
 
 .player-circle{
   color: white;
 }
 
-.btn-available{
-  background-color: #2acad0;
-  border-color: #138387;
+.fixture-title{
+margin-left: 0;
 }
 
-.btn-available:hover,
+.btn-available{
+  background-color: #2bcad0;
+  border-color: #2bcad0;
+}
+
 .btn-available:focus,
 .btn-available:active,
 .btn-available.active,
 .open .dropdown-toggle.btn-available {
-  background-color: #22A4A8;
-  border-color: #138387;
+  background-color: #2bcad0;
+  border-color: #2bcad0;
+  cursor: pointer;
+}
+.btn-available:hover{
+  background-color: #26bec4;
+  border-color: #26bec4;
 }
 
+.btn-danger{
+  background-color: #d9534f;
+  border-color: #d9534f;
+  cursor: pointer;
+}
+
+.btn-danger:hover{
+  background-color: #c44743;
+  border-color: #c44743;
+  cursor: pointer;
+}
 /*adjust jumbotron front size*/
 @media (max-width: 900px){
   .jumbotron h1 {
     font-size: 2.5rem;
     line-height: 1;
   }
+}
+/* Header font styling */
+dt{
+font-weight: 1200;
+font-size: 0.85rem;
+}
+
+dd{
+  color: rgb(175, 175, 175);
+  font-weight: 200;
+  font-size: .75rem;
+}
+
+h1{
+  text-transform:uppercase;
+}
+
+h2{
+
+}
+
+h3{
+}
+
+h4{
+  font-size: large;
+  color: #50575e;
+}
+
+h5{
+}
+
+h6{
+  color: rgb(175, 175, 175);
 }
 
 a{

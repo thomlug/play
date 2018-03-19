@@ -235,11 +235,17 @@
 .edit-icon{
   height:3rem;
   border-radius: 20%;
-  border: 1px solid #E0E0E0;
-  background: #757575;
+  border: none;
+  background: none;
 }
 
 .edit-icon:hover{
   cursor: pointer;
+  background: lightgrey;
+  color: white;
+}
+
+h1{
+  text-transform:uppercase;
 }
 </style>

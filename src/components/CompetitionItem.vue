@@ -163,6 +163,8 @@ export default {
   .edit-icon{
     width: 30px;
     height: 30px;
+    background: none;
+    border: none;
   }
 
   .input{
