@@ -241,11 +241,16 @@
 
 .edit-icon:hover{
   cursor: pointer;
-  background: lightgrey;
+  border: lightgrey;
+  border-width: 3px;
   color: white;
 }
 
+/* header styles */
 h1{
   text-transform:uppercase;
+  margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
+  font-size: 2rem;
 }
 </style>

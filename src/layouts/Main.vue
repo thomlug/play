@@ -63,6 +63,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet');
 
 .play-logo{
   max-height:50px;
@@ -70,6 +71,7 @@
 
 .body{
   font-family: 'Roboto Condensed', sans-serif;
+  font-weight: bold;
 }
 
 .profile-photo{

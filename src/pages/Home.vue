@@ -398,11 +398,8 @@
   justify-content: flex-start;
   margin-top: -2rem;
 }
-/* justin */
-.body{
-  font-size: 0.9rem;
-  background: #292b2c;
-}
+
+
 .play-card{
   margin-top: 15px;
   margin-bottom: 15px;
@@ -604,16 +601,22 @@ margin-left: 0;
   }
 }
 /* Header font styling */
+.body{
+  /* lineup names */
+  font-size: 0.8rem;
+  /* navbar extra width */
+  background: #292b2c;
+}
 dt{
-font-weight: 1200;
-font-size: 0.85rem;
+font-weight: bold;
+font-size: 1rem;
 }
 
 dd{
   color: rgb(175, 175, 175);
   font-weight: 200;
-  font-size: .75rem;
-  text-transform: capitalize;
+  font-size: .8rem;
+  text-transform: uppercase;
 }
 
 h1{
@@ -629,15 +632,21 @@ h3{
 h4{
   font-size: large;
   color: #50575e;
+  font-weight: bold;
 }
 
 h5{
+  font-weight: bold;
 }
 
 h6{
   color: rgb(175, 175, 175);
+  font-weight: none;
 }
-
+small{
+  color: rgb(175, 175, 175);
+  font-weight: none;
+}
 a{
   color: #EEEEEE;
   text-decoration: none;
