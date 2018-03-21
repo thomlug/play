@@ -337,6 +337,7 @@
       },
       setCurrentPlayerAvailability(availability){
         var player = this.getCurrentPlayer();
+        this.$firebaseRefs.players.child(player['.key']).child('availabilityUpdated').set(this.moment().toString());        
         this.$firebaseRefs.players.child(player['.key']).child('availability').set(availability);
       },
       calculatePlayerClass(player){
