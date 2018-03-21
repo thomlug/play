@@ -23,10 +23,13 @@
 
               <!-- <span v-if="!editable">{{player.age}}</span>
               <input v-if="editable" v-model="player.age"/> -->
-
+              <div class="content-block profile-info" v-if="!editable">
+                <div>{{player.availability | camelToSentence}}</div>
+                <div><small>Last Updated {{moment(player.availabilityUpdated).calendar()}}</small></div>
+              </div>
 
               <div class="content-block">
-                <span class="position" v-if="!editable">{{player.preffered_position}}</span>
+                <span class="profile-info" v-if="!editable">{{player.preffered_position}}</span>
                 <input placeholder="Preffered position" v-if="editable" v-model="player.preffered_position"/>
               </div>
 
@@ -70,6 +73,7 @@
 <script>
   import {db} from '../firebase';
   import MainLayout from '../layouts/Main.vue'
+  import moment from 'moment'
   const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
 
   export default {
@@ -137,6 +141,7 @@
           this.editable = false;
       },
       setCurrentPlayerAvailability(availability){
+        this.$firebaseRefs.player.child('availabilityUpdated').set(this.moment().toString());        
         this.$firebaseRefs.player.child('availability').set(availability);
       },
       reset() {
@@ -278,8 +283,13 @@
   margin: 0.4rem 0;
 }
 
-.position{
+.profile-info{
   color: #9E9E9E;
+}
+
+.profile-info small{
+  font-size:70%;
+  margin-top:-2px;
 }
 
 .edit-icon{
