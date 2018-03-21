@@ -190,7 +190,7 @@
 }
 
 .self .msg > time{
-    color: #dddddd;
+    color: dimgrey ;
 }
 .self .msg > p {
     color: #ffffff;

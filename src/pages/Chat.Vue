@@ -5,13 +5,14 @@
                 <div class="chat-pane-banner text-center">
                     <h1>{{getCurrentTeam().name}}</h1>
                 </div>
+
                 <div class="chat-pane-body" id="chat-pane">
                     <Message v-for="message in getConversationMessages()" :message="message" :key="message['.key']" />
                     <br/>
                 </div>
                 <div class="row chat-box-row">
                     <div class="col-10">
-                        <input class="send" @keyup.enter="addMessage" v-model="newMessage.text" placeholder="Type your message here"/>
+                        <input class="send" @keyup.enter="addMessage" v-model="newMessage.text" placeholder="Type message here"/>
                     </div>
                     <div class="col-2">
                         <button class="btn btn-default float-right send-button" @click="addMessage">Send</button>
@@ -132,12 +133,14 @@
 
 <style>
 .chat-pane{
-    margin-top: 5vh;
+    margin-top: 1vh;
     display: flex;
     flex-direction: column;
     box-shadow: 2px 4px 31px -3px rgba(128,126,128,1);
 }
-
+.container{
+    height: 443px;
+}
 .chat-pane-banner{
     width: 100%;
     background-color: #2BCAD0;
@@ -147,7 +150,8 @@
 .chat-pane-body{
     overflow-y:auto;
     max-height:70vh;
-    background: darkslategrey;
+    background: #50575e;
+    /* background-image: */
 }
 .send{
     width: 100%;
@@ -158,15 +162,30 @@
     outline: none;
     padding-left: 55px;
     padding-right: 55px;
-    color: #666;
+    color:#50575e;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .send-button{
-    margin-right: 15px;
+    margin-right: 2px;
+    margin-top: 8px;
+    color: #2bcad0;
+    background: none;
+    border: #2bcad0;
+    border-width: 1px;
+    cursor: pointer;
 }
 
 .chat-box-row{
-    margin-top: 10px;
+    margin-top: 0px;
+}
+
+h1{
+  text-transform:uppercase;
+  margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
+  font-size: 2rem;
+  font-weight: bold;
 }
 </style>

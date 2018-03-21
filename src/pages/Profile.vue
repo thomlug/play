@@ -229,20 +229,20 @@
 }
 
 .player-available{
-    border: 3px solid #2acad0;
+    border: 2px solid #2acad0;
 }
 
 .player-unavailable{
-    border: 3px solid red;
+    border: 2px solid red;
 }
 
 .player-unknown{
-    border: 3px solid grey;
+    border: 2px solid grey;
     -webkit-filter: grayscale(100%);
 }
 
 .player-profile-box{
-  margin-top: 5vh;
+  margin-top: 1vh;
   display: flex;
   flex-direction: column;
   box-shadow: 2px 4px 31px -3px rgba(128,126,128,1);
@@ -295,13 +295,44 @@
 .edit-icon{
   height:3rem;
   border-radius: 20%;
-  border: 1px solid #E0E0E0;
-  background: #757575;
+  border: none;
+  background: none;
 }
 
 .edit-icon:hover{
   cursor: pointer;
+  background: lightgrey;
+  color: white;
 }
 
+.btn-available{
+  background-color: #2bcad0;
+  border-color: #2bcad0;
+  border-radius: 0;
+}
 
+.btn-available:hover{
+  background-color: #26bec4;
+  border-color: #26bec4;
+}
+
+.btn-danger{
+  background-color: #d9534f;
+  border-color: #d9534f;
+  cursor: pointer;
+}
+
+.btn-danger:hover{
+  background-color: #c44743;
+  border-color: #c44743;
+  cursor: pointer;
+}
+
+/* header styles */
+h1{
+  text-transform:uppercase;
+  margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
+  font-size: 2rem;
+}
 </style>
