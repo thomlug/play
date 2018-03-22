@@ -51,10 +51,22 @@
         </div>
         <div class="card play-card">
           <div class="card-block">
-            <div class="text-center">
+            
+    <!-- 3 columns - for clock icon-->
+ <div class="row">
+          <div class="column-time-left"></div>
+            <div class="left">
+            <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/clock104.png?alt=media&token=cbf529bb-9a78-4b73-b4e1-f9a35b397fa4" class="clock-icon">
+            </div>
+          <div class="column-time">
               <h2>{{moment(getNextFixture().date).format("hh:mm A")}}</h2>
               <h6>{{moment(getNextFixture().date).format("dddd DD MMM YY")}}</h6>
-            </div>
+            <div class="middle"></div>
+          </div>
+          <div class="column-time-right"></div>
+            <div class="right"></div>
+  </div>
+   
             <div class="text-center">
              <h5>{{getNextFixture().ground}}</h5>
             </div>
@@ -400,12 +412,10 @@
   margin-top: -2rem;
 }
 
-
 .play-card{
   margin-top: 15px;
   margin-bottom: 15px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  /* justin */
   text-transform: uppercase;
   color: #3e3935 ;
 }
@@ -612,14 +622,46 @@ margin-left: 0;
   background-color: darkgrey; 
   border-color: darkgrey;
 }
+
+/* clock/time icon column styling */
+.column-time {
+    float: left;
+    width: 50%;
+}
+
+.left, .right {
+    width: 25%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.clock-icon{
+  height:3rem;
+  border-radius: 20%;
+  border: none;
+  background: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: none;
+}
+
 /* Header font styling */
+
 .body{
-  /* lineup names */
+         /* lineup names */
   font-size: 0.8rem;
-  /* navbar extra width */
+
+        /* navbar extra width */
   background: #292b2c;
   color: #50575e;
 }
+
 dt{
 font-weight: bold;
 font-size: 1rem;
@@ -637,6 +679,7 @@ h1{
 }
 
 h2{
+  text-align:center;
 }
 
 h3{
@@ -658,10 +701,12 @@ h6{
   font-weight: none;
   text-align: center;
 }
+
 small{
   color: rgb(175, 175, 175);
   font-weight: none;
 }
+
 a{
   color: #EEEEEE;
   text-decoration: none;
@@ -675,4 +720,5 @@ a:hover {
   text-transform: uppercase;
   font-size: 1rem;
 }
+
 </style>
