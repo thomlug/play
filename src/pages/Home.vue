@@ -425,9 +425,9 @@
     max-width:100%;
     margin: 3px;
     border-radius: 50em;
-    -webkit-box-shadow: 7px 9px 4px -8px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 -moz-box-shadow: 7px 9px 4px -8px rgba(0,0,0,0.75);
-box-shadow: 7px 9px 4px -8px rgba(0,0,0,0.75);
+box-shadow: 3px 3px 3px -3px 50575e;
 }
 
 .play-photo:hover{
@@ -455,7 +455,7 @@ box-shadow: 7px 9px 4px -8px rgba(0,0,0,0.75);
 
 .player-unknown{
     border: 2px solid grey;
-    -webkit-filter: grayscale(100%);
+    -webkit-filter :grayscale(50%)
 }
 
 .status-container{
@@ -542,7 +542,7 @@ box-shadow: 7px 9px 4px -8px rgba(0,0,0,0.75);
   font-weight:bold;
   font-size: 4rem;
   font-family: 'Roboto', sans-serif;
-  color: darkgrey;
+  color:darkgrey;
 }
 
 .away-circle:hover{
@@ -601,12 +601,24 @@ margin-left: 0;
     line-height: 1;
   }
 }
+
+.btn-primary{
+  background-color: #50575e; 
+  border-color: #50575e;
+  cursor: pointer;
+}
+
+.btn-primary:hover{
+  background-color: darkgrey; 
+  border-color: darkgrey;
+}
 /* Header font styling */
 .body{
   /* lineup names */
   font-size: 0.8rem;
   /* navbar extra width */
   background: #292b2c;
+  color: #50575e;
 }
 dt{
 font-weight: bold;
@@ -633,16 +645,18 @@ h3{
 h4{
   font-size: large;
   color: #50575e;
-  font-weight: bold;
+  font-weight: 400;
 }
 
 h5{
-  font-weight: bold;
+  font-weight: 550;
+  color: #50575e;
 }
 
 h6{
   color: rgb(175, 175, 175);
   font-weight: none;
+  text-align: center;
 }
 small{
   color: rgb(175, 175, 175);
