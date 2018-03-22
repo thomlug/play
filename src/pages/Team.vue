@@ -248,11 +248,28 @@
 
 .btn-success{
   color:white;
+  background-color: #50575e;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+}
+
+.btn-success:hover{
+  color:white;
   background-color: #2acad0;
   border: none;
+  border-radius: 0;
+  cursor: pointer;
+  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
 /* header styles */
+a{
+  color: #0275d8;
+  cursor: pointer;
+}
+
 h1{
   text-transform:uppercase;
   margin-bottom: 0.25rem;

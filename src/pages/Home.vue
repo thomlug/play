@@ -578,6 +578,9 @@ margin-left: 0;
 .btn-available{
   background-color: #2bcad0;
   border-color: #2bcad0;
+  cursor: pointer;
+  border-radius: 0;
+  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
 .btn-available:focus,
@@ -587,22 +590,30 @@ margin-left: 0;
   background-color: #2bcad0;
   border-color: #2bcad0;
   cursor: pointer;
+  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 .btn-available:hover{
   background-color: #26bec4;
   border-color: #26bec4;
+  cursor: pointer;
+  border-radius: 0;
+  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
 .btn-danger{
   background-color: #d9534f;
   border-color: #d9534f;
   cursor: pointer;
+  border-radius: 0;
+  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
 .btn-danger:hover{
   background-color: #c44743;
   border-color: #c44743;
   cursor: pointer;
+  border-radius: 0;
+  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 /*adjust jumbotron front size*/
 @media (max-width: 900px){
@@ -613,14 +624,20 @@ margin-left: 0;
 }
 
 .btn-primary{
-  background-color: #50575e; 
-  border-color: #50575e;
+  background-color: #2acad0;
+  border-color: #2acad0;
   cursor: pointer;
+  border-radius: 0;
+  cursor: pointer;
+  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
 .btn-primary:hover{
   background-color: darkgrey; 
   border-color: darkgrey;
+  border-radius: 0;
+  cursor: pointer;
+  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
 /* clock/time icon column styling */
@@ -718,7 +735,7 @@ a:hover {
   text-decoration: none;
   color: inherit;
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: 10rem;
 }
 
 </style>
