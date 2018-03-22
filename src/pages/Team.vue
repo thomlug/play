@@ -246,6 +246,12 @@
   color: white;
 }
 
+.btn-success{
+  color:white;
+  background-color: #2acad0;
+  border: none;
+}
+
 /* header styles */
 h1{
   text-transform:uppercase;

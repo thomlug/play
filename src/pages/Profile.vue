@@ -305,6 +305,11 @@
   color: white;
 }
 
+.btn-success{
+  color:white;
+  background-color: #2acad0;
+  border: none;
+}
 .btn-available{
   background-color: #2bcad0;
   border-color: #2bcad0;
