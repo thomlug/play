@@ -187,10 +187,12 @@
 .self .msg {
     border-bottom-right-radius: 0px;
     background: #2bcad0;
+    font-weight: 300;
 }
 
 .self .msg > time{
-    color: dimgrey ;
+    color: dimgrey;
+    font-weight: 300;
 }
 .self .msg > p {
     color: #ffffff;
@@ -225,7 +227,7 @@
     font-size: 14px;
     margin: 0 0 2px 0;
     color: #ffffff;
-    font-weight: 700;
+    font-weight: 300;
     margin-top: -2px;
     margin-bottom: 5px;
     transition: all .2s ease;
@@ -250,6 +252,7 @@
     margin: 0 0 2px 0;
     color: #ffffff;
     transition: all .2s ease;
+    font-weight: 300;
 }
 .msg img {
     position: relative;
@@ -275,5 +278,6 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    font-weight: 300;
 }
 </style>
