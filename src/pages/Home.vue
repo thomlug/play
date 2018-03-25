@@ -730,14 +730,14 @@ a{
   color: #EEEEEE;
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 10rem;
+  font-size: 1rem;
 }
 
 a:hover {
   text-decoration: none;
   color: inherit;
   text-transform: uppercase;
-  font-size: 10rem;
+  font-size: 1rem;
 }
 
 </style>
