@@ -250,6 +250,7 @@
     margin: 0 0 2px 0;
     color: #ffffff;
     transition: all .2s ease;
+    font-weight: 200;
 }
 .msg img {
     position: relative;

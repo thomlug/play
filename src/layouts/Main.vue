@@ -4,9 +4,9 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <b class="navbar-brand" href="#/home">
+        <a class="navbar-brand" href="#/home">
           <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="img-fluid play-logo">
-          </b>
+          </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -116,11 +116,6 @@ a:hover {
   text-decoration: none;
   color: inherit;
   font-size: .8rem;
-  cursor: pointer;
-}
-
-b{
-  color: blue;
   cursor: pointer;
 }
 </style>

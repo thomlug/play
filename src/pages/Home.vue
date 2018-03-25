@@ -624,8 +624,8 @@ margin-left: 0;
 }
 
 .btn-primary{
-  background-color: #2acad0;
-  border-color: #2acad0;
+  background-color: #50575e;
+  border-color: #50575e;
   cursor: pointer;
   border-radius: 0;
   cursor: pointer;
