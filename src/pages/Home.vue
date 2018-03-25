@@ -675,6 +675,7 @@ margin-left: 0;
   font-size: 0.8rem;
   font-weight: 500;
 
+
         /* navbar extra width */
   background: #292b2c;
   color: #50575e;
@@ -737,7 +738,7 @@ a:hover {
   text-decoration: none;
   color: inherit;
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: 10rem;
 }
 
 </style>

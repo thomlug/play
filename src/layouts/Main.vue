@@ -95,8 +95,27 @@
   border:turquoise;
 }
 
+.logout{
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
 .logout:hover{
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+a{
+  color: #EEEEEE;
+  text-decoration: none;
+  font-size: 0.8rem;
   cursor: pointer;
 }
 
+a:hover {
+  text-decoration: none;
+  color: inherit;
+  font-size: .8rem;
+  cursor: pointer;
+}
 </style>
