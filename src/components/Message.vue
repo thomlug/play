@@ -187,10 +187,12 @@
 .self .msg {
     border-bottom-right-radius: 0px;
     background: #2bcad0;
+    font-weight: 300;
 }
 
 .self .msg > time{
-    color: #dimgrey;
+    color: dimgrey;
+    font-weight: 300;
 }
 .self .msg > p {
     color: #ffffff;
@@ -276,5 +278,6 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    font-weight: 300;
 }
 </style>
