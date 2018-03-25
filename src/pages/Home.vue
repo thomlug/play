@@ -680,13 +680,13 @@ margin-left: 0;
 }
 
 dt{
-font-weight: bold;
+font-weight: 500;
 font-size: 1rem;
 }
 
 dd{
   color: rgb(175, 175, 175);
-  font-weight: 200;
+  font-weight: 300;
   font-size: .8rem;
   text-transform: uppercase;
 }
