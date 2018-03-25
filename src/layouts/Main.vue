@@ -118,9 +118,4 @@ a:hover {
   font-size: .8rem;
   cursor: pointer;
 }
-
-b{
-  color: blue;
-  cursor: pointer;
-}
 </style>

@@ -369,5 +369,6 @@ h1{
   margin-top: 0.25rem;
   font-size: 2rem;
   font-weight: 550;
+
 }
 </style>
