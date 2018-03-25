@@ -673,6 +673,7 @@ margin-left: 0;
 .body{
          /* lineup names */
   font-size: 0.8rem;
+  font-weight: 500;
 
         /* navbar extra width */
   background: #292b2c;
@@ -680,8 +681,9 @@ margin-left: 0;
 }
 
 dt{
-font-weight: 500;
+font-weight: 550;
 font-size: 1rem;
+color: #50575e;
 }
 
 dd{
@@ -728,7 +730,7 @@ a{
   color: #EEEEEE;
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 10rem;
+  font-size: 1rem;
 }
 
 a:hover {
