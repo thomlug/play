@@ -53,25 +53,29 @@
           <div class="card-block">
             
     <!-- 3 columns - for clock icon-->
- <div class="row">
-          <div class="column-time-left"></div>
-            <div class="left">
+            <div class="row">
+             <div class="column-time-left"></div>
+              <div class="left">
             <!-- <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/clock104.png?alt=media&token=cbf529bb-9a78-4b73-b4e1-f9a35b397fa4" class="clock-icon"> -->
-            </div>
-          <div class="column-time">
-              <h2>{{moment(getNextFixture().date).format("hh:mm A")}}</h2>
-              <h6>{{moment(getNextFixture().date).format("dddd DD MMM YY")}}</h6>
-            <div class="middle"></div>
-          </div>
-          <div class="column-time-right"></div>
-            <div class="right"></div>
-  </div>
-   
+              </div>
+                <div class="column-time">
+                <h2>{{moment(getNextFixture().date).format("hh:mm A")}}</h2>
+                <h6>{{moment(getNextFixture().date).format("dddd DD MMM YY")}}</h6>
+                <div class="middle"></div>
+               </div>
+               <div class="column-time-right"></div>
+              <div class="right"></div>
+           </div>
+          </div>          
+        </div>
+      <div class="card play-card">
+          <div class="card-block">
             <div class="text-center">
              <h5>{{getNextFixture().ground}}</h5>
             </div>
-          </div>
-        </div>
+          </div>          
+      </div>
+        
 <!-- update your status -->
         <div class="card play-card">
           <div class="card-block">
@@ -724,12 +728,14 @@ h4{
 h5{
   font-weight: 550;
   color: #50575e;
+  margin-bottom: 0rem;
 }
 
 h6{
   color: rgb(175, 175, 175);
   font-weight: none;
   text-align: center;
+  margin-bottom: 0rem;
 }
 
 small{
