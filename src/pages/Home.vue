@@ -75,7 +75,7 @@
             <div class="row">
              <div class="column-time-left"></div>
               <div class="left">
-            <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/002-maps-and-flags.png?alt=media&token=91a00cfe-0021-4db5-aaa1-1cffb9156e26" class="clock-icon">
+            <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="clock-icon">
               </div>
 
                 <div class="column-time">
