@@ -157,7 +157,7 @@
 }
 
 .other .msg p{
-    color:#252C33;
+    color:#50575e;
 }
 
 .other .msg .user{
@@ -187,7 +187,7 @@
 .self .msg {
     border-bottom-right-radius: 0px;
     background: #2bcad0;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .self .msg > time{
@@ -227,7 +227,7 @@
     font-size: 14px;
     margin: 0 0 2px 0;
     color: #ffffff;
-    font-weight: 300;
+    font-weight: 400;
     margin-top: -2px;
     margin-bottom: 5px;
     transition: all .2s ease;
@@ -239,7 +239,7 @@
 .msg .user .range.admin {
     display: inline-block;
     font-size: 10px;
-    font-weight: 300;
+    font-weight: 400;
     color: #6aea96;
     padding: 2px;
     border-radius: 3px;
@@ -252,7 +252,7 @@
     margin: 0 0 2px 0;
     color: #ffffff;
     transition: all .2s ease;
-    font-weight: 300;
+    font-weight: 400;
 }
 .msg img {
     position: relative;

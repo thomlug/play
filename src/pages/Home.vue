@@ -56,7 +56,7 @@
  <div class="row">
           <div class="column-time-left"></div>
             <div class="left">
-            <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/clock104.png?alt=media&token=cbf529bb-9a78-4b73-b4e1-f9a35b397fa4" class="clock-icon">
+            <!-- <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/clock104.png?alt=media&token=cbf529bb-9a78-4b73-b4e1-f9a35b397fa4" class="clock-icon"> -->
             </div>
           <div class="column-time">
               <h2>{{moment(getNextFixture().date).format("hh:mm A")}}</h2>
@@ -529,6 +529,8 @@ box-shadow: 3px 3px 3px -3px 50575e;
   font-size: 4rem;
   font-family: 'Roboto', sans-serif;
   color: white;
+  -webkit-box-shadow: 2px 2px 2px -2px #50575e;
+  cursor: pointer;
 }
 
 .home-circle:hover{
@@ -541,6 +543,8 @@ box-shadow: 3px 3px 3px -3px 50575e;
   font-size: 4rem;
   font-family: 'Roboto', sans-serif;
   color: 50575e;
+  -webkit-box-shadow: 4px 4px 4px -4px #50575e;
+  cursor: pointer;
 }
 
 .away-circle{
@@ -553,6 +557,8 @@ box-shadow: 3px 3px 3px -3px 50575e;
   font-size: 4rem;
   font-family: 'Roboto', sans-serif;
   color:darkgrey;
+  -webkit-box-shadow: 2px 2px 2px -2px #50575e;
+  cursor: pointer;
 }
 
 .away-circle:hover{
@@ -565,10 +571,14 @@ box-shadow: 3px 3px 3px -3px 50575e;
   font-size: 4rem;
   font-family: 'Roboto', sans-serif;
   color: White;
+  -webkit-box-shadow: 4px 4px 4px -4px #50575e;
+  cursor: pointer;
 }
 
 .player-circle{
   color: white;
+  -webkit-box-shadow: 2px 2px 2px -2px #50575e;
+  cursor: pointer;
 }
 
 .fixture-title{
@@ -633,8 +643,8 @@ margin-left: 0;
 }
 
 .btn-primary:hover{
-  background-color: darkgrey; 
-  border-color: darkgrey;
+  background-color: #0db4a6;
+  border-color: #0db4a6;
   border-radius: 0;
   cursor: pointer;
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
@@ -673,7 +683,7 @@ margin-left: 0;
 .body{
          /* lineup names */
   font-size: 0.8rem;
-  font-weight: 400;
+  font-weight: 500;
 
         /* navbar extra width */
   background: #292b2c;
@@ -688,7 +698,7 @@ color: #50575e;
 
 dd{
   color: rgb(175, 175, 175);
-  font-weight: 300;
+  font-weight: 400;
   font-size: .8rem;
   text-transform: uppercase;
 }
@@ -699,6 +709,7 @@ h1{
 
 h2{
   text-align:center;
+  color: #50575e;
 }
 
 h3{
