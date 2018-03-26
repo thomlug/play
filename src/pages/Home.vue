@@ -56,7 +56,7 @@
             <div class="row">
              <div class="column-time-left"></div>
               <div class="left">
-            <!-- <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/clock104.png?alt=media&token=cbf529bb-9a78-4b73-b4e1-f9a35b397fa4" class="clock-icon"> -->
+            <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/001-clock-with-white-face.png?alt=media&token=703b182a-ed12-4443-a194-34315062dc01" class="clock-icon">
               </div>
                 <div class="column-time">
                 <h2>{{moment(getNextFixture().date).format("hh:mm A")}}</h2>
@@ -68,10 +68,23 @@
            </div>
           </div>          
         </div>
+
       <div class="card play-card">
           <div class="card-block">
-            <div class="text-center">
+
+            <div class="row">
+             <div class="column-time-left"></div>
+              <div class="left">
+            <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/002-maps-and-flags.png?alt=media&token=91a00cfe-0021-4db5-aaa1-1cffb9156e26" class="clock-icon">
+              </div>
+
+                <div class="column-time">
+            <!-- <div class="text-center"> -->
              <h5>{{getNextFixture().ground}}</h5>
+                <div class="middle"></div>
+               </div>
+               <div class="column-time-right"></div>
+              <div class="right"></div>
             </div>
           </div>          
       </div>
@@ -671,7 +684,7 @@ margin-left: 0;
 }
 
 .clock-icon{
-  height:3rem;
+  height:1.8rem;
   border-radius: 20%;
   border: none;
   background: none;
@@ -729,6 +742,7 @@ h5{
   font-weight: 550;
   color: #50575e;
   margin-bottom: 0rem;
+  text-align: center;
 }
 
 h6{
