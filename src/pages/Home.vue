@@ -53,25 +53,42 @@
           <div class="card-block">
             
     <!-- 3 columns - for clock icon-->
- <div class="row">
-          <div class="column-time-left"></div>
-            <div class="left">
-            <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/clock104.png?alt=media&token=cbf529bb-9a78-4b73-b4e1-f9a35b397fa4" class="clock-icon">
-            </div>
-          <div class="column-time">
-              <h2>{{moment(getNextFixture().date).format("hh:mm A")}}</h2>
-              <h6>{{moment(getNextFixture().date).format("dddd DD MMM YY")}}</h6>
-            <div class="middle"></div>
-          </div>
-          <div class="column-time-right"></div>
-            <div class="right"></div>
-  </div>
-   
-            <div class="text-center">
-             <h5>{{getNextFixture().ground}}</h5>
-            </div>
-          </div>
+            <div class="row">
+             <div class="column-time-left"></div>
+              <div class="left">
+            <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/001-clock-with-white-face.png?alt=media&token=703b182a-ed12-4443-a194-34315062dc01" class="clock-icon">
+              </div>
+                <div class="column-time">
+                <h2>{{moment(getNextFixture().date).format("hh:mm A")}}</h2>
+                <h6>{{moment(getNextFixture().date).format("dddd DD MMM YY")}}</h6>
+                <div class="middle"></div>
+               </div>
+               <div class="column-time-right"></div>
+              <div class="right"></div>
+           </div>
+          </div>          
         </div>
+
+      <div class="card play-card">
+          <div class="card-block">
+
+            <div class="row">
+             <div class="column-time-left"></div>
+              <div class="left">
+            <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="clock-icon">
+              </div>
+
+                <div class="column-time">
+            <!-- <div class="text-center"> -->
+             <h5>{{getNextFixture().ground}}</h5>
+                <div class="middle"></div>
+               </div>
+               <div class="column-time-right"></div>
+              <div class="right"></div>
+            </div>
+          </div>          
+      </div>
+        
 <!-- update your status -->
         <div class="card play-card">
           <div class="card-block">
@@ -529,6 +546,8 @@ box-shadow: 3px 3px 3px -3px 50575e;
   font-size: 4rem;
   font-family: 'Roboto', sans-serif;
   color: white;
+  -webkit-box-shadow: 2px 2px 2px -2px #50575e;
+  cursor: pointer;
 }
 
 .home-circle:hover{
@@ -541,6 +560,8 @@ box-shadow: 3px 3px 3px -3px 50575e;
   font-size: 4rem;
   font-family: 'Roboto', sans-serif;
   color: 50575e;
+  -webkit-box-shadow: 4px 4px 4px -4px #50575e;
+  cursor: pointer;
 }
 
 .away-circle{
@@ -553,6 +574,8 @@ box-shadow: 3px 3px 3px -3px 50575e;
   font-size: 4rem;
   font-family: 'Roboto', sans-serif;
   color:darkgrey;
+  -webkit-box-shadow: 2px 2px 2px -2px #50575e;
+  cursor: pointer;
 }
 
 .away-circle:hover{
@@ -565,10 +588,14 @@ box-shadow: 3px 3px 3px -3px 50575e;
   font-size: 4rem;
   font-family: 'Roboto', sans-serif;
   color: White;
+  -webkit-box-shadow: 4px 4px 4px -4px #50575e;
+  cursor: pointer;
 }
 
 .player-circle{
   color: white;
+  -webkit-box-shadow: 2px 2px 2px -2px #50575e;
+  cursor: pointer;
 }
 
 .fixture-title{
@@ -633,8 +660,8 @@ margin-left: 0;
 }
 
 .btn-primary:hover{
-  background-color: darkgrey; 
-  border-color: darkgrey;
+  background-color: #0db4a6;
+  border-color: #0db4a6;
   border-radius: 0;
   cursor: pointer;
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
@@ -657,7 +684,7 @@ margin-left: 0;
 }
 
 .clock-icon{
-  height:3rem;
+  height:1.8rem;
   border-radius: 20%;
   border: none;
   background: none;
@@ -673,7 +700,7 @@ margin-left: 0;
 .body{
          /* lineup names */
   font-size: 0.8rem;
-  font-weight: 400;
+  font-weight: 500;
 
         /* navbar extra width */
   background: #292b2c;
@@ -688,7 +715,7 @@ color: #50575e;
 
 dd{
   color: rgb(175, 175, 175);
-  font-weight: 300;
+  font-weight: 400;
   font-size: .8rem;
   text-transform: uppercase;
 }
@@ -699,6 +726,7 @@ h1{
 
 h2{
   text-align:center;
+  color: #50575e;
 }
 
 h3{
@@ -713,12 +741,15 @@ h4{
 h5{
   font-weight: 550;
   color: #50575e;
+  margin-bottom: 0rem;
+  text-align: center;
 }
 
 h6{
   color: rgb(175, 175, 175);
   font-weight: none;
   text-align: center;
+  margin-bottom: 0rem;
 }
 
 small{

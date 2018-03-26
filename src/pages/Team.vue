@@ -270,6 +270,10 @@ a{
   cursor: pointer;
 }
 
+span{
+  font-weight: 400;
+}
+
 h1{
   text-transform:uppercase;
   margin-bottom: 0.25rem;

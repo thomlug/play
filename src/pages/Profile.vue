@@ -270,6 +270,7 @@
   justify-content: space-between;
   text-align: center;
   margin-bottom: 2rem;
+  margin-top: 4rem;
 }
 
 .availability-container{
@@ -361,6 +362,10 @@ a{
   color: #0275d8;
   cursor: pointer;
   font-weight:400;
+}
+
+small{
+  font-weight: 300;
 }
 
 h1{
