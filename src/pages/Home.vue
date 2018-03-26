@@ -624,8 +624,8 @@ margin-left: 0;
 }
 
 .btn-primary{
-  background-color: #2acad0;
-  border-color: #2acad0;
+  background-color: #50575e;
+  border-color: #50575e;
   cursor: pointer;
   border-radius: 0;
   cursor: pointer;
@@ -673,6 +673,7 @@ margin-left: 0;
 .body{
          /* lineup names */
   font-size: 0.8rem;
+  font-weight: 400;
 
         /* navbar extra width */
   background: #292b2c;
@@ -680,13 +681,14 @@ margin-left: 0;
 }
 
 dt{
-font-weight: bold;
+font-weight: 550;
 font-size: 1rem;
+color: #50575e;
 }
 
 dd{
   color: rgb(175, 175, 175);
-  font-weight: 200;
+  font-weight: 300;
   font-size: .8rem;
   text-transform: uppercase;
 }
@@ -728,14 +730,14 @@ a{
   color: #EEEEEE;
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 10rem;
+  font-size: 1rem;
 }
 
 a:hover {
   text-decoration: none;
   color: inherit;
   text-transform: uppercase;
-  font-size: 10rem;
+  font-size: 1rem;
 }
 
 </style>

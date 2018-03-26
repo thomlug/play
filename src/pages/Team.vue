@@ -275,5 +275,7 @@ h1{
   margin-bottom: 0.25rem;
   margin-top: 0.25rem;
   font-size: 2rem;
+  font-weight: 550;
+
 }
 </style>

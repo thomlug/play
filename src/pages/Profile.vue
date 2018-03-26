@@ -285,6 +285,7 @@
 
 .profile-info{
   color: #9E9E9E;
+  font-weight: 400;
 }
 
 .profile-info small{
@@ -359,6 +360,7 @@
 a{
   color: #0275d8;
   cursor: pointer;
+  font-weight:400;
 }
 
 h1{
@@ -366,5 +368,7 @@ h1{
   margin-bottom: 0.25rem;
   margin-top: 0.25rem;
   font-size: 2rem;
+  font-weight: 550;
+
 }
 </style>
