@@ -14,9 +14,11 @@
             <div class="player-profile-content">
               <img class="profile-photo" :src="player.photo" :class="'player-' + player.availability"/> 
               <div class="content-block">
+                
                 <span class="text-center" v-if="!editable">
                   <h4>{{player.first_name}} {{player.last_name}}</h4>
                 </span>
+              
                 <input placeholder="First name"  v-if="editable" v-model="player.first_name"/>
                 <input placeholder="Last name" v-if="editable" v-model="player.last_name"/>
               </div>
@@ -54,7 +56,7 @@
                 </form>
               </template>
               <div v-if="canEditProfile()">
-                <h4 class="card-title">Update your status <small>({{player.availability | camelToSentence}})</small></h4>
+                <h4 class="card-title">Update your status </h4>
                 <div class="availability-container">
                   <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available">Available</button>
                   <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
@@ -66,6 +68,12 @@
         </div>
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
     </div>
+
+<!-- test -->
+      
+
+  
+</div>
 
   </main-layout>
 </template>
@@ -221,6 +229,9 @@
 </script>
 
 <style scoped>
+
+
+
 .profile-photo{
     max-height:256px;
     max-width:256px;
@@ -355,6 +366,31 @@
   cursor: pointer;
   border-radius: 0;
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+}
+
+input{
+  font-size:13px;
+  padding:10px 10px 10px 10px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1.2px solid #e3e3e3;
+  color: #50575e;
+
+}
+
+.input-file{
+  border: 2px solid #2acad0;
+  background-color: #2acad0;
+  color: white;
+  border-radius: 0;
+  cursor: pointer;
+  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 /* header styles */

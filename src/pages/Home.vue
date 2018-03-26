@@ -434,7 +434,7 @@
   margin-bottom: 15px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   text-transform: uppercase;
-  color: #3e3935 ;
+  color: #50575e ;
 }
 
 .card-block{
