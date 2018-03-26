@@ -195,6 +195,7 @@
 
 .team-profile-box{
   margin-top: 5vh;
+  margin-bottom: 2vh;
   display: flex;
   flex-direction: column;
   box-shadow: 2px 4px 31px -3px rgba(128,126,128,1);
@@ -222,6 +223,10 @@
   justify-content: space-between;
   text-align: center;
   margin-bottom: 2rem;
+}
+
+img{
+   margin-bottom: 2rem;
 }
 
 .content-block{
@@ -264,6 +269,34 @@
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
+input{
+  font-size:13px;
+  padding:10px 10px 10px 10px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1.2px solid #e3e3e3;
+  color: #50575e;
+
+}
+
+.input-file{
+  border: 2px solid #2acad0;
+  background-color: #2acad0;
+  color: white;
+  border-radius: 0;
+  cursor: pointer;
+  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+ .photos{
+   background-color: pink;
+ }
+
 /* header styles */
 a{
   color: #0275d8;
@@ -282,4 +315,11 @@ h1{
   font-weight: 550;
 
 }
+h4{
+  font-weight: 550;
+  color: #50575e;
+  margin-bottom: 0rem;
+  text-align: center;
+}
+
 </style>

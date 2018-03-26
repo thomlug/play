@@ -236,7 +236,7 @@
     max-height:256px;
     max-width:256px;
     border-radius: 50%;
-    box-shadow: 1px 2px 12px 0px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 3px -3px rgba(0,0,0,0.75);
 }
 
 .player-available{
@@ -256,7 +256,7 @@
   margin-top: 1vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 2px 4px 31px -3px rgba(128,126,128,1);
+  box-shadow: 3px 3px 3px -3px rgba(128,126,128,1);
 }
 
 .player-profile-banner{
@@ -281,11 +281,11 @@
   justify-content: space-between;
   text-align: center;
   margin-bottom: 2rem;
-  margin-top: 4rem;
+  margin-top: 0rem;
 }
 
 .availability-container{
-  display: flex;
+  display: block;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
