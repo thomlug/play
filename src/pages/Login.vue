@@ -118,7 +118,7 @@ export default {
         margin-right: 0;
     } */
 
-    .hr-text {
+    /* .hr-text {
         line-height: 1em;
         position: relative;
         outline: 0;
@@ -145,5 +145,30 @@ export default {
         color: black;
         padding: 0 .5em;
         line-height: 1.5em;
-    }
+    } */
+
+    input{
+  font-size:13px;
+  padding:10px 10px 10px 10px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1.2px solid #e3e3e3;
+  color: #50575e;
+
+}
+
+.input-file{
+  border: 2px solid #2acad0;
+  background-color: #2acad0;
+  color: white;
+  border-radius: 0;
+  cursor: pointer;
+  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+}
 </style>
