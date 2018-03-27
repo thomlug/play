@@ -188,4 +188,11 @@ h1{
   font-size: 2rem;
   font-weight: 550;
 }
+
+a{
+  color: #0275d8;
+  cursor: pointer;
+  font-weight:300;
+}
+
 </style>

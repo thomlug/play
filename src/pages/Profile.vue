@@ -11,6 +11,10 @@
               <img src="../assets/pencil.png" class="edit-icon" @click="edit" v-if="!editable">
               <button class="btn btn-success" @click="save" v-if="editable">Save</button>
             </div>
+
+            <div class="player-profile-header-other">
+            </div>
+
             <div class="player-profile-content">
               <img class="profile-photo" :src="player.photo" :class="'player-' + player.availability"/> 
               <div class="content-block">
@@ -266,12 +270,16 @@
 }
 
 .player-profile-header{
-  margin: 1rem 2.5rem;
+  /* margin: 1rem 2.5rem; */
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
   float:right;
+}
+
+.player-profile-header-other{
+margin-top: 1rem;
 }
 
 .player-profile-content{
@@ -293,6 +301,10 @@
 
 .content-block{
   margin: 0.4rem 0;
+}
+
+.player-{
+  margin-top: 2rem;
 }
 
 .profile-info{
@@ -397,12 +409,13 @@ input{
 a{
   color: #0275d8;
   cursor: pointer;
-  font-weight:400;
+  font-weight:300;
 }
 
 small{
   font-weight: 300;
 }
+
 
 h1{
   text-transform:uppercase;

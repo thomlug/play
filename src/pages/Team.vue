@@ -195,7 +195,6 @@
 
 .team-profile-box{
   margin-top: 5vh;
-  margin-bottom: 2vh;
   display: flex;
   flex-direction: column;
   box-shadow: 2px 4px 31px -3px rgba(128,126,128,1);
@@ -222,11 +221,11 @@
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 0rem;
 }
 
 img{
-   margin-bottom: 2rem;
+   margin-bottom: 0rem;
 }
 
 .content-block{
@@ -293,14 +292,16 @@ input{
   margin-top: 1rem;
   text-align: center;
 }
- .photos{
-   background-color: pink;
- }
+
+.fixture-title{
+  margin-bottom: 0.75rem;
+}
 
 /* header styles */
 a{
   color: #0275d8;
   cursor: pointer;
+  font-weight:300;
 }
 
 span{
@@ -319,7 +320,7 @@ h4{
   font-weight: 550;
   color: #50575e;
   margin-bottom: 0rem;
-  text-align: center;
+  text-align: none;
 }
 
 </style>
