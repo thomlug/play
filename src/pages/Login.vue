@@ -171,4 +171,8 @@ export default {
   margin-top: 1rem;
   text-align: center;
 }
+
+h2{
+    color: #50575e;
+}
 </style>
