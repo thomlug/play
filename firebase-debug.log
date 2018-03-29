@@ -71,3 +71,35 @@
 [info] i  hosting: Serving hosting files from: public
 [info] ✔  hosting: Local server: http://localhost:5000
 
+[debug] [2018-03-29T07:41:44.276Z] ----------------------------------------------------------------------
+[debug] [2018-03-29T07:41:44.278Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-03-29T07:41:44.279Z] CLI Version:   3.17.6
+[debug] [2018-03-29T07:41:44.279Z] Platform:      darwin
+[debug] [2018-03-29T07:41:44.279Z] Node Version:  v8.10.0
+[debug] [2018-03-29T07:41:44.279Z] Time:          Thu Mar 29 2018 20:41:44 GMT+1300 (NZDT)
+[debug] [2018-03-29T07:41:44.280Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-03-29T07:41:44.339Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-03-29T07:41:44.340Z] > authorizing via signed-in user
+[debug] [2018-03-29T07:41:44.342Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/play-14e3e  
+  
+ Thu Mar 29 2018 20:41:44 GMT+1300 (NZDT)
+[debug] [2018-03-29T07:41:46.418Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-29T07:41:46.420Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/play-14e3e/tokens  
+  
+ Thu Mar 29 2018 20:41:46 GMT+1300 (NZDT)
+[debug] [2018-03-29T07:41:47.690Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-29T07:41:47.691Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/play-14e3e  
+  
+ Thu Mar 29 2018 20:41:47 GMT+1300 (NZDT)
+[debug] [2018-03-29T07:41:49.200Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/admin/Desktop/PlayCode/Play'...
+[info] 
+[debug] [2018-03-29T07:41:49.203Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/952744572741/clients/_:getWebAppConfig  
+  
+ Thu Mar 29 2018 20:41:49 GMT+1300 (NZDT)
+[debug] [2018-03-29T07:41:50.249Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
