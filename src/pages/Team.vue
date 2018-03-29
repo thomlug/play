@@ -194,10 +194,10 @@
 }
 
 .team-profile-box{
-  margin-top: 1vh;
+  margin-top: 1.1vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 3px 3px 3px -3px rgba(128,126,128,1);
+  box-shadow: 2px 3px 3px -3px rgba(128,126,128,1);
 }
 
 .team-profile-banner{
