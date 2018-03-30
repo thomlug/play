@@ -175,4 +175,8 @@ export default {
 h2{
     color: #50575e;
 }
+
+a{
+    color: #2acad0;
+}
 </style>
