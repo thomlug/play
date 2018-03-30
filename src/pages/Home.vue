@@ -141,13 +141,17 @@
 <!-- subs -->
       </div>
       <div class="col-xl-3">
-        <div class="card play-card">
+        <div class="card play-subs-card">
           <div class="card-block">
             <h4 class="card-title">Subs</h4>
+            
               <div class="card-block row">
-                <div v-for="player in substitutePlayers()" :key="player['.key']" class="col-6">
+                <div class= "scroller">
+                <div v-for="player in substitutePlayers()" :key="player['.key']" class="col-4">
+                  
                   <div class="player-container text-center">
                     <div @click="checkPlayerNavigation(player)" v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
+                     
                       <template v-if="player.photo">
                         <img class="img-fluid rounded-circle play-photo"
                           v-bind:class="calculatePlayerClass(player)"
@@ -161,6 +165,8 @@
                       {{player.first_name}}
                     </div>
                   </div>
+                  
+                </div>
                 </div>
               </div>
             </div>
@@ -438,9 +444,20 @@
   color: #50575e ;
 }
 
+.play-subs-card{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  text-transform: uppercase;
+  color: #50575e ;
+  height: 11rem;
+}
+
 .card-block{
   background: white;
 }
+
+
 .team-name{
   margin-top: 25px;
 }
@@ -696,6 +713,32 @@ margin-left: 0;
   color: none;
 }
 
+.scroller{
+  position: absolute;
+  display: flex;
+  top: 3rem;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  width: calc(#{$finalHeight} + #{$scrollBarHeight});
+  max-height: $finalWidth;
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: none;
+  overflow-y: auto;
+  overflow-x: scroll;
+  transform: rotate(-90deg) translateY(-$finalHeight);
+  transform-origin: right top;
+  & > div {
+    /* display: block; */
+    padding: 5px;
+    background: #cab;
+    transform: rotate(90deg);
+    transform-origin: right top;
+  }
+
+}
 
 /* Header font styling */
 
