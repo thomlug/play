@@ -29,7 +29,7 @@
                   </div>
                 </div>
                 <div class="team-name">
-                  <h5 class="text-center">{{getNextFixture().homeTeam}}</h5>
+                  <h3 class="text-center">{{getNextFixture().homeTeam}}</h3>
                 </div>
               </div>
               <div class="centered-col vs-text text-center">VS</div>
@@ -43,7 +43,7 @@
                   </div>
                 </div>
                 <div class="team-name">
-                  <h5 class="text-center">{{getNextFixture().awayTeam}}</h5>
+                  <h3 class="text-center">{{getNextFixture().awayTeam}}</h3>
                 </div>
                 </div>
             </div>
@@ -732,6 +732,11 @@ h2{
 }
 
 h3{
+  font-weight: 550;
+  color: #50575e;
+  margin-bottom: 0rem;
+  text-align: center;
+  font-size: 1.25rem;
 }
 
 h4{

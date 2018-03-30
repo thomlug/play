@@ -197,7 +197,7 @@
   margin-top: 1vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 2px 2px 3px -3px rgba(128,126,128,1);
+  box-shadow: 3px 3px 3px -3px rgba(128,126,128,1);
 }
 
 .team-profile-banner{
@@ -238,7 +238,7 @@ img{
 }
 
 .edit-icon{
-  height:3rem;
+  height:2.25rem;
   border-radius: 20%;
   border: none;
   background: none;

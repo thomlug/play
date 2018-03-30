@@ -318,7 +318,7 @@ margin-top: 1rem;
 }
 
 .edit-icon{
-  height:3rem;
+  height:2.25rem;
   border-radius: 20%;
   border: none;
   background: none;
