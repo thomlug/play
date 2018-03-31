@@ -143,8 +143,8 @@
       <div class="col-xl-3">
         <div class="card play-subs-card">
           <div class="card-block">
-            <h4 class="card-title">Subs</h4>
-            <small class="card-info"> Scroll to see all subs</small>
+            <h4 class="card-title">Subs <small class="card-info">  (Scroll to see all subs)</small></h4>
+            
             
               <div class="card-block row">
                 <div class= "scroller">
@@ -451,7 +451,7 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   text-transform: uppercase;
   color: #50575e ;
-  height: 14rem;
+  height: 16rem;
 }
 
 .card-block{
@@ -807,6 +807,7 @@ small{
   color: rgb(175, 175, 175);
   font-weight: none;
   background: none;
+  font-size: 65%;
 }
 
 a{
