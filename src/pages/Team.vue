@@ -237,7 +237,7 @@ img{
 }
 
 .edit-icon{
-  height:3rem;
+  height:7rem;
   border-radius: 20%;
   border: none;
   background: none;
