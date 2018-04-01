@@ -19,6 +19,9 @@
               <img class="profile-photo" :src="player.photo" :class="'player-' + player.availability"/> 
               <div class="content-block">
                 
+              <div class= "input-header" v-if="editable" >
+              <h7 class= "input-header" > Name</h7>
+              </div> 
                 <span class="text-center" v-if="!editable">
                   <h4>{{player.first_name}} {{player.last_name}}</h4>
                 </span>
@@ -35,19 +38,30 @@
               </div>
 
               <div class="content-block">
+              <div class= "input-header" v-if="editable" >
+              <h7 class= "input-header" > Preferred Position</h7>
+              </div> 
                 <span class="profile-info" v-if="!editable">{{player.preffered_position}}</span>
                 <input placeholder="Preffered position" v-if="editable" v-model="player.preffered_position"/>
               </div>
 
-              <div class="content-block">
+              <span class="content-block">
+              <div class= "input-header" v-if="editable" >
+              <h7 class= "input-header" > Phone Number</h7>
+              </div>
+                <i class="fa fa-phone"></i> 
                 <a  v-if="!editable" :href="'tel:'+player.phone">{{player.phone}} </a>
                 <input placeholder="Phone number"  v-if="editable" v-model="player.phone"/>
-              </div>
+              </span>
 
-              <div class="content-block">
+              <span class="content-block">
+              <div class= "input-header" v-if="editable" >
+              <h7 class= "input-header" > Email</h7>
+              </div>
+                <i class="fa fa-envelope"></i>
                 <a  v-if="!editable" :href="'mailto:'+player.email">{{player.email}} </a>
                 <input placeholder="Email" v-if="editable" v-model="player.email"/>
-              </div>
+              </span>
 
               <template v-if = "editable">
                 <form enctype="multipart/form-data" novalidate>
@@ -270,7 +284,7 @@
 }
 
 .player-profile-header{
-  /* margin: 1rem 2.5rem; */
+  margin: .5rem 2.5rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -318,7 +332,7 @@ margin-top: 1rem;
 }
 
 .edit-icon{
-  height:3rem;
+  height:2.25rem;
   border-radius: 20%;
   border: none;
   background: none;
@@ -409,7 +423,7 @@ input{
 a{
   color: #0275d8;
   cursor: pointer;
-  font-weight:300;
+  font-weight: none;
 }
 
 small{
@@ -423,6 +437,16 @@ h1{
   margin-top: 0.25rem;
   font-size: 2rem;
   font-weight: 550;
+}
 
+h7{
+  font-size: 0.8rem;
+  float: left;
+  margin-left: -0rem;
+  color: lightgray;
+}
+
+i{
+  color: lightgray;
 }
 </style>
