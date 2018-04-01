@@ -158,10 +158,12 @@
 
 .other .msg p{
     color:#50575e;
+    word-wrap: break-word;
 }
 
 .other .msg .user{
     color:#2bcad0;
+    word-wrap: normal;
 }
 .other .msg time {
     color:#999;
@@ -196,6 +198,7 @@
 }
 .self .msg > p {
     color: #ffffff;
+    word-wrap: break-word;
 }
 
 .self .msg .user{
@@ -221,7 +224,7 @@
     width: 90%;
     padding: 10px;
     border-radius: 10px;
-    word-break: break-all;
+    word-wrap: break-word;
 }
 .msg .user {
     font-size: 14px;
@@ -253,6 +256,7 @@
     color: #ffffff;
     transition: all .2s ease;
     font-weight: 400;
+    word-wrap: break-word;
 }
 .msg img {
     position: relative;
@@ -280,4 +284,5 @@
     -ms-user-select: none;
     font-weight: 300;
 }
+
 </style>
