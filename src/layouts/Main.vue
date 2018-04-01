@@ -16,6 +16,9 @@
               <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'chat'}">Chat</router-link>
             </li>
             <li class="nav-item">
+              <router-link active-class="active" exact class="nav-item nav-link" :to="{name: 'profile'}">My Profile</router-link>
+            </li>
+            <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" :to="{name: 'teams'}">Teams</router-link>
             </li>
             <li class="nav-item">
@@ -110,6 +113,7 @@ a{
   text-decoration: none;
   font-size: 0.8rem;
   cursor: pointer;
+  font-weight: 300;
 }
 
 a:hover {
@@ -117,5 +121,6 @@ a:hover {
   color: inherit;
   font-size: .8rem;
   cursor: pointer;
+  font-weight: 300;
 }
 </style>

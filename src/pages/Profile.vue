@@ -281,6 +281,7 @@
   width: 100%;
   background-color: #2BCAD0;
   color: #ffffff;
+  box-shadow: 1px 3px 3px -3px grey;
 }
 
 .player-profile-header{
@@ -340,8 +341,10 @@ margin-top: 1rem;
 
 .edit-icon:hover{
   cursor: pointer;
-  background: lightgrey;
+  background: white;
   color: white;
+  box-shadow: 3px 3px 3px -3px grey;
+  border-radius: 50%;
 }
 
 .btn-success{

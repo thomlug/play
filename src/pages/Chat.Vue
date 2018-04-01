@@ -146,6 +146,7 @@
     width: 100%;
     background-color: #2BCAD0;
     color: #ffffff;
+    box-shadow: 1px 3px 3px -3px grey;
 }
 
 .chat-pane-body{
