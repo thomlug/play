@@ -15,7 +15,24 @@
             </div>  
           <div class="team-profile-content">            
             <img class="content-block profile-photo" :src="team.photo"/>
+            <template v-if = "editable">
 
+              <form class="content-block" enctype="multipart/form-data" novalidate>
+                <div class="dropbox">
+<!-- hides choose file     -->
+           <div id="hide" class="col-lg-8 col-xs-8">
+            <label class="hand-cursor">
+              <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
+                <span class="fa fa-camera"></span>
+                <span class="photo_text hidden-xs"> Edit Photo</span>
+            </label>
+          </div>
+                    <p v-if="isSaving">
+                      Uploading file...
+                    </p>
+                </div>
+              </form>
+              </template>
             <div class= "team-input-header" v-if="editable" >
             <h7 class= "team-input-header" > Team Name</h7>
             </div>
@@ -27,18 +44,7 @@
             </div>
             <span class="content-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
             <input class="content-block" v-if="editable" v-model="team.numberOfPlayers"/> 
-            <template v-if = "editable">
-              <h5 class="content-block" > Upload new photo </h5>
-              <form class="content-block" enctype="multipart/form-data" novalidate>
-                <div class="dropbox">
-           
-                  <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
-                    <p v-if="isSaving">
-                      Uploading file...
-                    </p>
-                </div>
-              </form>
-              </template>
+
           </div>
         </div>
 
@@ -305,6 +311,32 @@ input{
   text-align: center;
 }
 
+#hide input[type=file] {
+display:none;
+margin:0px;
+}
+/* #hide input[type=file] + label {
+display:inline-block;
+margin:20px;
+padding: 4px 32px;
+background-color: #FFFFFF;
+border:solid 1px #666F77;
+border-radius: 6px;
+color:#666F77;
+}
+#hide input[type=file]:active + label {
+background-image: none;
+background-color:#2D6C7A;
+color:#FFFFFF;
+} */
+label{
+ background-color:#2acad0;
+ box-shadow: 3px 3px 3px -3px grey;
+ color: white;
+ padding: 0.5rem 1rem;
+ cursor: pointer;
+}
+
 .fixture-title{
   margin-bottom: 0.75rem;
 }
@@ -316,9 +348,9 @@ a{
   font-weight:none;
 }
 
-span{
+/* span{
   font-weight: 400;
-}
+} */
 
 h1{
   text-transform:uppercase;
@@ -338,7 +370,7 @@ h4{
 h7{
   font-size: 0.8rem;
   float: left;
-  margin-left: -9rem;
+  margin-left: -8.8rem;
   color: lightgray;
   
 }
