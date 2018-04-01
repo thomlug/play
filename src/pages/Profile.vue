@@ -18,7 +18,24 @@
             <div class="player-profile-content">
               <img class="profile-photo" :src="player.photo" :class="'player-' + player.availability"/> 
               <div class="content-block">
-                
+              <template v-if = "editable">
+                <form enctype="multipart/form-data" novalidate>
+                  <div class="dropbox">
+<!-- hides choose file     -->
+           <div id="hide" class="col-lg-8 col-xs-8">
+            <label class="hand-cursor">
+              <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
+                <span class="fa fa-camera"></span>
+                <span class="photo_text hidden-xs"> Edit Photo</span>
+            </label>
+          </div>
+                    <!-- <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file"> -->
+                      <p v-if="isSaving">
+                        Uploading file...
+                      </p>
+                  </div>
+                </form>
+              </template>                
               <div class= "input-header" v-if="editable" >
               <h7 class= "input-header" > Name</h7>
               </div> 
@@ -63,17 +80,7 @@
                 <input placeholder="Email" v-if="editable" v-model="player.email"/>
               </span>
 
-              <template v-if = "editable">
-                <form enctype="multipart/form-data" novalidate>
-                  <div class="dropbox">
 
-                    <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
-                      <p v-if="isSaving">
-                        Uploading file...
-                      </p>
-                  </div>
-                </form>
-              </template>
               <div v-if="canEditProfile()">
                 <h4 class="card-title">Update your status </h4>
                 <div class="availability-container">
@@ -423,6 +430,17 @@ input{
   text-align: center;
 }
 
+.input-header{
+  margin-left: 5px;
+}
+
+label{
+ background-color:#2acad0;
+ box-shadow: 3px 3px 3px -3px grey;
+ color: white;
+ padding: 0.5rem 1rem;
+ cursor: pointer;
+}
 
 /* header styles */
 a{color: #0275d8;
