@@ -212,6 +212,7 @@
   width: 100%;
   background-color: #2BCAD0;
   color: #ffffff;
+  box-shadow: 1px 3px 3px -3px grey;
 }
 
 .team-profile-header{
@@ -254,9 +255,11 @@ img{
 
 .edit-icon:hover{
   cursor: pointer;
-  border: lightgrey;
+  border: white;
   border-width: 3px;
   color: white;
+  box-shadow: 3px 3px 3px -3px grey;
+  border-radius: 50%;
 }
 
 .btn-success{
@@ -279,7 +282,7 @@ img{
 
 input{
   font-size:13px;
-  padding:0px 10px 10px 10px;
+  padding:10px 10px 10px 10px;
   display:block;
   width:300px;
   border:none;
