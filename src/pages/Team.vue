@@ -15,15 +15,23 @@
             </div>  
           <div class="team-profile-content">            
             <img class="content-block profile-photo" :src="team.photo"/>
+
+            <div class= "team-input-header" v-if="editable" >
+            <h7 class= "team-input-header" > Team Name</h7>
+            </div>
             <span class="content-block" v-if="!editable"><h4>{{team.name}}</h4> </span>
             <input class="content-block" v-if="editable" v-model="team.name"/>
 
+            <div class= "team-input-header" v-if="editable" >
+            <h7 class= "team-input-header" > Active players</h7>
+            </div>
             <span class="content-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
             <input class="content-block" v-if="editable" v-model="team.numberOfPlayers"/> 
             <template v-if = "editable">
               <h5 class="content-block" > Upload new photo </h5>
               <form class="content-block" enctype="multipart/form-data" novalidate>
                 <div class="dropbox">
+           
                   <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
                     <p v-if="isSaving">
                       Uploading file...
@@ -194,10 +202,10 @@
 }
 
 .team-profile-box{
-  margin-top: 5vh;
+  margin-top: 1vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 2px 4px 31px -3px rgba(128,126,128,1);
+  box-shadow: 3px 3px 3px -3px rgba(128,126,128,1);
 }
 
 .team-profile-banner{
@@ -221,11 +229,12 @@
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  margin-bottom: 0rem;
+  margin-bottom: 2rem;
 }
 
 img{
    margin-bottom: 0rem;
+   cursor: pointer;
 }
 
 .content-block{
@@ -237,7 +246,7 @@ img{
 }
 
 .edit-icon{
-  height:3rem;
+  height:2.25rem;
   border-radius: 20%;
   border: none;
   background: none;
@@ -270,7 +279,7 @@ img{
 
 input{
   font-size:13px;
-  padding:10px 10px 10px 10px;
+  padding:0px 10px 10px 10px;
   display:block;
   width:300px;
   border:none;
@@ -301,7 +310,7 @@ input{
 a{
   color: #0275d8;
   cursor: pointer;
-  font-weight:300;
+  font-weight:none;
 }
 
 span{
@@ -323,4 +332,11 @@ h4{
   text-align: none;
 }
 
+h7{
+  font-size: 0.8rem;
+  float: left;
+  margin-left: -9rem;
+  color: lightgray;
+  
+}
 </style>

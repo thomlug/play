@@ -136,7 +136,8 @@
     margin-top: 1vh;
     display: flex;
     flex-direction: column;
-    box-shadow: 2px 4px 31px -3px rgba(128,126,128,1);
+    box-shadow: 3px 3px 3px -3px rgba(128,126,128,1);
+    width: none;
 }
 .container{
     height: 443px;
