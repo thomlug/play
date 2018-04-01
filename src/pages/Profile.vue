@@ -66,6 +66,14 @@
               <template v-if = "editable">
                 <form enctype="multipart/form-data" novalidate>
                   <div class="dropbox">
+
+  <div id="upload_button">
+    <label>
+      <input type="file" ngf-select ng-model="new_files" ng-change="fs.uploadFiles(new_files)" multiple>
+      <span class="btn btn-primary">Upload files</span>
+    </label>
+  </div>
+
                     <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
                       <p v-if="isSaving">
                         Uploading file...
@@ -420,6 +428,14 @@ input{
   margin-bottom: 1rem;
   margin-top: 1rem;
   text-align: center;
+  display: inline-block;
+  display: none;
+
+#upload_button {
+
+}
+input[type=file] {
+  display:none;
 }
 
 /* header styles */
