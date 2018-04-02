@@ -111,33 +111,39 @@
         </div>
 <!-- starting line-up -->
         <div class="card play-card lineup">
-          <div class="card-block">
-          
-            <div class="row" v-for="(formationRowWidth, formationRow) in getNextFixtureDetails().formation" :key="formationRow">
-              <div v-for="formationColumn in formationRowWidth" :key="formationColumn"
-                class="center-block text-center"
-                v-bind:class="calculateFormationClass(formationRowWidth)"
-                v-bind:style="{'max-width': (100/formationRowWidth) + '%'}">
-                <div class="player-container text-center">
-                  <template v-if="getPlayer(formationRow, formationColumn).photo">
-                    <div @click="checkPlayerNavigation(getPlayer(formationRow, formationColumn))" v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
-                    <img class="img-fluid rounded-circle play-photo"
-                      v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn))"
-                      :src="getPlayer(formationRow, formationColumn).photo"/>
-                    {{getPlayer(formationRow, formationColumn).first_name}}
-                    </div>
-                  </template>
-                  <template v-else>
-                    <div v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
-                      <div @click="checkPlayerNavigation(getPlayer(formationRow, formationColumn))" class="circle player-circle" v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn))">
-                        {{getPlayer(formationRow, formationColumn).first_name | firstCharacter}}
-                      </div>
-                      {{getPlayer(formationRow, formationColumn).first_name}}
-                    </div>
-                  </template>
+         <div class="card-block">
+           <div v-for="(playerRow, index) in playerFormation" >
+            <draggable class="row formation-row" 
+            :move="dragPlayer"
+              @start="drag=true" 
+              @end="drag=false"
+              v-model="playerFormation[index]"
+              :options="{group:'players'}">
+                <div v-for="player in playerRow"
+                  :key="player['.key']"
+                  class="center-block text-center" 
+                  v-bind:class="calculateFormationClass(playerRow.length)">
+                  <div class="player-container text-center">
+                    <template v-if="player.photo">
+                      <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
+                      <img class="img-fluid rounded-circle play-photo" 
+                        v-bind:class="calculatePlayerClass(player)"  
+                        :src="player.photo"/>
+                      {{player.first_name}}
+                      </router-link>
+                    </template>
+                    <template v-else>
+                      <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
+                        <div class="circle player-circle" v-bind:class="calculatePlayerClass(player)">
+                          {{player.first_name | firstCharacter}} 
+                        </div>
+                        {{player.first_name}}
+                      </router-link>
+                    </template>
+                  </div>
                 </div>
-                </div>
-              </div>
+              </draggable>
+            </div>
           </div>
         </div>
 <!-- subs -->
@@ -205,14 +211,17 @@
 <style src="slick-carousel/slick/slick.css"></style>
 <script>
   import {db} from '../firebase';
-  import MainLayout from '../layouts/Main.vue'
+  import MainLayout from '../layouts/Main.vue';
   import Slick from 'vue-slick';
-  import moment from 'moment'
+  import moment from 'moment';
+  import draggable from 'vuedraggable';
+
 
   export default {
     components: {
       MainLayout,
-      Slick
+      Slick,
+      draggable
     },
     data: function(){
         return {
@@ -238,7 +247,8 @@
           players: {},
           teams: {},
           editPlayerMode: false,
-          player1Swap: null
+          player1Swap: null,
+          playerFormation: []
       };
     },
     computed:{
@@ -263,7 +273,13 @@
     },
     firebase: {
       players:{
-          source: db.ref('player')
+          source: db.ref('player'),
+          readyCallback: function(){
+            for(var i = 0; i < 5; i++){
+              var formationRow = _.filter(this.players, function(player){return player.position[0] === i+1;})
+              this.playerFormation.push(_.sortBy(formationRow, function(player){return player.position[1];}));
+            }
+          }
       },
       teams:{
         source: db.ref('team')
@@ -276,6 +292,9 @@
       }
     },
     methods: {
+      dragPlayer: function(evt, originalEvent){
+         return this.editPlayerMode;
+      }, 
       playerSwap(player){
         if(!this.editPlayerMode){
           return;
@@ -299,7 +318,17 @@
         }
       },
       toggleEditPlayersPositions(){
+        if(this.editPlayerMode){
+          _.each(this.playerFormation, (row, rowIndex) => {
+            _.each(row, (player, colIndex) => {
+              player.position[0] = rowIndex + 1;
+              player.position[1] = colIndex + 1;
+              this.$firebaseRefs.players.child(player['.key']).child('position').set(player.position);
+            })
+          });
+        }
         this.editPlayerMode = !this.editPlayerMode;
+        
       },
       next() {
           this.$refs.slick.next();
@@ -512,7 +541,14 @@ box-shadow: 3px 3px 3px -3px 50575e;
   justify-content: space-around;
 }
 
+.player-container a{
+  color: #50575e;  
+}
+
 @media (max-width: 768px) {
+  .formation-row{
+    min-height: 64px;
+  }
   .player-container{
     max-width:64px;
     margin: 0 auto;
@@ -530,6 +566,9 @@ box-shadow: 3px 3px 3px -3px 50575e;
   }
 }
 @media (min-width: 768px) {
+  .formation-row{
+    min-height: 128px;
+  }
   .player-container{
     max-width:128px;
     margin: 0 auto;
