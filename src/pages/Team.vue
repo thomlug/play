@@ -335,6 +335,7 @@ label{
  color: white;
  padding: 0.5rem 1rem;
  cursor: pointer;
+ font-weight: 400; 
 }
 
 .fixture-title{
