@@ -434,6 +434,11 @@ input{
   margin-left: 5px;
 }
 
+#hide input[type=file] {
+display:none;
+margin:0px;
+}
+
 label{
  background-color:#2acad0;
  box-shadow: 3px 3px 3px -3px grey;
