@@ -111,9 +111,41 @@
         </div>
 <!-- starting line-up -->
         <div class="card play-card lineup">
-          <div class="card-block">
-          
-            <div class="row" v-for="(formationRowWidth, formationRow) in getNextFixtureDetails().formation" :key="formationRow">
+         <div class="card-block">
+           <div v-for="(playerRow, index) in playerFormation" >
+            <draggable class="row" 
+            style="min-height:150px;"
+            :move="dragPlayer"
+              @start="drag=true" 
+              @end="drag=false"
+              v-model="playerFormation[index]"
+              :options="{group:'players'}">
+                <div v-for="player in playerRow"
+                  :key="player['.key']"
+                  class="center-block text-center" 
+                  v-bind:class="calculateFormationClass(playerRow.length)">
+                  <div class="player-container text-center">
+                    <template v-if="player.photo">
+                      <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
+                      <img class="img-fluid rounded-circle play-photo" 
+                        v-bind:class="calculatePlayerClass(player)"  
+                        :src="player.photo"/>
+                      {{player.first_name}}
+                      </router-link>
+                    </template>
+                    <template v-else>
+                      <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
+                        <div class="circle player-circle" v-bind:class="calculatePlayerClass(player)">
+                          {{player.first_name | firstCharacter}} 
+                        </div>
+                        {{player.first_name}}
+                      </router-link>
+                    </template>
+                  </div>
+                </div>
+            </draggable>
+          </div>
+            <!-- <div class="row" v-for="(formationRowWidth, formationRow) in getNextFixtureDetails().formation" :key="formationRow">
               <div v-for="formationColumn in formationRowWidth" :key="formationColumn"
                 class="center-block text-center"
                 v-bind:class="calculateFormationClass(formationRowWidth)"
@@ -137,7 +169,7 @@
                   </template>
                 </div>
                 </div>
-              </div>
+              </div> -->
           </div>
         </div>
 <!-- subs -->
@@ -205,14 +237,17 @@
 <style src="slick-carousel/slick/slick.css"></style>
 <script>
   import {db} from '../firebase';
-  import MainLayout from '../layouts/Main.vue'
+  import MainLayout from '../layouts/Main.vue';
   import Slick from 'vue-slick';
-  import moment from 'moment'
+  import moment from 'moment';
+  import draggable from 'vuedraggable';
+
 
   export default {
     components: {
       MainLayout,
-      Slick
+      Slick,
+      draggable
     },
     data: function(){
         return {
@@ -238,7 +273,8 @@
           players: {},
           teams: {},
           editPlayerMode: false,
-          player1Swap: null
+          player1Swap: null,
+          playerFormation: []
       };
     },
     computed:{
@@ -263,7 +299,12 @@
     },
     firebase: {
       players:{
-          source: db.ref('player')
+          source: db.ref('player'),
+          readyCallback: function(){
+            for(var i = 0; i < 5; i++){
+              this.playerFormation.push(_.filter(this.players, function(player){return player.position[0] === i+1;}));
+            }
+          }
       },
       teams:{
         source: db.ref('team')
@@ -276,6 +317,9 @@
       }
     },
     methods: {
+      dragPlayer: function(evt, originalEvent){
+          console.log(evt.draggedContext.element);
+      }, 
       playerSwap(player){
         if(!this.editPlayerMode){
           return;
