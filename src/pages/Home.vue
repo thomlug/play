@@ -113,8 +113,7 @@
         <div class="card play-card lineup">
          <div class="card-block">
            <div v-for="(playerRow, index) in playerFormation" >
-            <draggable class="row" 
-            style="min-height:150px;"
+            <draggable class="row formation-row" 
             :move="dragPlayer"
               @start="drag=true" 
               @end="drag=false"
@@ -143,33 +142,8 @@
                     </template>
                   </div>
                 </div>
-            </draggable>
-          </div>
-            <!-- <div class="row" v-for="(formationRowWidth, formationRow) in getNextFixtureDetails().formation" :key="formationRow">
-              <div v-for="formationColumn in formationRowWidth" :key="formationColumn"
-                class="center-block text-center"
-                v-bind:class="calculateFormationClass(formationRowWidth)"
-                v-bind:style="{'max-width': (100/formationRowWidth) + '%'}">
-                <div class="player-container text-center">
-                  <template v-if="getPlayer(formationRow, formationColumn).photo">
-                    <div @click="checkPlayerNavigation(getPlayer(formationRow, formationColumn))" v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
-                    <img class="img-fluid rounded-circle play-photo"
-                      v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn))"
-                      :src="getPlayer(formationRow, formationColumn).photo"/>
-                    {{getPlayer(formationRow, formationColumn).first_name}}
-                    </div>
-                  </template>
-                  <template v-else>
-                    <div v-bind:to="{name: 'profile', params: {player_id: getPlayer(formationRow, formationColumn)['.key']}}">
-                      <div @click="checkPlayerNavigation(getPlayer(formationRow, formationColumn))" class="circle player-circle" v-bind:class="calculatePlayerClass(getPlayer(formationRow, formationColumn))">
-                        {{getPlayer(formationRow, formationColumn).first_name | firstCharacter}}
-                      </div>
-                      {{getPlayer(formationRow, formationColumn).first_name}}
-                    </div>
-                  </template>
-                </div>
-                </div>
-              </div> -->
+              </draggable>
+            </div>
           </div>
         </div>
 <!-- subs -->
@@ -302,7 +276,8 @@
           source: db.ref('player'),
           readyCallback: function(){
             for(var i = 0; i < 5; i++){
-              this.playerFormation.push(_.filter(this.players, function(player){return player.position[0] === i+1;}));
+              var formationRow = _.filter(this.players, function(player){return player.position[0] === i+1;})
+              this.playerFormation.push(_.sortBy(formationRow, function(player){return player.position[1];}));
             }
           }
       },
@@ -318,7 +293,7 @@
     },
     methods: {
       dragPlayer: function(evt, originalEvent){
-          console.log(evt.draggedContext.element);
+         return this.editPlayerMode;
       }, 
       playerSwap(player){
         if(!this.editPlayerMode){
@@ -343,7 +318,17 @@
         }
       },
       toggleEditPlayersPositions(){
+        if(this.editPlayerMode){
+          _.each(this.playerFormation, (row, rowIndex) => {
+            _.each(row, (player, colIndex) => {
+              player.position[0] = rowIndex + 1;
+              player.position[1] = colIndex + 1;
+              this.$firebaseRefs.players.child(player['.key']).child('position').set(player.position);
+            })
+          });
+        }
         this.editPlayerMode = !this.editPlayerMode;
+        
       },
       next() {
           this.$refs.slick.next();
@@ -556,7 +541,14 @@ box-shadow: 3px 3px 3px -3px 50575e;
   justify-content: space-around;
 }
 
+.player-container a{
+  color: #50575e;  
+}
+
 @media (max-width: 768px) {
+  .formation-row{
+    min-height: 64px;
+  }
   .player-container{
     max-width:64px;
     margin: 0 auto;
@@ -574,6 +566,9 @@ box-shadow: 3px 3px 3px -3px 50575e;
   }
 }
 @media (min-width: 768px) {
+  .formation-row{
+    min-height: 128px;
+  }
   .player-container{
     max-width:128px;
     margin: 0 auto;
