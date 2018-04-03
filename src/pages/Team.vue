@@ -21,8 +21,11 @@
             <span class="content-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
             <input class="content-block" v-if="editable" v-model="team.numberOfPlayers"/> 
             <h4 class="content-block">Mangers</h4>
-            <div class="managers-block">              
-              <Avatar v-for="(manager,key) in teamManagers" @click.native="goToPlayer(manager)" :key="key" class="manager-photo" :image="manager.photo"/>
+            <div class="managers-block" >              
+              <div class="col" v-for="(manager,key) in teamManagers" :key="key">
+                <Avatar  @click.native="goToPlayer(manager['.key'])" class="manager-photo" :image="manager.photo"/>
+                <p>{{manager.first_name.charAt(0).toUpperCase()}}. {{manager.last_name}}</p>
+              </div>
             </div>
             <template v-if = "editable">
 
@@ -125,7 +128,6 @@ export default {
       },
       players: {
         source: db.ref("player"),
-        asObject: true,
         readyCallback() {
           this.getManagers();
         }
@@ -231,8 +233,8 @@ export default {
       }
     },
 
-    goToPlayer(manager){
-      this.$router.push({name: 'profile', params: {player_id: manager['.key']}});
+    goToPlayer(key){
+      this.$router.push({name: 'profile', params: {player_id: key}});
     }
   },
   mounted() {
