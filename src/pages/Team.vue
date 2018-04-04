@@ -3,63 +3,53 @@
     <div class="row">
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
       <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="team-profile-box">
-          <div class="team-profile-banner text-center">
-            <h1>Team Profile</h1>
-          </div>
-          <div class="team-profile-header">
-              <div v-if="canEditProfile()">
-                <img src="../assets/pencil.png" class="edit-icon" @click="edit" v-if="!editable">
-                <button class="btn btn-success" v-on:click="save" v-if="editable">Save</button>
-              </div>
-            </div>  
-          <div class="team-profile-content">            
-            <Avatar class="content-block profile-photo" :image="team.photo"/>
-            <span class="content-block" v-if="!editable"><h4>{{team.name}}</h4> </span>
-            <input class="content-block" v-if="editable" v-model="team.name"/>
-            
-            <span class="content-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
-            <input class="content-block" v-if="editable" v-model="team.numberOfPlayers"/> 
-            <h4 class="content-block">Mangers</h4>
-            <div class="managers-block" >              
-              <div class="col" v-for="(manager,key) in teamManagers" :key="key">
-                <Avatar  @click.native="goToPlayer(manager['.key'])" class="manager-photo" :image="manager.photo"/>
-                <p>{{manager.first_name.charAt(0).toUpperCase()}}. {{manager.last_name}}</p>
-              </div>
+        <play-profile title="Team Profile">
+          <template slot="header">
+            <div v-if="canEditProfile()">
+              <img src="../assets/pencil.png" class="edit-icon" @click="edit" v-if="!editable">
+              <button class="btn btn-success" v-on:click="save" v-if="editable">Save</button>
             </div>
-            <template v-if = "editable">
+          </template>
+            
+          <template slot="main-content">
+            <Avatar class="content-block profile-photo" :image="team.photo"/>
 
+            <template>
+              <p class= "team-input-header" v-if="editable" > Team Name</p>
+              <span class="content-block" v-if="!editable"><h4>{{team.name}}</h4> </span>
+              <input class="content-block" v-if="editable" v-model="team.name"/>
+              <p class= "team-input-header" v-if="editable" > Active players</p>
+              <span class="content-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
+              <input class="content-block" v-if="editable" v-model="team.numberOfPlayers"/>
+              <h4 class="content-block">Managers</h4>
+              <div class="managers-block" >              
+                <div class="col" v-for="(manager,key) in teamManagers" :key="key">
+                  <Avatar  @click.native="goToPlayer(manager['.key'])" class="manager-photo" :image="manager.photo"/>
+                  <p>{{manager.first_name.charAt(0).toUpperCase()}}. {{manager.last_name}}</p>
+                </div>
+              </div>
+            </template>
+
+            <!-- <template v-if = "editable">
               <form class="content-block" enctype="multipart/form-data" novalidate>
                 <div class="dropbox">
-<!-- hides choose file     -->
-           <div id="hide" class="col-lg-8 col-xs-8">
-            <label class="hand-cursor">
-              <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
-                <span class="fa fa-camera"></span>
-                <span class="photo_text hidden-xs"> Edit Photo</span>
-            </label>
-          </div>
+                    
+                    <div id="hide" class="col-lg-8 col-xs-8">
+                      <label class="hand-cursor">
+                        <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
+                          <span class="fa fa-camera"></span>
+                          <span class="photo_text hidden-xs"> Edit Photo</span>
+                      </label>
+                    </div>
                     <p v-if="isSaving">
                       Uploading file...
                     </p>
                 </div>
               </form>
-              </template>
-            <div class= "team-input-header" v-if="editable" >
-            <h7 class= "team-input-header" > Team Name</h7>
-            </div>
-            <span class="content-block" v-if="!editable"><h4>{{team.name}}</h4> </span>
-            <input class="content-block" v-if="editable" v-model="team.name"/>
-
-            <div class= "team-input-header" v-if="editable" >
-            <h7 class= "team-input-header" > Active players</h7>
-            </div>
-            <span class="content-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
-            <input class="content-block" v-if="editable" v-model="team.numberOfPlayers"/> 
-
-          </div>
-        </div>
-
+            </template>    -->
+                     
+          </template>
+        </play-profile>
       </div>
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
     </div>
@@ -71,6 +61,7 @@
 import { db } from "../firebase";
 import MainLayout from "../layouts/Main.vue";
 import Avatar from '../components/Avatar.vue';
+import PlayProfile from '../components/PlayProfile.vue';
 
 const STATUS_INITIAL = 0,
   STATUS_SAVING = 1,
@@ -80,7 +71,8 @@ const STATUS_INITIAL = 0,
 export default {
   components: {
     MainLayout,
-    Avatar
+    Avatar,
+    PlayProfile
   },
   computed: {
     isInitial() {
@@ -256,42 +248,10 @@ export default {
   margin: 1rem 1rem;
 }
 
-.team-profile-box {
-  margin-top: 5vh;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 2px 4px 31px -3px rgba(128, 126, 128, 1);
-}
-
 .managers-block {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.team-profile-banner {
-  width: 100%;
-  background-color: #2bcad0;
-  color: #ffffff;
-  box-shadow: 1px 3px 3px -3px grey;
-}
-
-.team-profile-header {
-  margin: 1rem 2.5rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  float: right;
-}
-
-.team-profile-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  text-align: center;
-  margin-bottom: 2rem;
 }
 
 .content-block {
@@ -418,11 +378,10 @@ h4{
   text-align: none;
 }
 
-h7{
+.team-input-header{
   font-size: 0.8rem;
   float: left;
   margin-left: -8.8rem;
-  color: lightgray;
-  
+  color: lightgray;  
 }
 </style>

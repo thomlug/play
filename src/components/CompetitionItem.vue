@@ -67,27 +67,27 @@
 </template>
 
 <script>
-import {db} from '../firebase';
+import { db } from "../firebase";
 export default {
   props: {
-    competition: Object,
+    competition: Object
   },
 
-  data(){
+  data() {
     return {
       show: false,
       teamsInComp: [],
-      newTeam:{
-        name: '',
-        competition: ''
-      },
-    }
+      newTeam: {
+        name: "",
+        competition: ""
+      }
+    };
   },
 
   computed: {
-    setTeamsList(){
-      for (var i=0; i < this.teams.length; i++){
-        if (this.teams[i].competition == this.competition.name){
+    setTeamsList() {
+      for (var i = 0; i < this.teams.length; i++) {
+        if (this.teams[i].competition == this.competition.name) {
           this.teamsInComp.push(this.teams[i]);
         }
       }
@@ -95,81 +95,76 @@ export default {
   },
 
   firebase: {
-    teams:{
-      source: db.ref('team'),
-      readyCallback(){
+    teams: {
+      source: db.ref("team"),
+      readyCallback() {
         this.setTeamsList;
       }
     }
   },
 
   methods: {
-    toggleShow(){
-      this.show = !this.show
-      this.$emit('newCompetitionClicked', this.competition.name);
+    toggleShow() {
+      this.show = !this.show;
+      this.$emit("newCompetitionClicked", this.competition.name);
     },
 
-    setClickedCompetition(){
-      
-    },
+    setClickedCompetition() {},
 
-    addNewTeam(){
+    addNewTeam() {
       this.newTeam.competition = this.competition.name;
       console.log(this.newTeam.name);
-      db.ref('team').push(this.newTeam);
-      this.newTeam.name = '';
-      this.newTeam.competition = '';
-    },
+      db.ref("team").push(this.newTeam);
+      this.newTeam.name = "";
+      this.newTeam.competition = "";
+    }
   }
-}
+};
 </script>
 
 <style lang="css">
-  // Extra small devices (portrait phones, less than 576px)
-  @media (max-width: 575px) {
-    .avatar{
-      width: 50px;
-      height: 50px;
-    }
+@media (max-width: 575px) {
+  .avatar {
+    width: 50px;
+    height: 50px;
   }
+}
 
-  .aligner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* padding: 5px; */
-  }
+.aligner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 5px; */
+}
 
-  .aligner > div {
-    flex: 1 1 auto;
-    margin: 10px;
-  }
+.aligner > div {
+  flex: 1 1 auto;
+  margin: 10px;
+}
 
-  .no-flex{
-    flex: 0 0;
-  }
+.no-flex {
+  flex: 0 0;
+}
 
-  .avatar{
-    width: 80px;
-    height: 80px;
-    border: 3px solid #2acad0;
-    border-radius: 50%;
-    background-color: #ECEFF1;
-    margin: 0 20px;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
+.avatar {
+  width: 80px;
+  height: 80px;
+  border: 3px solid #2acad0;
+  border-radius: 50%;
+  background-color: #eceff1;
+  margin: 0 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
-  .edit-icon{
-    width: 30px;
-    height: 30px;
-    background: none;
-    border: none;
-  }
+.edit-icon {
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+}
 
-  .input{
-    background-color: #1E88E5;
-  }
-
-
+.input {
+  background-color: #1e88e5;
+}
 </style>
