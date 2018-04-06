@@ -240,6 +240,7 @@ export default {
   max-height: 10rem;
   max-width: 10rem;
   margin-bottom: 1rem;
+  box-shadow: none;
 }
 
 .manager-photo{
@@ -274,7 +275,7 @@ export default {
   cursor: pointer;
   border: white;
   border-width: 3px;
-  color: white;
+  background-color: white;
   box-shadow: 3px 3px 3px -3px grey;
   border-radius: 50%;
 }
@@ -354,6 +355,12 @@ label{
 }
 
 /* header styles */
+p{
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #50575e;
+  font-weight: 500;
+}
 a{
   color: #0275d8;
   cursor: pointer;

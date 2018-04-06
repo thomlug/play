@@ -13,13 +13,13 @@ export default {
 <style lang="css" scoped>
 img {
   border-radius: 50%;
-  box-shadow: 1px 2px 12px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 2px 2px -2px grey;
 }
 
 img:hover{
-  -webkit-box-shadow: 7px 9px 16px -4px rgba(0,0,0,0.75);
-  -moz-box-shadow: 7px 9px 16px -4px rgba(0,0,0,0.75);
-  box-shadow: 7px 9px 16px -4px rgba(0,0,0,0.75);
+  /* -webkit-box-shadow: 7px 9px 16px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: 7px 9px 16px -4px rgba(0,0,0,0.75); */
+  box-shadow: 4px 4px 4px -4px grey;
   cursor: pointer;
 }
 </style>
