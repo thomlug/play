@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
       <div class="col-md-6 col-sm-6 col-xs-12">
-        <play-profile title="Payer Profile">
+        <play-profile title="Player Profile">
 
           <template slot="header">
             <div v-if="canEditProfile()">
@@ -19,11 +19,11 @@
               <form enctype="multipart/form-data" novalidate>
                 <div class="dropbox">
                     <!-- hides choose file     -->  
-                <div id="hide" class="col-lg-8 col-xs-8">
+                <div id="hide">
                   <label class="hand-cursor">
                     <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
                       <span class="fa fa-camera"></span>
-                      <span class="photo_text hidden-xs"> Edit Photo</span>
+                      <span> Edit Photo</span>
                   </label>
                 </div>
                       <!-- <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file"> -->
@@ -32,58 +32,55 @@
                   </p>
                 </div>
               </form>
-            </template> 
-                  
+            </template>
 
-              
-
-              <div class="content-block">
-                <span class= "input-header" v-if="editable"> Name</span>
-                <span class="text-center" v-if="!editable">
-                  <h4>{{player.first_name}} {{player.last_name}}</h4>
-                </span>
+            <div class="information-block">
+              <span class= "input-header" v-if="editable"> Name</span>
+              <span class="text-center" v-if="!editable">
+                <h4>{{player.first_name}} {{player.last_name}}</h4>
+              </span>
                 
-                <input placeholder="First name"  v-if="editable" v-model="player.first_name"/>
-                <input placeholder="Last name" v-if="editable" v-model="player.last_name"/>
-              </div>
+              <input placeholder="First name"  v-if="editable" v-model="player.first_name"/>
+              <input placeholder="Last name" v-if="editable" v-model="player.last_name"/>
+            </div>        
+            
+            <div class="information-block profile-info" v-if="!editable">
+              <div>{{player.availability | camelToSentence}}</div>
+              <div><small>Last Updated {{moment(player.availabilityUpdated).calendar()}}</small></div>
+            </div>
 
-              <!-- <span v-if="!editable">{{player.age}}</span>
-              <input v-if="editable" v-model="player.age"/> -->
-              <div class="content-block profile-info" v-if="!editable">
-                <div>{{player.availability | camelToSentence}}</div>
-                <div><small>Last Updated {{moment(player.availabilityUpdated).calendar()}}</small></div>
-              </div>
-
+            <div class="information-block">
               <p class= "input-header" v-if="editable" > Preferred Position</p>
               <span class="profile-info" v-if="!editable">{{player.preffered_position}}</span>
               <input placeholder="Preffered position" v-if="editable" v-model="player.preffered_position"/>
+            </div>
 
-              <div class="content-block">
-                <span class= "input-header">
-                  <p v-if="editable" > Phone Number</p>
-                  <i class="fa fa-phone"></i> 
-                </span>
-                <a  v-if="!editable" :href="'tel:'+player.phone">{{player.phone}} </a>
-                <input placeholder="Phone number"  v-if="editable" v-model="player.phone"/>
+            <div class="information-block">
+              <span class= "input-header text-center">
+                <p v-if="editable" > Phone Number</p>
+                <i class="fa fa-phone "></i> 
+              </span>
+              <a  v-if="!editable" :href="'tel:'+player.phone">{{player.phone}} </a>
+              <input placeholder="Phone number"  v-if="editable" v-model="player.phone"/>
+            </div>
+
+            <div class="information-block">
+              <span class= "input-header text-center">
+                <p v-if="editable"> Email</p>
+                <i class="fa fa-envelope"></i>
+              </span>
+              <a  v-if="!editable" :href="'mailto:'+player.email">{{player.email}} </a>
+              <input placeholder="Email" v-if="editable" v-model="player.email"/>
+            </div>
+
+
+            <div v-if="canEditProfile()">
+              <h4 class="card-title">Update your status </h4>
+              <div class="availability-container">
+                <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available">Available</button>
+                <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
               </div>
-
-              <div class="content-block">
-                <span class= "input-header">
-                  <p v-if="editable"> Email</p>
-                  <i class="fa fa-envelope"></i>
-                </span>
-                <a  v-if="!editable" :href="'mailto:'+player.email">{{player.email}} </a>
-                <input placeholder="Email" v-if="editable" v-model="player.email"/>
-              </div>
-
-
-              <div v-if="canEditProfile()">
-                <h4 class="card-title">Update your status </h4>
-                <div class="availability-container">
-                  <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available">Available</button>
-                  <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
-                </div>
-              </div>
+            </div>
 
           </template>
         </play-profile>
@@ -285,7 +282,7 @@ export default {
   justify-content: space-around;
 }
 
-.content-block {
+.information-block {
   display: flex;
   flex-flow: column;
 }
@@ -397,7 +394,9 @@ input {
   margin-left: 5px;
   margin-top: 10px;
   font-size: 0.8rem;
-  float: left;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
   color: lightgray;
 }
 

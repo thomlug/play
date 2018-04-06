@@ -12,16 +12,16 @@
           </template>
             
           <template slot="main-content">
-            <Avatar class="content-block profile-photo" :image="team.photo"/>
+            <Avatar class="profile-photo" :image="team.photo"/>
 
             <template>
               <p class= "team-input-header" v-if="editable" > Team Name</p>
-              <span class="content-block" v-if="!editable"><h4>{{team.name}}</h4> </span>
-              <input class="content-block" v-if="editable" v-model="team.name"/>
+              <span class="information-block" v-if="!editable"><h4>{{team.name}}</h4> </span>
+              <input class="information-block" v-if="editable" v-model="team.name"/>
               <p class= "team-input-header" v-if="editable" > Active players</p>
-              <span class="content-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
-              <input class="content-block" v-if="editable" v-model="team.numberOfPlayers"/>
-              <h4 class="content-block">Managers</h4>
+              <span class="information-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
+              <input class="information-block" v-if="editable" v-model="team.numberOfPlayers"/>
+              <h4 class="information-block">Managers</h4>
               <div class="managers-block" >              
                 <div class="col" v-for="(manager,key) in teamManagers" :key="key">
                   <Avatar  @click.native="goToPlayer(manager['.key'])" class="manager-photo" :image="manager.photo"/>
@@ -31,7 +31,7 @@
             </template>
 
             <!-- <template v-if = "editable">
-              <form class="content-block" enctype="multipart/form-data" novalidate>
+              <form class="information-block" enctype="multipart/form-data" novalidate>
                 <div class="dropbox">
                     
                     <div id="hide" class="col-lg-8 col-xs-8">
@@ -239,6 +239,7 @@ export default {
 .profile-photo {
   max-height: 10rem;
   max-width: 10rem;
+  margin-bottom: 1rem;
 }
 
 .manager-photo{
@@ -254,7 +255,7 @@ export default {
   align-items: center;
 }
 
-.content-block {
+.information-block {
   margin: 0.4rem 0;
 }
 
