@@ -112,7 +112,6 @@
 <!-- starting line-up -->
         <div class="card play-card lineup">
           <div class="card-block">
-          
             <div class="row" v-for="(formationRowWidth, formationRow) in getNextFixtureDetails().formation" :key="formationRow">
               <div v-for="formationColumn in formationRowWidth" :key="formationColumn"
                 class="center-block text-center"
@@ -138,6 +137,7 @@
                 </div>
                 </div>
               </div>
+              </img>
           </div>
         </div>
 <!-- subs -->
@@ -444,6 +444,7 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   text-transform: uppercase;
   color: #50575e ;
+  background-image: none;
 }
 
 .play-subs-card{
@@ -458,7 +459,6 @@
 .card-block{
   background: white;
 }
-
 
 .team-name{
   margin-top: 25px;
