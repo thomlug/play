@@ -15,18 +15,12 @@
             </div>  
           <div class="team-profile-content">            
             <Avatar class="content-block profile-photo" :image="team.photo"/>
-            <span class="content-block" v-if="!editable"><h4>{{team.name}}</h4> </span>
-            <input class="content-block" v-if="editable" v-model="team.name"/>
+            <!-- <span class="content-block" v-if="!editable"><h4>{{team.name}}</h4> </span>
+            <input class="content-block" v-if="editable" v-model="team.name"/> -->
             
-            <span class="content-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
-            <input class="content-block" v-if="editable" v-model="team.numberOfPlayers"/> 
-            <h4 class="content-block">Mangers</h4>
-            <div class="managers-block" >              
-              <div class="col" v-for="(manager,key) in teamManagers" :key="key">
-                <Avatar  @click.native="goToPlayer(manager['.key'])" class="manager-photo" :image="manager.photo"/>
-                <p>{{manager.first_name.charAt(0).toUpperCase()}}. {{manager.last_name}}</p>
-              </div>
-            </div>
+            <!-- <span class="content-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span> -->
+            <!-- <input class="content-block" v-if="editable" v-model="team.numberOfPlayers"/>  -->
+         
             <template v-if = "editable">
 
               <form class="content-block" enctype="multipart/form-data" novalidate>
@@ -56,7 +50,13 @@
             </div>
             <span class="content-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
             <input class="content-block" v-if="editable" v-model="team.numberOfPlayers"/> 
-
+   <h4 class="content-block">Mangers</h4>
+            <div class="managers-block" >              
+              <div class="col" v-for="(manager,key) in teamManagers" :key="key">
+                <Avatar  @click.native="goToPlayer(manager['.key'])" class="manager-photo" :image="manager.photo"/>
+                <p>{{manager.first_name.charAt(0).toUpperCase()}}. {{manager.last_name}}</p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -247,6 +247,7 @@ export default {
 .profile-photo {
   max-height: 10rem;
   max-width: 10rem;
+  box-shadow: none;
 }
 
 .manager-photo{
@@ -257,10 +258,10 @@ export default {
 }
 
 .team-profile-box {
-  margin-top: 5vh;
+  margin-top: 1vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 2px 4px 31px -3px rgba(128, 126, 128, 1);
+  box-shadow: 3px 3px 3px -3px rgba(128, 126, 128, 1);
 }
 
 .managers-block {
@@ -313,7 +314,7 @@ export default {
   cursor: pointer;
   border: white;
   border-width: 3px;
-  color: white;
+  background-color: white;
   box-shadow: 3px 3px 3px -3px grey;
   border-radius: 50%;
 }
@@ -393,6 +394,12 @@ label{
 }
 
 /* header styles */
+p{
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #50575e;
+  font-weight: 500;
+}
 a{
   color: #0275d8;
   cursor: pointer;

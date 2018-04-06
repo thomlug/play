@@ -853,14 +853,14 @@ a{
   color: #EEEEEE;
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 a:hover {
   text-decoration: none;
   color: inherit;
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 </style>
