@@ -22,16 +22,16 @@ export default {
       this.$store.getters.user;
     }
   },
-  beforeCreate() {
-    firebase.auth().onAuthStateChanged(user => {
-      // initially user = null, after auth it will be either <fb_user> or false
-      this.$store.commit("setUser", user || null);
-      if (user && (this.$route.path === "/login" || this.$route.path === "signup")) {
-        this.$router.replace("/home");
-      } else if (!user && this.$route.path !== "/login") {
-        this.$router.replace("/login");
-      }
-    });
-  }
+  // beforeCreate() {
+  //   firebase.auth().onAuthStateChanged(user => {
+  //     // initially user = null, after auth it will be either <fb_user> or false
+  //     this.$store.commit("setUser", user || null);
+  //     if (user && (this.$route.path === "/login" || this.$route.path === "signup")) {
+  //       this.$router.replace("/home");
+  //     } else if (!user && this.$route.path !== "/login") {
+  //       this.$router.replace("/login");
+  //     }
+  //   });
+  // }
 };
 </script>

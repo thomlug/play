@@ -71,8 +71,7 @@
       logOut(){
         firebase.auth().signOut()
           .then(() => {
-            console.log('log out');
-            console.log(this.$store.getters.user);
+            this.$router.replace('login');
           })
       },
 
