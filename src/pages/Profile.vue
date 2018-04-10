@@ -151,12 +151,9 @@ export default {
       }
     };
   },
-  methods: {
-    currentUser: function() {
-      return firebase.auth().currentUser;
-    },
+  methods: {    
     canEditProfile: function() {
-      var currentUser = this.currentUser();
+      var currentUser = this.$store.getters.user;
       return (
         this.player != null &&
         currentUser != null &&

@@ -4,7 +4,7 @@ import VueFire from 'vuefire';
 import TableComponent from 'vue-table-component';
 import './firebase';
 import helpersPlugin from './components/helpersPlugin.vue';
-
+import { store } from './store/store';
 
 import App from './App.vue'
 
@@ -33,9 +33,8 @@ Vue.use(helpersPlugin);
 Vue.prototype.moment = moment
 
 const routes = [
-  {path: '/login', alias:'', component: Login, name:'login'},
+  {path: '/login', component: Login, name:'login'},
   {path: '/signup', component: Signup, name:'signup'},
-  {path: '/home', component: Home, name:'home'},
   {path: '/chat', component: Chat, name:'chat'},
   {path: '/members', component: Members, name:'members'},
   {path: '/teams', component: Teams, name:'teams'},
@@ -45,24 +44,17 @@ const routes = [
   {path: '/newfixture', component: NewFixture, name: 'newfixture'},
   {path: '/results/:match_id', component: Results, name:'results'},
   {path: '/profile/:player_id', component: Profile, name:'profile'},
-  {path: '/team/:team_id', component: Team, name:'team'}
+  {path: '/team/:team_id', component: Team, name:'team'},
+  {path: '/home', alias: '', component: Home, name:'home'},
 ];
 
 const router = new VueRouter({routes});
 
 
 const app = new Vue({
-  created() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if(user) {
-        //this.$router.push('/home')
-      } else {
-       // this.$router.push('/login')
-      }
-     });
-    },
   el:"#app",
   router,
+  store,
   render (h) {
     return h(App)
   }

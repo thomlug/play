@@ -30,6 +30,14 @@ export default {
             password: '',
         }
     },
+
+    computed: {
+        user() {
+            this.$store.getters.user;
+            console.log(this.$store.getters.user);
+        }
+    },
+
     components: {
       PlayForm
     },
@@ -64,7 +72,7 @@ export default {
             firebase.auth().signInWithEmailAndPassword(this.email, this.password)
                 .then(
                     user => {
-                        this.$router.push('/home');
+                        console.log('signed in');   
                     }
                 )
                 .catch(                    
