@@ -33,6 +33,8 @@ export default {
       } else if (!user && (this.$route.path === '/login' || this.$route.path === '/signup')) {
         this.$router.replace('/login');
         console.log('rerouting to login');
+      }else {
+        console.log('proceed');
       }
     });
   }
