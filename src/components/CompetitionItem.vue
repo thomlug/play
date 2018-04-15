@@ -113,7 +113,6 @@ export default {
 
     addNewTeam() {
       this.newTeam.competition = this.competition.name;
-      console.log(this.newTeam.name);
       db.ref("team").push(this.newTeam);
       this.newTeam.name = "";
       this.newTeam.competition = "";

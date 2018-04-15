@@ -55,7 +55,6 @@ router.beforeEach((to, from, next) => {
   let currentUser = firebase.auth().currentUser;
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   if (requiresAuth && !currentUser) {
-    console.log('check'); 
     next('/login');
   } else if (requiresAuth && currentUser){
     next();
@@ -66,7 +65,7 @@ router.beforeEach((to, from, next) => {
 
 
 const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-  store.commit('setUser', user || false);
+  store.commit('setUser', user || false); 
   new Vue({
     el: "#app",
     router,
