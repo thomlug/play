@@ -4,7 +4,7 @@ import VueFire from 'vuefire';
 import TableComponent from 'vue-table-component';
 import './firebase';
 import helpersPlugin from './components/helpersPlugin.vue';
-
+import { store } from './store/store';
 
 import App from './App.vue'
 
@@ -33,40 +33,53 @@ Vue.use(helpersPlugin);
 Vue.prototype.moment = moment
 
 const routes = [
-  {path: '/login', alias:'', component: Login, name:'login'},
-  {path: '/signup', component: Signup, name:'signup'},
-  {path: '/home', component: Home, name:'home'},
-  {path: '/chat', component: Chat, name:'chat'},
-  {path: '/members', component: Members, name:'members'},
-  {path: '/teams', component: Teams, name:'teams'},
-  {path: '/competitions', component: Competitions, name: 'competitions'},
-  {path: '/marketing', component: Marketing, name: 'marketing'},
-  {path: '/fixtures', component: Fixtures, name: 'fixtures'},
-  {path: '/newfixture', component: NewFixture, name: 'newfixture'},
-  {path: '/results/:match_id', component: Results, name:'results'},
-  {path: '/profile/:player_id', component: Profile, name:'profile'},
-  {path: '/team/:team_id', component: Team, name:'team'}
+  { path: '/login', component: Login, name: 'login', },
+  { path: '/signup', component: Signup, name: 'signup' },
+  { path: '/chat', component: Chat, name: 'chat', meta: { requiresAuth: true } },
+  { path: '/members', component: Members, name: 'members', meta: { requiresAuth: true } },
+  { path: '/teams', component: Teams, name: 'teams', meta: { requiresAuth: true } },
+  { path: '/competitions', component: Competitions, name: 'competitions', meta: { requiresAuth: true } },
+  { path: '/marketing', component: Marketing, name: 'marketing', meta: { requiresAuth: true } },
+  { path: '/fixtures', component: Fixtures, name: 'fixtures', meta: { requiresAuth: true } },
+  { path: '/newfixture', component: NewFixture, name: 'newfixture', meta: { requiresAuth: true } },
+  { path: '/results/:match_id', component: Results, name: 'results', meta: { requiresAuth: true } },
+  { path: '/profile/:player_id', component: Profile, name: 'profile', meta: { requiresAuth: true } },
+  { path: '/team/:team_id', component: Team, name: 'team', meta: { requiresAuth: true } },
+  { path: '/home', alias: '', component: Home, name: 'home', meta: { requiresAuth: true } },
 ];
 
-const router = new VueRouter({routes});
+const router = new VueRouter({ routes });
 
-
-const app = new Vue({
-  created() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if(user) {
-        //this.$router.push('/home')
-      } else {
-       // this.$router.push('/login')
-      }
-     });
-    },
-  el:"#app",
-  router,
-  render (h) {
-    return h(App)
+router.beforeEach((to, from, next) => {
+  // const currentUser = firebase.auth().getCurrentUser();
+  let currentUser = firebase.auth().currentUser;
+  let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  if (requiresAuth && !currentUser) {
+    next('/login');
+  } else if (requiresAuth && currentUser){
+    next();
+  } else {
+    next();
   }
 });
+
+
+const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+  store.commit('setUser', user || false); 
+  new Vue({
+    el: "#app",
+    router,
+    store,
+    data: {
+      ui: ""
+    },
+    render(h) {
+      return h(App)
+    }
+  });
+  unsubscribe();
+})
+
 
 window.addEventListener('popstate', () => {
   app.currentRoute = window.location.pathname

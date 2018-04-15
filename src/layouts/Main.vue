@@ -15,7 +15,7 @@
             <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'chat'}">Chat</router-link>
             </li>
-            <li class="nav-item" v-if="this.player">
+            <li class="nav-item" v-if="user">
               <router-link active-class="active" exact class="nav-item nav-link" :to="{name: 'profile', params: {player_id: this.getThisPlayerId()}}">My Profile</router-link>
             </li>
             <li class="nav-item">
@@ -44,13 +44,18 @@
 
 <script>
   import VLink from '../components/VLink.vue';
-  import { db } from "../firebase";
+  import { db } from '../firebase';
+  import { mapState } from 'vuex';
 
   export default {
     data() {
       return {
         player: {}
       }
+    },
+
+    computed: {
+      ...mapState(['user'])
     },
 
     components: {
@@ -61,21 +66,20 @@
         source: db.ref("player")
       }
     },
+
     methods: {
       logOut(){
         firebase.auth().signOut()
-          .then (
-            () => {
-              this.$router.push('/login');
-            }
-          );
+          .then(() => {
+            this.$router.replace('login');
+          })
       },
+
       getThisPlayerId() {
-        var userId = firebase.auth().currentUser.uid;
         this.player = _.find(this.players, p => {
-          return p.userUid === userId;
+          return p.userUid === this.user.uid;
         });
-        return this.player ? this.player['.key'] : '';
+        return this.player ? this.player['.key'] : '/';
       }
     }
   }

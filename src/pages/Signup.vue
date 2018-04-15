@@ -54,7 +54,7 @@ export default {
                         firebase.auth().signInWithEmailAndPassword(this.email, this.password)
                             .then(
                                 user => {
-                                    this.$router.push('/home');
+                                    this.$router.replace('home');
                                 }
                             )
                     }
@@ -80,7 +80,7 @@ export default {
     #signup-page{
         display: flex;
         flex-direction: column;
-        height: 46rem;
+        height: 100vh;
         margin-bottom: 0;
         overflow: hidden;
     }

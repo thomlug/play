@@ -1,6 +1,5 @@
 <template>
   <main-layout>
-    <div  v-if="playerIsLoggedIn()">
     <div class="row">
       <div v-for="card in cards" :key="card.Title" class="col-md-3">
         <div class="card">
@@ -112,7 +111,7 @@
 <!-- starting line-up -->
         <div class="card play-card lineup">
          <div class="card-block">
-           <div v-for="(playerRow, index) in playerFormation" >
+           <div v-for="(playerRow, index) in playerFormation">
             <draggable class="row formation-row" 
             :move="dragPlayer"
               @start="drag=true" 
@@ -198,13 +197,7 @@
           </div>
         </div>
       </div>
-      </div>
-      </div>
-      <div v-else>
-        <!--HACK: to getCurrentPlayer re-evaulated so that it actually checks you're logged in-->
-        <h6>Please log in (you may have to refresh after logging in)</h6>
-        {{ getCurrentPlayer().first_name}}
-      </div>
+      </div>  
   </main-layout>
 </template>
 
@@ -215,6 +208,7 @@
   import Slick from 'vue-slick';
   import moment from 'moment';
   import draggable from 'vuedraggable';
+  import { mapState } from 'vuex';
 
 
   export default {
@@ -254,7 +248,8 @@
     computed:{
       editPlayerButtonText: function(){
         return this.editPlayerMode ? "Done Editing" : "Edit Formation"
-      }
+      },
+      ...mapState(['user'])
     },
     filters: {
       camelToSentence(value){
@@ -348,7 +343,7 @@
         return firebase.auth().currentUser !== null;
       },
       getCurrentPlayer(){
-        return _.find(this.players, (p) => {return p.userUid === firebase.auth().currentUser.uid;}) || {availability: 'unknown'};
+        return _.find(this.players, (p) => {return p.userUid === this.user.uid;}) || {availability: 'unknown'};
       },
       getNextGameInfo(){
         return this.getNextFixtureDetails().gameInfo || {};
