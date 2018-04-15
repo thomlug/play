@@ -153,28 +153,34 @@
             <h4 class="card-title">Subs <small>(Scroll to see all players) </small></h4>
             
               <div class="card-block row">
-                <div class= "scroller">
-                <div v-for="player in substitutePlayers()" :key="player['.key']" class="col-4">
-                  
-                  <div class="player-container text-center">
-                    <div @click="checkPlayerNavigation(player)" v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
-                     
-                      <template v-if="player.photo">
-                        <img class="img-fluid rounded-circle play-photo"
-                          v-bind:class="calculatePlayerClass(player)"
-                          :src="player.photo"/>
-                      </template>
-                      <template v-else>
-                        <div class="circle player-circle" v-bind:class="calculatePlayerClass(player)" >
-                          {{player.first_name | firstCharacter}}
+                  <draggable class="scroller"
+                  id="substitutePlayers" 
+                  :move="dragPlayer"
+                  @start="drag=true" 
+                  @end="drag=false"
+                  v-model="substitutePlayers"
+                  :options="{group:'players'}">
+                    <div v-for="player in substitutePlayers" :key="player['.key']" class="col-4">
+                      
+                      <div class="player-container text-center">
+                        <div @click="checkPlayerNavigation(player)" v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
+                        
+                          <template v-if="player.photo">
+                            <img class="img-fluid rounded-circle play-photo"
+                              v-bind:class="calculatePlayerClass(player)"
+                              :src="player.photo"/>
+                          </template>
+                          <template v-else>
+                            <div class="circle player-circle" v-bind:class="calculatePlayerClass(player)" >
+                              {{player.first_name | firstCharacter}}
+                            </div>
+                          </template>
+                          {{player.first_name}}
                         </div>
-                      </template>
-                      {{player.first_name}}
+                      </div>
+                      
                     </div>
-                  </div>
-                  
-                </div>
-                </div>
+                  </draggable>
               </div>
             </div>
         </div>
@@ -217,6 +223,9 @@
       Slick,
       draggable
     },
+    created: function(){
+      Promise.all([this.playerPromise, this.teamPromise]).then(this.setUpPlayerFormation);
+    },
     data: function(){
         return {
           cards:[],
@@ -242,7 +251,10 @@
           teams: {},
           editPlayerMode: false,
           player1Swap: null,
-          playerFormation: []
+          playerFormation: [],
+          substitutePlayers: [],
+          playerPromise: this.defer(function(resolve,reject){}),
+          teamPromise: this.defer(function(resolve,reject){})
       };
     },
     computed:{
@@ -270,14 +282,14 @@
       players:{
           source: db.ref('player'),
           readyCallback: function(){
-            for(var i = 0; i < 5; i++){
-              var formationRow = _.filter(this.players, function(player){return player.position[0] === i+1;})
-              this.playerFormation.push(_.sortBy(formationRow, function(player){return player.position[1];}));
-            }
+            this.playerPromise.resolve();
           }
       },
       teams:{
-        source: db.ref('team')
+        source: db.ref('team'),
+        readyCallback: function(){
+            this.teamPromise.resolve();
+          }
       },
       fixtures:{
           source: db.ref('match')
@@ -287,8 +299,34 @@
       }
     },
     methods: {
+      defer: function defer() {
+        var res, rej;
+
+        var promise = new Promise((resolve, reject) => {
+          res = resolve;
+          rej = reject;
+        });
+
+        promise.resolve = res;
+        promise.reject = rej;
+
+        return promise;
+      },
+      setUpPlayerFormation(){
+        for(var i = 0; i < 5; i++){
+              var formationRow = _.filter(this.getPlayersForCurrentTeam(), function(player){return player.position[0] === i+1;})
+              this.playerFormation.push(_.sortBy(formationRow, function(player){return player.position[1];}));
+        }
+        this.substitutePlayers = _.filter(this.getPlayersForCurrentTeam(), function(p){
+          return !_.isUndefined(p.position)
+          && p.position[0] === 0;
+        });
+        this.substitutePlayers = _.sortBy(this.substitutePlayers, function(player){return player.position[1];})
+      },
       dragPlayer: function(evt, originalEvent){
-         return this.editPlayerMode && evt.to.childElementCount < 5;
+         return this.editPlayerMode 
+         && (evt.to.id === "substitutePlayers"
+         || evt.to.childElementCount < 5);
       }, 
       playerSwap(player){
         if(!this.editPlayerMode){
@@ -321,6 +359,11 @@
               this.$firebaseRefs.players.child(player['.key']).child('position').set(player.position);
             })
           });
+          _.each(this.substitutePlayers, (player, playerIndex) => {
+            player.position[0] = 0;
+            player.position[1] = playerIndex + 1;
+            this.$firebaseRefs.players.child(player['.key']).child('position').set(player.position);      
+          })
         }
         this.editPlayerMode = !this.editPlayerMode;
         
@@ -386,13 +429,6 @@
       },
       activePlayers(){
         return _.filter(this.getPlayersForCurrentTeam(), function(p){return !_.isUndefined(p.position);});
-      },
-      substitutePlayers(){
-        var component = this;
-        return _.filter(this.getPlayersForCurrentTeam(), function(p){
-            return !_.isUndefined(p.position)
-            && _.every(p.position, function(pos){return pos === 0;});
-          });
       },
       getPlayer(row, col){
         var result =  _.find(this.activePlayers(), function(p){
