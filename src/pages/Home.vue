@@ -288,7 +288,7 @@
     },
     methods: {
       dragPlayer: function(evt, originalEvent){
-         return this.editPlayerMode;
+         return this.editPlayerMode && evt.to.childElementCount < 5;
       }, 
       playerSwap(player){
         if(!this.editPlayerMode){
@@ -378,6 +378,9 @@
         return _.filter(this.players, function(p){return !_.isUndefined(p[teamKey])});;
       },
       calculateFormationClass(e){
+          if(e === 5){
+            return "player-5-wide";
+          }
           var cols = Math.floor(12/e);
           return "col-"+cols + " col-md-"+cols;
       },
@@ -856,6 +859,10 @@ a:hover {
   color: inherit;
   text-transform: uppercase;
   font-size: 0.8rem;
+}
+
+.player-5-wide{
+  width:20%;
 }
 
 </style>
