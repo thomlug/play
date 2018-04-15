@@ -357,7 +357,6 @@ label{
 /* header styles */
 p{
   font-size: 0.8rem;
-  text-transform: uppercase;
   color: #50575e;
   font-weight: 500;
 }

@@ -180,8 +180,13 @@
         </div>
 <!-- game info -->
         <div class="card play-card">
+
           <div class="card-block">
           <h4 class="card-title">Game Info</h4>
+             <div class="game-info-header" >
+              <img src="../assets/pencil.png" class="edit-icon" >
+              <!-- <button class="btn btn-success" @click="save" v-if="editable">Save</button> -->
+            </div>
             <div class="card-block">
               <dl class="dl-horizontal list-group list-group-flush">
                 <template v-for="(value, key) in getNextGameInfo()">
@@ -776,6 +781,21 @@ margin-left: 0;
 
 }
 
+.edit-icon{
+  height:2.25rem;
+  border-radius: 20%;
+  border: none;
+  background: none;
+  float:right;
+}
+
+.edit-icon:hover{
+  cursor: pointer;
+  background: white;
+  color: white;
+  box-shadow: 3px 3px 3px -3px grey;
+  border-radius: 50%;
+}
 /* Header font styling */
 
 .body{
