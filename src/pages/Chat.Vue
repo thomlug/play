@@ -197,4 +197,10 @@ a{
   font-weight:300;
 }
 
+p{
+    font-weight: 400;
+    text-transform:none;
+}
+
+
 </style>
