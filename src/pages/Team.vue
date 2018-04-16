@@ -21,7 +21,7 @@
               <p class= "team-input-header" v-if="editable" > Active players</p>
               <span class="information-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
               <input class="information-block" v-if="editable" v-model="team.numberOfPlayers"/>
-              <h4 class="information-block">Managers</h4>
+              <h3 class="information-block">Managers</h3>
               <div class="managers-block" >              
                 <div class="col" v-for="(manager,key) in teamManagers" :key="key">
                   <Avatar  @click.native="goToPlayer(manager['.key'])" class="manager-photo" :image="manager.photo"/>
@@ -262,6 +262,8 @@ export default {
 
 .player-number {
   color: #bdbdbd;
+  font-weight: 400;
+  font-size: 1rem;
 }
 
 .edit-icon{
@@ -378,6 +380,12 @@ h1{
   font-weight: 550;
 
 }
+h3{
+  font-weight: 400;
+  color: #50575e;
+  font-size: large;
+}
+
 h4{
   font-weight: 550;
   color: #50575e;

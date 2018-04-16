@@ -178,6 +178,14 @@
               </div>
             </div>
         </div>
+
+                      <!-- <div class="content-block">
+              <div class= "input-header" v-if="editable" >
+              <h7 class= "input-header" > Preferred Position</h7>
+              </div> 
+                <span class="profile-info" v-if="!editable">{{player.preffered_position}}</span>
+                <input placeholder="Preffered position" v-if="editable" v-model="player.preffered_position"/>
+              </div> -->
 <!-- game info -->
         <div class="card play-card">
 
