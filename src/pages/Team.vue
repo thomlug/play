@@ -396,7 +396,7 @@ h4{
 .team-input-header{
   font-size: 0.8rem;
   float: left;
-  margin-left: -8.8rem;
+  margin-left: -13.8rem;
   color: lightgray;  
 }
 </style>
