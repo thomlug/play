@@ -110,7 +110,7 @@
         </div>
 <!-- starting line-up -->
         <div class="card play-card lineup">
-         <div class="card-block">
+         <div class="card-block-lineup">
            <div v-for="(playerRow, index) in playerFormation">
             <draggable class="row formation-row" 
             :move="dragPlayer"
@@ -535,6 +535,14 @@
   background: white;
 }
 
+.card-block-lineup{
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/28109837_10161510775925206_1864057297_n.png?alt=media&token=4bebff7b-aa0d-45b0-9a31-a392fc58de34");
+  background-color: transparent;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top;
+
+}
 
 .team-name{
   margin-top: 25px;
@@ -589,7 +597,7 @@ box-shadow: 3px 3px 3px -3px 50575e;
 }
 
 .player-container a{
-  color: #50575e;  
+  color: whitesmoke;  
 }
 
 @media (max-width: 768px) {
@@ -620,6 +628,9 @@ box-shadow: 3px 3px 3px -3px 50575e;
     max-width:128px;
     margin: 0 auto;
   }
+
+
+
   .team-circle{
     height: 128px;
     width: 128px;
