@@ -327,6 +327,16 @@ export default {
       teamPromise: this.defer(function(resolve, reject) {})
     };
   },
+  watch:{
+    players: {
+      deep:true,
+      handler(newPlayers, oldPlayers){
+        if(newPlayers !== undefined && !this.editPlayerMode){
+          this.setUpPlayerFormation();
+        }
+      }
+    }
+  },
   computed: {
     editPlayerButtonText: function() {
       return this.editPlayerMode ? "Done Editing" : "Edit Formation";
@@ -390,6 +400,7 @@ export default {
       return promise;
     },
     setUpPlayerFormation() {
+      this.playerFormation = [];
       for (var i = 0; i < 5; i++) {
         var formationRow = _.filter(this.getPlayersForCurrentTeam(), function(
           player
