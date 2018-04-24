@@ -366,7 +366,7 @@ export default {
     dragPlayer: function(evt, originalEvent) {
       return (
         this.editPlayerMode &&
-        (evt.to.id === "substitutePlayers" || evt.to.childElementCount < 5)
+          (evt.to === evt.from || evt.to.id === "substitutePlayers" || evt.to.childElementCount < 5)
       );
     },
     playerSwap(player) {
