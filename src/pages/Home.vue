@@ -113,6 +113,7 @@
          <div class="card-block-lineup">
            <div v-for="(playerRow, index) in playerFormation">
             <draggable class="row formation-row" 
+            v-if="editPlayerMode"
             :move="dragPlayer"
               @start="drag=true" 
               @end="drag=false"
@@ -142,6 +143,32 @@
                   </div>
                 </div>
               </draggable>
+              <div v-if="!editPlayerMode" class="row formation-row">
+                <div 
+                  v-for="player in playerRow"
+                    :key="player['.key']"
+                    class="center-block text-center" 
+                    v-bind:class="calculateFormationClass(playerRow.length)">
+                    <div class="player-container text-center">
+                      <template v-if="player.photo">
+                        <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
+                        <img class="img-fluid rounded-circle play-photo" 
+                          v-bind:class="calculatePlayerClass(player)"  
+                          :src="player.photo"/>
+                        {{player.first_name}}
+                        </router-link>
+                      </template>
+                      <template v-else>
+                        <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
+                          <div class="circle player-circle" v-bind:class="calculatePlayerClass(player)">
+                            {{player.first_name | firstCharacter}} 
+                          </div>
+                          {{player.first_name}}
+                        </router-link>
+                      </template>
+                    </div>
+                  </div>
+              </div>
             </div>
           </div>
         </div>
@@ -159,6 +186,7 @@
                   @start="drag=true" 
                   @end="drag=false"
                   v-model="substitutePlayers"
+                  v-if="editPlayerMode"
                   :options="{group:'players'}">
                     <div v-for="player in substitutePlayers" :key="player['.key']" class="col-4">
                       
@@ -181,6 +209,29 @@
                       
                     </div>
                   </draggable>
+                  <div class="scroller"
+                    v-if="!editPlayerMode">
+                    <div v-for="player in substitutePlayers" :key="player['.key']" class="col-4">
+                      
+                      <div class="player-container text-center">
+                        <div @click="checkPlayerNavigation(player)" v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
+                        
+                          <template v-if="player.photo">
+                            <img class="img-fluid rounded-circle play-photo"
+                              v-bind:class="calculatePlayerClass(player)"
+                              :src="player.photo"/>
+                          </template>
+                          <template v-else>
+                            <div class="circle player-circle" v-bind:class="calculatePlayerClass(player)" >
+                              {{player.first_name | firstCharacter}}
+                            </div>
+                          </template>
+                          {{player.first_name}}
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
               </div>
             </div>
         </div>
