@@ -104,8 +104,12 @@
       <div class="col-xl-6">
         <div class="card play-card">
           <div class="card-block">
-            <button class="float-right btn btn-primary" v-on:click="toggleEditPlayersPositions()">{{editPlayerButtonText}}</button>
+            <span class="float-right">
+              <button class="btn btn-danger" v-if="editPlayerMode" v-on:click="cancelEditPlayersPositions()">Cancel Editing</button>
+              <button class="btn btn-primary" v-on:click="toggleEditPlayersPositions()">{{editPlayerButtonText}}</button>
+            </span>
             <h4 class="card-title">Starting Lineup</h4>
+            <h4><small>Last Updated {{moment(getNextFixtureDetails().dateFormationLastUpdated).calendar()}}</small></h4>
           </div>
         </div>
 <!-- starting line-up -->
@@ -463,13 +467,16 @@ export default {
     toggleEditGameInfo() {
       if (this.editGameInfo) {
         var updates = {}
-        var currentTeam = this.getNextFixtureDetails();
-        updates['teamFixture/' + currentTeam['.key'] + '/gameInfo'] = this.gameInfo;
+        var currentFixture = this.getNextFixtureDetails();
+        updates['teamFixture/' + currentFixture['.key'] + '/gameInfo'] = this.gameInfo;
         db.ref().update(updates);
       }
       this.editGameInfo = !this.editGameInfo;
     },
-
+    cancelEditPlayersPositions(){
+      this.setUpPlayerFormation();
+      this.editPlayerMode = false;
+    },
     toggleEditPlayersPositions() {
       if (this.editPlayerMode) {
         _.each(this.playerFormation, (row, rowIndex) => {
@@ -490,6 +497,10 @@ export default {
             .child("position")
             .set(player.position);
         });
+        var updates = {};
+        var currentFixture = this.getNextFixtureDetails();
+        updates['teamFixture/' + currentFixture['.key'] + '/dateFormationLastUpdated'] = this.moment.utc().format();
+        db.ref().update(updates);
       }
       this.editPlayerMode = !this.editPlayerMode;
     },
