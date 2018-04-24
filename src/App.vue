@@ -18,9 +18,7 @@ export default {
   },
 
   computed: {
-    user() {
-      this.$store.getters.user;
-    }
+    ...mapState(['user'])
   },
 
   beforeCreate() {
