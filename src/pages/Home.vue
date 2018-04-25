@@ -258,15 +258,15 @@
           </div>
           <div class="card-block">
             <div class="list-group list-group-flush">
-              <template v-for="(value, key) in this.gameInfo">
-                <div class="list-group-item" :key=key>
+              <template v-for="gameInfo in this.gameInfoList">
+                <div class="list-group-item">
                   <div class="col text-align-left" v-if="!editGameInfo">
-                    <p>{{key | camelToSentence}}</p>
-                    <p>{{value}}</p>
+                    <p>{{gameInfo[0] | camelToSentence}}</p>
+                    <p>{{gameInfo[1]}}</p>
                   </div>
                   <div class="col text-align-left" v-else>
-                    <p>{{key | camelToSentence}}</p>
-                    <input v-model="gameInfo[key]">
+                    <input v-model="gameInfo[0]">
+                    <input v-model="gameInfo[1]">
                   </div>
                 </div>
               </template>
@@ -321,7 +321,7 @@ export default {
       },
       players: {},
       teams: {},
-      gameInfo: [],
+      gameInfoList: [],
       editPlayerMode: false,
       editGameInfo: false,
       player1Swap: null,
@@ -385,7 +385,8 @@ export default {
     teamFixtures: {
       source: db.ref("teamFixture"),
       readyCallback: function() {
-        this.gameInfo = this.getNextGameInfo();
+        var gameInfo = this.getNextGameInfo();
+        this.gameInfoList = _.toPairs(gameInfo);
       }
     }
   },
@@ -468,7 +469,8 @@ export default {
       if (this.editGameInfo) {
         var updates = {}
         var currentFixture = this.getNextFixtureDetails();
-        updates['teamFixture/' + currentFixture['.key'] + '/gameInfo'] = this.gameInfo;
+        var gameInfo = Object.assign(...this.gameInfoList.map(d => ({[d[0]]: d[1]})));
+        updates['teamFixture/' + currentFixture['.key'] + '/gameInfo'] = gameInfo;
         db.ref().update(updates);
       }
       this.editGameInfo = !this.editGameInfo;
