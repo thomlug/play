@@ -16,20 +16,25 @@ import { store } from './store/store';
 
 function requireAuth(to, from, next) {
     function proceed() {
+        console.log(store.getters.user);
         if (store.getters.user) {
             next();
         } else {
+            console.log('proceeding to login');
             next('/login');
         }
     }
 
-    if (!store.getters.user && from.path == '/login') {
-        store.watch(store.getters.user, () => {
-            if (store.getters.user) {
+    if (!store.getters.user && from.path !== '/login') {
+        store.watch(state => state.user, (newUser, oldUser) => {
+            console.log('watching state from ' +  from.path);
+            console.log(oldUser, newUser)
+            if (newUser) {
                 proceed();
             }
         });
     } else {
+        console.log('not watching state');
         proceed();
     }
 }

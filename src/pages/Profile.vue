@@ -37,7 +37,7 @@
                 </form>
               </template>                
               <div class= "input-header" v-if="editable" >
-              <h7 class= "input-header" > Name</h7>
+                <h6> Name</h6>
               </div> 
                 <span class="text-center" v-if="!editable">
                   <h4>{{player.first_name}} {{player.last_name}}</h4>
@@ -56,7 +56,7 @@
 
               <div class="content-block">
               <div class= "input-header" v-if="editable" >
-              <h7 class= "input-header" > Preferred Position</h7>
+                <h6> Preferred Position</h6>
               </div> 
                 <span class="profile-info" v-if="!editable">{{player.preffered_position}}</span>
                 <input placeholder="Preffered position" v-if="editable" v-model="player.preffered_position"/>
@@ -64,9 +64,9 @@
 
               <div class="content-block">
                 <div class= "input-header" v-if="editable" >
-                <h7 class= "input-header" > Phone Number</h7>
+                  <h6> Phone Number</h6>
                 </div>
-                <i class="fa fa-phone"></i> 
+                <i class="fa fa-phone" v-if="!editable"></i> 
                 <a  v-if="!editable" :href="'tel:'+player.phone">{{player.phone}} </a>
                 <input placeholder="Phone number"  v-if="editable" v-model="player.phone"/>
 
@@ -74,9 +74,9 @@
 
               <span class="content-block">
               <div class= "input-header" v-if="editable" >
-              <h7 class= "input-header" > Email</h7>
+              <h6 class= "input-header" > Email</h6>
               </div>
-                <i class="fa fa-envelope"></i>
+                <i class="fa fa-envelope" v-if="!editable"></i>
                 <a  v-if="!editable" :href="'mailto:'+player.email">{{player.email}} </a>
                 <input placeholder="Email" v-if="editable" v-model="player.email"/>
               </span>
@@ -95,13 +95,6 @@
         </div>
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
     </div>
-
-<!-- test -->
-      
-
-  
-</div>
-
   </main-layout>
 </template>
 
@@ -433,6 +426,11 @@ input{
   margin-left: 5px;
 }
 
+.input-header h6 {
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+
 #hide input[type=file] {
 display:none;
 margin:0px;
@@ -466,7 +464,7 @@ h1{
   font-weight: 550;
 }
 
-h7{
+h6{
   font-size: 0.8rem;
   float: left;
   margin-left: -0rem;

@@ -71,7 +71,9 @@
       logOut(){
         firebase.auth().signOut()
           .then(() => {
-            // this.$router.replace('login');
+            localStorage.removeItem('firebase:authUser:AIzaSyAXGFFPs0Hsax2ryPMbuNGj1kj0MiBRnUg:[DEFAULT]');
+            this.$store.commit('setUser', false);
+            this.$router.replace('login');
           })
       },
 

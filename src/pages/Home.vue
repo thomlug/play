@@ -267,12 +267,14 @@
                       <h6 class="form-text" >{{gameInfo[1]}}</h6>
                     </div>
                   </div>
-                  <form v-else>
+                  <form class="game-info-form" v-else>
                     <div class="form-group">
                       <button type="button" class="close float-right" aria-label="Close" @click="removeGameInfo(index)">
                         <span aria-hidden="true">&times;</span>
                       </button>
-                      <input v-model="gameInfo[0]" class="form-control">
+                      <label for="gameInfoTitle">Title</label>
+                      <input style="margin-bottom: 10px;" v-model="gameInfo[0]" class="form-control">
+                      <label for="gameInfoDetails">Details</label>
                       <input v-model="gameInfo[1]" class="form-control">
                     </div>
                   </form>
@@ -667,6 +669,19 @@ export default {
 <style scoped>
 .game-info {
   font-size: small !important;
+}
+
+.game-info h4 {
+  font-weight: 550;
+  font-size: 1rem;
+}
+
+.game-info-form {
+  width: 100% !important;
+}
+
+.form-text {
+  font-size: 0.8rem;
 }
 
 .centered-col {
