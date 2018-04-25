@@ -69,12 +69,8 @@
 
     methods: {
       logOut(){
-        firebase.auth().signOut()
-          .then(() => {
-            localStorage.removeItem('firebase:authUser:AIzaSyAXGFFPs0Hsax2ryPMbuNGj1kj0MiBRnUg:[DEFAULT]');
-            this.$store.commit('setUser', false);
-            this.$router.replace('login');
-          })
+        this.$store.dispatch('userSignOut');
+        this.$router.replace('/login')
       },
 
       getThisPlayerId() {

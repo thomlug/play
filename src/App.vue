@@ -24,7 +24,7 @@ export default {
   beforeCreate() {
     firebase.auth().onAuthStateChanged(firebaseUser => {
       // initially user = null, after auth it will be either <fb_user> or false
-      this.$store.commit('setUser', firebaseUser || false);
+      this.$store.dispatch('autoSignIn', firebaseUser);
       if (firebaseUser && (this.$route.path === '/login' || this.$route.path === '/signup')) {
         console.log(this.$route.path);
         console.log('rerouting to home', firebaseUser);

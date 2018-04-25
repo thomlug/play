@@ -46,6 +46,7 @@ export default {
     var uiConfig = {
       callbacks: {
         signInSuccess: function(currentUser, credential, redirectUrl) {
+          this.$store.dispatch('autoSignIn', currentUser);
           return true;
         }
       },
@@ -72,16 +73,8 @@ export default {
 
   methods: {
     signIn() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(user => {
-          this.$router.replace("home");
-        })
-        .catch(error => {
-          //handle errors here
-          alert("Oops " + error.message);
-        });
+      this.$store.dispatch('userSignIn', {email: this.email, password: this.password});
+      this.$router.replace('/home');
     }
   }
 };
