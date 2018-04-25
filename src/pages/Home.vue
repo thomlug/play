@@ -254,20 +254,28 @@
             <div class="card-title">
               <h4>Game Info</h4>
               <button class="float-right btn btn-primary" @click="toggleEditGameInfo()">{{editGameInfoButtonText}}</button>
+              <Avatar class="plus-circle" :image="this.plusCircle" @click.native="newGameInfo()" alt="plus" v-if="editGameInfo" />
             </div>
           </div>
           <div class="card-block">
             <div class="list-group list-group-flush">
-              <template v-for="gameInfo in this.gameInfoList">
-                <div class="list-group-item">
-                  <div class="col text-align-left" v-if="!editGameInfo">
-                    <p>{{gameInfo[0] | camelToSentence}}</p>
-                    <p>{{gameInfo[1]}}</p>
+              <template v-for="(gameInfo,index) in this.gameInfoList">
+                <div class="list-group-item game-info" :key="index">
+                  <div v-if="!editGameInfo">
+                    <div class="form-group game-info">
+                      <h4 class="form-text" >{{gameInfo[0] | camelToSentence}}</h4>
+                      <h6 class="form-text" >{{gameInfo[1]}}</h6>
+                    </div>
                   </div>
-                  <div class="col text-align-left" v-else>
-                    <input v-model="gameInfo[0]">
-                    <input v-model="gameInfo[1]">
-                  </div>
+                  <form v-else>
+                    <div class="form-group">
+                      <button type="button" class="close float-right" aria-label="Close" @click="removeGameInfo(index)">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <input v-model="gameInfo[0]" class="form-control">
+                      <input v-model="gameInfo[1]" class="form-control">
+                    </div>
+                  </form>
                 </div>
               </template>
             </div>
@@ -285,12 +293,15 @@ import MainLayout from "../layouts/Main.vue";
 import Slick from "vue-slick";
 import moment from "moment";
 import draggable from "vuedraggable";
+import Avatar from "../components/Avatar.vue";
 import { mapState } from "vuex";
+import PlusCircle from "../assets/plus-circle.png";
 
 export default {
   components: {
     MainLayout,
     Slick,
+    Avatar,
     draggable
   },
   created: function() {
@@ -328,14 +339,15 @@ export default {
       playerFormation: [],
       substitutePlayers: [],
       playerPromise: this.defer(function(resolve, reject) {}),
-      teamPromise: this.defer(function(resolve, reject) {})
+      teamPromise: this.defer(function(resolve, reject) {}),
+      plusCircle: PlusCircle
     };
   },
-  watch:{
+  watch: {
     players: {
-      deep:true,
-      handler(newPlayers, oldPlayers){
-        if(newPlayers !== undefined && !this.editPlayerMode){
+      deep: true,
+      handler(newPlayers, oldPlayers) {
+        if (newPlayers !== undefined && !this.editPlayerMode) {
           this.setUpPlayerFormation();
         }
       }
@@ -348,7 +360,7 @@ export default {
     editGameInfoButtonText: function() {
       return this.editGameInfo ? "Save" : "Edit Game Info";
     },
-    ...mapState(['user'])
+    ...mapState(["user"])
   },
   filters: {
     camelToSentence(value) {
@@ -433,7 +445,9 @@ export default {
     dragPlayer: function(evt, originalEvent) {
       return (
         this.editPlayerMode &&
-          (evt.to === evt.from || evt.to.id === "substitutePlayers" || evt.to.childElementCount < 5)
+        (evt.to === evt.from ||
+          evt.to.id === "substitutePlayers" ||
+          evt.to.childElementCount < 5)
       );
     },
     playerSwap(player) {
@@ -467,15 +481,33 @@ export default {
     },
     toggleEditGameInfo() {
       if (this.editGameInfo) {
-        var updates = {}
+        var updates = {};
         var currentFixture = this.getNextFixtureDetails();
-        var gameInfo = Object.assign(...this.gameInfoList.map(d => ({[d[0]]: d[1]})));
-        updates['teamFixture/' + currentFixture['.key'] + '/gameInfo'] = gameInfo;
-        db.ref().update(updates);
+        var gameInfo = Object.assign(
+          ...this.gameInfoList.map(d => ({ [d[0]]: d[1] }))
+        );
+        updates[
+          "teamFixture/" + currentFixture[".key"] + "/gameInfo"
+        ] = gameInfo;
+        db
+          .ref()
+          .update(updates)
+          .catch(error => {
+            alert(error.mesasge);
+          });
       }
       this.editGameInfo = !this.editGameInfo;
     },
-    cancelEditPlayersPositions(){
+
+    newGameInfo() {
+      this.gameInfoList.push(["", ""]);
+    },
+
+    removeGameInfo(index) {
+      this.gameInfoList.splice(index, 1);
+    },
+
+    cancelEditPlayersPositions() {
       this.setUpPlayerFormation();
       this.editPlayerMode = false;
     },
@@ -501,7 +533,9 @@ export default {
         });
         var updates = {};
         var currentFixture = this.getNextFixtureDetails();
-        updates['teamFixture/' + currentFixture['.key'] + '/dateFormationLastUpdated'] = this.moment.utc().format();
+        updates[
+          "teamFixture/" + currentFixture[".key"] + "/dateFormationLastUpdated"
+        ] = this.moment.utc().format();
         db.ref().update(updates);
       }
       this.editPlayerMode = !this.editPlayerMode;
@@ -631,6 +665,10 @@ export default {
 </script>
 
 <style scoped>
+.game-info {
+  font-size: small !important;
+}
+
 .centered-col {
   display: flex;
   flex-direction: column;
@@ -979,6 +1017,15 @@ export default {
     transform: rotate(90deg);
     transform-origin: right top;
   }
+}
+
+.close {
+    color: #E53935; 
+}
+
+.plus-circle:hover {
+ border-color: #0db4a6 !important;
+ border: 1px solid;
 }
 
 .edit-icon {
