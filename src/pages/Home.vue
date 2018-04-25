@@ -348,7 +348,7 @@ export default {
     editGameInfoButtonText: function() {
       return this.editGameInfo ? "Save" : "Edit Game Info";
     },
-    ...mapState(["user"])
+    ...mapState(['user'])
   },
   filters: {
     camelToSentence(value) {

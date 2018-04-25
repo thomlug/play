@@ -22,13 +22,13 @@ export default {
   },
 
   beforeCreate() {
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged(firebaseUser => {
       // initially user = null, after auth it will be either <fb_user> or false
-      this.$store.commit('setUser', user || null);
-      if (user && (this.$route.path === '/login' || this.$route.path === '/signup')) {
-        console.log('rerouting to home', user);
+      this.$store.commit('setUser', firebaseUser || false);
+      if (firebaseUser && (this.$route.path === '/login' || this.$route.path === '/signup')) {
+        console.log('rerouting to home', firebaseUser);
         this.$router.replace('/home');
-      } else if (!user && (this.$route.path === '/login' || this.$route.path === '/signup')) {
+      } else if (!firebaseUser && (this.$route.path === '/login' || this.$route.path === '/signup')) {
         this.$router.replace('/login');
         console.log('rerouting to login');
       }else {
