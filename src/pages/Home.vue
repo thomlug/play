@@ -676,6 +676,10 @@ export default {
   font-size: 1rem;
 }
 
+.game-info > h6 {
+  text-align: left !important;
+}
+
 .game-info-form {
   width: 100% !important;
 }
