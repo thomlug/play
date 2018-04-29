@@ -122,7 +122,7 @@
               @start="drag=true" 
               @end="drag=false"
               v-model="playerFormation[index]"
-              :options="{group:'players', delay:100}">
+              :options="{group:'players'}">
                 <div v-for="player in playerRow"
                   :key="player['.key']"
                   class="center-block text-center" 
@@ -191,7 +191,7 @@
                   @end="drag=false"
                   v-model="substitutePlayers"
                   v-if="editPlayerMode"
-                  :options="{group:'players', delay:100}">
+                  :options="{group:'players'}">
                     <div v-for="player in substitutePlayers" :key="player['.key']" class="col-4">
                       
                       <div class="player-container text-center">
