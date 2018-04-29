@@ -20,8 +20,6 @@
                 </div>
             </div>
         </div>
-
-        <button @click="scrollToEnd">Scroll to end</button>
   </main-layout>
 </template>
 
@@ -45,7 +43,6 @@
     },
     watch:{
         messages: function(){
-            console.log('scrolling');
             this.$nextTick(this.scrollToEnd);
         }
     },
@@ -81,6 +78,7 @@
                 })
                 .filter(function(message){return message.conversation === currentTeamId;})
                .value();
+            this.$nextTick(this.scrollToEnd);
             return filteredMessages;
         },
         getPhotoForUser(userUid){
@@ -107,10 +105,7 @@
     firebase() {
       return{
         messages: { 
-            source: chatRef,
-            readyCallback:function(){
-                this.scrollToEnd();
-            }
+            source: chatRef
         },
         conversations:{
             source: db.ref('conversation')
@@ -124,8 +119,11 @@
       };
     },
     watch:{
-        messages(){
-            this.scrollToEnd();
+        messages:{
+            deep:true,
+            handler(){
+                    this.$nextTick(function(){this.scrollToEnd();});
+                }
         }
     }
   }
