@@ -20,8 +20,6 @@
                 </div>
             </div>
         </div>
-
-        <button @click="scrollToEnd">Scroll to end</button>
   </main-layout>
 </template>
 
