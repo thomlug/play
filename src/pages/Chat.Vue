@@ -65,9 +65,23 @@
             chatRef.push(this.newMessage);
             this.newMessage.text = '';
         },
+        updateLastSeenMessageTime(){
+            if(this.currentUser != null){
+                var playerId = this.getPlayerIdForUser(this.currentUser.uid);
+                if(playerId != null){
+                     this.$firebaseRefs.players
+                    .child(playerId)
+                    .child("lastChatViewedDate")
+                    .set(this.moment.utc().format());
+                }
+            }
+        },
         scrollToEnd: function() {    	
             var container = this.$el.querySelector("#chat-pane");
             container.scrollTop = container.scrollHeight;
+
+         
+
         },
         getConversationMessages(){
             var currentTeamId = _.isUndefined(this.getCurrentTeam()) ? '':  this.getCurrentTeam()['.key'];
@@ -114,7 +128,8 @@
             source: db.ref('team')
         },
         players:{
-          source: db.ref('player')
+            source: db.ref('player'),
+            readyCallback(){this.updateLastSeenMessageTime();}
         }
       };
     },
