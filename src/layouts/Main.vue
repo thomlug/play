@@ -13,7 +13,7 @@
               <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'home'}">Dashboard</router-link>
             </li>
             <li class="nav-item">
-              <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'chat'}">Chat</router-link>
+              <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'chat'}">Chat<span class="button-badge" v-if="isThereNewChatMessage()">&nbsp;</span></router-link>
             </li>
             <li class="nav-item" v-if="user">
               <router-link active-class="active" exact class="nav-item nav-link" :to="{name: 'profile', params: {player_id: this.getThisPlayerId()}}">My Profile</router-link>
@@ -37,7 +37,6 @@
           </ul>
         </div>
       </nav>
-
     <slot></slot>
   </div>
 </template>
@@ -64,6 +63,9 @@
     firebase: {
       players: {
         source: db.ref("player")
+      },
+      messages:{
+        source: db.ref("chat").limitToLast(1)
       }
     },
 
@@ -78,7 +80,15 @@
           return p.userUid === this.user.uid;
         });
         return this.player ? this.player['.key'] : '/';
-      }
+      },
+      isThereNewChatMessage(){
+        var latestMessage = this.messages[0];
+        if(latestMessage != null && this.player.lastChatViewedDate != null){
+          return latestMessage.date > this.player.lastChatViewedDate;
+        }
+
+        return false;
+      },
     }
   }
   
@@ -144,4 +154,17 @@ a:hover {
   cursor: pointer;
   font-weight: 300;
 }
+
+.button-badge {
+  background-color: #fa3e3e;
+  border-radius: 2px;
+  color: white;
+ 
+  padding: 1px 3px;
+  font-size: 10px;
+  position: relative;
+  top: -5px;
+  left: 3px;
+}
+
 </style>
