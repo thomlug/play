@@ -105,7 +105,7 @@
         <div class="card play-card">
           <div class="card-block">
             <span class="float-right">
-              <button class="btn btn-danger" v-if="editPlayerMode" v-on:click="cancelEditPlayersPositions()">Cancel Editing</button>
+              <button class="btn btn-danger" v-if="editPlayerMode" v-on:click="cancelEditPlayersPositions()">Cancel</button>
               <button class="btn btn-primary" v-on:click="toggleEditPlayersPositions()">{{editPlayerButtonText}}</button>
             </span>
             <h4 class="card-title">Starting Lineup</h4>
@@ -357,7 +357,7 @@ export default {
   },
   computed: {
     editPlayerButtonText: function() {
-      return this.editPlayerMode ? "Done Editing" : "Edit Formation";
+      return this.editPlayerMode ? "Save" : "Edit Formation";
     },
     editGameInfoButtonText: function() {
       return this.editGameInfo ? "Save" : "Edit Game Info";
