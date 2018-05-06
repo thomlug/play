@@ -50,45 +50,13 @@
             </div>
           </div>
         </div>
-        <div class="card play-card">
-          <div class="card-block">
-            
-    <!-- 3 columns - for clock icon-->
-            <div class="row">
-             <div class="column-time-left"></div>
-              <div class="left">
-            <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/001-clock-with-white-face.png?alt=media&token=703b182a-ed12-4443-a194-34315062dc01" class="clock-icon">
-              </div>
-                <div class="column-time">
-                <h2>{{moment(getNextFixture().date).format("hh:mm A")}}</h2>
-                <h6>{{moment(getNextFixture().date).format("dddd DD MMM YY")}}</h6>
-                <div class="middle"></div>
-               </div>
-               <div class="column-time-right"></div>
-              <div class="right"></div>
-           </div>
-          </div>          
-        </div>
 
-      <div class="card play-card">
-          <div class="card-block">
+      <!-- Date and time -->
+      <date-card :fixture="this.getNextFixture()"></date-card>
 
-            <div class="row">
-             <div class="column-time-left"></div>
-              <div class="left">
-            <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="clock-icon">
-              </div>
+      <!-- Location -->
+      <location-card :fixture="this.getNextFixture()"></location-card>
 
-                <div class="column-time">
-            <!-- <div class="text-center"> -->
-             <h5>{{getNextFixture().ground}}</h5>
-                <div class="middle"></div>
-               </div>
-               <div class="column-time-right"></div>
-              <div class="right"></div>
-            </div>
-          </div>          
-      </div>
         
 <!-- update your status -->
         <div class="card play-card">
@@ -298,13 +266,17 @@ import draggable from "vuedraggable";
 import Avatar from "../components/Avatar.vue";
 import { mapState } from "vuex";
 import PlusCircle from "../assets/plus-circle.png";
+import DateCard from '../components/EditablePlayCard/DateCard/DateCard.vue';
+import LocationCard from '../components/EditablePlayCard/LocationCard/LocationCard.vue';
 
 export default {
   components: {
     MainLayout,
     Slick,
     Avatar,
-    draggable
+    draggable,
+    DateCard,
+    LocationCard
   },
   created: function() {
     Promise.all([this.playerPromise, this.teamPromise]).then(

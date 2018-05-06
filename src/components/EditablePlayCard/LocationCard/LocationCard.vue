@@ -1,0 +1,67 @@
+<template>
+    <three-column-edit-card :clickFn="toggleEdit">    
+        <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="location-icon">
+        <div slot="main-content">    
+            <h5 v-if="!this.editable">{{this.currentFixture.ground}}</h5> 
+            <input v-else type="text" :v-model="this.currentFixture.ground">
+        </div>    
+    </three-column-edit-card>
+</template>
+
+<script>
+import ThreeColumnEditCard from "../ThreeColumnEditableCard.vue";
+
+export default {
+  props: {
+    fixture: {
+        type: Object,
+        required: true
+    }
+  },
+
+  data() {
+      return {
+          currentFixture: {},
+          editable: false
+      }
+  },
+
+  watch: {
+      fixture: function(value) {
+          this.currentFixture = value;
+      }
+  },      
+
+  components: {
+    ThreeColumnEditCard
+  },
+
+  methods: {
+      toggleEdit() {
+          this.editable = !this.editable;
+          console.log("Location card clicked");
+      }
+  }
+};
+</script>
+
+<style scoped>
+.location-icon {
+  height: 1.8rem;
+  border-radius: 20%;
+  border: none;
+  background: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: none;
+}
+
+h6 {
+  color: rgb(175, 175, 175);
+  font-weight: none;
+  text-align: center;
+  margin-bottom: 0rem;
+}
+</style>
