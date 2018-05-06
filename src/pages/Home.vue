@@ -510,7 +510,7 @@ export default {
         updates[
           "teamFixture/" + currentFixture[".key"] + "/dateFormationLastUpdated"
         ] = this.moment.utc().format();
-        db.ref().set(updates);
+        db.ref().update(updates);
       }
       this.editPlayerMode = !this.editPlayerMode;
     },
