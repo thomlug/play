@@ -55,7 +55,7 @@
       <date-card :fixture="this.getNextFixture()"></date-card>
 
       <!-- Location -->
-      <location-card :fixture="this.getNextFixture()"></location-card>
+      <location-card :fixture="this.getNextFixture()" @location-changed="fixtureLocationChanged"></location-card>
 
         
 <!-- update your status -->
@@ -510,7 +510,7 @@ export default {
         updates[
           "teamFixture/" + currentFixture[".key"] + "/dateFormationLastUpdated"
         ] = this.moment.utc().format();
-        db.ref().update(updates);
+        db.ref().set(updates);
       }
       this.editPlayerMode = !this.editPlayerMode;
     },
@@ -633,6 +633,12 @@ export default {
           });
         }
       }
+    },
+    fixtureLocationChanged(ground) {
+      var updates = {};
+      var currentFixture = this.getNextFixture();
+      updates["match/" + currentFixture[".key"] + "/ground"] = ground;
+      db.ref().update(updates);
     }
   }
 };
