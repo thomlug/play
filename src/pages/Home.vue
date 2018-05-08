@@ -243,9 +243,9 @@
                       <button type="button" class="close float-right" aria-label="Close" @click="removeGameInfo(index)">
                         <span aria-hidden="true">&times;</span>
                       </button>
-                      <label for="gameInfoTitle">Title</label>
-                      <input style="margin-bottom: 10px;" v-model="gameInfo[0]" class="form-control">
-                      <label for="gameInfoDetails">Details</label>
+                      <h7 for="gameInfoTitle">Title</h7>
+                      <input style="margin-bottom: 5px;" v-model="gameInfo[0]" class="form-control">
+                      <h7 for="gameInfoDetails">Details</h7>
                       <input v-model="gameInfo[1]" class="form-control">
                     </div>
                   </form>
@@ -654,7 +654,7 @@ export default {
 
 .game-info h4 {
   font-weight: 550;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .game-info > h6 {
@@ -1114,6 +1114,11 @@ h6 {
   margin-bottom: 0rem;
 }
 
+h7 {
+  color: gray;
+  font-weight: 400;
+}
+
 small {
   color: rgb(175, 175, 175);
   font-weight: none;
@@ -1133,7 +1138,16 @@ a:hover {
   text-transform: uppercase;
   font-size: 0.8rem;
 }
-
+.form-control{
+  color: rgb(175, 175, 175);
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  border: 0px;
+  border-radius: 0px;
+  border-bottom: 1px solid #e3e3e3;
+  text-transform: uppercase;
+  font-family: 'Roboto Condensed', sans-serif;
+}
 .player-5-wide {
   width: 20%;
 }
