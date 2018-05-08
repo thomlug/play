@@ -10,7 +10,7 @@
                 </div>    
                 <div class="right">
                     <button v-if="!editable" class="btn edit-button" @click="clicked">
-                        <i class="fa fa-edit"></i>
+                        <i class="fa fa-pencil"></i>
                     </button>
                     <button v-else class="btn check-button" @click="clicked">
                         <i class="fa fa-check"></i>

@@ -215,14 +215,17 @@
                 <span class="profile-info" v-if="!editable">{{player.preffered_position}}</span>
                 <input placeholder="Preffered position" v-if="editable" v-model="player.preffered_position"/>
               </div> -->
+
+
 <!-- game info -->
         <div class="card play-card">
-
           <div class="card-block">
-            <div class="card-title">
-              <h4>Game Info</h4>
+            <span class="float-right">
               <button class="float-right btn btn-primary" @click="toggleEditGameInfo()">{{editGameInfoButtonText}}</button>
               <Avatar class="plus-circle" :image="this.plusCircle" @click.native="newGameInfo()" alt="plus" v-if="editGameInfo" />
+            </span>
+            <div class="card-title">
+              <h4>Game Info</h4>
             </div>
           </div>
           <div class="card-block">
@@ -329,7 +332,7 @@ export default {
   },
   computed: {
     editPlayerButtonText: function() {
-      return this.editPlayerMode ? "Save" : "Edit Formation";
+      return this.editPlayerMode ? "Save" : "Edit Line-Up";
     },
     editGameInfoButtonText: function() {
       return this.editGameInfo ? "Save" : "Edit Game Info";
@@ -1020,9 +1023,18 @@ export default {
     color: #E53935; 
 }
 
+.plus-circle{
+
+ border: 0px solid;
+ box-shadow: 2px 2px -2px 2px grey;
+ margin-right: 20px;
+}
+
 .plus-circle:hover {
- border-color: #0db4a6 !important;
- border: 1px solid;
+
+ border: 0px solid;
+ box-shadow: 4px 4px -4px 4px grey;
+ margin-right: 20px;
 }
 
 .edit-icon {
