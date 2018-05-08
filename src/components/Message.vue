@@ -93,7 +93,7 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    border: 2px solid #2acad0;
+    border: 1.5px solid #e5e5e5;
 }
 .chat .day {
     position: relative;
