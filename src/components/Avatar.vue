@@ -14,6 +14,7 @@ export default {
 img {
   border-radius: 50%;
   box-shadow: 2px 2px 2px -2px grey;
+  border: 2px solid #e5e5e5;
 }
 
 img:hover{
