@@ -835,7 +835,7 @@ export default {
   text-align: center;
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
-  background: #2bcad0;
+  background: linear-gradient(-90deg,#2faad0,#2bcad0);
   font-weight: bold;
   font-size: 4rem;
   font-family: "Roboto", sans-serif;
@@ -996,7 +996,7 @@ export default {
   top: 4.5rem;
   left: 1rem;
   right: 1rem;
-  bottom: 1rem;
+  bottom: 0rem;
   width: calc(#{$finalHeight} + #{$scrollBarHeight});
   max-height: $finalWidth;
   margin: 0;

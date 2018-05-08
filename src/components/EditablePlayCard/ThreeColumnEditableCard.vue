@@ -12,7 +12,9 @@
                     <button v-if="!editable" class="btn edit-button" @click="clicked">
                         <i class="fa fa-edit"></i>
                     </button>
-                    <button v-else class="btn btn-primary" @click="clicked">Save</button>
+                    <button v-else class="btn check-button" @click="clicked">
+                        <i class="fa fa-check"></i>
+                    </button>
                 </div>    
             </div>    
         </div>    
@@ -71,19 +73,42 @@ button {
     justify-content: center;   
 }
 
+
 .edit-button {    
     color: #E5E5E5;
     background: white;
+    padding: 0px;
     /* border: 1px solid #E5E5E5;  */
 }
 
 .edit-button:hover {
     cursor: pointer;
     /* border: 1px solid #77C7CE; */
-    color: darkgray;
+    color: darkgrey;
+    padding: 0px;
+    background: white;
 }
 
+.edit-button:focus{
+    background: white;
+    border: 0px;
+    padding: 0px;
+}
 
+.check-button{
+    cursor: pointer;
+    color: darkgrey;
+    padding: 0px;
+    background: white;
+}
+
+.check-button:focus{
+
+    color: darkgrey;
+    padding: 0px;
+    background: white;
+    border: 0px;
+}
 
 </style>
 
