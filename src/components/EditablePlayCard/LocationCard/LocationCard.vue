@@ -3,7 +3,7 @@
         <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="location-icon"> -->
         <div slot="main-content">    
             <h3 v-if="!this.editable">{{this.currentFixture.ground}}</h3> 
-            <input v-else type="text" v-model="currentFixture.ground">
+            <input v-else class="form-control" type="text" v-model="currentFixture.ground">
         </div>    
     </three-column-edit-card>
 </template>
@@ -60,6 +60,17 @@ export default {
   margin-bottom: 10px;
   color: none;
 } */
+
+.form-control{
+  color: rgb(175, 175, 175);
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  border: 0px;
+  border-radius: 0px;
+  border-bottom: 1px solid #e3e3e3;
+  text-transform: uppercase;
+  font-family: 'Roboto Condensed', sans-serif;
+}
 
 h3 {
   font-weight: 550;

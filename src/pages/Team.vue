@@ -22,7 +22,7 @@
               <span class="information-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
               <input class="information-block" v-if="editable" v-model="team.numberOfPlayers"/>
               <h3 class="information-block">Managers</h3>
-              <div class="managers-block" >              
+              <div class="managers-block" >            
                 <div class="col" v-for="(manager,key) in teamManagers" :key="key">
                   <Avatar  @click.native="goToPlayer(manager['.key'])" class="manager-photo" :image="manager.photo"/>
                   <p>{{manager.first_name.charAt(0).toUpperCase()}}. {{manager.last_name}}</p>
@@ -361,6 +361,7 @@ p{
   font-size: 0.8rem;
   color: #50575e;
   font-weight: 500;
+
 }
 a{
   color: #0275d8;
@@ -397,6 +398,8 @@ h4{
   font-size: 0.8rem;
   float: left;
   margin-left: -13.8rem;
+  margin-bottom: 0px;
   color: lightgray;  
+  text-transform: initial;
 }
 </style>
