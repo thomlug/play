@@ -474,4 +474,8 @@ h6{
 i{
   color: lightgray;
 }
+
+p{
+  margin-bottom: 0px;
+}
 </style>

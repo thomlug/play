@@ -154,6 +154,8 @@
 }
 .container{
     height: 443px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 .chat-pane-banner{
     width: 100%;
@@ -166,7 +168,7 @@
     overflow-y:auto;
     max-height:70vh;
     background: #50575e;
-    /* background-image: */
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/28109837_10161510775925206_1864057297_n.png?alt=media&token=4bebff7b-aa0d-45b0-9a31-a392fc58de34");
 }
 .send{
     width: 100%;

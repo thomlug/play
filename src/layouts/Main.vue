@@ -156,15 +156,14 @@ a:hover {
 }
 
 .button-badge {
-  background-color: #fa3e3e;
-  border-radius: 2px;
-  color: white;
- 
-  padding: 1px 3px;
-  font-size: 10px;
-  position: relative;
-  top: -5px;
-  left: 3px;
+    background-color: indianred;
+    border-radius: 2px;
+    color: white;
+    padding: 1px 6px;
+    border-radius: 50%;
+    font-size: 10px;
+    position: initial;
+    left: 3px;
 }
 
 </style>

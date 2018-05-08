@@ -215,14 +215,17 @@
                 <span class="profile-info" v-if="!editable">{{player.preffered_position}}</span>
                 <input placeholder="Preffered position" v-if="editable" v-model="player.preffered_position"/>
               </div> -->
+
+
 <!-- game info -->
         <div class="card play-card">
-
           <div class="card-block">
-            <div class="card-title">
-              <h4>Game Info</h4>
+            <span class="float-right">
               <button class="float-right btn btn-primary" @click="toggleEditGameInfo()">{{editGameInfoButtonText}}</button>
               <Avatar class="plus-circle" :image="this.plusCircle" @click.native="newGameInfo()" alt="plus" v-if="editGameInfo" />
+            </span>
+            <div class="card-title">
+              <h4>Game Info</h4>
             </div>
           </div>
           <div class="card-block">
@@ -240,9 +243,9 @@
                       <button type="button" class="close float-right" aria-label="Close" @click="removeGameInfo(index)">
                         <span aria-hidden="true">&times;</span>
                       </button>
-                      <label for="gameInfoTitle">Title</label>
-                      <input style="margin-bottom: 10px;" v-model="gameInfo[0]" class="form-control">
-                      <label for="gameInfoDetails">Details</label>
+                      <h7 for="gameInfoTitle">Title</h7>
+                      <input style="margin-bottom: 5px;" v-model="gameInfo[0]" class="form-control">
+                      <h7 for="gameInfoDetails">Details</h7>
                       <input v-model="gameInfo[1]" class="form-control">
                     </div>
                   </form>
@@ -329,7 +332,7 @@ export default {
   },
   computed: {
     editPlayerButtonText: function() {
-      return this.editPlayerMode ? "Save" : "Edit Formation";
+      return this.editPlayerMode ? "Save" : "Edit Line-Up";
     },
     editGameInfoButtonText: function() {
       return this.editGameInfo ? "Save" : "Edit Game Info";
@@ -651,7 +654,7 @@ export default {
 
 .game-info h4 {
   font-weight: 550;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .game-info > h6 {
@@ -835,7 +838,7 @@ export default {
   text-align: center;
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
-  background: #2bcad0;
+  background: linear-gradient(-90deg,#2faad0,#2bcad0);
   font-weight: bold;
   font-size: 4rem;
   font-family: "Roboto", sans-serif;
@@ -996,7 +999,7 @@ export default {
   top: 4.5rem;
   left: 1rem;
   right: 1rem;
-  bottom: 1rem;
+  bottom: 0rem;
   width: calc(#{$finalHeight} + #{$scrollBarHeight});
   max-height: $finalWidth;
   margin: 0;
@@ -1020,9 +1023,18 @@ export default {
     color: #E53935; 
 }
 
+.plus-circle{
+
+ border: 0px solid;
+ box-shadow: 2px 2px -2px 2px grey;
+ margin-right: 20px;
+}
+
 .plus-circle:hover {
- border-color: #0db4a6 !important;
- border: 1px solid;
+
+ border: 0px solid;
+ box-shadow: 4px 4px -4px 4px grey;
+ margin-right: 20px;
 }
 
 .edit-icon {
@@ -1102,6 +1114,11 @@ h6 {
   margin-bottom: 0rem;
 }
 
+h7 {
+  color: gray;
+  font-weight: 400;
+}
+
 small {
   color: rgb(175, 175, 175);
   font-weight: none;
@@ -1121,7 +1138,16 @@ a:hover {
   text-transform: uppercase;
   font-size: 0.8rem;
 }
-
+.form-control{
+  color: rgb(175, 175, 175);
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  border: 0px;
+  border-radius: 0px;
+  border-bottom: 1px solid #e3e3e3;
+  text-transform: uppercase;
+  font-family: 'Roboto Condensed', sans-serif;
+}
 .player-5-wide {
   width: 20%;
 }

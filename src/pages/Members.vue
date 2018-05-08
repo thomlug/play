@@ -63,8 +63,9 @@ font-weight: 400;
 td{
  text-align: center; 
  border-bottom: 1px solid #e3e3e3;
- font-weight: 550;
+ font-weight: 450;
  text-align: top;
+ color: #50575e;
  padding: 1rem;
 }
 
@@ -74,7 +75,6 @@ td{
 
 img {
   border-radius: 50%;
-  box-shadow: 2px 2px 2px -2px grey;
 }
 
 </style>
