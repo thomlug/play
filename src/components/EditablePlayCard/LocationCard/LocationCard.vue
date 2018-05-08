@@ -1,8 +1,8 @@
 <template>
     <three-column-edit-card :clickFn="toggleEdit">    
-        <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="location-icon">
+        <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="location-icon"> -->
         <div slot="main-content">    
-            <h5 v-if="!this.editable">{{this.currentFixture.ground}}</h5> 
+            <h3 v-if="!this.editable">{{this.currentFixture.ground}}</h3> 
             <input v-else type="text" v-model="currentFixture.ground">
         </div>    
     </three-column-edit-card>
@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style scoped>
-.location-icon {
+/* .location-icon {
   height: 1.8rem;
   border-radius: 20%;
   border: none;
@@ -59,6 +59,14 @@ export default {
   margin-top: 10px;
   margin-bottom: 10px;
   color: none;
+} */
+
+h3 {
+  font-weight: 550;
+  color: #50575e;
+  margin-bottom: 0rem;
+  text-align: center;
+  font-size: 1.25rem;
 }
 
 h6 {

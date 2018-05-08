@@ -63,7 +63,7 @@ button {
     float: right;
     margin-right: 20px;
     text-align: center;
-    font-size: 0.8rem;    
+    font-size: 2rem;    
     height: 1.8rem;
     width: 1rem;    
     display: flex;
@@ -74,13 +74,13 @@ button {
 .edit-button {    
     color: #E5E5E5;
     background: white;
-    border: 1px solid #E5E5E5; 
+    /* border: 1px solid #E5E5E5;  */
 }
 
 .edit-button:hover {
     cursor: pointer;
-    border: 1px solid #77C7CE;
-    color: #77C7CE;
+    /* border: 1px solid #77C7CE; */
+    color: darkgray;
 }
 
 
