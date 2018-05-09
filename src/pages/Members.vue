@@ -4,7 +4,7 @@
     <div class="members-banner text-center">
             <h1>Members</h1>
     </div>   
-    <div>
+    <div style="overflow-x:auto;">
       
       <table-component
      :data="users"
@@ -57,6 +57,7 @@
   color: #ffffff;
   box-shadow: 1px 3px 3px -3px grey;
 }
+
 .profile-photo{
   max-height: 50px !important;
   max-width: 50px !important;
@@ -88,8 +89,9 @@ td{
  cursor: pointer;
 }
 
-.table-column{
+.container-fluid body{
   overflow-x:auto;
+  column-width: auto;
 }
 
 img {
