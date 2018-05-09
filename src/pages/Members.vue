@@ -1,12 +1,15 @@
 <template>
   <main-layout>
-    <p>Members</p>
+   
+    <div class="members-banner text-center">
+            <h1>Members</h1>
+    </div>   
     <div>
       
       <table-component
      :data="users"
         >
-      <table-column show="profile_photo" label="Profile photo">
+      <table-column show="profile_photo" label="">
         <img class= "player-photo">
       </table-column>
      <table-column show="first_name" label="First Name"></table-column>
@@ -41,11 +44,16 @@
           source: db.ref('player')
       }
     }
-     
-    
   }
 </script>
 <style>
+.members-banner{
+  width: 100%;
+  background-color: #2BCAD0;
+  color: #ffffff;
+  box-shadow: 1px 3px 3px -3px grey;
+}
+
 tr{
   box-shadow: 2px 2px -2px 2px grey;
 }
@@ -58,6 +66,9 @@ padding-top: 1rem;
 padding-bottom: 1rem;
 vertical-align: top;
 font-weight: 400;
+cursor: pointer;
+background-color: #f3f5f5;
+border-bottom: 0px solid lightgrey;
 }
 
 td{
@@ -67,6 +78,7 @@ td{
  text-align: top;
  color: #50575e;
  padding: 1rem;
+ cursor: pointer;
 }
 
 .table-column{
@@ -77,5 +89,12 @@ img {
   border-radius: 50%;
 }
 
+h1{
+  text-transform:uppercase;
+  margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
+  font-size: 2rem;
+  font-weight: 550;
+}
 </style>
 

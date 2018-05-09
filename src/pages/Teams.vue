@@ -1,6 +1,8 @@
 <template>
   <main-layout>
-    <h1>Teams</h1>
+    <div class="teams-banner text-center">
+            <h1>Teams</h1>
+    </div> 
     <div class="row">
     <div class="col-md-12">
         <ul>
@@ -80,4 +82,26 @@
   ul{
     overflow: auto;
   }
+
+  .teams-banner{
+  width: 100%;
+  background-color: #2BCAD0;
+  color: #ffffff;
+  box-shadow: 1px 3px 3px -3px grey;
+}
+
+h1{
+  text-transform:uppercase;
+  margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
+  font-size: 2rem;
+  font-weight: 550;
+}
+h1{
+  text-transform:uppercase;
+  margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
+  font-size: 2rem;
+  font-weight: 550;
+}
   </style>
