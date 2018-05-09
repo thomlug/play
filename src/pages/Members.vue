@@ -9,8 +9,10 @@
       <table-component
      :data="users"
         >
-      <table-column show="profile_photo" label="">
-        <img class= "player-photo">
+    <table-column label="">
+      <template slot-scope="row">
+        <avatar class="profile-photo" :image="row.photo" />
+      </template>
       </table-column>
      <table-column show="first_name" label="First Name"></table-column>
      <table-column show="last_name" label="Last Name"></table-column>
@@ -29,10 +31,12 @@
 <script>
   import {db} from '../firebase';
   import MainLayout from '../layouts/Main.vue'
+  import Avatar from '../components/Avatar.vue'
 
   export default {
     components: {
-      MainLayout
+      MainLayout,
+      Avatar
     },
     data () {
       return {
@@ -53,7 +57,10 @@
   color: #ffffff;
   box-shadow: 1px 3px 3px -3px grey;
 }
-
+.profile-photo{
+  max-height: 50px !important;
+  max-width: 50px !important;
+}
 tr{
   box-shadow: 2px 2px -2px 2px grey;
 }
@@ -96,5 +103,6 @@ h1{
   font-size: 2rem;
   font-weight: 550;
 }
+
 </style>
 
