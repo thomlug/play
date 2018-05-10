@@ -6,7 +6,7 @@
         <play-profile title="Team Profile">
           <template slot="header">
             <div v-if="canEditProfile()">
-              <img src="../assets/pencil.png" class="edit-icon" @click="edit" v-if="!editable">
+              <i class="fa fa-pencil" @click="edit" v-if="!editable"></i> 
               <button class="btn btn-success" v-on:click="save" v-if="editable">Save</button>
             </div>
           </template>
@@ -264,6 +264,18 @@ export default {
   color: #bdbdbd;
   font-weight: 400;
   font-size: 1rem;
+}
+
+.fa-pencil{
+font-size: 1.5rem;
+color: lightgray;
+cursor: pointer;
+}
+
+.fa-pencil:hover{
+font-size: 1.5rem;
+color: darkgray;
+cursor: pointer;
 }
 
 .edit-icon{
