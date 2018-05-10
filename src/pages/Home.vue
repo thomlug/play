@@ -74,7 +74,7 @@
           <div class="card-block">
             <span class="float-right">
               <button class="btn btn-danger" v-if="editPlayerMode" v-on:click="cancelEditPlayersPositions()">Cancel</button>
-              <button class="btn btn-primary" v-on:click="toggleEditPlayersPositions()">{{editPlayerButtonText}}</button>
+              <button class="btn btn-edit" v-on:click="toggleEditPlayersPositions()">{{editPlayerButtonText}}</button>
             </span>
             <h4 class="card-title">Starting Lineup</h4>
             <h4><small>Last Updated {{moment(getNextFixtureDetails().dateFormationLastUpdated).calendar()}}</small></h4>
@@ -221,7 +221,7 @@
         <div class="card play-card">
           <div class="card-block">
             <span class="float-right">
-              <button class="float-right btn btn-primary" @click="toggleEditGameInfo()">{{editGameInfoButtonText}}</button>
+              <button class="float-right btn btn-edit" @click="toggleEditGameInfo()">{{editGameInfoButtonText}}</button>
               <Avatar class="plus-circle" :image="this.plusCircle" @click.native="newGameInfo()" alt="plus" v-if="editGameInfo" />
             </span>
             <div class="card-title">
@@ -899,34 +899,32 @@ export default {
   margin-left: 0;
 }
 
-.btn-available {
+/* .btn-available {
   background-color: #2bcad0;
   border-color: #2bcad0;
   cursor: pointer;
   border-radius: 0;
-  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
-}
+  -webkit-box-shadow: 2px 2px -2px 2px #50575e;
+} */
 
 .btn-available:focus,
 .btn-available:active,
 .btn-available.active,
 .open .dropdown-toggle.btn-available {
-  background-color: #2bcad0;
-  border-color: #2bcad0;
+  background-color: #2acad0;
+  border:2px solid #2acad0;
   cursor: pointer;
-  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+  -webkit-box-shadow: 2px 2px -2px 2px #50575e;
 }
-.btn-available:hover {
-  background-color: #26bec4;
-  border-color: #26bec4;
+.open .dropdown-toggle.btn-available:hover {
+  background-color: pink;
   cursor: pointer;
   border-radius: 0;
-  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+  -webkit-box-shadow: 4px 4px -4px 4px #50575e;
 }
 
 .btn-danger {
   background-color: #d9534f;
-  border-color: #d9534f;
   cursor: pointer;
   border-radius: 0;
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
@@ -934,7 +932,6 @@ export default {
 
 .btn-danger:hover {
   background-color: #c44743;
-  border-color: #c44743;
   cursor: pointer;
   border-radius: 0;
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
@@ -947,9 +944,28 @@ export default {
   }
 }
 
+.btn-edit{
+  color: #50575e; 
+  background-color: white;
+  border: 2px solid #e5e5e5;
+  padding: 8px;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.btn-edit:hover{
+  color: #50575e; 
+  background-color: white;
+  border: 2px solid #2acad0;
+   padding: 8px;
+   border-radius: 0;
+   cursor: pointer;
+}
+
 .btn-primary {
-  background-color: #50575e;
-  border-color: #50575e;
+  background-color:#2acad0;
+  border: 2px solid #2acad0;
+  color: white;
   cursor: pointer;
   border-radius: 0;
   cursor: pointer;
@@ -957,11 +973,9 @@ export default {
 }
 
 .btn-primary:hover {
-  background-color: #0db4a6;
-  border-color: #0db4a6;
+  background-color:#2fcade;
   border-radius: 0;
   cursor: pointer;
-  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
 /* clock/time icon column styling */
