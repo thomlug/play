@@ -20,13 +20,15 @@
         <div class="emailstyle">
           </div>
       </table-column>
-      <table-column show="phone" label="Number"></table-column>
+      <table-column show="phone" label="Number">
+      </table-column>
      <table-column show="availability" label="Availability"></table-column>
      <table-column show="finance" label="Payments"></table-column>
  </table-component>
     </div>
   </main-layout>
 </template>
+
 
 <script>
   import {db} from '../firebase';
@@ -105,6 +107,6 @@ h1{
   font-size: 2rem;
   font-weight: 550;
 }
-
+ 
 </style>
 

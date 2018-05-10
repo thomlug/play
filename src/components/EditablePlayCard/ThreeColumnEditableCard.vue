@@ -65,19 +65,18 @@ button {
     float: right;
     margin-right: 20px;
     text-align: center;
-    font-size: 2rem;    
-    height: 1.8rem;
-    width: 1rem;    
+    font-size: 1.3rem;    
+    height: 1.5rem;
+    width: 1.5rem;    
     display: flex;
     align-items: center;
-    justify-content: center;   
+    justify-content: center;
 }
-
 
 .edit-button {    
     color: #E5E5E5;
     background: white;
-    padding: 0px;
+    padding: 2px;
     /* border: 1px solid #E5E5E5;  */
 }
 
@@ -85,7 +84,7 @@ button {
     cursor: pointer;
     /* border: 1px solid #77C7CE; */
     color: darkgrey;
-    padding: 0px;
+    padding: 2px;
     background: white;
 }
 
@@ -98,7 +97,7 @@ button {
 .check-button{
     cursor: pointer;
     color: darkgrey;
-    padding: 0px;
+    padding: 2px;
     background: white;
 }
 

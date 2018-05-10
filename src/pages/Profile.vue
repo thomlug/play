@@ -8,7 +8,7 @@
             <h1>Player Profile</h1>
           </div>          
             <div class="player-profile-header" v-if="canEditProfile()">
-              <img src="../assets/pencil.png" class="edit-icon" @click="edit" v-if="!editable">
+              <i class="fa fa-pencil" @click="edit" v-if="!editable"></i>              
               <button class="btn btn-success" @click="save" v-if="editable">Save</button>
             </div>
 
@@ -332,7 +332,19 @@ margin-top: 1rem;
   margin-top:-2px;
 }
 
-.edit-icon{
+.fa-pencil{
+font-size: 1.5rem;
+color: lightgray;
+cursor: pointer;
+}
+
+.fa-pencil:hover{
+font-size: 1.5rem;
+color: darkgray;
+cursor: pointer;
+}
+
+/* .edit-icon{
   height:2.25rem;
   border-radius: 20%;
   border: none;
@@ -345,7 +357,7 @@ margin-top: 1rem;
   color: white;
   box-shadow: 3px 3px 3px -3px grey;
   border-radius: 50%;
-}
+} */
 
 .btn-success{
   color:white;

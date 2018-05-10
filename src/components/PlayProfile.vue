@@ -3,14 +3,13 @@
         <div class="profile-banner text-center">    
             <h1>{{this.title}}</h1>    
         </div>    
-
         <div class="profile-header">    
             <slot name="header"></slot>    
         </div>       
     
         <div class="profile-content">    
             <slot name="main-content"></slot>    
-        </div>    
+        </div>   
     </div>
 </template>
 
