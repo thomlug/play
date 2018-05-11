@@ -944,6 +944,9 @@ export default {
   }
 }
 
+
+
+
 .btn-edit{
   color: #50575e; 
   background-color: white;

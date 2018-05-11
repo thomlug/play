@@ -360,21 +360,25 @@ cursor: pointer;
 } */
 
 .btn-success{
-  color:white;
-  background-color: #50575e;
-  border: none;
+  color:#50575e;
+  background-color: white;
+  border: 2px solid#2acad0;
   border-radius: 0;
   cursor: pointer;
-  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+  padding: 8px;
+  margin-top: -6px;
+  margin-right: -16px;
 }
 
 .btn-success:hover{
-  color:white;
-  background-color: #2acad0;
-  border: none;
+   color:#50575e;
+  background-color: white;
+  border: 2px solid #2acad0;
   border-radius: 0;
   cursor: pointer;
-  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+  padding: 8px;
+  margin-top: -6px;
+  margin-right: -16px;
 }
 
 .btn-available{
@@ -449,12 +453,14 @@ margin:0px;
 }
 
 label{
- background-color:#2acad0;
- box-shadow: 3px 3px 3px -3px grey;
- color: white;
- padding: 0.5rem 1rem;
+ background-color:white;
+ border: 2px solid #e5e5e5;
+ /* box-shadow: 3px 3px 3px -3px grey; */
+ color: #50575e;
+  padding: 0.5rem 1rem;
  cursor: pointer;
- font-weight: 400;
+ font-weight: 400; 
+ max-width: 100%;
 }
 
 /* header styles */

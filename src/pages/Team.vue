@@ -14,27 +14,11 @@
           <template slot="main-content">
             <Avatar class="profile-photo" :image="team.photo"/>
 
-            <template>
-              <p class= "team-input-header" v-if="editable" > Team Name</p>
-              <span class="information-block" v-if="!editable"><h4>{{team.name}}</h4> </span>
-              <input class="information-block" v-if="editable" v-model="team.name"/>
-              <p class= "team-input-header" v-if="editable" > Active players</p>
-              <span class="information-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
-              <input class="information-block" v-if="editable" v-model="team.numberOfPlayers"/>
-              <h3 class="information-block">Managers</h3>
-              <div class="managers-block" >            
-                <div class="col" v-for="(manager,key) in teamManagers" :key="key">
-                  <Avatar  @click.native="goToPlayer(manager['.key'])" class="manager-photo" :image="manager.photo"/>
-                  <p>{{manager.first_name.charAt(0).toUpperCase()}}. {{manager.last_name}}</p>
-                </div>
-              </div>
-            </template>
-
-            <!-- <template v-if = "editable">
+            <template v-if = "editable">
               <form class="information-block" enctype="multipart/form-data" novalidate>
                 <div class="dropbox">
                     
-                    <div id="hide" class="col-lg-8 col-xs-8">
+                    <div id="hide">
                       <label class="hand-cursor">
                         <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
                           <span class="fa fa-camera"></span>
@@ -46,7 +30,26 @@
                     </p>
                 </div>
               </form>
-            </template>    -->
+            </template>   
+
+            <template>
+              <p class= "team-input-header" v-if="editable" > Team Name</p>
+              <span class="information-block" v-if="!editable"><h4>{{team.name}}</h4> </span>
+              <input class="information-block" v-if="editable" v-model="team.name"/>
+              <p class= "team-input-header" v-if="editable" > Active players</p>
+              <span class="information-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
+              <input class="information-block" v-if="editable" v-model="team.numberOfPlayers"/>
+              <h3 class="information-block manager-left">Managers</h3>
+              <div class="managers-block" >            
+                <div class="col" v-for="(manager,key) in teamManagers" :key="key">
+                  <Avatar  @click.native="goToPlayer(manager['.key'])" class="manager-photo" :image="manager.photo"/>
+                  <div class="name">{{manager.first_name.charAt(0).toUpperCase()}}. {{manager.last_name}}</div>
+                </div>
+              </div>
+            </template>
+
+
+
                      
           </template>
         </play-profile>
@@ -236,6 +239,7 @@ export default {
 </script>
 
 <style>
+
 .profile-photo {
   max-height: 10rem;
   max-width: 10rem;
@@ -257,7 +261,14 @@ export default {
 }
 
 .information-block {
-  margin: 0.4rem 0;
+  margin: 0.8rem 0;
+  float: left;
+  text-transform: uppercase;
+}
+
+.managers-left{
+  margin-top: 10rem;
+  margin-bottom: 0rem;
 }
 
 .player-number {
@@ -278,7 +289,7 @@ color: darkgray;
 cursor: pointer;
 }
 
-.edit-icon{
+/* .edit-icon{
   height:2.25rem;
   border-radius: 20%;
   border: none;
@@ -292,24 +303,28 @@ cursor: pointer;
   background-color: white;
   box-shadow: 3px 3px 3px -3px grey;
   border-radius: 50%;
-}
+} */
 
 .btn-success{
-  color:white;
-  background-color: #50575e;
-  border: none;
+  color:#50575e;
+  background-color: white;
+  border: 2px solid#2acad0;
   border-radius: 0;
   cursor: pointer;
-  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+  padding: 8px;
+  margin: -16px;
+  /* -webkit-box-shadow: 3px 3px 3px -3px #50575e; */
 }
 
 .btn-success:hover{
-  color:white;
-  background-color: #2acad0;
-  border: none;
+   color:#50575e;
+  background-color: white;
+  border: 2px solid #2acad0;
   border-radius: 0;
   cursor: pointer;
-  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+  padding: 8px;
+  margin: -16px;
+  /* -webkit-box-shadow: 3px 3px 3px -3px #50575e; */
 }
 
 input{
@@ -356,12 +371,14 @@ background-color:#2D6C7A;
 color:#FFFFFF;
 } */
 label{
- background-color:#2acad0;
- box-shadow: 3px 3px 3px -3px grey;
- color: white;
- padding: 0.5rem 1rem;
+ background-color:white;
+ border: 2px solid #e5e5e5;
+ /* box-shadow: 3px 3px 3px -3px grey; */
+ color: #50575e;
+  padding: 0.5rem 1rem;
  cursor: pointer;
  font-weight: 400; 
+ max-width: 100%;
 }
 
 .fixture-title{
@@ -413,5 +430,14 @@ h4{
   margin-bottom: 0px;
   color: lightgray;  
   text-transform: initial;
+}
+.name{
+  font-size: 0.8rem;
+  text-transform:uppercase;
+  color: #50575e;
+  margin-top: -10px;
+}
+.photo_text{
+  text-transform: capitalize;
 }
 </style>
