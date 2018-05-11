@@ -436,6 +436,7 @@ h4{
   text-transform:uppercase;
   color: #50575e;
   margin-top: -10px;
+  font-weight: 300;
 }
 .photo_text{
   text-transform: capitalize;
