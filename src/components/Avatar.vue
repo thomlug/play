@@ -13,7 +13,7 @@ export default {
 <style lang="css" scoped>
 img {
   border-radius: 50%;
-  box-shadow: 2px 2px 2px -2px grey;
+  box-shadow: 1px 2px 20px -7px grey;
   /* border: 2px solid #e5e5e5; */
 }
 
