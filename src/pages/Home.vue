@@ -52,7 +52,7 @@
         </div>
 
       <!-- Date and time -->
-      <date-card :fixture="this.getNextFixture()"></date-card>
+      <date-card :fixture="this.getNextFixture()" @date-changed="fixtureDateChanged"></date-card>
 
       <!-- Location -->
       <location-card :fixture="this.getNextFixture()" @location-changed="fixtureLocationChanged"></location-card>
@@ -641,6 +641,12 @@ export default {
       var updates = {};
       var currentFixture = this.getNextFixture();
       updates["match/" + currentFixture[".key"] + "/ground"] = ground;
+      db.ref().update(updates);
+    },
+    fixtureDateChanged(date) {
+      var updates = {};
+      var currentFixture = this.getNextFixture();
+      updates["match/" + currentFixture[".key"] + "/date"] = date;
       db.ref().update(updates);
     }
   }

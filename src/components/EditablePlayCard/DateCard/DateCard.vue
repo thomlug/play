@@ -2,8 +2,22 @@
     <three-column-edit-card :clickFn="toggleEdit">    
         <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/001-clock-with-white-face.png?alt=media&token=703b182a-ed12-4443-a194-34315062dc01" class="clock-icon"> -->
         <div slot="main-content">    
-            <h2>{{this.time}}</h2>    
-            <h6>{{this.day}}</h6> 
+            <div v-if="!editable">
+              <h2>{{this.time}}</h2>    
+              <h6>{{this.day}}</h6> 
+            </div>
+            <div v-else>
+              <label>Time</label>
+              <input
+                type="time"
+                id="dateStart"
+                class="form-control" v-model="time">
+              <label>Day</label>
+              <input
+                type="date"
+                id="dateStart"
+                class="form-control" v-model="day">
+            </div>
         </div>    
     </three-column-edit-card>
 </template>
@@ -43,8 +57,18 @@ export default {
 
   methods: {
       toggleEdit() {
+          if (this.editable) {
+              this.formatDay();
+              this.$emit('date-changed', this.currentFixture.date)
+          }
           this.editable = !this.editable;
-          console.log("Date clicked");
+      },
+      formatDay() {
+        var date = new Date(this.day);
+        var dateString = "0" + (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + " " + this.time;
+        date = moment(dateString, "MM/DD/YYYY HH:mm a")
+        date = new Date(date).toISOString();
+        this.currentFixture.date = date;
       }
   }
 };
