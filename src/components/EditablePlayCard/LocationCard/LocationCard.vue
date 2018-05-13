@@ -42,7 +42,6 @@ export default {
               this.$emit('location-changed', this.currentFixture.ground)
           }
           this.editable = !this.editable;
-          console.log("Location card clicked");
       }
   }
 };
