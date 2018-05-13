@@ -7,12 +7,12 @@
               <h6>{{this.day}}</h6> 
             </div>
             <div v-else>
-              <label>Time</label>
+              <h6>Time</h6>
               <input
                 type="time"
                 id="dateStart"
                 class="form-control" v-model="time">
-              <label>Day</label>
+              <h6>Day</h6>
               <input
                 type="date"
                 id="dateStart"
@@ -87,6 +87,16 @@ export default {
   color: none;
 } */
 
+.form-control{
+  color: rgb(175, 175, 175);
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  border: 0px;
+  border-radius: 0px;
+  border: 1px solid #e3e3e3;
+  text-transform: uppercase;
+  font-family: 'Roboto Condensed', sans-serif;
+}
 
 h3 {
   font-weight: 550;
