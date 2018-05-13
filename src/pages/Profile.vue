@@ -261,8 +261,8 @@
     box-shadow: 0px 1px 6px 0px #eee;
     width: 100%;
     background-color: white;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .profile-photo{
@@ -324,6 +324,8 @@ margin-top: 0rem;
 
 .availability-container{
 text-align: center;
+margin: 5px;
+padding:5px;
 }
 
 .content-block{
