@@ -3,15 +3,22 @@
         <div class="profile-banner text-center">    
             <h1>{{this.title}}</h1>    
         </div>    
-        <div class="profile-header">    
-            <slot name="header"></slot>    
-        </div>       
+      
     
         <div class="profile-content">    
-            <slot name="main-content"></slot>    
-        </div>   
+            <slot name="main-content"></slot> 
+            <div class="profile-header">    
+               <slot name="header"></slot>    
+            </div>    
+        </div> 
+        <div class="profile-content">    
+            <slot name="other-content"></slot>    
+        </div> 
     </div>
+    
 </template>
+
+
 
 <script>
 export default {
@@ -23,12 +30,13 @@ export default {
 </script>
 
 <style scoped>
-.profile-box {
+/* .profile-box {
   margin-top: 1vh;
   display: flex;
   flex-direction: column;
   box-shadow: 3px 3px 3px -3px rgba(128, 126, 128, 1);
-}
+} */
+
 
 .profile-banner {
   width: 100%;
@@ -52,8 +60,9 @@ export default {
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  margin-bottom: 2rem;
-  margin-top: 0rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  box-shadow: 3px gray;
 }
 </style>
 

@@ -254,7 +254,7 @@
     max-height:256px;
     max-width:256px;
     border-radius: 50%;
-    box-shadow: 3px 3px 3px -3px rgba(0,0,0,0.75);
+    box-shadow:4px 4px 20px -8px rgba(0,0,0,0.75);
 }
 
 .player-available{
@@ -274,7 +274,7 @@
   margin-top: 1vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 3px 3px 3px -3px rgba(128,126,128,1);
+  box-shadow: 0px 1px 6px 0px #eee;
 }
 
 .player-profile-banner{
@@ -419,9 +419,9 @@ input{
   display:block;
   width:300px;
   border:none;
-  border-bottom:1.2px solid #e3e3e3;
+  border:1.2px solid #e3e3e3;
   color: #50575e;
-
+  margin: 1px;
 }
 
 .input-file{
@@ -484,9 +484,10 @@ h1{
 
 h6{
   font-size: 0.8rem;
-  float: left;
+  float: none;
   margin-left: -0rem;
   color: lightgray;
+  text-transform: uppercase;
 }
 
 i{

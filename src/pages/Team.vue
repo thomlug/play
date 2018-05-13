@@ -4,20 +4,29 @@
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
       <div class="col-md-6 col-sm-6 col-xs-12">
         <play-profile title="Team Profile">
+
+            
+        <!-- <div class="card"> -->
+          <template slot="main-content">
+           <div class="profile-block">
           <template slot="header">
             <div v-if="canEditProfile()">
               <i class="fa fa-pencil" @click="edit" v-if="!editable"></i> 
               <button class="btn btn-success" v-on:click="save" v-if="editable">Save</button>
             </div>
           </template>
-            
-          <template slot="main-content">
-            <Avatar class="profile-photo" :image="team.photo"/>
+
+            <div class="team-profile-header" v-if="canEditProfile()">
+              <i class="fa fa-pencil" @click="edit" v-if="!editable"></i>              
+              <button class="btn btn-success" @click="save" v-if="editable">Save</button>
+            </div>
+            <br>
+
+            <div><Avatar class="profile-photo" :image="team.photo"/></div>
 
             <template v-if = "editable">
               <form class="information-block" enctype="multipart/form-data" novalidate>
                 <div class="dropbox">
-                    
                     <div id="hide">
                       <label class="hand-cursor">
                         <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
@@ -30,39 +39,38 @@
                     </p>
                 </div>
               </form>
-            </template>   
+            </template>  
 
             <template>
               <p class= "team-input-header" v-if="editable" > Team Name</p>
-              <span class="information-block" v-if="!editable"><h4>{{team.name}}</h4> </span>
-              <input class="information-block" v-if="editable" v-model="team.name"/>
+              <div class="information-block" v-if="!editable"><h4>{{team.name}}</h4></div>
+              
+              <div><input class="information-block" v-if="editable" v-model="team.name"/></div>
               <p class= "team-input-header" v-if="editable" > Active players</p>
-              <span class="information-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
-              <input class="information-block" v-if="editable" v-model="team.numberOfPlayers"/>
-<div class="col-md-3 col-sm-3 col-xs-12"></div>
-<div class="profile-block">
+              <div class="information-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </div>
+              <div><input class="information-block" v-if="editable" v-model="team.numberOfPlayers"/></div>
+              <div class="col-md-3 col-sm-3 col-xs-12"></div>
+            </template>
+          </div>
+         </template>  
+        <!-- </div> -->
 
-              <div><h3 class="manager-header">Managers</h3> </div> 
-
-              <div class="managers-block" >      
-                <div class="col" v-for="(manager,key) in teamManagers" :key="key">
-                  <Avatar  @click.native="goToPlayer(manager['.key'])" class="manager-photo" :image="manager.photo"/>
-                  <div class="name">{{manager.first_name.charAt(0).toUpperCase()}}. {{manager.last_name}}</div>
+        <template slot="other-content">
+              <div class="profile-block">
+                  <div><h3 class="manager-header">Managers</h3> </div> 
+                <div class="managers-block" >      
+                  <div class="col" v-for="(manager,key) in teamManagers" :key="key">
+                   <Avatar  @click.native="goToPlayer(manager['.key'])" class="manager-photo" :image="manager.photo"/>
+                   <div class="name">{{manager.first_name.charAt(0).toUpperCase()}}. {{manager.last_name}}</div>
+                 </div>
                 </div>
               </div>
-</div>
-            </template>
-
-
-
-                     
-          </template>
+        </template>   
+               
+          
         </play-profile>
-      
-      
       </div>
     </div>
-
   </main-layout>
 </template>
 
@@ -246,6 +254,15 @@ export default {
 
 <style>
 
+.team-profile-header{
+  margin: 0rem 0rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  float:right;
+}
+
 .profile-photo {
   max-height: 10rem;
   max-width: 10rem;
@@ -268,19 +285,27 @@ export default {
 
 .manager-header{
   text-transform: uppercase;
-  border-top: 1px solid #2acad0;
-  margin-top: 10px;
-  padding-top: 2rem;
+  border-top: 0px solid #2acad0;
+  margin-top: 0px;
+  padding-top: 1rem;
   width: 100%;
 }
 
 .profile-block{
-box-shadow: 3px 3px -3px 3px grey;
+    border-radius: 0px;
+    border: 0px solid #eee;
+    padding: 5px 2.7rem;
+    box-shadow: 0px 1px 6px 0px #eee;
+    width: 100%;
+    background-color: white;
 }
 
+/* .card{
+  box-shadow: 3px grey;
+} */
 .information-block {
   margin: 0.8rem 0;
-  float: left;
+  float: none;
   text-transform: uppercase;
 }
 
@@ -325,8 +350,8 @@ cursor: pointer;
   border: 2px solid#2acad0;
   border-radius: 0;
   cursor: pointer;
-  padding: 8px;
-  margin: -16px;
+  padding: 4px;
+  margin: -4px;
   /* -webkit-box-shadow: 3px 3px 3px -3px #50575e; */
 }
 
@@ -336,19 +361,19 @@ cursor: pointer;
   border: 2px solid #2acad0;
   border-radius: 0;
   cursor: pointer;
-  padding: 8px;
-  margin: -16px;
+  padding: 4px;
+  margin: -4px;
   /* -webkit-box-shadow: 3px 3px 3px -3px #50575e; */
 }
 
 input{
-  font-size:13px;
-  padding:10px 10px 10px 10px;
-  display:block;
-  width:300px;
-  border:none;
-  border-bottom:1.2px solid #e3e3e3;
-  color: #50575e;
+    font-size: 13px;
+    padding: 10px;
+    display: block;
+    width: 100%;
+    border: none;
+    border: 1.2px solid #e3e3e3;
+    color: #50575e;
 
 }
 
@@ -439,17 +464,17 @@ h4{
 
 .team-input-header{
   font-size: 0.8rem;
-  float: left;
-  margin-left: -13.8rem;
+  float: none;
+  margin-left: 0rem;
   margin-bottom: 0px;
   color: lightgray;  
-  text-transform: initial;
+  text-transform:uppercase;
 }
 .name{
   font-size: 0.8rem;
   text-transform:uppercase;
   color: #50575e;
-  margin-top: -10px;
+  margin-bottom: 1rem;
   font-weight: 300;
 }
 .photo_text{

@@ -1164,10 +1164,10 @@ a:hover {
 .form-control{
   color: rgb(175, 175, 175);
   font-size: 0.8rem;
-  padding: 0.5rem;
+  padding: 0.8rem;
   border: 0px;
   border-radius: 0px;
-  border-bottom: 1px solid #e3e3e3;
+  border: 1px solid #e3e3e3;
   text-transform: uppercase;
   font-family: 'Roboto Condensed', sans-serif;
 }
