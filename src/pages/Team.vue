@@ -39,13 +39,18 @@
               <p class= "team-input-header" v-if="editable" > Active players</p>
               <span class="information-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </span>
               <input class="information-block" v-if="editable" v-model="team.numberOfPlayers"/>
-              <h3 class="information-block manager-left">Managers</h3>
-              <div class="managers-block" >            
+<div class="col-md-3 col-sm-3 col-xs-12"></div>
+<div class="profile-block">
+
+              <div><h3 class="manager-header">Managers</h3> </div> 
+
+              <div class="managers-block" >      
                 <div class="col" v-for="(manager,key) in teamManagers" :key="key">
                   <Avatar  @click.native="goToPlayer(manager['.key'])" class="manager-photo" :image="manager.photo"/>
                   <div class="name">{{manager.first_name.charAt(0).toUpperCase()}}. {{manager.last_name}}</div>
                 </div>
               </div>
+</div>
             </template>
 
 
@@ -53,8 +58,9 @@
                      
           </template>
         </play-profile>
+      
+      
       </div>
-      <div class="col-md-3 col-sm-3 col-xs-12"></div>
     </div>
 
   </main-layout>
@@ -260,16 +266,24 @@ export default {
   align-items: center;
 }
 
+.manager-header{
+  text-transform: uppercase;
+  border-top: 1px solid #2acad0;
+  margin-top: 10px;
+  padding-top: 2rem;
+  width: 100%;
+}
+
+.profile-block{
+box-shadow: 3px 3px -3px 3px grey;
+}
+
 .information-block {
   margin: 0.8rem 0;
   float: left;
   text-transform: uppercase;
 }
 
-.managers-left{
-  margin-top: 10rem;
-  margin-bottom: 0rem;
-}
 
 .player-number {
   color: #bdbdbd;
