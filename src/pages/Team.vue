@@ -298,6 +298,8 @@ export default {
     box-shadow: 0px 1px 6px 0px #eee;
     width: 100%;
     background-color: white;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 /* .card{

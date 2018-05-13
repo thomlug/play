@@ -3,19 +3,19 @@
     <div class="row">
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
       <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="player-profile-box">
+        <!-- <div class="player-profile-box"> -->
           <div class="player-profile-banner text-center">
             <h1>Player Profile</h1>
-          </div>          
-            <div class="player-profile-header" v-if="canEditProfile()">
-              <i class="fa fa-pencil" @click="edit" v-if="!editable"></i>              
-              <button class="btn btn-success" @click="save" v-if="editable">Save</button>
-            </div>
-
+          </div>
+          <div class="profile-block">          
             <div class="player-profile-header-other">
             </div>
-
+        <div class="player-profile-header" v-if="canEditProfile()">
+          <i class="fa fa-pencil" @click="edit" v-if="!editable"></i>              
+          <button class="btn btn-success" @click="save" v-if="editable">Save</button>
+        </div>
             <div class="player-profile-content">
+
               <img class="profile-photo" :src="player.photo" :class="'player-' + player.availability"/> 
               <div class="content-block">
               <template v-if = "editable">
@@ -80,8 +80,9 @@
                 <a  v-if="!editable" :href="'mailto:'+player.email">{{player.email}} </a>
                 <input placeholder="Email" v-if="editable" v-model="player.email"/>
               </span>
-
-
+</div>
+</div>
+<div class="profile-block">   
               <div v-if="canEditProfile()">
                 <h4 class="card-title">Update your status </h4>
                 <div class="availability-container">
@@ -91,7 +92,7 @@
               </div>
             </div>                       
             
-          </div>
+          <!-- </div> -->
         </div>
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
     </div>
@@ -250,6 +251,20 @@
 
 <style scoped>
 
+.card-title{
+  text-align: center;
+}
+.profile-block{
+    border-radius: 0px;
+    border: 0px solid #eee;
+    padding: 5px 2.7rem;
+    box-shadow: 0px 1px 6px 0px #eee;
+    width: 100%;
+    background-color: white;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
 .profile-photo{
     max-height:256px;
     max-width:256px;
@@ -285,16 +300,16 @@
 }
 
 .player-profile-header{
-  margin: .5rem 2.5rem;
+  margin: 0rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  float:right;
+  float:none;
 }
 
 .player-profile-header-other{
-margin-top: 1rem;
+margin-top: 0rem;
 }
 
 .player-profile-content{
@@ -303,15 +318,12 @@ margin-top: 1rem;
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 0rem;
   margin-top: 0rem;
 }
 
 .availability-container{
-  display: block;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+text-align: center;
 }
 
 .content-block{

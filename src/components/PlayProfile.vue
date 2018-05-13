@@ -46,7 +46,7 @@ export default {
 }
 
 .profile-header {
-  margin: 0.5rem 2.5rem;
+  margin: 0rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -60,8 +60,8 @@ export default {
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+  margin-bottom: 0rem;
+  margin-top: 0rem;
   box-shadow: 3px gray;
 }
 </style>
