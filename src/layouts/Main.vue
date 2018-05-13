@@ -115,6 +115,8 @@
 }
 .navbar{
   padding: 0rem 1rem;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 .navbar-toggler {
   padding: .750rem .50rem;
