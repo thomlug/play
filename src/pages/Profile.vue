@@ -258,7 +258,7 @@
     border-radius: 0px;
     border: 0px solid #eee;
     padding: 5px 2.7rem;
-    box-shadow: 0px 1px 6px 0px #eee;
+    box-shadow: 0px 1px 6px -1px #ddd;
     width: 100%;
     background-color: white;
     margin-top: 1rem;
@@ -376,7 +376,7 @@ cursor: pointer;
 .btn-success{
   color:#50575e;
   background-color: white;
-  border: 2px solid#2acad0;
+  border: 2px solid#e5e5e5;
   border-radius: 0;
   cursor: pointer;
   padding: 8px;
@@ -387,7 +387,7 @@ cursor: pointer;
 .btn-success:hover{
    color:#50575e;
   background-color: white;
-  border: 2px solid #2acad0;
+  border: 2px solid #e5e5e5;
   border-radius: 0;
   cursor: pointer;
   padding: 8px;

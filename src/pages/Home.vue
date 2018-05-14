@@ -73,7 +73,7 @@
         <div class="card play-card">
           <div class="card-block">
             <span class="float-right">
-              <button class="btn btn-danger" v-if="editPlayerMode" v-on:click="cancelEditPlayersPositions()">Cancel</button>
+              <button class="fa fa-times" v-if="editPlayerMode" v-on:click="cancelEditPlayersPositions()"></button>
               <button class="btn btn-edit" v-on:click="toggleEditPlayersPositions()">{{editPlayerButtonText}}</button>
             </span>
             <h4 class="card-title">Starting Lineup</h4>
@@ -243,9 +243,9 @@
                       <button type="button" class="close float-right" aria-label="Close" @click="removeGameInfo(index)">
                         <span aria-hidden="true">&times;</span>
                       </button>
-                      <h7 for="gameInfoTitle">Title</h7>
+                      <h6 for="gameInfoTitle">Title</h6>
                       <input style="margin-bottom: 5px;" v-model="gameInfo[0]" class="form-control">
-                      <h7 for="gameInfoDetails">Details</h7>
+                      <h6 for="gameInfoDetails">Details</h6>
                       <input v-model="gameInfo[1]" class="form-control">
                     </div>
                   </form>
@@ -936,11 +936,21 @@ export default {
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
-.btn-danger:hover {
-  background-color: #c44743;
+.btn-cancel {
+  background-color: white;
+  border: 2px solid #d9534f;
+  color: #50575e;
   cursor: pointer;
   border-radius: 0;
-  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+  /* -webkit-box-shadow: 3px 3px 3px -3px #50575e; */
+}
+
+.btn-cancel:hover {
+  background-color: white;
+  border: 2px solid #c44743;
+  cursor: pointer;
+  border-radius: 0;
+  /* -webkit-box-shadow: 3px 3px 3px -3px #50575e; */
 }
 /*adjust jumbotron front size*/
 @media (max-width: 900px) {
@@ -951,7 +961,23 @@ export default {
 }
 
 
+.fa-times{
+  color: lightgray;
+  font-size: 2rem;
+  vertical-align: middle;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
 
+.fa-times:hover{
+  color: indianred;
+  font-size: 2rem;
+  vertical-align: middle;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
 
 .btn-edit{
   color: #50575e; 
@@ -965,7 +991,7 @@ export default {
 .btn-edit:hover{
   color: #50575e; 
   background-color: white;
-  border: 2px solid #2acad0;
+  border: 2px solid #e5e5e5;
    padding: 8px;
    border-radius: 0;
    cursor: pointer;
@@ -1043,9 +1069,22 @@ export default {
 }
 
 .close {
-    color: #E53935; 
+  color: lightgray;
+  font-size: 2rem;
+  vertical-align: middle;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
+.close:hover {
+  color:indianred;
+  font-size: 2rem;
+  vertical-align: middle;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
 .plus-circle{
 
  border: 0px solid;
@@ -1135,6 +1174,7 @@ h6 {
   font-weight: none;
   text-align: center;
   margin-bottom: 0rem;
+  padding: 8px;
 }
 
 h7 {
