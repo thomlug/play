@@ -61,18 +61,21 @@
                 <span class="profile-info" v-if="!editable">{{player.preffered_position}}</span>
                 <input placeholder="Preffered position" v-if="editable" v-model="player.preffered_position"/>
               </div>
+</div>
+</div>
 
-              <div class="content-block">
+<div class="profile-block">
+               <div class="content-block">
                 <div class= "input-header" v-if="editable" >
                   <h6> Phone Number</h6>
                 </div>
                 <i class="fa fa-phone" v-if="!editable"></i> 
                 <a  v-if="!editable" :href="'tel:'+player.phone">{{player.phone}} </a>
                 <input placeholder="Phone number"  v-if="editable" v-model="player.phone"/>
-
               </div>
 
-              <span class="content-block">
+              <div class="content-block">
+              <span>  
               <div class= "input-header" v-if="editable" >
               <h6 class= "input-header" > Email</h6>
               </div>
@@ -80,8 +83,9 @@
                 <a  v-if="!editable" :href="'mailto:'+player.email">{{player.email}} </a>
                 <input placeholder="Email" v-if="editable" v-model="player.email"/>
               </span>
+              </div>
 </div>
-</div>
+
 <div class="profile-block">   
               <div v-if="canEditProfile()">
                 <h4 class="card-title">Update your status </h4>
@@ -258,11 +262,13 @@
     border-radius: 0px;
     border: 0px solid #eee;
     padding: 5px 2.7rem;
-    box-shadow: 0px 1px 6px 0px #eee;
+    box-shadow: 0px 1px 6px -1px #ddd;
     width: 100%;
     background-color: white;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    text-align: center;
+    padding-bottom: 10px;
 }
 
 .profile-photo{
@@ -330,6 +336,7 @@ padding:5px;
 
 .content-block{
   margin: 0.4rem 0;
+  text-align: -webkit-center;
 }
 
 .player-{
@@ -358,25 +365,11 @@ color: darkgray;
 cursor: pointer;
 }
 
-/* .edit-icon{
-  height:2.25rem;
-  border-radius: 20%;
-  border: none;
-  background: none;
-}
-
-.edit-icon:hover{
-  cursor: pointer;
-  background: white;
-  color: white;
-  box-shadow: 3px 3px 3px -3px grey;
-  border-radius: 50%;
-} */
 
 .btn-success{
   color:#50575e;
   background-color: white;
-  border: 2px solid#2acad0;
+  border: 2px solid#e5e5e5;
   border-radius: 0;
   cursor: pointer;
   padding: 8px;
@@ -387,7 +380,7 @@ cursor: pointer;
 .btn-success:hover{
    color:#50575e;
   background-color: white;
-  border: 2px solid #2acad0;
+  border: 2px solid #e5e5e5;
   border-radius: 0;
   cursor: pointer;
   padding: 8px;
