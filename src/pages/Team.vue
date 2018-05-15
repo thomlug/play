@@ -292,7 +292,7 @@ export default {
 }
 
 .profile-block{
-    border-radius: 0px;
+    border-radius: 10px;
     border: 0px solid #eee;
     padding: 5px 2.7rem;
     box-shadow: 0px 1px 6px -1px #ddd;

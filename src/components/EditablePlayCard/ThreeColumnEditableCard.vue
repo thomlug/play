@@ -43,11 +43,12 @@ export default {
 
 <style scoped>
 .play-card {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px#ddd, 0 1px 2px #ddd;
   text-transform: uppercase;
   color: #50575e;
+  border-color: transparent; 
 }
 /* clock/time icon column styling */
 .center-content {
