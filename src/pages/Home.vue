@@ -1,6 +1,6 @@
 <template>
   <main-layout>
-    <div class="row">
+    <div class="row-home">
       <div v-for="card in cards" :key="card.Title" class="col-md-3">
         <div class="card">
 
@@ -654,6 +654,10 @@ export default {
 </script>
 
 <style scoped>
+
+.row-home{
+  background-color: transparent;
+}
 .game-info {
   font-size: small !important;
 }
@@ -736,6 +740,8 @@ export default {
   background-position: top;
   border-radius: 10px;
   border-color: transparent;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .team-name {
@@ -927,18 +933,20 @@ export default {
   border:2px solid #2acad0;
   cursor: pointer;
   -webkit-box-shadow: 2px 2px -2px 2px #50575e;
+  border-radius:20px; 
 }
 .open .dropdown-toggle.btn-available:hover {
   background-color: pink;
   cursor: pointer;
   border-radius: 0;
   -webkit-box-shadow: 4px 4px -4px 4px #50575e;
+  border-radius:20px; 
 }
 
 .btn-danger {
   background-color: #d9534f;
   cursor: pointer;
-  border-radius: 0;
+  border-radius:20px; 
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
@@ -947,7 +955,7 @@ export default {
   border: 2px solid #d9534f;
   color: #50575e;
   cursor: pointer;
-  border-radius: 0;
+  border-radius:20px; 
   /* -webkit-box-shadow: 3px 3px 3px -3px #50575e; */
 }
 
@@ -955,7 +963,7 @@ export default {
   background-color: white;
   border: 2px solid #c44743;
   cursor: pointer;
-  border-radius: 0;
+  border-radius:20px; 
   /* -webkit-box-shadow: 3px 3px 3px -3px #50575e; */
 }
 /*adjust jumbotron front size*/
@@ -990,7 +998,7 @@ export default {
   background-color: white;
   border: 2px solid #e5e5e5;
   padding: 8px;
-  border-radius: 0;
+  border-radius:20px; 
   cursor: pointer;
 }
 
@@ -999,7 +1007,7 @@ export default {
   background-color: white;
   border: 2px solid #e5e5e5;
    padding: 8px;
-   border-radius: 0;
+   bborder-radius:20px; 
    cursor: pointer;
 }
 
@@ -1008,14 +1016,14 @@ export default {
   border: 2px solid #2acad0;
   color: white;
   cursor: pointer;
-  border-radius: 0;
+  border-radius:20px; 
   cursor: pointer;
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
 .btn-primary:hover {
   background-color:#2fcade;
-  border-radius: 0;
+  border-radius:20px; 
   cursor: pointer;
 }
 
