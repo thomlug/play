@@ -254,6 +254,9 @@ export default {
 
 <style>
 
+.row{
+  background-color: transparent;
+}
 .team-profile-header{
   margin: 0rem 0rem;
   display: flex;
@@ -350,7 +353,7 @@ cursor: pointer;
   color:#50575e;
   background-color: white;
   border: 2px solid#e5e5e5;
-  border-radius: 0;
+  border-radius:20px; 
   cursor: pointer;
   padding: 4px;
   margin: -4px;
@@ -361,7 +364,7 @@ cursor: pointer;
    color:#50575e;
   background-color: white;
   border: 2px solid #e5e5e5;
-  border-radius: 0;
+  border-radius:20px; 
   cursor: pointer;
   padding: 4px;
   margin: -4px;
@@ -416,10 +419,11 @@ label{
  border: 2px solid #e5e5e5;
  /* box-shadow: 3px 3px 3px -3px grey; */
  color: #50575e;
-  padding: 0.5rem 1rem;
+  padding: 8px;
  cursor: pointer;
  font-weight: 400; 
  max-width: 100%;
+ border-radius:20px; 
 }
 
 .fixture-title{

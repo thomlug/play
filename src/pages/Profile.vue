@@ -254,7 +254,9 @@
 </script>
 
 <style scoped>
-
+.row{
+  background-color: whitesmoke;
+}
 .card-title{
   text-align: center;
 }
@@ -280,10 +282,12 @@
 
 .player-available{
     border: 2px solid #2acad0;
+    border-radius:none; 
 }
 
 .player-unavailable{
     border: 2px solid red;
+    border-radius:none; 
 }
 
 .player-unknown{
@@ -370,7 +374,7 @@ cursor: pointer;
   color:#50575e;
   background-color: white;
   border: 2px solid#e5e5e5;
-  border-radius: 0;
+  border-radius:20px; 
   cursor: pointer;
   padding: 8px;
   margin-top: -6px;
@@ -381,7 +385,7 @@ cursor: pointer;
    color:#50575e;
   background-color: white;
   border: 2px solid #e5e5e5;
-  border-radius: 0;
+  border-radius:20px; 
   cursor: pointer;
   padding: 8px;
   margin-top: -6px;
@@ -391,7 +395,7 @@ cursor: pointer;
 .btn-available{
   background-color: #2bcad0;
   border-color: #2bcad0;
-  border-radius: 0;
+  border-radius:20px; 
   cursor: pointer;
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
@@ -399,7 +403,7 @@ cursor: pointer;
 .btn-available:hover{
   background-color: #26bec4;
   border-color: #26bec4;
-  border-radius: 0;
+  border-radius:20px; 
   cursor: pointer;
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
@@ -408,7 +412,7 @@ cursor: pointer;
   background-color: #d9534f;
   border-color: #d9534f;
   cursor: pointer;
-  border-radius: 0;
+  border-radius:20px; 
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
@@ -416,7 +420,7 @@ cursor: pointer;
   background-color: #c44743;
   border-color: #c44743;
   cursor: pointer;
-  border-radius: 0;
+  border-radius:20px; 
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
