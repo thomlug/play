@@ -704,24 +704,28 @@ export default {
 }
 
 .play-card {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px#ddd, 0 1px 2px #ddd;
   text-transform: uppercase;
   color: #50575e;
+  border-radius: 10px;
+  border-color: transparent;
 }
 
 .play-subs-card {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px#ddd, 0 1px 2px #ddd;
   text-transform: uppercase;
   color: #50575e;
   height: 16rem;
+  border-color: transparent;
+  border-radius: 10px;
 }
 
 .card-block {
-  background: white;
+  background: transparent;
 }
 
 .card-block-lineup {
@@ -730,6 +734,8 @@ export default {
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: top;
+  border-radius: 10px;
+  border-color: transparent;
 }
 
 .team-name {
@@ -737,7 +743,7 @@ export default {
 }
 
 .backdrop {
-  background-color: #eeeeee;
+  background-color: whitesmoke;
 }
 
 .play-photo {
@@ -784,9 +790,9 @@ export default {
   justify-content: space-around;
 }
 
-.player-container a {
-  color: whitesmoke;
-}
+/* .player-container a {
+  color: rgb(90, 28, 77);
+} */
 
 @media (max-width: 768px) {
   .formation-row {
