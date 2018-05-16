@@ -464,13 +464,15 @@ margin:0px;
 }
 
 label{
-    background-color: white;
-    border: 2px solid #2acad0;
-    padding: 8px;
+     background-color: #2acad0;
+    /* border: 2px solid #2acad0; */
+    box-shadow: 0px 1px 4px 0px #ddd;
+    padding: 6px;
     cursor: pointer;
     font-weight: 400;
     max-width: 100%;
     border-radius: 20px;
+    color: white;
 }
 
 /* header styles */

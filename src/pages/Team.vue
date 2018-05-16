@@ -413,15 +413,15 @@ background-color:#2D6C7A;
 color:#FFFFFF;
 } */
 label{
- background-color:white;
- border: 2px solid #2acad0;
- /* box-shadow: 3px 3px 3px -3px grey; */
- color: #50575e;
-  padding: 8px;
- cursor: pointer;
- font-weight: 400; 
- max-width: 100%;
- border-radius:20px; 
+    background-color: #2acad0;
+    /* border: 2px solid #2acad0; */
+    box-shadow: 0px 1px 4px 0px #ddd;
+    padding: 6px;
+    cursor: pointer;
+    font-weight: 400;
+    max-width: 100%;
+    border-radius: 20px;
+    color: white; 
 }
 
 .fixture-title{
