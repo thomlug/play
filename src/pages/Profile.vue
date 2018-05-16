@@ -86,8 +86,8 @@
               </div>
 </div>
 
+<div v-if="canEditProfile()">
 <div class="profile-block">   
-              <div v-if="canEditProfile()">
                 <h4 class="card-title">Update your status </h4>
                 <div class="availability-container">
                   <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available">Available</button>

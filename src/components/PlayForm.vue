@@ -38,8 +38,9 @@ export default {
         margin-top: 5vh;
         width: 20rem;
         padding: 2rem 0 2rem 0;
-        -webkit-box-shadow: 3px 3px 3px -3px rgba(0,0,0,0.75);
-        -moz-box-shadow: 3px 3px 3px -3px rgba(0,0,0,0.75);
-        box-shadow: 3px 3px 3px -3px rgba(0,0,0,0.75);
+        /* -webkit-box-shadow: 3px 3px 3px -3px rgba(0,0,0,0.75);
+        -moz-box-shadow: 3px 3px 3px -3px rgba(0,0,0,0.75); */
+        box-shadow: 0px 1px 6px 0px #ddd;
+        border: 0px;
     }
 </style>
