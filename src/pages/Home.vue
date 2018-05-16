@@ -982,6 +982,7 @@ export default {
   border: none;
   background: none;
   cursor: pointer;
+  margin-top: -10px;
 }
 
 .fa-times:hover{
@@ -991,6 +992,7 @@ export default {
   border: none;
   background: none;
   cursor: pointer;
+  margin-top: -10px;
 }
 
 .btn-edit{
@@ -1000,7 +1002,7 @@ export default {
   padding: 8px;
   border-radius:20px; 
   cursor: pointer;
-  margin-top: 2px;
+  margin-top: -10px;
 }
 
 .btn-edit:hover{
@@ -1010,7 +1012,7 @@ export default {
    padding: 8px;
    border-radius:20px; 
    cursor: pointer;
-   margin-top: 2px;
+   margin-top: -10px;
 }
 
 .btn-primary {
@@ -1106,6 +1108,7 @@ export default {
  border: 0px solid;
  box-shadow: 2px 2px -2px 2px grey;
  margin-right: 20px;
+margin-top: -12px;
 }
 
 .plus-circle:hover {
@@ -1113,6 +1116,7 @@ export default {
  border: 0px solid;
  box-shadow: 4px 4px -4px 4px grey;
  margin-right: 20px;
+ margin-top: -12px;
 }
 
 .edit-icon {
