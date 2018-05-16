@@ -1000,6 +1000,7 @@ export default {
   padding: 8px;
   border-radius:20px; 
   cursor: pointer;
+  margin-top: 2px;
 }
 
 .btn-edit:hover{
@@ -1007,8 +1008,9 @@ export default {
   background-color: white;
   border: 2px solid #e5e5e5;
    padding: 8px;
-   bborder-radius:20px; 
+   border-radius:20px; 
    cursor: pointer;
+   margin-top: 2px;
 }
 
 .btn-primary {
