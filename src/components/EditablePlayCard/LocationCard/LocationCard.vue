@@ -67,7 +67,7 @@ export default {
   font-size: 0.8rem;
   padding: 0.5rem;
   border: 0px;
-  border-radius: 0px;
+  border-radius: 20px;
   border: 1px solid #e3e3e3;
   text-transform: uppercase;
   font-family: 'Roboto Condensed', sans-serif;

@@ -15,7 +15,6 @@
           <button class="btn btn-success" @click="save" v-if="editable">Save</button>
         </div>
             <div class="player-profile-content">
-
               <img class="profile-photo" :src="player.photo" :class="'player-' + player.availability"/> 
               <div class="content-block">
               <template v-if = "editable">
@@ -86,8 +85,8 @@
               </div>
 </div>
 
+<div v-if="canEditProfile()">
 <div class="profile-block">   
-              <div v-if="canEditProfile()">
                 <h4 class="card-title">Update your status </h4>
                 <div class="availability-container">
                   <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available">Available</button>
@@ -345,6 +344,7 @@ padding:5px;
 
 .player-{
   margin-top: 2rem;
+  color: pink;
 }
 
 .profile-info{
@@ -377,7 +377,7 @@ cursor: pointer;
   border-radius:20px; 
   cursor: pointer;
   padding: 8px;
-  margin-top: -6px;
+  margin-top: 0px;
   margin-right: -16px;
 }
 
@@ -388,7 +388,7 @@ cursor: pointer;
   border-radius:20px; 
   cursor: pointer;
   padding: 8px;
-  margin-top: -6px;
+  margin-top: 0px;
   margin-right: -16px;
 }
 
@@ -433,6 +433,7 @@ input{
   border:1.2px solid #e3e3e3;
   color: #50575e;
   margin: 1px;
+  border-radius: 20px;
 }
 
 .input-file{
@@ -464,14 +465,16 @@ margin:0px;
 }
 
 label{
- background-color:white;
- border: 2px solid #e5e5e5;
- /* box-shadow: 3px 3px 3px -3px grey; */
- color: #50575e;
-  padding: 0.5rem 1rem;
- cursor: pointer;
- font-weight: 400; 
- max-width: 100%;
+     background-color: #2acad0;
+    /* border: 2px solid #2acad0; */
+    box-shadow: 0px 1px 4px 0px #ddd;
+    padding: 6px;
+    cursor: pointer;
+    font-weight: 400;
+    max-width: 100%;
+    border-radius: 20px;
+    color: white;
+    margin-bottom: 20px;
 }
 
 /* header styles */

@@ -350,25 +350,23 @@ cursor: pointer;
 } */
 
 .btn-success{
-  color:#50575e;
-  background-color: white;
-  border: 2px solid#e5e5e5;
-  border-radius:20px; 
-  cursor: pointer;
-  padding: 4px;
-  margin: -4px;
-  /* -webkit-box-shadow: 3px 3px 3px -3px #50575e; */
+    color: #50575e;
+    background-color: white;
+    border: 2px solid#e5e5e5;
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 8px;
+    margin: 0px -16px 0px -40px;
 }
 
 .btn-success:hover{
-   color:#50575e;
-  background-color: white;
-  border: 2px solid #e5e5e5;
-  border-radius:20px; 
-  cursor: pointer;
-  padding: 4px;
-  margin: -4px;
-  /* -webkit-box-shadow: 3px 3px 3px -3px #50575e; */
+     color: #50575e;
+    background-color: white;
+    border: 2px solid#e5e5e5;
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 8px;
+    margin: 0px -16px 0px -40px;
 }
 
 input{
@@ -379,6 +377,7 @@ input{
     border: none;
     border: 1.2px solid #e3e3e3;
     color: #50575e;
+    border-radius: 20px;
 
 }
 
@@ -415,15 +414,15 @@ background-color:#2D6C7A;
 color:#FFFFFF;
 } */
 label{
- background-color:white;
- border: 2px solid #e5e5e5;
- /* box-shadow: 3px 3px 3px -3px grey; */
- color: #50575e;
-  padding: 8px;
- cursor: pointer;
- font-weight: 400; 
- max-width: 100%;
- border-radius:20px; 
+    background-color: #2acad0;
+    /* border: 2px solid #2acad0; */
+    box-shadow: 0px 1px 4px 0px #ddd;
+    padding: 6px;
+    cursor: pointer;
+    font-weight: 400;
+    max-width: 100%;
+    border-radius: 20px;
+    color: white; 
 }
 
 .fixture-title{

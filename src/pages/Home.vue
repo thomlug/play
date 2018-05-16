@@ -1000,6 +1000,7 @@ export default {
   padding: 8px;
   border-radius:20px; 
   cursor: pointer;
+  margin-top: 2px;
 }
 
 .btn-edit:hover{
@@ -1007,8 +1008,9 @@ export default {
   background-color: white;
   border: 2px solid #e5e5e5;
    padding: 8px;
-   bborder-radius:20px; 
+   border-radius:20px; 
    cursor: pointer;
+   margin-top: 2px;
 }
 
 .btn-primary {
@@ -1220,7 +1222,7 @@ a:hover {
   font-size: 0.8rem;
   padding: 0.8rem;
   border: 0px;
-  border-radius: 0px;
+  border-radius: 20px;
   border: 1px solid #e3e3e3;
   text-transform: uppercase;
   font-family: 'Roboto Condensed', sans-serif;
