@@ -335,7 +335,7 @@ export default {
       return this.editPlayerMode ? "Save" : "Edit Line-Up";
     },
     editGameInfoButtonText: function() {
-      return this.editGameInfo ? "Save" : "Edit Game Info";
+      return this.editGameInfo ? "Save" : "Edit/Add";
     },
     ...mapState(["user"])
   },
