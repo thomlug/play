@@ -377,6 +377,7 @@ input{
     border: none;
     border: 1.2px solid #e3e3e3;
     color: #50575e;
+    border-radius: 20px;
 
 }
 

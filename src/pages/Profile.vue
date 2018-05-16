@@ -433,6 +433,7 @@ input{
   border:1.2px solid #e3e3e3;
   color: #50575e;
   margin: 1px;
+  border-radius: 20px;
 }
 
 .input-file{
@@ -473,6 +474,7 @@ label{
     max-width: 100%;
     border-radius: 20px;
     color: white;
+    margin-bottom: 20px;
 }
 
 /* header styles */
