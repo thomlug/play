@@ -15,7 +15,6 @@
           <button class="btn btn-success" @click="save" v-if="editable">Save</button>
         </div>
             <div class="player-profile-content">
-
               <img class="profile-photo" :src="player.photo" :class="'player-' + player.availability"/> 
               <div class="content-block">
               <template v-if = "editable">
@@ -345,6 +344,7 @@ padding:5px;
 
 .player-{
   margin-top: 2rem;
+  color: pink;
 }
 
 .profile-info{
@@ -377,7 +377,7 @@ cursor: pointer;
   border-radius:20px; 
   cursor: pointer;
   padding: 8px;
-  margin-top: -6px;
+  margin-top: 0px;
   margin-right: -16px;
 }
 
@@ -388,7 +388,7 @@ cursor: pointer;
   border-radius:20px; 
   cursor: pointer;
   padding: 8px;
-  margin-top: -6px;
+  margin-top: 0px;
   margin-right: -16px;
 }
 
@@ -464,14 +464,13 @@ margin:0px;
 }
 
 label{
- background-color:white;
- border: 2px solid #e5e5e5;
- /* box-shadow: 3px 3px 3px -3px grey; */
- color: #50575e;
-  padding: 0.5rem 1rem;
- cursor: pointer;
- font-weight: 400; 
- max-width: 100%;
+    background-color: white;
+    border: 2px solid #2acad0;
+    padding: 8px;
+    cursor: pointer;
+    font-weight: 400;
+    max-width: 100%;
+    border-radius: 20px;
 }
 
 /* header styles */
