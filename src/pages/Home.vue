@@ -477,7 +477,7 @@ export default {
     },
 
     newGameInfo() {
-      this.gameInfoList.push(["", ""]);
+      this.gameInfoList.unshift(["", ""]);
     },
 
     removeGameInfo(index) {
