@@ -13,12 +13,16 @@ import routes from './routes.js'
 import lodash from 'lodash'
 import VueLodash from 'vue-lodash'
 import moment from 'moment'
+import VModal from 'vue-js-modal'
+
 
 Vue.use(VueRouter);
 Vue.use(TableComponent);
 Vue.use(VueFire);
 Vue.use(VueLodash, lodash)
 Vue.use(helpersPlugin);
+Vue.use(VModal)
+
 Vue.prototype.moment = moment
 
 
