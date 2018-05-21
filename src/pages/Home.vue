@@ -148,28 +148,22 @@
       </div>
       <div class="col-xl-3">
         <div class="card play-subs-card">
-          <div class="card-block">
-            
+          <div class="card-block">          
             <h4 class="card-title">Subs <small>(Scroll to see all players) </small></h4>
             <span class="float right">
               <button class="fa fa-plus" @click="showNewPlayerModal()"></button>
             </span>
-             
               <modal height="80%" name="add-player">
-           
                 <div class= "input-header">
                   <h6>Add New Player</h6>
                 </div> 
-                
                 <div class="form-group">
                   <input class="form-control" placeholder="First name" v-model="newPlayer.first_name"/>
                   <input class="form-control" placeholder="Last name" v-model="newPlayer.last_name"/>
                   <input class="form-control" placeholder="Email" v-model="newPlayer.email"/>
                   <button class="btn btn-primary" @click="saveNewPlayer()">Save</button>
                 </div>
-                
                   <h6>Add Existing Player</h6>
-
                 <div class="form-group">
                   <input class="form-control" placeholder="Search for player" v-model="searchPlayerName"/>
                   <ul>
@@ -178,10 +172,8 @@
                       {{player.last_name}}
                       </li>
                   </ul>
-                </div>
-                
+                </div>        
               </modal>
-              
               <div class="card-block row">
                   <draggable class="scroller"
                   id="substitutePlayers" 
@@ -208,8 +200,7 @@
                           </template>
                           {{player.first_name}}
                         </div>
-                      </div>
-                      
+                      </div>                     
                     </div>
                   </draggable>
                   <div class="scroller"
@@ -1300,8 +1291,8 @@ a:hover {
 }
 
 .form-group{
-    margin: 1rem;
-    width: 80%;
+    margin: 0rem;
+    width: 100%;
 }
 
 .form-control{
@@ -1319,7 +1310,4 @@ a:hover {
   width: 20%;
 }
 
-.width-thing{
-  width:516px;
-}
 </style>
