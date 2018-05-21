@@ -149,20 +149,27 @@
       <div class="col-xl-3">
         <div class="card play-subs-card">
           <div class="card-block">
+            
             <h4 class="card-title">Subs <small>(Scroll to see all players) </small></h4>
-              <button class="btn btn-primary" @click="showNewPlayerModal()">Add Player</button>
+            <span class="float right">
+              <button class="fa fa-plus" @click="showNewPlayerModal()"></button>
+            </span>
+             
               <modal height="80%" name="add-player">
-
+           
                 <div class= "input-header">
                   <h6>Add New Player</h6>
                 </div> 
+                
                 <div class="form-group">
                   <input class="form-control" placeholder="First name" v-model="newPlayer.first_name"/>
                   <input class="form-control" placeholder="Last name" v-model="newPlayer.last_name"/>
                   <input class="form-control" placeholder="Email" v-model="newPlayer.email"/>
                   <button class="btn btn-primary" @click="saveNewPlayer()">Save</button>
                 </div>
+                
                   <h6>Add Existing Player</h6>
+
                 <div class="form-group">
                   <input class="form-control" placeholder="Search for player" v-model="searchPlayerName"/>
                   <ul>
@@ -172,7 +179,9 @@
                       </li>
                   </ul>
                 </div>
+                
               </modal>
+              
               <div class="card-block row">
                   <draggable class="scroller"
                   id="substitutePlayers" 
@@ -765,7 +774,7 @@ export default {
   box-shadow: 0 1px 3px#ddd, 0 1px 2px #ddd;
   text-transform: uppercase;
   color: #50575e;
-  height: 16rem;
+  height: 17rem;
   border-color: transparent;
   border-radius: 10px;
 }
@@ -812,6 +821,7 @@ export default {
 
 .team-circle {
   color: #9e9e9e;
+  
 }
 
 .player-selected {
@@ -949,10 +959,16 @@ export default {
   cursor: pointer;
 }
 
+
 .player-circle {
   color: white;
   -webkit-box-shadow: 2px 2px 2px -2px #50575e;
   cursor: pointer;
+  border-radius: 50%;
+  background-color: #e5e5e5;
+  color: #a9a9a9;
+  font-size: 2.5rem;
+  border-color: #50575e;
 }
 
 .fixture-title {
@@ -1016,6 +1032,25 @@ export default {
   }
 }
 
+.fa-plus{
+  font-size: 2.5rem;
+  color:#e5e5e5;
+  border-radius: none;
+  background: none;
+  border: none;
+  float: right;
+  margin-top: -40px;
+}
+
+.fa-plus:hover{
+  font-size: 2.5rem;
+  color:#2acad0;
+  border-radius: none;
+  background: none;
+  border: none;
+  float: right;
+  margin-top: -40px;
+}
 
 .fa-times{
   color: lightgray;
@@ -1263,6 +1298,12 @@ a:hover {
   text-transform: uppercase;
   font-size: 0.8rem;
 }
+
+.form-group{
+    margin: 1rem;
+    width: 80%;
+}
+
 .form-control{
   color: rgb(175, 175, 175);
   font-size: 0.8rem;
@@ -1272,8 +1313,13 @@ a:hover {
   border: 1px solid #e3e3e3;
   text-transform: uppercase;
   font-family: 'Roboto Condensed', sans-serif;
+  margin:10px 0px;
 }
 .player-5-wide {
   width: 20%;
+}
+
+.width-thing{
+  width:516px;
 }
 </style>
