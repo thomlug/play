@@ -711,6 +711,8 @@ export default {
 
 .game-info > h6 {
   text-align: left !important;
+  text-transform: none;
+  padding-left: 0px;
 }
 
 .game-info-form {
@@ -1317,7 +1319,7 @@ a:hover {
   border: 0px;
   border-radius: 20px;
   border: 1px solid #e3e3e3;
-  text-transform: uppercase;
+  text-transform: none;
   font-family: 'Roboto Condensed', sans-serif;
   margin:10px 0px;
 }
