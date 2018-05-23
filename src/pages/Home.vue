@@ -820,16 +820,28 @@ export default {
 }
 
 .player-available {
-  border: 2px solid #2bcad0;
+  /* border: 2px solid #2bcad0; */
+  background-image: linear-gradient(45deg, #2acad0 0%, #3580d0 100%);
+  padding: 2px;
 }
 
+
+/* .player-available:before {
+  /* border: 2px solid #2bcad0; */
+  /* background-image: linear-gradient(to bottom, blue 0%, pink 100%); */
+/* } */
+
 .player-unavailable {
-  border: 2px solid red;
+  /* border: 2px solid red; */
+  background-image: linear-gradient(45deg, indianred 0%, red 100%);
+  padding: 2px;
 }
 
 .player-unknown {
   border: 2px solid grey;
   -webkit-filter: grayscale(50%);
+    /* background-image: linear-gradient(45deg, grey 0%, darkgrey 100%);
+  padding: 2px; */
 }
 
 .status-container {
@@ -959,7 +971,8 @@ export default {
   background-color: #e5e5e5;
   color: #a9a9a9;
   font-size: 2.5rem;
-  border-color: #50575e;
+  border-color: whitesmoke;
+  Margin: 2px 0 4px 0;
 }
 
 .fixture-title {
@@ -1031,6 +1044,7 @@ export default {
   border: none;
   float: right;
   margin-top: -40px;
+  cursor: pointer;
 }
 
 .fa-plus:hover{
@@ -1041,6 +1055,7 @@ export default {
   border: none;
   float: right;
   margin-top: -40px;
+  cursor: pointer;
 }
 
 .fa-times{
