@@ -1308,7 +1308,7 @@ a:hover {
 }
 
 .form-group{
-    margin: 0rem;
+    margin: 0 6px 0 6px;
     width: 100%;
 }
 
