@@ -87,7 +87,7 @@
 
 <div v-if="canEditProfile()">
 <div class="profile-block">   
-                <h4 class="card-title">Update your status </h4>
+                <h4bold class="card-title">Update your status </h4bold>
                 <div class="availability-container">
                   <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available">Available</button>
                   <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
@@ -493,6 +493,12 @@ h1{
   margin-bottom: 0.25rem;
   margin-top: 0.25rem;
   font-size: 2rem;
+  font-weight: 550;
+}
+
+h4 {
+  font-size: large;
+  color: #50575e;
   font-weight: 550;
 }
 
