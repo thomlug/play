@@ -280,13 +280,13 @@
 }
 
 .player-available{
-    border: 2px solid #2acad0;
-    border-radius:none; 
+    background-image: linear-gradient(45deg, #2acad0 0%, #3580d0 100%);
+    padding: 2px;
 }
 
 .player-unavailable{
-    border: 2px solid red;
-    border-radius:none; 
+    background-image: linear-gradient(45deg, indianred 50%, hotpink 100%);
+    padding: 2px;
 }
 
 .player-unknown{
