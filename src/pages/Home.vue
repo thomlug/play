@@ -776,8 +776,11 @@ export default {
   background: transparent;
 }
 
+.card{
+  border: 0px;
+}
 .card-block-lineup {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/28109837_10161510775925206_1864057297_n.png?alt=media&token=4bebff7b-aa0d-45b0-9a31-a392fc58de34");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/soccer%20pitch%20blue%20really%20long%20last.png?alt=media&token=34046254-a7a7-4a09-8d22-69ee7d663be2");
   background-color: transparent;
   background-size: 100%;
   background-repeat: no-repeat;
