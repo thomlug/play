@@ -37,7 +37,8 @@
           </ul>
         </div>
       </nav>
-    <slot></slot>
+    <slot v-if="playerBelongsToATeam()"></slot>
+    <div v-if="!playerBelongsToATeam()"><h1>Please join a team first</h1></div>
   </div>
 </template>
 
@@ -66,7 +67,10 @@
       },
       messages:{
         source: db.ref("chat").limitToLast(1)
-      }
+      },
+      teams: {
+        source: db.ref("team")
+      },
     },
 
     methods: {
@@ -83,12 +87,25 @@
       },
       isThereNewChatMessage(){
         var latestMessage = this.messages[0];
-        if(latestMessage != null && this.player.lastChatViewedDate != null){
+        if(latestMessage != null && this.player != null && this.player.lastChatViewedDate != null){
           return latestMessage.date > this.player.lastChatViewedDate;
         }
 
         return false;
       },
+      playerBelongsToATeam(){
+        var player = _.find(this.players, p => {
+          return p.userUid === this.user.uid;
+        });
+        if (player == null){
+          return false;
+        }
+        return _.some(_.keys(player), (playerKey) => {
+          return _.some(this.teams, function(team){
+            return team['.key'] === playerKey;
+          });
+        });
+      }
     }
   }
   

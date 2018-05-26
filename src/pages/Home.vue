@@ -691,7 +691,11 @@ export default {
       db.ref().update(updates);
     },
     listPlayersNotInTeam(name){
-      var teamKey = this.getCurrentTeam()['.key'];
+      var team = this.getCurrentTeam();
+      if (_.isUndefined(team)){
+        return;
+      }
+      var teamKey = team['.key'];
       return _.filter(this.players, function(player){
         return player[teamKey] === undefined 
           && ((player.first_name != null && player.first_name.toLowerCase().includes(name.toLowerCase())) 
