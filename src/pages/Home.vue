@@ -151,7 +151,8 @@
           <div class="card-block">          
             <h4 class="card-title">Subs <small>(Scroll to see all players) </small></h4>
             <span class="float right">
-              <button class="fa fa-plus" @click="showNewPlayerModal()"></button>
+              <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
+              <button class="fa fa-minus manage-players-button" @click="showRemovePlayerModal()"></button>
             </span>
               <modal height="80%" name="add-player">
                 <div class= "input-header">
@@ -171,6 +172,20 @@
                       {{player.first_name}}
                       {{player.last_name}}
                       </li>
+                  </ul>
+                </div>        
+              </modal>
+              <modal height="80%" name="remove-player">
+                <div class= "input-header">
+                  <h6>Remove Player From Team</h6>
+                </div> 
+                <div class="form-group">
+                  <ul>
+                    <li v-for="player in getPlayersForCurrentTeam()" v-bind:key="player['.key']">
+                      {{player.first_name}}
+                      {{player.last_name}}
+                      <button class="fa fa-trash " @click="removePlayerFromTeam(player['.key'])"></button>
+                    </li>
                   </ul>
                 </div>        
               </modal>
@@ -680,6 +695,24 @@ export default {
           || (player.last_name != null && player.last_name.toLowerCase().includes(name.toLowerCase()));
       })
     },
+    showRemovePlayerModal(){
+      this.$modal.show('remove-player');
+    },
+    hideRemovePlayerModal(){
+      this.$modal.hide('remove-player');
+    },
+    removePlayerFromTeam(playerKey){
+      var teamKey = this.getCurrentTeam()['.key'];
+      var player = _.find(this.getPlayersForCurrentTeam(), {'.key': playerKey});
+      if(player == null){
+        console.error('Unable to remove player from team: ' + playerKey);
+      }
+
+      this.$firebaseRefs.players
+            .child(player['.key'])
+            .child(teamKey)
+            .remove();
+    },
     showNewPlayerModal(){
       this.$modal.show('add-player');
     },
@@ -1041,7 +1074,7 @@ export default {
   }
 }
 
-.fa-plus{
+.manage-players-button{
   font-size: 2.5rem;
   color:#e5e5e5;
   border-radius: none;
@@ -1052,7 +1085,7 @@ export default {
   cursor: pointer;
 }
 
-.fa-plus:hover{
+.manage-players-button:hover{
   font-size: 2.5rem;
   color:#2acad0;
   border-radius: none;
