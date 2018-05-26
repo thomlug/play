@@ -168,10 +168,11 @@
                 <div class="form-group">
                   <input class="form-control" placeholder="Search for player" v-model="searchPlayerName"/>
                   <ul>
-                    <li v-for="player in listPlayers(searchPlayerName)" v-bind:key="player['.key']">
+                    <li v-for="player in listPlayersNotInTeam(searchPlayerName)" v-bind:key="player['.key']">
                       {{player.first_name}}
                       {{player.last_name}}
-                      </li>
+                      <button class="fa fa-plus" @click="addExistingPlayerToTeam(player['.key'])"></button>
+                    </li>
                   </ul>
                 </div>        
               </modal>
@@ -184,7 +185,7 @@
                     <li v-for="player in getPlayersForCurrentTeam()" v-bind:key="player['.key']">
                       {{player.first_name}}
                       {{player.last_name}}
-                      <button class="fa fa-trash " @click="removePlayerFromTeam(player['.key'])"></button>
+                      <button class="fa fa-trash" @click="removePlayerFromTeam(player['.key'])"></button>
                     </li>
                   </ul>
                 </div>        
@@ -689,10 +690,13 @@ export default {
       updates["match/" + currentFixture[".key"] + "/date"] = date;
       db.ref().update(updates);
     },
-    listPlayers(name){
+    listPlayersNotInTeam(name){
+      var teamKey = this.getCurrentTeam()['.key'];
       return _.filter(this.players, function(player){
-        return (player.first_name != null && player.first_name.toLowerCase().includes(name.toLowerCase())) 
-          || (player.last_name != null && player.last_name.toLowerCase().includes(name.toLowerCase()));
+        return player[teamKey] === undefined 
+          && ((player.first_name != null && player.first_name.toLowerCase().includes(name.toLowerCase())) 
+            || (player.last_name != null && player.last_name.toLowerCase().includes(name.toLowerCase()))
+          );
       })
     },
     showRemovePlayerModal(){
@@ -703,21 +707,29 @@ export default {
     },
     removePlayerFromTeam(playerKey){
       var teamKey = this.getCurrentTeam()['.key'];
-      var player = _.find(this.getPlayersForCurrentTeam(), {'.key': playerKey});
-      if(player == null){
-        console.error('Unable to remove player from team: ' + playerKey);
-      }
 
       this.$firebaseRefs.players
-            .child(player['.key'])
-            .child(teamKey)
-            .remove();
+        .child(playerKey)
+        .child(teamKey)
+        .remove();
     },
     showNewPlayerModal(){
       this.$modal.show('add-player');
     },
     hideNewPlayerModal(){
       this.$modal.hide('add-player');
+    },
+    addExistingPlayerToTeam(playerKey){
+      var teamKey = this.getCurrentTeam()['.key'];
+    
+      this.$firebaseRefs.players
+        .child(playerKey)
+        .child(teamKey)
+        .set(1);
+      this.$firebaseRefs.players
+        .child(playerKey)
+        .child("position")
+        .set([0, 0]);
     },
     saveNewPlayer(){
       this.newPlayer[this.getCurrentTeam()['.key']] = 1;
