@@ -154,7 +154,7 @@
               <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
               <button class="fa fa-minus manage-players-button" @click="showRemovePlayerModal()"></button>
             </span>
-              <modal height="80%" name="add-player">
+              <modal height="80%" name="add-player" :clickToClose="false">
                 <div class= "input-header">
                   <h6>Add New Player</h6>
                 </div> 
@@ -162,7 +162,10 @@
                   <input class="form-control" placeholder="First name" v-model="newPlayer.first_name"/>
                   <input class="form-control" placeholder="Last name" v-model="newPlayer.last_name"/>
                   <input class="form-control" placeholder="Email" v-model="newPlayer.email"/>
-                  <button class="btn btn-primary" @click="saveNewPlayer()">Save</button>
+                  <div class="form-control alert alert-danger" v-if="newPlayerMessages.error !== undefined">{{newPlayerMessages.error}}</div>
+                  <div class="form-control alert alert-success" v-if="newPlayerMessages.success !== undefined">{{newPlayerMessages.success}}</div>
+                  <button class="btn btn-edit mt-1" @click="hideNewPlayerModal()">Close</button>
+                  <button class="btn btn-primary mt-1" @click="saveNewPlayer()">Save</button>
                 </div>
                   <h6>Add Existing Player</h6>
                 <div class="form-group">
@@ -176,7 +179,7 @@
                   </ul>
                 </div>        
               </modal>
-              <modal height="80%" name="remove-player">
+              <modal height="80%" name="remove-player" :clickToClose="false">
                 <div class= "input-header">
                   <h6>Remove Player From Team</h6>
                 </div> 
@@ -189,6 +192,7 @@
                     </li>
                   </ul>
                 </div>        
+                <button class="btn btn-edit mt-1" @click="hideRemovePlayerModal()">Close</button>
               </modal>
               <div class="card-block row">
                   <draggable class="scroller"
@@ -358,7 +362,8 @@ export default {
       teamPromise: this.defer(function(resolve, reject) {}),
       plusCircle: PlusCircle,
       searchPlayerName:'',
-      newPlayer: {}
+      newPlayer: {},
+      newPlayerMessages: {error:undefined, success:undefined}
     };
   },
   watch: {
@@ -722,6 +727,9 @@ export default {
     },
     hideNewPlayerModal(){
       this.$modal.hide('add-player');
+      this.newPlayerMessages.error = undefined;
+      this.newPlayerMessages.success = undefined;
+      this.newPlayer = {};
     },
     addExistingPlayerToTeam(playerKey){
       var teamKey = this.getCurrentTeam()['.key'];
@@ -736,9 +744,21 @@ export default {
         .set([0, 0]);
     },
     saveNewPlayer(){
+      this.newPlayerMessages.error = undefined;
+      this.newPlayerMessages.sucess = undefined;
+      var playerExists = _.some(this.players, (player) => {
+        return player.email != null && player.email.toLowerCase() === this.newPlayer.email.toLowerCase();
+      });
+
+      if(playerExists){
+        this.newPlayerMessages.error = "Player already exists with that email address";
+        return;
+      }
       this.newPlayer[this.getCurrentTeam()['.key']] = 1;
       this.newPlayer.position = [0, 0];
+      this.newPlayer.signUpToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
       db.ref("player").push(this.newPlayer);
+      this.newPlayerMessages.success = "Player added. Please copy signup link and send to them: https://app.playapp.live/signup/"+this.newPlayer.signUpToken;
     }
   }
 };
@@ -1132,40 +1152,34 @@ export default {
   margin-top: -10px;
 }
 
-.btn-edit{
-  color: #50575e; 
-  background-color: white;
-  border: 2px solid #e5e5e5;
+.btn {
   padding: 8px;
   border-radius:20px; 
   cursor: pointer;
   margin-top: -10px;
 }
 
+.btn-edit{
+  color: #50575e; 
+  background-color: white;
+  border: 2px solid #e5e5e5;
+}
+
 .btn-edit:hover{
   color: #50575e; 
   background-color: white;
   border: 2px solid #e5e5e5;
-   padding: 8px;
-   border-radius:20px; 
-   cursor: pointer;
-   margin-top: -10px;
 }
 
 .btn-primary {
   background-color:#2acad0;
   border: 2px solid #2acad0;
   color: white;
-  cursor: pointer;
-  border-radius:20px; 
-  cursor: pointer;
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
 .btn-primary:hover {
   background-color:#2fcade;
-  border-radius:20px; 
-  cursor: pointer;
 }
 
 /* clock/time icon column styling */
