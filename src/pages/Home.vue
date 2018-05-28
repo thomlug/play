@@ -843,6 +843,7 @@ export default {
 .info-card-block{
 height: 32.5rem;
 overflow-y: scroll;
+padding-bottom: 10px;
 }
 
 .team-name {
@@ -1065,6 +1066,10 @@ overflow-y: scroll;
   border-radius:20px; 
 }
 
+.btn{
+  margin: 2px;
+  padding: .5rem 1.5rem;
+}
 .btn-danger {
   background-color: #d9534f;
   cursor: pointer;
@@ -1313,11 +1318,11 @@ h2 {
 }
 
 h3 {
-  font-weight: 500;
+  font-weight: 550;
   color: #50575e;
   margin-bottom: 0rem;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 h4 {

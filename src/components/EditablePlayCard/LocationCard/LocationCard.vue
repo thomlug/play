@@ -74,11 +74,11 @@ export default {
 }
 
 h3 {
-  font-weight: 550;
+  font-weight: 500;
   color: #50575e;
   margin-bottom: 0rem;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 h6 {
