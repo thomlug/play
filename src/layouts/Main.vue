@@ -122,6 +122,7 @@
 .body{
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: bold;
+  background-color: whitesmoke;
 }
 
 .profile-photo{

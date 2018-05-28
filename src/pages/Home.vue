@@ -270,7 +270,7 @@
               <h4>Game Info</h4>
             </div>
           </div>
-          <div class="card-block">
+          <div class="info-card-block">
             <div class="list-group list-group-flush">
               <template v-for="(gameInfo,index) in this.gameInfoList">
                 <div class="list-group-item game-info" :key="index">
@@ -378,7 +378,7 @@ export default {
   },
   computed: {
     editPlayerButtonText: function() {
-      return this.editPlayerMode ? "Save" : "Edit Line-Up";
+      return this.editPlayerMode ? "Save" : "Move Players";
     },
     editGameInfoButtonText: function() {
       return this.editGameInfo ? "Save" : "Edit/Add";
@@ -860,6 +860,11 @@ export default {
   padding-bottom: 20px;
 }
 
+.info-card-block{
+height: 32.5rem;
+overflow-y: scroll;
+}
+
 .team-name {
   margin-top: 25px;
 }
@@ -922,7 +927,8 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: space-around;
+  justify-content: center;
+  padding-top: 15px;
 }
 
 /* .player-container a {
@@ -1295,6 +1301,7 @@ margin-top: -12px;
   /* navbar extra width */
   background: #292b2c;
   color: #50575e;
+  background-color: whitesmoke;
 }
 
 dt {
