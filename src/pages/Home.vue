@@ -912,7 +912,7 @@ overflow-y: scroll;
 
 .player-unavailable {
   /* border: 2px solid red; */
-  background-image: linear-gradient(45deg, indianred 0%, red 100%);
+  background-image: linear-gradient(45deg, red 0%, mediumvioletred 100%);
   padding: 2px;
 }
 
@@ -1327,11 +1327,11 @@ h2 {
 }
 
 h3 {
-  font-weight: 550;
+  font-weight: 500;
   color: #50575e;
   margin-bottom: 0rem;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 h4 {
