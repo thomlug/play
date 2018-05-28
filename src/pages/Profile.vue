@@ -285,7 +285,7 @@
 }
 
 .player-unavailable{
-    background-image: linear-gradient(45deg, indianred 50%, hotpink 100%);
+    background-image: linear-gradient(45deg, red 50%, mediumvioletred 100%);
     padding: 2px;
 }
 
