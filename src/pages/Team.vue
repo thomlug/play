@@ -1,5 +1,8 @@
+
 <template>
+
   <main-layout>
+    
     <div class="row">
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
       <div class="col-md-6 col-sm-6 col-xs-12">
@@ -71,7 +74,9 @@
         </play-profile>
       </div>
     </div>
+    </body1>
   </main-layout>
+  
 </template>
 
 <script>
@@ -253,7 +258,6 @@ export default {
 </script>
 
 <style>
-
 .row{
   background-color: transparent;
 }
@@ -301,8 +305,8 @@ export default {
     box-shadow: 0px 1px 6px -1px #ddd;
     width: 100%;
     background-color: white;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 0rem;
+    margin-bottom: 1rem;
 }
 
 /* .card{

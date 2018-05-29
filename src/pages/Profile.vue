@@ -1,3 +1,4 @@
+
 <template>
   <main-layout>
     <div class="row">
@@ -100,6 +101,7 @@
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
     </div>
   </main-layout>
+  
 </template>
 
 <script>
@@ -253,6 +255,10 @@
 </script>
 
 <style scoped>
+
+.profile-bg{
+  background-color: whitesmoke;
+} 
 .row{
   background-color: whitesmoke;
 }
@@ -266,7 +272,7 @@
     box-shadow: 0px 1px 6px -1px #ddd;
     width: 100%;
     background-color: white;
-    margin-top: 1rem;
+    margin-top: 0rem;
     margin-bottom: 1rem;
     text-align: center;
     padding-bottom: 10px;
