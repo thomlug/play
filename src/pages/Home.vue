@@ -771,6 +771,7 @@ export default {
 }
 .game-info {
   font-size: small !important;
+  background-color: transparent;
 }
 
 .game-info h4 {
@@ -822,7 +823,7 @@ export default {
 
 .play-card {
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
   box-shadow: 0 1px 3px#ddd, 0 1px 2px #ddd;
   text-transform: uppercase;
   color: #50575e;
@@ -861,7 +862,7 @@ export default {
 }
 
 .info-card-block{
-height: 32.5rem;
+max-height: 35rem;
 overflow-y: scroll;
 padding-bottom: 10px;
 }
@@ -1307,6 +1308,7 @@ margin-top: -12px;
   background: #292b2c;
   color: #50575e;
   background-color: whitesmoke;
+  padding-bottom: 10px;
 }
 
 dt {

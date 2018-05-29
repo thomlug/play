@@ -1,4 +1,5 @@
 <template>
+<div class="profile-bg">  
     <div class="profile-box">    
         <div class="profile-banner text-center">    
             <h1>{{this.title}}</h1>    
@@ -15,7 +16,7 @@
             <slot name="other-content"></slot>    
         </div> 
     </div>
-    
+  </div>  
 </template>
 
 
@@ -37,7 +38,9 @@ export default {
   box-shadow: 3px 3px 3px -3px rgba(128, 126, 128, 1);
 } */
 
-
+.profile-bg{
+  background-color: whitesmoke;
+}
 .profile-banner {
   width: 100%;
   background-color: #2bcad0;
