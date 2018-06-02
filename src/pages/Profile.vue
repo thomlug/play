@@ -5,6 +5,13 @@
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
       <div class="col-md-6 col-sm-6 col-xs-12">
         <!-- <div class="player-profile-box"> -->
+          <div v-if="status === 'new'" class="alert alert-info alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+            Please fill out your profile below
+          </div>
           <div class="player-profile-banner text-center">
             <h1>Player Profile</h1>
           </div>
@@ -146,7 +153,7 @@
         uploadError: null,
         currentStatus: null,
         uploadFieldName: 'photos',
-
+        status: this.$route.query.status
       }
     },
     firebase() {
