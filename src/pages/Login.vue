@@ -52,7 +52,7 @@ export default {
       },
 
       signInFlow: "popup",
-      signInSuccessUrl: "#/home",
+      signInSuccessUrl: this.$route.query.redirect || "#/home",
       signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,

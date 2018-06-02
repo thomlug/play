@@ -11,6 +11,7 @@ import Profile from './pages/Profile.vue';
 import Fixtures from './components/Fixtures.vue';
 import NewFixture from './pages/NewFixture.vue';
 import Chat from './pages/Chat.vue';
+import Join from './pages/Join.vue';
 
 import { store } from './store/store';
 
@@ -19,7 +20,7 @@ function requireAuth(to, from, next) {
         if (store.getters.user) {
             next();
         } else {
-            next('/login');
+            next('/login?redirect='+to.path);
         }
     }
 
@@ -38,6 +39,7 @@ function requireAuth(to, from, next) {
 export default [
     { path: '/login', component: Login, name: 'login' },
     { path: '/signup', component: Signup, name: 'signup' },
+    { path: '/join/:player_id?/:join_id?/:team_id?', component: Join, name: 'join', beforeEnter: requireAuth },
     { path: '/chat', component: Chat, name: 'chat', beforeEnter: requireAuth },
     { path: '/members', component: Members, name: 'members', beforeEnter: requireAuth },
     { path: '/teams', component: Teams, name: 'teams', beforeEnter: requireAuth },
@@ -48,5 +50,6 @@ export default [
     { path: '/results/:match_id', component: Results, name: 'results', beforeEnter: requireAuth },
     { path: '/profile/:player_id', component: Profile, name: 'profile', beforeEnter: requireAuth },
     { path: '/team/:team_id', component: Team, name: 'team', beforeEnter: requireAuth },
-    { path: '/home', alias: '', component: Home, name: 'home', beforeEnter: requireAuth }
+    { path: '/home', alias: '', component: Home, name: 'home', beforeEnter: requireAuth },
+    { path: '*', redirect: '/' }
 ]
