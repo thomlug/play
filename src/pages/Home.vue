@@ -754,11 +754,13 @@ export default {
         this.newPlayerMessages.error = "Player already exists with that email address";
         return;
       }
-      this.newPlayer[this.getCurrentTeam()['.key']] = 1;
+      var teamKey = this.getCurrentTeam()['.key'];
+      this.newPlayer[teamKey] = 1;
       this.newPlayer.position = [0, 0];
       this.newPlayer.signUpToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-      db.ref("player").push(this.newPlayer);
-      this.newPlayerMessages.success = "Player added. Please copy signup link and send to them: https://app.playapp.live/signup/"+this.newPlayer.signUpToken;
+      var result = db.ref("player").push(this.newPlayer);
+      var signupLink = window.location.origin + '/#/join/' + result.key + '/' + this.newPlayer.signUpToken + '/' + teamKey
+      this.newPlayerMessages.success = "Player added. Please copy signup link and send to them: " + signupLink;
     }
   }
 };

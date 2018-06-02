@@ -26,14 +26,11 @@ export default {
       // initially user = null, after auth it will be either <fb_user> or false
       this.$store.dispatch('autoSignIn', firebaseUser);
       if (firebaseUser && (this.$route.path === '/login' || this.$route.path === '/signup')) {
-        console.log(this.$route.path);
-        console.log('rerouting to home', firebaseUser);
-        this.$router.replace('/home');
+        this.$router.replace(this.$route.query.redirect || '/home');
       } else if (!firebaseUser && (this.$route.path === '/login' || this.$route.path === '/signup')) {
         this.$router.replace('/login');
-        console.log('rerouting to login');
       }else {
-        console.log('proceed');
+        //proceed
       }
     });
   }
