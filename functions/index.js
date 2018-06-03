@@ -25,37 +25,43 @@ exports.sendSignUpEmail = functions.database.ref('/player/{playerId}').onCreate(
         console.error('No signup token was found: ' + player.email);
         return null;
     }
-    // Send email
-    // Configure API key authorization: api-key
-    var apiKey = defaultClient.authentications['api-key'];
-    apiKey.apiKey = functions.config().sendinblue.apikey;
 
-    var signUpLink = player.signUpPage + snap.key + '/' + player.signUpToken + '/' + player.teamKey;
+    return admin.database().ref('/team/' + player.teamKey).once('value')
+    .then(teamSnapshot => {
+        // use the object returned here to get the data at the location of the ref
+        var team = teamSnapshot.val()
+         // Send email
+        // Configure API key authorization: api-key
+        var apiKey = defaultClient.authentications['api-key'];
+        apiKey.apiKey = functions.config().sendinblue.apikey;
 
-    var emailBody = `
-        <div>
-            <p>Welcome to Play ${player.first_name}</p>
-            <p> Please click the link below or copy and paste into your browser</p>
-            <a href="${signUpLink}">Join Play</a>
-            <p>${signUpLink}</p>
-        </div>
-    `
+        var signUpLink = player.signUpPage + snap.key + '/' + player.signUpToken + '/' + player.teamKey;
 
-    var apiInstance = new SibApiV3Sdk.SMTPApi();
+        var emailParams = {
+            TEAMNAME: team.name,
+            FIRSTNAME: player.first_name,
+            LASTNAME: player.last_name,
+            MANAGERNAME: player.signedUpBy,
+            SIGNUPLINK: signUpLink
+        }
 
-    var sendSmtpEmail = {
-        sender: {'email': 'no-reply@playapp.live', 'name': 'Play App'},        
-        to: [{'name': player.first_name + ' ' + player.last_name, 'email' : player.email}],
-        htmlContent: emailBody,
-        subject: 'Welcome to Play ' + player.first_name
-    }; // SendSmtpEmail | Values to send a transactional email
-    console.log(sendSmtpEmail);
-    return apiInstance.sendTransacEmail(sendSmtpEmail).then(function(data) {
-        console.log('API called successfully. Returned data: ' + data);
-        }, function(error) {
-        console.error(error);
-        return null;
-    });
+        var apiInstance = new SibApiV3Sdk.SMTPApi();
+
+        var sendSmtpEmail = {     
+            to: [{'name': player.first_name + ' ' + player.last_name, 'email' : player.email}],
+            params: emailParams,
+            templateId: 5
+        }; // SendSmtpEmail | Values to send a transactional email
+        console.log(sendSmtpEmail);
+        
+        return apiInstance.sendTransacEmail(sendSmtpEmail).then(function(data) {
+            console.log('API called successfully. Returned data: ' + data);
+            }, function(error) {
+            console.error(error);
+            return null;
+        });
+    })
+   
      
 });
 

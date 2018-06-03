@@ -770,6 +770,7 @@ export default {
       this.newPlayer.signUpPage = window.location.origin + '/#/join/';
       this.newPlayer.position = [0, 0];
       this.newPlayer.signUpToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      this.newPlayer.signedUpBy = this.getCurrentPlayer().first_name + ' ' + this.getCurrentPlayer().last_name;
       var result = db.ref("player").push(this.newPlayer);
       this.newPlayerMessages.success = "Player added. They will receive an email with a sign-up link";
     }
