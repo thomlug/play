@@ -8,9 +8,8 @@ const SibApiV3Sdk = require('sib-api-v3-sdk');
 var defaultClient = SibApiV3Sdk.ApiClient.instance;
 
 
-exports.sendSignUpEmail = functions.database.ref('/player/{playerId}').onCreate((change) => {
-    const player = change.data.val();
-
+exports.sendSignUpEmail = functions.database.ref('/player/{playerId}').onCreate((snap) => {
+    const player = snap.val();
     // Validate email exists
     if(!validateEmail(player.email)){
         console.error('Invalid email: ' + player.email);
@@ -31,7 +30,7 @@ exports.sendSignUpEmail = functions.database.ref('/player/{playerId}').onCreate(
     var apiKey = defaultClient.authentications['api-key'];
     apiKey.apiKey = functions.config().sendinblue.apikey;
 
-    var signUpLink = player.signUpPage + change.params.playerId + '/' + player.signUpToken + '/' + player.teamKey;
+    var signUpLink = player.signUpPage + snap.key + '/' + player.signUpToken + '/' + player.teamKey;
 
     var emailBody = `
         <div>

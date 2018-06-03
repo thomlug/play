@@ -161,7 +161,7 @@
                 <div class="form-group">
                   <input class="form-control" placeholder="First name" v-model="newPlayer.first_name"/>
                   <input class="form-control" placeholder="Last name" v-model="newPlayer.last_name"/>
-                  <input class="form-control" placeholder="Email" v-model="newPlayer.email"/>
+                  <input class="form-control" placeholder="Email" type="email" v-model="newPlayer.email"/>
                   <div class="form-control alert alert-danger" v-if="newPlayerMessages.error !== undefined">{{newPlayerMessages.error}}</div>
                   <div class="form-control alert alert-success" v-if="newPlayerMessages.success !== undefined">{{newPlayerMessages.success}}</div>
                   <button class="btn btn-edit mt-1" @click="hideNewPlayerModal()">Close</button>
@@ -743,9 +743,19 @@ export default {
         .child("position")
         .set([0, 0]);
     },
+    validateEmail(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    },
     saveNewPlayer(){
       this.newPlayerMessages.error = undefined;
       this.newPlayerMessages.sucess = undefined;
+
+      if(!this.validateEmail(this.newPlayer.email)){
+        this.newPlayerMessages.error = "Invalid email address";
+        return;
+      }
+      
       var playerExists = _.some(this.players, (player) => {
         return player.email != null && player.email.toLowerCase() === this.newPlayer.email.toLowerCase();
       });
@@ -761,8 +771,7 @@ export default {
       this.newPlayer.position = [0, 0];
       this.newPlayer.signUpToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
       var result = db.ref("player").push(this.newPlayer);
-      var signupLink = window.location.origin + '/#/join/' + result.key + '/' + this.newPlayer.signUpToken + '/' + teamKey
-      this.newPlayerMessages.success = "Player added. Please copy signup link and send to them: " + signupLink;
+      this.newPlayerMessages.success = "Player added. They will receive an email with a sign-up link";
     }
   }
 };
