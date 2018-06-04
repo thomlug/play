@@ -275,7 +275,7 @@
 .profile-block{
     border-radius: 10px;
     border: 0px solid #eee;
-    padding: 5px 2.7rem;
+    padding: 5px 1.5rem;
     box-shadow: 0px 1px 6px -1px #ddd;
     width: 100%;
     background-color: white;
@@ -447,6 +447,7 @@ input{
   color: #50575e;
   margin: 1px;
   border-radius: 20px;
+  margin-bottom: 10px;
 }
 
 .input-file{
