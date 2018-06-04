@@ -190,6 +190,9 @@ export default {
         readyCallback() {
             this.playersPromise.resolve();
         }
+      },
+      admins:{
+        source: db.ref("admin")        
       }
     };
   },
@@ -199,7 +202,11 @@ export default {
     },
     canEditProfile: function() {
       var currentUser = this.currentUser();
-      return this.team != null && currentUser != null && _.some(this.teamManagers, (manager) => {return manager.userUid === currentUser.uid});
+      return this.team != null
+       && currentUser != null 
+       && (_.some(this.teamManagers, (manager) => {return manager.userUid === currentUser.uid})
+        || _.some(this.admins, (admin) => {return admin.userUid === currentUser.uid})
+        );
     },
     edit: function() {
       this.editable = true;
