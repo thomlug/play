@@ -91,7 +91,7 @@
         </div>
 <!-- starting line-up -->
         <div class="card play-card lineup">
-         <div class="card-block-lineup">
+         <div class="card-block-lineup" :class="'card-block-lineup-' + getCurrentTeam().sport.toLowerCase()">
            <div v-for="(playerRow, index) in playerFormation">
             <draggable class="row formation-row" 
             v-if="editPlayerMode"
@@ -948,7 +948,6 @@ export default {
   border: 0px;
 }
 .card-block-lineup {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/soccer%20pitch%20blue%20really%20long%20last.png?alt=media&token=34046254-a7a7-4a09-8d22-69ee7d663be2");
   background-color: transparent;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -957,6 +956,14 @@ export default {
   border-color: transparent;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.card-block-lineup-football{
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/soccer%20pitch%20blue%20really%20long%20last.png?alt=media&token=34046254-a7a7-4a09-8d22-69ee7d663be2");  
+}
+
+.card-block-lineup-basketball{
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/Basketball%20court.png?alt=media&token=9ce355da-639f-4d6b-b7c7-aec0a6026193");  
 }
 
 .info-card-block{
