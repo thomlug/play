@@ -57,7 +57,7 @@
             if(this.newMessage.text==='' || this.newMessage.text === undefined){
                 return;
             }
-            var player = _.find(this.players, (player) => {return player.userUid === this.currentUser.uid;});
+            var player = this.getCurrentPlayer();
 
             this.newMessage.date = this.moment.utc().format();
             this.newMessage.sender_id = this.currentUser.uid;
@@ -78,9 +78,13 @@
             }
         },
         scrollToEnd: function() {    	
-            var container = this.$el.querySelector("#chat-pane");
-            container.scrollTop = container.scrollHeight;
-            this.updateLastSeenMessageTime()
+            if(this.$el.querySelector){
+                var container = this.$el.querySelector("#chat-pane");
+                if(container != null){
+                    container.scrollTop = container.scrollHeight;
+                    this.updateLastSeenMessageTime();
+                }
+            }
         },
         getConversationMessages(){
             var currentTeamId = _.isUndefined(this.getCurrentTeam()) ? '':  this.getCurrentTeam()['.key'];
@@ -106,9 +110,27 @@
                 return player['.key'];
             }
         },
-        getCurrentTeam(){
-            var team = _.head(this.teams);
-            return _.isUndefined(team) ? {} : team;
+        getCurrentPlayer() {
+            var currentUser = firebase.auth().currentUser;
+            var emptyPlayer = { availability: "unknown" };
+            if(currentUser == null){
+                return emptyPlayer;
+            }
+            var userUid = currentUser.uid;
+            return (
+                _.find(this.players, p => {
+                return p.userUid === userUid;
+                }) || emptyPlayer
+            );
+        },
+        getCurrentTeam() {
+            var player = this.getCurrentPlayer();
+            var currentTeam = _.find(this.teams, (team) => {
+                return  player.teamKey === team['.key'];
+            });
+
+            var result = currentTeam || _.head(this.teams);
+            return result || {};
         },
         getCurrentConversation(){
             var currentTeamId = this.getCurrentTeam()['.key'];

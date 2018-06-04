@@ -588,10 +588,16 @@ export default {
       return firebase.auth().currentUser !== null;
     },
     getCurrentPlayer() {
+      var currentUser = firebase.auth().currentUser;
+      var emptyPlayer = { availability: "unknown" };
+      if(currentUser == null){
+        return emptyPlayer;
+      }
+      var userUid = currentUser.uid;
       return (
         _.find(this.players, p => {
-          return p.userUid === this.user.uid;
-        }) || { availability: "unknown" }
+          return p.userUid === userUid;
+        }) || emptyPlayer
       );
     },
     getNextGameInfo() {
