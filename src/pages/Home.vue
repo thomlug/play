@@ -52,10 +52,10 @@
         </div>
 
       <!-- Date and time -->
-      <date-card :fixture="this.getNextFixture()" @date-changed="fixtureDateChanged"></date-card>
+      <date-card :can-edit="canEdit()" :fixture="this.getNextFixture()" @date-changed="fixtureDateChanged"></date-card>
 
       <!-- Location -->
-      <location-card :fixture="this.getNextFixture()" @location-changed="fixtureLocationChanged"></location-card>
+      <location-card :can-edit="canEdit()" :fixture="this.getNextFixture()" @location-changed="fixtureLocationChanged"></location-card>
 
         
 <!-- update your status -->
@@ -72,7 +72,7 @@
       <div class="col-xl-6">
         <div class="card play-card">
           <div class="card-block">
-            <span class="float-right">
+            <span v-if="canEdit()" class="float-right">
               <button class="fa fa-times" v-if="editPlayerMode" v-on:click="cancelEditPlayersPositions()"></button>
               <button class="btn btn-edit" v-on:click="toggleEditPlayersPositions()">{{editPlayerButtonText}}</button>
             </span>
@@ -150,7 +150,7 @@
         <div class="card play-subs-card">
           <div class="card-block">          
             <h4 class="card-title">Subs <small>(Scroll to see all players) </small></h4>
-            <span class="float right">
+            <span v-if="canEdit()" class="float right">
               <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
               <button class="fa fa-minus manage-players-button" @click="showRemovePlayerModal()"></button>
             </span>
@@ -262,7 +262,7 @@
 <!-- game info -->
         <div class="card play-card">
           <div class="card-block">
-            <span class="float-right">
+            <span v-if="canEdit()" class="float-right">
               <button class="float-right btn btn-edit" @click="toggleEditGameInfo()">{{editGameInfoButtonText}}</button>
               <Avatar class="plus-circle" :image="this.plusCircle" @click.native="newGameInfo()" alt="plus" v-if="editGameInfo" />
             </span>
@@ -423,9 +423,21 @@ export default {
         var gameInfo = this.getNextGameInfo();
         this.gameInfoList = _.toPairs(gameInfo);
       }
+    },
+    admins:{
+      source: db.ref("admin")        
     }
   },
   methods: {
+    canEdit(){
+      var currentUser = firebase.auth().currentUser;
+      var team = this.getCurrentTeam();
+      return team != null
+       && currentUser != null 
+       && (_.some(team.manager, (managerId) => {return managerId === currentUser.uid})
+        || _.some(this.admins, (admin) => {return admin.userUid === currentUser.uid})
+        );
+    },
     setUpPlayerFormation() {
       this.playerFormation = [];
       for (var i = 0; i < 5; i++) {
@@ -490,6 +502,10 @@ export default {
       }
     },
     toggleEditGameInfo() {
+      if(!this.canEdit()){
+        return;
+      }
+
       if (this.editGameInfo) {
         var updates = {};
         var currentFixture = this.getNextFixtureDetails();
@@ -522,6 +538,10 @@ export default {
       this.editPlayerMode = false;
     },
     toggleEditPlayersPositions() {
+      if(!this.canEdit()){
+        return;
+      }
+
       if (this.editPlayerMode) {
         _.each(this.playerFormation, (row, rowIndex) => {
           _.each(row, (player, colIndex) => {
@@ -582,6 +602,7 @@ export default {
       return !_.isUndefined(teamFixture) ? teamFixture : {};
     },
     getCurrentTeam() {
+      //TODO: Make this the first team they are a member of?
       return _.head(this.teams);
     },
     getNextFixture() {
@@ -696,12 +717,18 @@ export default {
       })
     },
     showRemovePlayerModal(){
+      if(!this.canEdit()){
+        return;
+      }
       this.$modal.show('remove-player');
     },
     hideRemovePlayerModal(){
       this.$modal.hide('remove-player');
     },
     removePlayerFromTeam(playerKey){
+      if(!this.canEdit()){
+        return;
+      }
       var teamKey = this.getCurrentTeam()['.key'];
 
       this.$firebaseRefs.players
@@ -710,6 +737,9 @@ export default {
         .remove();
     },
     showNewPlayerModal(){
+      if(!this.canEdit()){
+        return;
+      }
       this.$modal.show('add-player');
     },
     hideNewPlayerModal(){
@@ -738,6 +768,9 @@ export default {
       this.newPlayerMessages.error = undefined;
       this.newPlayerMessages.sucess = undefined;
 
+      if(!this.canEdit()){
+        return;
+      }
       if(!this.validateEmail(this.newPlayer.email)){
         this.newPlayerMessages.error = "Invalid email address";
         return;

@@ -8,7 +8,7 @@
                 <div class="center-content">   
                     <slot name="main-content"></slot>     
                 </div>    
-                <div class="right">
+                <div v-if="canEdit" class="right">
                     <button v-if="!editable" class="btn edit-button" @click="clicked">
                         <i class="fa fa-pencil"></i>
                     </button>
@@ -24,7 +24,8 @@
 <script>
 export default {
     props: {
-        clickFn: Function
+        clickFn: Function,
+        canEdit: Boolean
     },
     
     data: function() {
