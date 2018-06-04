@@ -68,6 +68,15 @@
             </div>
           </div>
         </div>
+<!-- Change your current team -->
+        <div class="card play-card">
+          <div class="card-block">
+            <h4 class="card-title">Change your current team <small>({{this.getCurrentTeam().name}})</small></h4>
+            <div class="status-container">
+              <button v-for="team in listTeamsCurrentUserBelongsTo()" :key="team['.key']" v-on:click="changeToTeam(team['.key'])" type="button" class="btn btn-primary btn-available active">{{team.name}}</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="col-xl-6">
         <div class="card play-card">
@@ -440,28 +449,33 @@ export default {
     },
     setUpPlayerFormation() {
       this.playerFormation = [];
+      var teamKey = this.getCurrentTeamKey();
+      
+      if(teamKey == null){
+        return;
+      }
       for (var i = 0; i < 5; i++) {
         var formationRow = _.filter(this.getPlayersForCurrentTeam(), function(
           player
         ) {
-          return player.position[0] === i + 1;
+          return !_.isUndefined(player.teams) && player.teams[teamKey].position[0] === i + 1;
         });
         this.playerFormation.push(
           _.sortBy(formationRow, function(player) {
-            return player.position[1];
+            return !_.isUndefined(player.teams) && player.teams[teamKey].position[1];
           })
         );
       }
       this.substitutePlayers = _.filter(
         this.getPlayersForCurrentTeam(),
         function(p) {
-          return !_.isUndefined(p.position) && p.position[0] === 0;
+          return p.teams == undefined || !_.isUndefined(p.teams[teamKey].position) && p.teams[teamKey].position[0] === 0;
         }
       );
       this.substitutePlayers = _.sortBy(this.substitutePlayers, function(
         player
       ) {
-        return player.position[1];
+        return player.teams[teamKey].position[1];
       });
     },
     dragPlayer: function(evt, originalEvent) {
@@ -543,14 +557,17 @@ export default {
       }
 
       if (this.editPlayerMode) {
+        var teamKey = this.getCurrentTeam()['.key'];
         _.each(this.playerFormation, (row, rowIndex) => {
           _.each(row, (player, colIndex) => {
-            player.position[0] = rowIndex + 1;
-            player.position[1] = colIndex + 1;
+            player.teams[teamKey].position[0] = rowIndex + 1;
+            player.teams[teamKey].position[1] = colIndex + 1;
             this.$firebaseRefs.players
               .child(player[".key"])
+              .child("teams")
+              .child(teamKey)
               .child("position")
-              .set(player.position);
+              .set(player.teams[teamKey].position);
           });
         });
         _.each(this.substitutePlayers, (player, playerIndex) => {
@@ -604,17 +621,24 @@ export default {
       return this.getNextFixtureDetails().gameInfo || {};
     },
     getNextFixtureDetails() {
-      var currentTeam = this.getCurrentTeam();
-      if (currentTeam === undefined) {
+      var teamKey = this.getCurrentTeamKey();
+      if (teamKey  === undefined) {
         return {};
       }
-      var teamKey = currentTeam['.key'];
       var teamFixture = _.find(this.teamFixtures, (teamFixture) => {
         return _.some(_.keys(teamFixture), (key) => {
            return key === teamKey;
         });
       });
       return !_.isUndefined(teamFixture) ? teamFixture : {};
+    },
+    getCurrentTeamKey(){
+      var team = this.getCurrentTeam();
+      if (_.isUndefined(team)){
+        return;
+      }
+      
+      return team['.key'];
     },
     getCurrentTeam() {
       var player = this.getCurrentPlayer();
@@ -639,11 +663,7 @@ export default {
       return !_.isUndefined(fixture) ? fixture : { startDate: "unknown" };
     },
     getPlayersForCurrentTeam() {
-      var currentTeam = this.getCurrentTeam();
-      if (currentTeam === undefined) {
-        return [];
-      }
-      var teamKey = currentTeam[".key"];
+      var teamKey = this.getCurrentTeamKey();
       return _.filter(this.players, function(p) {
         return !_.isUndefined(p[teamKey]);
       });
@@ -668,24 +688,24 @@ export default {
     },
     setCurrentPlayerAvailability(availability) {
       var player = this.getCurrentPlayer();
+      var teamKey = this.getCurrentTeamKey();
+
       this.$firebaseRefs.players
         .child(player[".key"])
+        .child("teams")
+        .child(teamKey)
         .child("availabilityUpdated")
         .set(this.moment().toString());
       this.$firebaseRefs.players
         .child(player[".key"])
+        .child("teams")
+        .child(teamKey)
         .child("availability")
         .set(availability);
     },
     calculatePlayerClass(player) {
-      if (
-        this.editPlayerMode &&
-        this.player1Swap !== null &&
-        player[".key"] === this.player1Swap.key
-      ) {
-        return "player-selected";
-      }
-      var availability = player.availability;
+      var teamKey = this.getCurrentTeamKey();
+      var availability = player.teams[teamKey].availability;
       if (
         _.isUndefined(availability) ||
         _.isEmpty(availability) ||
@@ -724,11 +744,7 @@ export default {
       db.ref().update(updates);
     },
     listPlayersNotInTeam(name){
-      var team = this.getCurrentTeam();
-      if (_.isUndefined(team)){
-        return;
-      }
-      var teamKey = team['.key'];
+      var teamKey = this.getCurrentTeamKey();
       return _.filter(this.players, function(player){
         return player[teamKey] === undefined 
           && ((player.first_name != null && player.first_name.toLowerCase().includes(name.toLowerCase())) 
@@ -749,10 +765,15 @@ export default {
       if(!this.canEdit()){
         return;
       }
-      var teamKey = this.getCurrentTeam()['.key'];
+      var teamKey = this.getCurrentTeamKey();
 
       this.$firebaseRefs.players
         .child(playerKey)
+        .child(teamKey)
+        .remove();
+      this.$firebaseRefs.players
+        .child(playerKey)
+        .child('teams')
         .child(teamKey)
         .remove();
     },
@@ -769,12 +790,17 @@ export default {
       this.newPlayer = {};
     },
     addExistingPlayerToTeam(playerKey){
-      var teamKey = this.getCurrentTeam()['.key'];
+      var teamKey = this.getCurrentTeamKey();
     
       this.$firebaseRefs.players
         .child(playerKey)
         .child(teamKey)
         .set(1);
+      this.$firebaseRefs.players
+        .child(playerKey)
+        .child('teams')
+        .child(teamKey)
+        .set({'teamKey': teamKey, 'position': [0,0]});
       this.$firebaseRefs.players
         .child(playerKey)
         .child("position")
@@ -804,15 +830,33 @@ export default {
         this.newPlayerMessages.error = "Player already exists with that email address";
         return;
       }
-      var teamKey = this.getCurrentTeam()['.key'];
+      var teamKey = this.getCurrentTeamKey();
       this.newPlayer[teamKey] = 1;
       this.newPlayer.teamKey = teamKey;
+      this.newPlayer.teams = {teamKey: {'teamKey': teamKey, 'position': [0,0]}};
       this.newPlayer.signUpPage = window.location.origin + '/#/join/';
       this.newPlayer.position = [0, 0];
       this.newPlayer.signUpToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
       this.newPlayer.signedUpBy = this.getCurrentPlayer().first_name + ' ' + this.getCurrentPlayer().last_name;
       var result = db.ref("player").push(this.newPlayer);
       this.newPlayerMessages.success = "Player added. They will receive an email with a sign-up link";
+    },
+    listTeamsCurrentUserBelongsTo(){
+      var player = this.getCurrentPlayer();
+      return _.filter(this.teams, (team) => {
+          return _.some(player.teams, (playerTeam) =>{
+            return playerTeam.teamKey === team['.key'];
+        });
+      });
+    },
+    changeToTeam(teamId){
+      var player = this.getCurrentPlayer();
+      this.$firebaseRefs.players
+        .child(player['.key'])
+        .child('teamKey')
+        .set(teamId);
+      var gameInfo = this.getNextGameInfo();
+      this.gameInfoList = _.toPairs(gameInfo);
     }
   }
 };
