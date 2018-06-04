@@ -57,10 +57,11 @@
             if(this.newMessage.text==='' || this.newMessage.text === undefined){
                 return;
             }
+            var player = _.find(this.players, (player) => {return player.userUid === this.currentUser.uid;});
 
             this.newMessage.date = this.moment.utc().format();
             this.newMessage.sender_id = this.currentUser.uid;
-            this.newMessage.name = this.currentUser.displayName;
+            this.newMessage.name = player != null ? player.first_name + ' ' + player.last_name : this.currentUser.displayName;
             this.newMessage.conversation = this.getCurrentTeam()['.key'];
             chatRef.push(this.newMessage);
             this.newMessage.text = '';
@@ -79,9 +80,7 @@
         scrollToEnd: function() {    	
             var container = this.$el.querySelector("#chat-pane");
             container.scrollTop = container.scrollHeight;
-
-         
-
+            this.updateLastSeenMessageTime()
         },
         getConversationMessages(){
             var currentTeamId = _.isUndefined(this.getCurrentTeam()) ? '':  this.getCurrentTeam()['.key'];
