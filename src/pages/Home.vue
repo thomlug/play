@@ -358,8 +358,8 @@ export default {
       player1Swap: null,
       playerFormation: [],
       substitutePlayers: [],
-      playerPromise: this.defer(function(resolve, reject) {}),
-      teamPromise: this.defer(function(resolve, reject) {}),
+      playerPromise: this.$helpers.defer(function(resolve, reject) {}),
+      teamPromise: this.$helpers.defer(function(resolve, reject) {}),
       plusCircle: PlusCircle,
       searchPlayerName:'',
       newPlayer: {},
@@ -426,19 +426,6 @@ export default {
     }
   },
   methods: {
-    defer: function defer() {
-      var res, rej;
-
-      var promise = new Promise((resolve, reject) => {
-        res = resolve;
-        rej = reject;
-      });
-
-      promise.resolve = res;
-      promise.reject = rej;
-
-      return promise;
-    },
     setUpPlayerFormation() {
       this.playerFormation = [];
       for (var i = 0; i < 5; i++) {

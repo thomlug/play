@@ -45,7 +45,7 @@
             </template>  
 
             <template>
-              <p class= "team-input-header" v-if="editable" > Team Name</p>
+              <p class= "team-input-header" v-if="editable"> Team Name</p>
               <div class="information-block" v-if="!editable"><h4>{{team.name}}</h4></div>
               
               <div><input class="information-block" v-if="editable" v-model="team.name"/></div>
@@ -60,7 +60,12 @@
 
         <template slot="other-content">
               <div class="profile-block">
-                  <div><h3 class="manager-header">Managers</h3> </div> 
+                  <div>
+                    <h3 class="manager-header">Managers</h3>
+                    <button v-if="canEditProfile()" class="fa fa-plus manage-players-button" @click="showAddManagerModal()"></button>
+                    <button v-if="canEditProfile()" class="fa fa-minus manage-players-button" @click="showRemoveManagerModal()"></button>
+
+                  </div> 
                 <div class="managers-block" >      
                   <div class="col" v-for="(manager,key) in teamManagers" :key="key">
                    <Avatar  @click.native="goToPlayer(manager['.key'])" class="manager-photo" :image="manager.photo"/>
@@ -68,6 +73,37 @@
                  </div>
                 </div>
               </div>
+              <modal height="80%" name="add-manager" :clickToClose="false">
+                <div class= "input-header">
+                  <h6>Add Existing Player as Manager</h6>
+                </div> 
+                <div class="form-group">
+                  <input class="form-control" placeholder="Search for player" v-model="searchPlayerName"/>
+                  <ul>
+                    <li v-for="player in listRegisteredPlayers(searchPlayerName)" v-bind:key="player['.key']">
+                      {{player.first_name}}
+                      {{player.last_name}}
+                      <button class="fa fa-plus" @click="addExistingPlayerAsTeamManager(player.userUid)"></button>
+                    </li>
+                  </ul>
+                  <button class="btn btn-edit mt-1" @click="hideAddManagerModal()">Close</button>
+                </div>        
+              </modal>
+               <modal height="80%" name="remove-manager" :clickToClose="false">
+                <div class= "input-header">
+                  <h6>Remove Manager From Team</h6>
+                </div> 
+                <div class="form-group">
+                  <ul>
+                    <li v-for="manager in teamManagers" v-bind:key="manager['.key']">
+                      {{manager.first_name}}
+                      {{manager.last_name}}
+                      <button class="fa fa-trash" @click="removeManagerFromTeam(manager.userUid)"></button>
+                    </li>
+                  </ul>
+                </div>        
+                <button class="btn btn-edit mt-1" @click="hideRemoveManagerModal()">Close</button>
+              </modal>
         </template>   
                
           
@@ -95,6 +131,11 @@ export default {
     MainLayout,
     Avatar,
     PlayProfile
+  },
+  created: function() {
+    Promise.all([this.playersPromise, this.teamPromise]).then(
+      this.setUpManagers
+    );
   },
   computed: {
     isInitial() {
@@ -128,7 +169,10 @@ export default {
       uploadError: null,
       currentStatus: null,
       uploadFieldName: "photos",
-      teamManagers: []
+      teamManagers: [],
+      searchPlayerName: '',
+      playersPromise: this.$helpers.defer(function(resolve, reject) {}),
+      teamPromise: this.$helpers.defer(function(resolve, reject) {}),
     };
   },
   firebase() {
@@ -137,13 +181,14 @@ export default {
         source: db.ref("team/" + this.$route.params.team_id),
         asObject: true,
         readyCallback() {
-          // this.getManagers();
+            this.teamPromise.resolve();
+
         }
       },
       players: {
         source: db.ref("player"),
         readyCallback() {
-          this.getManagers();
+            this.playersPromise.resolve();
         }
       }
     };
@@ -154,7 +199,7 @@ export default {
     },
     canEditProfile: function() {
       var currentUser = this.currentUser();
-      return this.team != null && currentUser != null;
+      return this.team != null && currentUser != null && _.some(this.teamManagers, (manager) => {return manager.userUid === currentUser.uid});
     },
     edit: function() {
       this.editable = true;
@@ -236,19 +281,60 @@ export default {
       return promise;
     },
 
-    //Get the manager id from the team and find the related player 
-    getManagers: function() {
-      for (var managerId of this.team.manager) {
+    //Get the manager id from the team and find the related player to set up the managers
+    setUpManagers: function() {
+      this.teamManagers = [];
+      _.each(this.team.manager, (managerId) => {
         this.teamManagers.push(
           _.find(this.players, m => {
             return m.userUid === managerId;
           })
-        );
-      }
+        )}
+      );
     },
 
     goToPlayer(key){
       this.$router.push({name: 'profile', params: {player_id: key}});
+    },
+    listRegisteredPlayers(name){
+      var teamKey = this.team['.key'];
+      return _.filter(this.players, (player) => {
+        return player[teamKey] !== undefined 
+          && player.userUid !== undefined
+          && !_.some(this.team.manager, function(managerId){return managerId === player.userUid;})
+          && ((player.first_name != null && player.first_name.toLowerCase().includes(name.toLowerCase())) 
+            || (player.last_name != null && player.last_name.toLowerCase().includes(name.toLowerCase()))
+          );
+      })
+    },
+    showAddManagerModal(){
+      this.$modal.show('add-manager');
+    },
+    hideAddManagerModal(){
+      this.$modal.hide('add-manager');
+    },
+    addExistingPlayerAsTeamManager(playerUserUid){
+      if(playerUserUid != null && this.canEditProfile()){
+        this.$firebaseRefs.team
+          .child('manager')
+          .push(playerUserUid);
+        this.setUpManagers();          
+      }
+    },
+    showRemoveManagerModal(){
+      this.$modal.show('remove-manager');
+    },
+    hideRemoveManagerModal(){
+      this.$modal.hide('remove-manager');
+    },
+    removeManagerFromTeam(managerUserUid){
+      if(managerUserUid != null && this.canEditProfile()){
+        var updatedManagers = _.filter(this.team.manager, (managerId) => {return managerId !== managerUserUid});
+        this.$firebaseRefs.team
+            .child('manager')
+            .set(updatedManagers);
+        this.setUpManagers();
+      }
     }
   },
   mounted() {
@@ -489,5 +575,46 @@ h4{
 }
 .photo_text{
   text-transform: capitalize;
+}
+
+.manage-players-button{
+  font-size: 2.5rem;
+  color:#e5e5e5;
+  border-radius: none;
+  background: none;
+  border: none;
+  float: right;
+  margin-top: -40px;
+  cursor: pointer;
+}
+
+.manage-players-button:hover{
+  font-size: 2.5rem;
+  color:#2acad0;
+  border-radius: none;
+  background: none;
+  border: none;
+  float: right;
+  margin-top: -40px;
+  cursor: pointer;
+}
+
+.btn {
+  padding: 8px;
+  border-radius:20px; 
+  cursor: pointer;
+  margin-top: -10px;
+}
+
+.btn-edit{
+  color: #50575e; 
+  background-color: white;
+  border: 2px solid #e5e5e5;
+}
+
+.btn-edit:hover{
+  color: #50575e; 
+  background-color: white;
+  border: 2px solid #e5e5e5;
 }
 </style>
