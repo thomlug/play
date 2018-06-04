@@ -381,6 +381,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-x: scroll;
+  width: -webkit-fill-available;
 }
 
 .manager-header{
@@ -394,7 +396,7 @@ export default {
 .profile-block{
     border-radius: 10px;
     border: 0px solid #eee;
-    padding: 5px 2.7rem;
+    padding: 5px 1.5rem;
     box-shadow: 0px 1px 6px -1px #ddd;
     width: 100%;
     background-color: white;
@@ -610,7 +612,7 @@ h4{
   padding: 8px;
   border-radius:20px; 
   cursor: pointer;
-  margin-top: -10px;
+  margin-top: 0px;
 }
 
 .btn-edit{
