@@ -598,12 +598,26 @@ export default {
       return this.getNextFixtureDetails().gameInfo || {};
     },
     getNextFixtureDetails() {
-      var teamFixture = _.head(this.teamFixtures);
+      var currentTeam = this.getCurrentTeam();
+      if (currentTeam === undefined) {
+        return {};
+      }
+      var teamKey = currentTeam['.key'];
+      var teamFixture = _.find(this.teamFixtures, (teamFixture) => {
+        return _.some(_.keys(teamFixture), (key) => {
+           return key === teamKey;
+        });
+      });
       return !_.isUndefined(teamFixture) ? teamFixture : {};
     },
     getCurrentTeam() {
-      //TODO: Make this the first team they are a member of?
-      return _.head(this.teams);
+      var player = this.getCurrentPlayer();
+      var currentTeam = _.find(this.teams, (team) => {
+        return  player.teamKey === team['.key'];
+      });
+
+      var result = currentTeam || _.head(this.teams);
+      return result;
     },
     getNextFixture() {
       var currentTeam = this.getCurrentTeam();

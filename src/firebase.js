@@ -7,7 +7,16 @@ var config = {
     storageBucket: "play-14e3e.appspot.com",
     messagingSenderId: "952744572741"
   };
+  var developmentAppConfig = {
+    apiKey: "<API_KEY>",
+    authDomain: "play-14e3e.firebaseapp.com",
+    databaseURL: "https://play-14e3e-dev.firebaseio.com/",
+    storageBucket: "play-14e3e.appspot.com",
+    messagingSenderId: "952744572741"
+};
   var firebaseApp = firebase.initializeApp(config);
+  var development = firebase.initializeApp(developmentAppConfig, "development");
+  
   export const db = firebaseApp.database();
 
   
