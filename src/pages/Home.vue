@@ -571,12 +571,14 @@ export default {
           });
         });
         _.each(this.substitutePlayers, (player, playerIndex) => {
-          player.position[0] = 0;
-          player.position[1] = playerIndex + 1;
+          player.teams[teamKey].position[0] = 0;
+          player.teams[teamKey].position[1] = playerIndex + 1;
           this.$firebaseRefs.players
             .child(player[".key"])
+            .child("teams")
+            .child(teamKey)
             .child("position")
-            .set(player.position);
+            .set(player.teams[teamKey].position);
         });
         var updates = {};
         var currentFixture = this.getNextFixtureDetails();
