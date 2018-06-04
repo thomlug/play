@@ -379,7 +379,7 @@ export default {
 
 .managers-block {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   overflow-x: scroll;
   width: -webkit-fill-available;
