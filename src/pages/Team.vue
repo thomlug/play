@@ -82,9 +82,10 @@
                   <ul>
                   
                     <li v-for="player in listRegisteredPlayers(searchPlayerName)" v-bind:key="player['.key']">
+                     <button class="fa fa-plus" @click="addExistingPlayerAsTeamManager(player.userUid)"></button>
                       {{player.first_name}}
                       {{player.last_name}}
-                      <button class="fa fa-plus" @click="addExistingPlayerAsTeamManager(player.userUid)"></button>
+                      
                     </li>
                     
                   </ul>
@@ -98,9 +99,10 @@
                 <div class="form-group">
                   <ul>
                     <li v-for="manager in teamManagers" v-bind:key="manager['.key']">
+                      <button class="fa fa-trash" @click="removeManagerFromTeam(manager.userUid)"></button>
                       {{manager.first_name}}
                       {{manager.last_name}}
-                      <button class="fa fa-trash" @click="removeManagerFromTeam(manager.userUid)"></button>
+                      
                     </li>
                   </ul>
                 </div>        
@@ -646,9 +648,10 @@ ul {
 
 li{
   padding-bottom: 2px;
-  cursor: pointer;
+  /* cursor: pointer; */
   font-weight:500;
-  font-size: 12.8px;
+  font-size: 14px;
+  color: #50575e;
 }
 
 .fa-trash{
@@ -661,6 +664,7 @@ li{
   color: #e5e5e5;
   border: 0px;
   background-color: transparent;
+
 }
 
 .fa-times{

@@ -182,9 +182,10 @@
                   <input class="form-control" placeholder="Search for player" v-model="searchPlayerName"/>
                   <ul>
                     <li v-for="player in listPlayersNotInTeam(searchPlayerName)" v-bind:key="player['.key']">
+                      <button class="fa fa-plus" @click="addExistingPlayerToTeam(player['.key'])"></button>
                       {{player.first_name}}
                       {{player.last_name}}
-                      <button class="fa fa-plus" @click="addExistingPlayerToTeam(player['.key'])"></button>
+                      
                     </li>
                   </ul>
                 </div>        
@@ -196,9 +197,10 @@
                 <div class="form-group">
                   <ul>
                     <li v-for="player in getPlayersForCurrentTeam()" v-bind:key="player['.key']">
+                      <button class="fa fa-trash" @click="removePlayerFromTeam(player['.key'])"></button>
                       {{player.first_name}}
                       {{player.last_name}}
-                      <button class="fa fa-trash" @click="removePlayerFromTeam(player['.key'])"></button>
+                      
                     </li>
                   </ul>
                 </div>        
@@ -1529,6 +1531,7 @@ ul {
 li{
   padding-bottom: 2px;
   cursor: pointer;
+  font-size: 14px;
 }
 
 .fa-trash{
