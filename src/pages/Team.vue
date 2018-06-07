@@ -80,11 +80,13 @@
                 <div class="form-group">
                   <input class="form-control" placeholder="Search for player" v-model="searchPlayerName"/>
                   <ul>
+                  
                     <li v-for="player in listRegisteredPlayers(searchPlayerName)" v-bind:key="player['.key']">
                       {{player.first_name}}
                       {{player.last_name}}
                       <button class="fa fa-plus" @click="addExistingPlayerAsTeamManager(player.userUid)"></button>
                     </li>
+                    
                   </ul>
                   <button class="fa fa-times mt-1" @click="hideAddManagerModal()"></button>
                 </div>        
@@ -638,13 +640,15 @@ h6 {
 ul {
   list-style-type: none;
   padding: 0.5rem 1rem 1rem 1rem;
-  max-height: 10rem;
-  overflow-y: scroll;
+  /* max-height: 10rem; */
+  /* overflow-y: scroll; */
 }
 
 li{
   padding-bottom: 2px;
   cursor: pointer;
+  font-weight:500;
+  font-size: 12.8px;
 }
 
 .fa-trash{
