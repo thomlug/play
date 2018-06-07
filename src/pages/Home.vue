@@ -163,7 +163,7 @@
               <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
               <button class="fa fa-minus manage-players-button" @click="showRemovePlayerModal()"></button>
             </span>
-              <modal height="80%" name="add-player" :clickToClose="false">
+              <modal height=auto width=90%  name="add-player" :clickToClose="false">
                 <div class= "input-header">
                   <h6>Add New Player</h6>
                 </div> 
@@ -173,7 +173,8 @@
                   <input class="form-control" placeholder="Email" type="email" v-model="newPlayer.email"/>
                   <div class="form-control alert alert-danger" v-if="newPlayerMessages.error !== undefined">{{newPlayerMessages.error}}</div>
                   <div class="form-control alert alert-success" v-if="newPlayerMessages.success !== undefined">{{newPlayerMessages.success}}</div>
-                  <button class="btn btn-edit mt-1" @click="hideNewPlayerModal()">Close</button>
+                  <!-- <button class="btn btn-edit mt-1" @click="hideNewPlayerModal()">Close</button> -->
+                  <button class="fa fa-times mt-1" @click="hideNewPlayerModal()"></button>
                   <button class="btn btn-primary mt-1" @click="saveNewPlayer()">Save</button>
                 </div>
                   <h6>Add Existing Player</h6>
@@ -188,7 +189,7 @@
                   </ul>
                 </div>        
               </modal>
-              <modal height="80%" name="remove-player" :clickToClose="false">
+              <modal height=auto width=90% border-radius=20px name="remove-player" :clickToClose="false">
                 <div class= "input-header">
                   <h6>Remove Player From Team</h6>
                 </div> 
@@ -201,7 +202,9 @@
                     </li>
                   </ul>
                 </div>        
-                <button class="btn btn-edit mt-1" @click="hideRemovePlayerModal()">Close</button>
+                <!-- <button class="btn btn-edit mt-1" @click="hideRemovePlayerModal()">Close</button> -->
+                <button class="fa fa-times mt-1" @click="hideRemovePlayerModal()"></button>
+                
               </modal>
               <div class="card-block row">
                   <draggable class="scroller"
@@ -1295,6 +1298,8 @@ padding-bottom: 10px;
   border: 2px solid #2acad0;
   color: white;
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .btn-primary:hover {
@@ -1496,7 +1501,7 @@ a:hover {
 
 .form-group{
     margin: 0 6px 0 6px;
-    width: 100%;
+    width: 97%;
 }
 
 .form-control{
@@ -1512,6 +1517,30 @@ a:hover {
 }
 .player-5-wide {
   width: 20%;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0.5rem 1rem 1rem 1rem;
+  max-height: 10rem;
+  overflow-y: scroll;
+}
+
+li{
+  padding-bottom: 2px;
+  cursor: pointer;
+}
+
+.fa-trash{
+  color: #e5e5e5;
+  border: 0px;
+  background-color: transparent;
+}
+
+.fa-plus{
+  color: #e5e5e5;
+  border: 0px;
+  background-color: transparent;
 }
 
 </style>
