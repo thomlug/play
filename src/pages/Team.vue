@@ -73,7 +73,7 @@
                  </div>
                 </div>
               </div>
-              <modal height="80%" name="add-manager" :clickToClose="false">
+              <modal height=auto width=90%  name="add-manager" :clickToClose="false">
                 <div class= "input-header">
                   <h6>Add Existing Player as Manager</h6>
                 </div> 
@@ -86,10 +86,10 @@
                       <button class="fa fa-plus" @click="addExistingPlayerAsTeamManager(player.userUid)"></button>
                     </li>
                   </ul>
-                  <button class="btn btn-edit mt-1" @click="hideAddManagerModal()">Close</button>
+                  <button class="fa fa-times mt-1" @click="hideAddManagerModal()"></button>
                 </div>        
               </modal>
-               <modal height="80%" name="remove-manager" :clickToClose="false">
+               <modal height=auto width=90% name="remove-manager" :clickToClose="false">
                 <div class= "input-header">
                   <h6>Remove Manager From Team</h6>
                 </div> 
@@ -102,7 +102,7 @@
                     </li>
                   </ul>
                 </div>        
-                <button class="btn btn-edit mt-1" @click="hideRemoveManagerModal()">Close</button>
+                <button class="fa fa-times mt-1" @click="hideRemoveManagerModal()"></button>
               </modal>
         </template>   
                
@@ -567,6 +567,14 @@ h4{
   text-align: none;
 }
 
+h6 {
+  color: rgb(175, 175, 175);
+  font-weight: none;
+  text-align: center;
+  margin-bottom: 0rem;
+  padding: 8px;
+}
+
 .team-input-header{
   font-size: 0.8rem;
   float: none;
@@ -625,5 +633,66 @@ h4{
   color: #50575e; 
   background-color: white;
   border: 2px solid #e5e5e5;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0.5rem 1rem 1rem 1rem;
+  max-height: 10rem;
+  overflow-y: scroll;
+}
+
+li{
+  padding-bottom: 2px;
+  cursor: pointer;
+}
+
+.fa-trash{
+  color: #e5e5e5;
+  border: 0px;
+  background-color: transparent;
+}
+
+.fa-plus{
+  color: #e5e5e5;
+  border: 0px;
+  background-color: transparent;
+}
+
+.fa-times{
+  color: lightgray;
+  font-size: 2rem;
+  vertical-align: middle;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-top: -10px;
+}
+
+.fa-times:hover{
+  color: indianred;
+  font-size: 2rem;
+  vertical-align: middle;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-top: -10px;
+}
+
+.form-group{
+    margin: 0 6px 0 6px;
+    width: 97%;
+}
+
+.form-control{
+  color: rgb(175, 175, 175);
+  font-size: 0.8rem;
+  padding: 0.8rem;
+  border: 0px;
+  border-radius: 20px;
+  border: 1px solid #e3e3e3;
+  text-transform: none;
+  font-family: 'Roboto Condensed', sans-serif;
+  margin:10px 0px;
 }
 </style>
