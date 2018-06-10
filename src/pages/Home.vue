@@ -858,7 +858,8 @@ export default {
       var teamKey = this.getCurrentTeamKey();
       this.newPlayer[teamKey] = 1;
       this.newPlayer.teamKey = teamKey;
-      this.newPlayer.teams = {teamKey: {'teamKey': teamKey, 'position': [0,0]}};
+      this.newPlayer.teams = {};
+      this.newPlayer.teams[teamKey] = {'teamKey': teamKey, 'position': [0,0]};
       this.newPlayer.signUpPage = window.location.origin + '/#/join/';
       this.newPlayer.position = [0, 0];
       this.newPlayer.signUpToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
