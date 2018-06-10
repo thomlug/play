@@ -61,7 +61,7 @@
 <!-- update your status -->
         <div class="card play-card">
           <div class="card-block">
-            <h4 class="card-title">Update Your Status <small>({{getCurrentPlayer().availability | camelToSentence}})</small></h4>
+            <h4 class="card-title">Update Your Status <small>({{getCurrentPlayerAvailability() | camelToSentence}})</small></h4>
             <div class="status-container">
               <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available active">Available</button>
               <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
@@ -632,6 +632,16 @@ export default {
         }) || emptyPlayer
       );
     },
+    getCurrentPlayerAvailability(){
+      var currentPlayer = this.getCurrentPlayer();
+      var teamKey = this.getCurrentTeamKey();
+
+      if(currentPlayer == null || teamKey == null){
+        return "unknown";
+      }
+
+      return currentPlayer.teams[teamKey].availability
+    },
     getNextGameInfo() {
       return this.getNextFixtureDetails().gameInfo || {};
     },
@@ -662,7 +672,7 @@ export default {
       });
 
       var result = currentTeam || _.head(this.teams);
-      return result;
+      return result || {sport: 'football'};
     },
     getNextFixture() {
       var currentTeam = this.getCurrentTeam();
