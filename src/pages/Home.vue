@@ -115,8 +115,10 @@
                     </template>
                     <template v-else>
                       <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
-                        <div class="circle player-circle" v-bind:class="calculatePlayerClass(player)">
-                          {{player.first_name | firstCharacter}} 
+                        <div class="player-circle-container">
+                          <div class="circle player-circle" v-bind:class="calculatePlayerClass(player)">
+                            {{player.first_name | firstCharacter}} 
+                          </div>
                         </div>
                         {{player.first_name}}
                       </router-link>
@@ -141,8 +143,10 @@
                       </template>
                       <template v-else>
                         <router-link v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
-                          <div class="circle player-circle" v-bind:class="calculatePlayerClass(player)">
-                            {{player.first_name | firstCharacter}} 
+                          <div class="player-circle-container">
+                            <div class="circle player-circle" v-bind:class="calculatePlayerClass(player)">
+                              {{player.first_name | firstCharacter}} 
+                            </div>
                           </div>
                           {{player.first_name}}
                         </router-link>
@@ -228,8 +232,10 @@
                               :src="player.photo"/>
                           </template>
                           <template v-else>
-                            <div class="circle player-circle" v-bind:class="calculatePlayerClass(player)" >
-                              {{player.first_name | firstCharacter}}
+                            <div class="player-circle-container">
+                              <div class="circle player-circle" v-bind:class="calculatePlayerClass(player)" >
+                                {{player.first_name | firstCharacter}}
+                              </div>
                             </div>
                           </template>
                           {{player.first_name}}
@@ -250,8 +256,10 @@
                               :src="player.photo"/>
                           </template>
                           <template v-else>
-                            <div class="circle player-circle" v-bind:class="calculatePlayerClass(player)" >
-                              {{player.first_name | firstCharacter}}
+                            <div class="player-circle-container">
+                              <div class="circle player-circle" v-bind:class="calculatePlayerClass(player)" >
+                                {{player.first_name | firstCharacter}}
+                              </div>
                             </div>
                           </template>
                           {{player.first_name}}
@@ -1049,6 +1057,13 @@ padding-bottom: 10px;
   color: rgb(90, 28, 77);
 } */
 
+.player-circle-container {
+    width: 100%;
+    padding-top: 100%; /* 1:1 Aspect Ratio */
+    position: relative; /* If you want text inside of it */
+    margin: 3px;
+}
+
 @media (max-width: 768px) {
   .formation-row {
     min-height: 64px;
@@ -1056,10 +1071,6 @@ padding-bottom: 10px;
   .player-container {
     max-width: 64px;
     margin: 0 auto;
-  }
-  .player-circle {
-    height: 64px;
-    width: 64px;
   }
   .team-circle {
     height: 96px;
@@ -1079,10 +1090,6 @@ padding-bottom: 10px;
   }
 
   .team-circle {
-    height: 128px;
-    width: 128px;
-  }
-  .player-circle {
     height: 128px;
     width: 128px;
   }
@@ -1166,7 +1173,11 @@ padding-bottom: 10px;
   color: #a9a9a9;
   font-size: 2.5rem;
   border-color: whitesmoke;
-  Margin: 2px 0 4px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 .fixture-title {
@@ -1530,7 +1541,7 @@ ul {
 
 li{
   padding-bottom: 2px;
-  cursor: pointer;
+  /* cursor: pointer; */
   font-size: 14px;
 }
 
