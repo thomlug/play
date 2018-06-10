@@ -68,7 +68,10 @@
                   </div> 
                 <div class="managers-block" >      
                   <div class="col" v-for="(manager,key) in teamManagers" :key="key">
-                   <Avatar  @click.native="goToPlayer(manager['.key'])" class="manager-photo" :image="manager.photo"/>
+                   <Avatar  v-if="manager.photo" @click.native="goToPlayer(manager['.key'])" class="manager-photo" :image="manager.photo"/>
+                    <div v-else class="default-manager-circle manager-photo" @click="goToPlayer(manager['.key'])">
+                      {{manager.first_name | firstCharacter}}
+                    </div> 
                    <div class="name">{{manager.first_name.charAt(0).toUpperCase()}}. {{manager.last_name}}</div>
                  </div>
                 </div>
@@ -163,6 +166,12 @@ export default {
       return value.replace(/([A-Z])/g, " $1").replace(/^./, function(str) {
         return str.toUpperCase();
       });
+    },
+    firstCharacter(value) {
+      if (!_.isUndefined(value)) {
+        return value.charAt(0);
+      }
+      return "";
     }
   },
   data: function() {
@@ -395,6 +404,20 @@ export default {
   margin-top: 0px;
   padding-top: 1rem;
   width: 100%;
+}
+
+.default-manager-circle {
+  color: white;
+  -webkit-box-shadow: 2px 2px 2px -2px #50575e;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #e5e5e5;
+  color: #a9a9a9;
+  font-size: 2.5rem;
+  border-color: whitesmoke;
+  width: 80px;
+  height: 80px;
+  margin: 1rem auto;
 }
 
 .profile-block{

@@ -1068,12 +1068,7 @@ padding-bottom: 10px;
   color: rgb(90, 28, 77);
 } */
 
-.player-circle-container {
-    width: 100%;
-    padding-top: 100%; /* 1:1 Aspect Ratio */
-    position: relative; /* If you want text inside of it */
-    margin: 3px;
-}
+
 
 @media (max-width: 768px) {
   .formation-row {
@@ -1174,7 +1169,12 @@ padding-bottom: 10px;
   cursor: pointer;
 }
 
-
+.player-circle-container {
+    width: 100%;
+    padding-top: 100%; /* 1:1 Aspect Ratio */
+    position: relative; /* If you want text inside of it */
+    margin: 3px;
+}
 .player-circle {
   color: white;
   -webkit-box-shadow: 2px 2px 2px -2px #50575e;
