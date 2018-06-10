@@ -10,7 +10,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
 
-            Please click the edit button to complete your profile
+            Please complete your profile below
           </div>
           <div class="player-profile-banner text-center">
             <h1>Player Profile</h1>
@@ -33,7 +33,7 @@
             <label class="hand-cursor">
               <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
                 <span class="fa fa-camera"></span>
-                <span class="photo_text hidden-xs"> Edit Photo</span>
+                <span class="photo_text hidden-xs"> Choose Photo</span>
             </label>
           </div>
                     <!-- <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file"> -->
@@ -146,7 +146,7 @@
     },
     data: function () {
       return {
-        editable: false,
+        editable: this.$route.query.status === 'new',
         player:  {},
         playerId: this.$route.params.player_id,
         uploadedFiles: [],

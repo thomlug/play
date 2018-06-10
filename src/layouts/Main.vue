@@ -37,8 +37,9 @@
           </ul>
         </div>
       </nav>
-    <slot v-if="playerBelongsToATeam()"></slot>
-    <div v-if="!playerBelongsToATeam()"><h1>Please join a team first</h1></div>
+    <spinner v-if="this.player === undefined"></spinner>
+    <slot v-else-if="playerBelongsToATeam()"></slot>
+    <div v-else-if="!playerBelongsToATeam()"><h1>Please join a team first</h1></div>
   </div>
 </template>
 
@@ -46,24 +47,34 @@
   import VLink from '../components/VLink.vue';
   import { db } from '../firebase';
   import { mapState } from 'vuex';
+  import Spinner from '../components/Spinner.vue';
 
   export default {
     data() {
       return {
-        player: {}
+        player: undefined,
+        playerPromise: this.$helpers.defer(function(resolve, reject) {})
       }
     },
-
+    created: function() {
+      Promise.all([this.playerPromise]).then(
+          this.setUpPlayer
+      );
+    },
     computed: {
       ...mapState(['user'])
     },
 
     components: {
-      VLink
+      VLink,
+      Spinner
     },
     firebase: {
       players: {
-        source: db.ref("player")
+        source: db.ref("player"),
+        readyCallback: function() {
+          this.playerPromise.resolve();
+        }
       },
       messages:{
         source: db.ref("chat").limitToLast(1)
@@ -78,11 +89,12 @@
         this.$store.dispatch('userSignOut');
         this.$router.replace('/login')
       },
-
+      setUpPlayer(){
+          this.player = _.find(this.players, p => {
+            return p.userUid === this.user.uid;
+          }) || null;
+      },
       getThisPlayerId() {
-        this.player = _.find(this.players, p => {
-          return p.userUid === this.user.uid;
-        });
         return this.player ? this.player['.key'] : '/';
       },
       isThereNewChatMessage(){
@@ -94,13 +106,10 @@
         return false;
       },
       playerBelongsToATeam(){
-        var player = _.find(this.players, p => {
-          return p.userUid === this.user.uid;
-        });
-        if (player == null){
+        if (this.player == null){
           return false;
         }
-        return _.some(_.keys(player), (playerKey) => {
+        return _.some(_.keys(this.player), (playerKey) => {
           return _.some(this.teams, function(team){
             return team['.key'] === playerKey;
           });

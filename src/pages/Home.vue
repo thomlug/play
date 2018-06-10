@@ -636,7 +636,7 @@ export default {
       var currentPlayer = this.getCurrentPlayer();
       var teamKey = this.getCurrentTeamKey();
 
-      if(currentPlayer == null || teamKey == null){
+      if(currentPlayer == null || teamKey == null || currentPlayer.teams == null){
         return "unknown";
       }
 
