@@ -13,6 +13,9 @@
         </div>
       </div>
     </div>
+
+
+
 <!-- next fixture -->
     <div class="row backdrop">
       <div class="col-xl-3">
@@ -51,6 +54,16 @@
           </div>
         </div>
 
+<!-- Change your current team -->
+        <div class="card play-card">
+          <div class="card-block">
+            <!-- <h4 class="card-title">Change your current team <small>({{this.getCurrentTeam().name}})</small></h4> -->
+            <div class="status-container">
+              <button v-for="team in listTeamsCurrentUserBelongsTo()" :key="team['.key']" v-on:click="changeToTeam(team['.key'])" type="button" class="btn-teams">{{team.name}}</button>
+            </div>
+          </div>
+        </div>
+
       <!-- Date and time -->
       <date-card :can-edit="canEdit()" :fixture="this.getNextFixture()" @date-changed="fixtureDateChanged"></date-card>
 
@@ -68,15 +81,7 @@
             </div>
           </div>
         </div>
-<!-- Change your current team -->
-        <div class="card play-card">
-          <div class="card-block">
-            <h4 class="card-title">Change your current team <small>({{this.getCurrentTeam().name}})</small></h4>
-            <div class="status-container">
-              <button v-for="team in listTeamsCurrentUserBelongsTo()" :key="team['.key']" v-on:click="changeToTeam(team['.key'])" type="button" class="btn btn-primary btn-available active">{{team.name}}</button>
-            </div>
-          </div>
-        </div>
+
       </div>
       <div class="col-xl-6">
         <div class="card play-card">
@@ -1568,4 +1573,13 @@ li{
   background-color: transparent;
 }
 
+.btn-teams{
+    background-color: lightgray;
+    border: 0px;
+    color: #50575e;
+    padding: 2px 30px 2px 30px;
+    margin: -15px 5px -5px 5px;
+    border-radius: 20px;
+    cursor: pointer;
+}
 </style>
