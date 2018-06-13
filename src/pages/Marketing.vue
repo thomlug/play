@@ -1,6 +1,6 @@
 <template>
   <main-layout>
-    <p>Marketing</p>
+    <p>Sponsored</p>
 
 <!-- <div class="sidenav">
   <a href="#about">About</a>
@@ -50,7 +50,7 @@
 
 <style>
 .ads-img{
-    background-color: transparent;
+    background-image: linear-gradient(45deg,#50575e, darkslategrey);
     background-repeat: no-repeat;
     background-position: top;
     border-radius: 10px 10px 0 0;
@@ -102,7 +102,7 @@
     width: 100%;
     border-radius: 10px;
     border: 0px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     position: relative;
     text-align: center;
     /* background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/soccer…lly%20long%20last.png?alt=media&token=34046254-a7a7-4a09-8d22-69ee7d663be2"); */
@@ -125,10 +125,12 @@ img {
 
 b{
   color: #50575e;
+  font-weight:400;
 }
 
 p{
   color: #50575e;
+  font-weight:400;
 }
 /* .sidenav {
     height: 100%;
