@@ -2,13 +2,14 @@
   <main-layout>
     <p>Marketing</p>
 
-<div class="sidenav">
+<!-- <div class="sidenav">
   <a href="#about">About</a>
   <a href="#services">Services</a>
   <a href="#clients">Clients</a>
   <a href="#contact">Contact</a>
-</div>
+</div> -->
 
+<div class="ad-main">
     <div class="ads-card">
       <div>
   <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/football%20stadium%20pic.png?alt=media&token=54e93f5c-a97f-4d3f-8220-70523a193840" class="ads-img">
@@ -31,6 +32,7 @@
     <p>Will break ankles b</p>
     <div class="learn-more">Learn More</div>  
   </div>
+</div>
 </div>
 
   </main-layout>
@@ -64,7 +66,7 @@
 .learn-more{
     border: 2px solid lightgray;
     color: darkgrey;
-    border-radius: 20px;
+    border-radius: 30px;
     padding: 5px 20px;
     width: fit-content;
     
@@ -120,4 +122,29 @@ img {
     border-radius: 0 0 10px 10px;
     text-align: -webkit-center;
 }
+
+b{
+  color: #50575e;
+}
+
+p{
+  color: #50575e;
+}
+/* .sidenav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.ad-main {
+    margin-left: 160px;
+    font-size: 28px; 
+    padding: 0px 10px;
+} */
 </style>
