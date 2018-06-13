@@ -123,6 +123,7 @@
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: bold;
   background-color: whitesmoke;
+  height: -webkit-fill-available;
 }
 
 .profile-photo{
