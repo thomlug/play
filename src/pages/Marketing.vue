@@ -2,23 +2,34 @@
   <main-layout>
     <p>Marketing</p>
 
+<div class="sidenav">
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#clients">Clients</a>
+  <a href="#contact">Contact</a>
+</div>
+
     <div class="ads-card">
       <div>
   <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/football%20stadium%20pic.png?alt=media&token=54e93f5c-a97f-4d3f-8220-70523a193840" class="ads-img">
-  <div class="ad-title"><h4>Ad Title</h4></div>
+  <div class="ad-title"><h4>Football Fix</h4></div>
+  <div class="price"><h4>$148</h4></div>
   </div>
   <div class="ads-container">
-    <h4><b>Football Fix</b></h4> 
-    <p>Summer 7 a side football league</p> 
+    <h4><b>Players wanted</b></h4> 
+    <p>Summer 7 a side football league</p>
+    <div class="learn-more">Learn More</div> 
   </div>
 </div>
 
     <div class="ads-card">
   <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/dwayneweight.PNG?alt=media&token=63adc3d7-0b2c-4ae1-a141-c0d74a04af28" class="ads-img">
-  <div class="ad-title"><h4>Ad Title</h4></div>
+  <div class="ad-title"><h4>D-Wayne</h4></div>
+  <div class="price"><h4>$2</h4></div>
   <div class="ads-container">
-    <h4><b>Player needed</b></h4> 
-    <p>Anyone seen this guy?</p> 
+    <h4><b>Services available</b></h4> 
+    <p>Will break ankles b</p>
+    <div class="learn-more">Learn More</div>  
   </div>
 </div>
 
@@ -45,7 +56,18 @@
     padding-top: 0px;
     padding-bottom: 0px;
     width: 100%;
+    height: 300px;
+    object-fit: cover;
+    
 
+}
+.learn-more{
+    border: 2px solid lightgray;
+    color: darkgrey;
+    border-radius: 20px;
+    padding: 5px 20px;
+    width: fit-content;
+    
 }
 
 .ad-title {
@@ -57,6 +79,19 @@
     background-color: #222;
     color: white;
     padding: 8px 16px 2px 16px;
+}
+
+.price {
+    position: absolute;
+    top: 3%;
+    left: 80%;
+    right: 15%;
+    transform: translate(0%, -0%);
+    background-color: transparent;
+    border: 0px solid white;
+    border-radius: 20px;
+    color: white;
+    padding: 8px 8px 2px 8px;
 }
 
 .ads-card {
@@ -80,8 +115,9 @@ img {
 }
 
 .ads-container {
-    padding: 2px 16px;
+    padding: 10px;
     background-color: white;
     border-radius: 0 0 10px 10px;
+    text-align: -webkit-center;
 }
 </style>
