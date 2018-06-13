@@ -14,7 +14,15 @@
       </div>
     </div>
 
-
+<!-- Change your current team -->
+        <div class="card play-card">
+          <div class="card-block">
+            <!-- <h4 class="card-title">Change your current team <small>({{this.getCurrentTeam().name}})</small></h4> -->
+            <div class="status-container">
+              <button v-for="team in listTeamsCurrentUserBelongsTo()" :key="team['.key']" v-on:click="changeToTeam(team['.key'])" type="button" class="btn-teams">{{team.name}}</button>
+            </div>
+          </div>
+        </div>
 
 <!-- next fixture -->
     <div class="row backdrop">
@@ -54,15 +62,7 @@
           </div>
         </div>
 
-<!-- Change your current team -->
-        <div class="card play-card">
-          <div class="card-block">
-            <!-- <h4 class="card-title">Change your current team <small>({{this.getCurrentTeam().name}})</small></h4> -->
-            <div class="status-container">
-              <button v-for="team in listTeamsCurrentUserBelongsTo()" :key="team['.key']" v-on:click="changeToTeam(team['.key'])" type="button" class="btn-teams">{{team.name}}</button>
-            </div>
-          </div>
-        </div>
+
 
       <!-- Date and time -->
       <date-card :can-edit="canEdit()" :fixture="this.getNextFixture()" @date-changed="fixtureDateChanged"></date-card>
@@ -1563,12 +1563,13 @@ li{
 }
 
 .btn-teams{
-    background-color: lightgray;
+    background-color: #50575e;
     border: 0px;
-    color: #50575e;
+    color: gainsboro;
     padding: 2px 30px 2px 30px;
     margin: -15px 5px -5px 5px;
-    border-radius: 20px;
+    border-radius: 5px;
     cursor: pointer;
+    box-shadow: 2px 2px 2px -2px grey;
 }
 </style>
