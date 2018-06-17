@@ -34,7 +34,7 @@
                       <label class="hand-cursor">
                         <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file">
                           <span class="fa fa-camera"></span>
-                          <span class="photo_text hidden-xs"> Edit Photo</span>
+                          <span class="photo_text hidden-xs"> Choose Photo</span>
                       </label>
                     </div>
                     <p v-if="isSaving">
