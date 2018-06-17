@@ -1295,7 +1295,21 @@ padding-bottom: 10px;
 }
 
 .btn-primary:hover {
-  background-color:#2fcade;
+  background-color: #2acad0;
+  border: 2px solid turquoise;
+}
+
+.btn-primary:active {
+  background-color: turquoise;
+  border: 2px solid skyblue;
+}
+
+.btn-danger:hover{
+  border: 2px solid red;
+}
+
+.btn-danger:active{
+  border: 2px solid indianred;
 }
 
 /* clock/time icon column styling */

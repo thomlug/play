@@ -741,6 +741,7 @@ li{
   background: none;
   cursor: pointer;
   margin-top: -10px;
+  float: right;
 }
 
 .fa-times:hover{
@@ -751,6 +752,7 @@ li{
   background: none;
   cursor: pointer;
   margin-top: -10px;
+  float: right;
 }
 
 .form-group{
