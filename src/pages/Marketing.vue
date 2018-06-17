@@ -2,36 +2,64 @@
   <main-layout>
     <p>Sponsored</p>
 
-<!-- <div class="sidenav">
-  <a href="#about">About</a>
-  <a href="#services">Services</a>
-  <a href="#clients">Clients</a>
-  <a href="#contact">Contact</a>
-</div> -->
+<div class="container-fluid">
+
+<div class="row">
+
+  <div class="col-xl-4">
+    <div class="sidenav">
+      <a href="#football">Football</a>
+      <a href="#basketball">Basketball</a>
+      <a href="#Hockey">Hockey</a>
+      <a href="#cricket">Cricket</a>
+      <a href="#cricket">Baseball</a>
+    </div>
+  </div>
 
 <div class="ad-main">
+
+  <div class="col-xl-4">
     <div class="ads-card">
       <div>
-  <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/football%20stadium%20pic.png?alt=media&token=54e93f5c-a97f-4d3f-8220-70523a193840" class="ads-img">
-  <div class="ad-title"><h4>Football Fix</h4></div>
-  <div class="price"><h4>$148</h4></div>
-  </div>
-  <div class="ads-container">
-    <h4><b>Players wanted</b></h4> 
-    <p>Summer 7 a side football league</p>
-    <div class="learn-more">Learn More</div> 
-  </div>
-</div>
+        <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/football%20stadium%20pic.png?alt=media&token=54e93f5c-a97f-4d3f-8220-70523a193840" class="ads-img">
+        <div class="ad-title"><h4>Football Fix</h4></div>
+        <div class="price"><h4>$148</h4></div>
+      </div>
+      <div class="ads-container">
+        <h4><b>Players wanted</b></h4> 
+        <p>Summer 7 a side football league</p>
+        <div class="learn-more">Learn More</div> 
+      </div>
+    </div>
 
-    <div class="ads-card">
-  <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/dwayneweight.PNG?alt=media&token=63adc3d7-0b2c-4ae1-a141-c0d74a04af28" class="ads-img">
-  <div class="ad-title"><h4>D-Wayne</h4></div>
-  <div class="price"><h4>$2</h4></div>
-  <div class="ads-container">
-    <h4><b>Services available</b></h4> 
-    <p>Will break ankles b</p>
-    <div class="learn-more">Learn More</div>  
+        <div class="ads-card">
+      <div>
+        <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/football%20stadium%20pic.png?alt=media&token=54e93f5c-a97f-4d3f-8220-70523a193840" class="ads-img">
+        <div class="ad-title"><h4>Football Fix</h4></div>
+        <div class="price"><h4>$148</h4></div>
+      </div>
+      <div class="ads-container">
+        <h4><b>Players wanted</b></h4> 
+        <p>Summer 7 a side football league</p>
+        <div class="learn-more">Learn More</div> 
+      </div>
+    </div>
   </div>
+
+  <div class="col-xl-4">
+    <div class="ads-card">
+        <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/dwayneweight.PNG?alt=media&token=63adc3d7-0b2c-4ae1-a141-c0d74a04af28" class="ads-img">
+        <div class="ad-title"><h4>D-Wayne</h4></div>
+        <div class="price"><h4>$2</h4></div>
+      <div class="ads-container">
+        <h4><b>Services available</b></h4> 
+        <p>Will break ankles b</p>
+        <div class="learn-more">Learn More</div>  
+      </div>
+    </div>
+  </div>
+
+</div>
 </div>
 </div>
 
@@ -132,21 +160,59 @@ p{
   color: #50575e;
   font-weight:400;
 }
-/* .sidenav {
+
+.sidenav a {
+    padding: 16px;
+    text-decoration: none;
+    font-size: 16px;
+    color: whitesmoke;
+    display: table-cell;
+    border-radius: 2px;
+    background-image: linear-gradient(180deg, darkgrey, #50575e);
+    margin-right: 3px;
+    width: 6rem;
+    text-align: center;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+    font-size: 16px;
+    color: grey;
+}
+
+.sidenav {
     height: 100%;
-    width: 160px;
+    background-color: transparent;
+    border-radius: 5px 5px 5px 5px;
+    margin-bottom: 15px;
+    /* display: flex;
+      flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    padding-right: 2px;
+    overflow-y: scroll; */
+    /* width: 160px;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
     background-color: #111;
     overflow-x: hidden;
-    padding-top: 20px;
+    padding-top: 20px; */
 }
 
-.ad-main {
+/* .ad-main {
     margin-left: 160px;
     font-size: 28px; 
     padding: 0px 10px;
 } */
+
+/* .row{
+  display: table;
+} */
+
+.col-xl-4{
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
 </style>
