@@ -1299,17 +1299,26 @@ padding-bottom: 10px;
   border: 2px solid turquoise;
 }
 
+.btn-primary:focus {
+  background-color:#2acad0;
+  border: 2px solid lightgray;
+}
+
 .btn-primary:active {
   background-color: turquoise;
   border: 2px solid skyblue;
 }
 
 .btn-danger:hover{
-  border: 2px solid red;
+  border: 2px solid indianred;
+}
+
+.btn-danger:focus{
+  border: 2px solid lightgray;
 }
 
 .btn-danger:active{
-  border: 2px solid indianred;
+  border: 2px solid hotpink;
 }
 
 /* clock/time icon column styling */
