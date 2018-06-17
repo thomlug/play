@@ -62,8 +62,8 @@
               <div class="profile-block">
                   <div>
                     <h3 class="manager-header">Managers</h3>
-                    <button v-if="canEditProfile()" class="fa fa-plus manage-players-button" @click="showAddManagerModal()"></button>
-                    <button v-if="canEditProfile()" class="fa fa-minus manage-players-button" @click="showRemoveManagerModal()"></button>
+                    <button v-if="canEditProfile()" class="fa fa-plus" @click="showAddManagerModal()"></button>
+                    <button v-if="canEditProfile()" class="fa fa-trash" @click="showRemoveManagerModal()"></button>
 
                   </div> 
                 <div class="managers-block" >      
@@ -78,26 +78,26 @@
               </div>
               <modal height=auto width=90%  name="add-manager" :clickToClose="false">
                 <div class= "input-header">
+                  <button class="fa fa-times mt-1" @click="hideAddManagerModal()"></button>
                   <h6>Add Existing Player as Manager</h6>
                 </div> 
                 <div class="form-group">
+                  
                   <input class="form-control" placeholder="Search for player" v-model="searchPlayerName"/>
                   <ul>
-                  
                     <li v-for="player in listRegisteredPlayers(searchPlayerName)" v-bind:key="player['.key']">
                      <button class="fa fa-plus" @click="addExistingPlayerAsTeamManager(player.userUid)"></button>
                       {{player.first_name}}
                       {{player.last_name}}
-                      
-                    </li>
-                    
+                    </li> 
                   </ul>
-                  <button class="fa fa-times mt-1" @click="hideAddManagerModal()"></button>
                 </div>        
               </modal>
                <modal height=auto width=90% name="remove-manager" :clickToClose="false">
                 <div class= "input-header">
+                  <button class="fa fa-times mt-1" @click="hideRemoveManagerModal()"></button>
                   <h6>Remove Manager From Team</h6>
+                  
                 </div> 
                 <div class="form-group">
                   <ul>
@@ -109,7 +109,7 @@
                     </li>
                   </ul>
                 </div>        
-                <button class="fa fa-times mt-1" @click="hideRemoveManagerModal()"></button>
+                
               </modal>
         </template>   
                
@@ -365,7 +365,7 @@ export default {
 
 <style>
 .row{
-  background-color: transparent;
+  background-color:transparent;
 }
 .team-profile-header{
   margin: 0rem 0rem;
@@ -634,7 +634,7 @@ h6 {
 
 .manage-players-button:hover{
   font-size: 2.5rem;
-  color:#2acad0;
+  color:darkgrey;
   border-radius: none;
   background: none;
   border: none;
@@ -679,20 +679,63 @@ li{
 
 .fa-trash{
   color: #e5e5e5;
-  border: 0px;
+  font-size: 20px;
+  border: 1.5px #e5e5e5 solid;
+  border-radius: 50%;
   background-color: transparent;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 10px 12px 9px 12px;
+  margin: 0 5px 0 5px;
+}
+
+.fa-trash:hover{
+  color: darkgrey;
+  font-size: 20px;
+  border: 1.5px darkgray solid;
+  border-radius: 50%;
+  background-color: transparent;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 10px 12px 9px 12px;
+  margin: 0 5px 0 5px;
 }
 
 .fa-plus{
+    color: #e5e5e5;
+    border: 1.5px #e5e5e5 solid;
+    border-radius: 50%;
+    background-color: transparent;
+    font-size: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    padding: 10px 12px 9px 12px;
+    margin: 0 5px 0 5px;
+}
+
+.fa-plus:hover{
+    color: darkgray;
+    border: 1.5px darkgray solid;
+    border-radius: 50%;
+    background-color: transparent;
+    font-size: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    padding: 10px 12px 9px 12px;
+    margin: 0 5px 0 5px;
+}
+
+.fa-minus{
   color: #e5e5e5;
   border: 0px;
   background-color: transparent;
-
+  font-size: 30px;
+  cursor: pointer;
 }
 
 .fa-times{
   color: lightgray;
-  font-size: 2rem;
+  font-size: 20px;
   vertical-align: middle;
   border: none;
   background: none;
@@ -702,7 +745,7 @@ li{
 
 .fa-times:hover{
   color: indianred;
-  font-size: 2rem;
+  font-size: 20px;
   vertical-align: middle;
   border: none;
   background: none;

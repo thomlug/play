@@ -14,6 +14,12 @@
       </div>
     </div>
 
+
+
+<!-- next fixture -->
+    <div class="row backdrop">
+      <div class="col-xl-3">
+
 <!-- Change your current team -->
         <div class="card play-card">
           <div class="card-block">
@@ -24,9 +30,6 @@
           </div>
         </div>
 
-<!-- next fixture -->
-    <div class="row backdrop">
-      <div class="col-xl-3">
         <div class="card play-card">
       <div class="card-block">
             <h4 class="fixture-title">Next Fixture</h4>
@@ -170,10 +173,11 @@
             <h4 class="card-title">Subs <small>(Scroll to see all players) </small></h4>
             <span v-if="canEdit()" class="float right">
               <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
-              <button class="fa fa-minus manage-players-button" @click="showRemovePlayerModal()"></button>
+              <button class="fa fa-trash manage-players-button" @click="showRemovePlayerModal()"></button>
             </span>
               <modal height=auto width=90%  name="add-player" :clickToClose="false">
                 <div class= "input-header">
+                  <button class="fa fa-times mt-1" @click="hideNewPlayerModal()"></button>
                   <h6>Add New Player</h6>
                 </div> 
                 <div class="form-group">
@@ -183,7 +187,7 @@
                   <div class="form-control alert alert-danger" v-if="newPlayerMessages.error !== undefined">{{newPlayerMessages.error}}</div>
                   <div class="form-control alert alert-success" v-if="newPlayerMessages.success !== undefined">{{newPlayerMessages.success}}</div>
                   <!-- <button class="btn btn-edit mt-1" @click="hideNewPlayerModal()">Close</button> -->
-                  <button class="fa fa-times mt-1" @click="hideNewPlayerModal()"></button>
+                  
                   <button class="btn btn-primary mt-1" @click="saveNewPlayer()">Save</button>
                 </div>
                   <h6>Add Existing Player</h6>
@@ -201,6 +205,7 @@
               </modal>
               <modal height=auto width=90% border-radius=20px name="remove-player" :clickToClose="false">
                 <div class= "input-header">
+                  <button class="fa fa-times mt-1" @click="hideRemovePlayerModal()"></button>
                   <h6>Remove Player From Team</h6>
                 </div> 
                 <div class="form-group">
@@ -214,7 +219,7 @@
                   </ul>
                 </div>        
                 <!-- <button class="btn btn-edit mt-1" @click="hideRemovePlayerModal()">Close</button> -->
-                <button class="fa fa-times mt-1" @click="hideRemovePlayerModal()"></button>
+                
                 
               </modal>
               <div class="card-block row">
@@ -1066,7 +1071,7 @@ padding-bottom: 10px;
   flex-direction: row;
   align-items: stretch;
   justify-content: center;
-  padding-top: 15px;
+  padding-top: 10px;
 }
 
 /* .player-container a {
@@ -1259,48 +1264,6 @@ padding-bottom: 10px;
     font-size: 2.5rem;
     line-height: 1;
   }
-}
-
-.manage-players-button{
-  font-size: 2.5rem;
-  color:#e5e5e5;
-  border-radius: none;
-  background: none;
-  border: none;
-  float: right;
-  margin-top: -40px;
-  cursor: pointer;
-}
-
-.manage-players-button:hover{
-  font-size: 2.5rem;
-  color:#2acad0;
-  border-radius: none;
-  background: none;
-  border: none;
-  float: right;
-  margin-top: -40px;
-  cursor: pointer;
-}
-
-.fa-times{
-  color: lightgray;
-  font-size: 2rem;
-  vertical-align: middle;
-  border: none;
-  background: none;
-  cursor: pointer;
-  margin-top: -10px;
-}
-
-.fa-times:hover{
-  color: indianred;
-  font-size: 2rem;
-  vertical-align: middle;
-  border: none;
-  background: none;
-  cursor: pointer;
-  margin-top: -10px;
 }
 
 .btn {
@@ -1562,15 +1525,82 @@ li{
 }
 
 .fa-trash{
-  color: #e5e5e5;
-  border: 0px;
-  background-color: transparent;
+    color: #e5e5e5;
+    border: 1.5px #e5e5e5 solid;
+    border-radius: 50%;
+    background-color: transparent;
+    font-size: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    padding: 10px 12px 9px 12px;
 }
 
 .fa-plus{
-  color: #e5e5e5;
-  border: 0px;
-  background-color: transparent;
+    color: #e5e5e5;
+    border: 1.5px #e5e5e5 solid;
+    border-radius: 50%;
+    background-color: transparent;
+    font-size: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    padding: 10px 12px 9px 12px;
+    margin-left: 5px;
+}
+
+.fa-plus:hover{
+    color: darkgray;
+    border: 1.5px darkgray solid;
+    border-radius: 50%;
+    background-color: transparent;
+    font-size: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    padding: 10px 12px 9px 12px;
+    margin-left: 5px;
+}
+
+.manage-players-button{
+  /* font-size: 2.5rem;
+  color:#e5e5e5;
+  border-radius: none;
+  background: none;
+  border: none; */
+  float: right;
+  margin-top: -40px;
+  cursor: pointer;
+}
+
+.manage-players-button:hover{
+  /* font-size: 2.5rem;
+  color:#2acad0;
+  border-radius: none;
+  background: none;
+  border: none; */
+  float: right;
+  margin-top: -40px;
+  cursor: pointer;
+}
+
+.fa-times{
+  color: lightgray;
+  font-size: 20px;
+  vertical-align: middle;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-top: -10px;
+  float:right;
+}
+
+.fa-times:hover{
+  color: indianred;
+  font-size: 20px;
+  vertical-align: middle;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-top: -10px;
+  float:right;
 }
 
 .btn-teams{
