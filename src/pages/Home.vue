@@ -1235,12 +1235,7 @@ padding-bottom: 10px;
   margin: 2px;
   padding: .5rem 1.5rem;
 }
-.btn-danger {
-  background-color: #d9534f;
-  cursor: pointer;
-  border-radius:20px; 
-  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
-}
+
 
 .btn-cancel {
   background-color: white;
@@ -1301,12 +1296,18 @@ padding-bottom: 10px;
 
 .btn-primary:focus {
   background-color:#2acad0;
-  border: 2px solid lightgray;
+  border: 2px solid turquoise;
 }
 
 .btn-primary:active {
   background-color: turquoise;
   border: 2px solid skyblue;
+}
+.btn-danger {
+  background-color: #d9534f;
+  cursor: pointer;
+  border-radius:20px; 
+  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
 .btn-danger:hover{
@@ -1314,11 +1315,11 @@ padding-bottom: 10px;
 }
 
 .btn-danger:focus{
-  border: 2px solid lightgray;
+  border: 2px solid red;
 }
 
 .btn-danger:active{
-  border: 2px solid hotpink;
+  background-color: indianred;
 }
 
 /* clock/time icon column styling */

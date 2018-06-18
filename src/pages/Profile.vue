@@ -28,6 +28,7 @@
               <template v-if = "editable">
                 <form enctype="multipart/form-data" novalidate>
                   <div class="dropbox">
+                    
 <!-- hides choose file     -->
            <div id="hide">
             <label class="hand-cursor">

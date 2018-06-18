@@ -201,11 +201,11 @@ p{
     padding-top: 20px; */
 }
 
-/* .ad-main {
-    margin-left: 160px;
-    font-size: 28px; 
-    padding: 0px 10px;
-} */
+.ad-main {
+    margin: 0;
+    /* font-size: 28px;  */
+    /* padding: 0px 10px; */
+}
 
 /* .row{
   display: table;

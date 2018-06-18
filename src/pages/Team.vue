@@ -25,7 +25,16 @@
             </div>
             <br>
 
-            <div><Avatar class="profile-photo" :image="team.photo"/></div>
+         <div>
+            <Avatar  v-if="team.photo" @click="goToTeam(team['.key'])" class="profile-photo" :image="team.photo"/>     
+            <!-- <div v-else class="default-manager-circle manager-photo" @click="goToTeam(team['.key'])">
+                      {{manager.first_name | firstCharacter}}
+            </div>  -->
+            <!-- <div class="name">{{team.first_name.charAt(0).toUpperCase()}}. {{manager.last_name}}</div> -->
+        </div>
+            <!-- <div>
+              <Avatar class="profile-photo" :image="team.photo"/>
+            </div> -->
 
             <template v-if = "editable">
               <form class="information-block" enctype="multipart/form-data" novalidate>
@@ -316,6 +325,10 @@ export default {
     goToPlayer(key){
       this.$router.push({name: 'profile', params: {player_id: key}});
     },
+
+    goToTeam(key){
+      this.$router.push({name: 'team', params: {team_id: key}});
+    },
     listRegisteredPlayers(name){
       var teamKey = this.team['.key'];
       return _.filter(this.players, (player) => {
@@ -406,7 +419,7 @@ export default {
   width: 100%;
 }
 
-.default-manager-circle {
+.default- {
   color: white;
   -webkit-box-shadow: 2px 2px 2px -2px #50575e;
   cursor: pointer;
