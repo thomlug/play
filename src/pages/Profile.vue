@@ -93,6 +93,7 @@
               </span>
               </div>
 </div>
+<!-- put player availability on hold - use player available ring styling -->
 
 <div v-if="canEditProfile()">
 <div class="profile-block">   

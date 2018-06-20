@@ -39,7 +39,11 @@
       </nav>
     <spinner v-if="this.player === undefined"></spinner>
     <slot v-else-if="playerBelongsToATeam()"></slot>
-    <div v-else-if="!playerBelongsToATeam()"><h1>Please join a team first</h1></div>
+    <div v-else-if="!playerBelongsToATeam()">
+    <h1>Welcome to Play!</h1> <br>  
+    <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="logofun">
+    <br><br><p>To gain access to our features, currently you have to be invited to a team and join first. See http://playapp.webflow.io/ for more about how we're changing community sport</p>
+    </div>
   </div>
 </template>
 
@@ -124,8 +128,15 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 
+.logofun{
+  background-color: #50575e;
+  border-radius: 50%;
+  width: 80px;
+  align-content: center;
+}
 .play-logo{
   max-height:50px;
+
 }
 
 .body{
@@ -185,15 +196,16 @@ a:hover {
   font-weight: 300;
 }
 
+
 .button-badge {
     background-color: indianred;
     border-radius: 2px;
     color: white;
-    padding: 1px 6px;
+    padding: 0px 4.5px;
     border-radius: 50%;
-    font-size: 10px;
-    position: initial;
+    font-size: 9px;
+    position: relative;
     left: 3px;
+    vertical-align: middle;
 }
-
 </style>
