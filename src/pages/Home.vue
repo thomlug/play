@@ -1018,7 +1018,7 @@ padding-bottom: 10px;
 
 .play-photo {
   max-width: 100%;
-  margin: 3px;
+  margin-top: 2px;
   border-radius: 50em;
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
   -moz-box-shadow: 7px 9px 4px -8px rgba(0, 0, 0, 0.75);
@@ -1060,8 +1060,9 @@ padding-bottom: 10px;
 }
 
 .player-unknown {
-  border: 2px solid grey;
-  -webkit-filter: grayscale(50%);
+    border: 2px solid gray;
+    -webkit-filter: grayscale(70%);
+    opacity: 0.8;
     /* background-image: linear-gradient(45deg, grey 0%, darkgrey 100%);
   padding: 2px; */
 }
@@ -1304,22 +1305,26 @@ padding-bottom: 10px;
   border: 2px solid skyblue;
 }
 .btn-danger {
-  background-color: #d9534f;
+  background-color: indianred;
+  border: 2px solid indianred;
   cursor: pointer;
   border-radius:20px; 
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
 .btn-danger:hover{
-  border: 2px solid indianred;
+  background-color: indianred;
+  border: 2px solid rgb(245, 24, 24);
 }
 
 .btn-danger:focus{
-  border: 2px solid red;
+  background-color: indianred;
+  border: 2px solid rgb(245, 19, 19);
 }
 
 .btn-danger:active{
-  background-color: indianred;
+  background-color: #da4944;
+  border: 2px solid red;
 }
 
 /* clock/time icon column styling */
@@ -1551,6 +1556,17 @@ li{
 .fa-trash{
     color: #e5e5e5;
     border: 1.5px #e5e5e5 solid;
+    border-radius: 50%;
+    background-color: transparent;
+    font-size: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    padding: 10px 12px 9px 12px;
+}
+
+.fa-trash:hover{
+    color: darkgray;
+    border: 1.5px darkgrey solid;
     border-radius: 50%;
     background-color: transparent;
     font-size: 20px;

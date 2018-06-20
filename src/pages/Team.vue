@@ -105,7 +105,7 @@
                <modal height=auto width=90% name="remove-manager" :clickToClose="false">
                 <div class= "input-header">
                   <button class="fa fa-times mt-1" @click="hideRemoveManagerModal()"></button>
-                  <h6>Remove Manager From Team</h6>
+                  <h6>Remove as manager</h6>
                   
                 </div> 
                 <div class="form-group">
