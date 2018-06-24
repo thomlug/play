@@ -15,7 +15,7 @@
                         <button type="submit" class="login-button btn btn-submit form-element">Sign in</button>            
                     </form>
                 </div>
-                <p class="no-account" slot="additional-info">Don't have an account? <router-link :to="{name: 'signup'}">Sign up</router-link> </p>
+                <p class="no-account" slot="additional-info">Don't have an account? <router-link :to="{name: 'signup', query: {redirect: $route.query.redirect}}">Sign up</router-link> </p>
             </play-form>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12"></div>
@@ -29,7 +29,8 @@ export default {
     return {
       email: "",
       password: "",
-      errorMessage: null
+      errorMessage: null,
+      redirect: this.$route.query.redirect
     };
   },
 

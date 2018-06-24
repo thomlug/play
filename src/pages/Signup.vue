@@ -56,7 +56,12 @@ export default {
                 this.$store.dispatch('userSignUp', {email: this.email, password: this.password})
                 .then((t) => {
                     //success
-                    this.$router.replace('home');
+                    if(this.$route.query.redirect){
+                        this.$router.go(this.$route.query.redirect);
+                    }
+                    else{
+                        this.$router.replace('home');
+                    }
                 }).catch((error) => {
                     this.signUpButtonDisabled = false;
                     this.errorMessage = error.message;
