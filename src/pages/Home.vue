@@ -971,7 +971,7 @@ export default {
   box-shadow: 0 1px 3px#ddd, 0 1px 2px #ddd;
   text-transform: uppercase;
   color: #50575e;
-  height: 17rem;
+  height: 13rem;
   border-color: transparent;
   border-radius: 10px;
 }
@@ -1099,8 +1099,6 @@ padding-bottom: 10px;
     max-width: 96px;
   }
 
-
-
 }
 @media (min-width: 768px) {
   .formation-row {
@@ -1137,6 +1135,17 @@ padding-bottom: 10px;
   box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
   cursor: pointer;
   }
+
+  .play-subs-card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px#ddd, 0 1px 2px #ddd;
+  text-transform: uppercase;
+  color: #50575e;
+  height: 17rem;
+  border-color: transparent;
+  border-radius: 10px;
+}
 }
 
 .team-photo {
