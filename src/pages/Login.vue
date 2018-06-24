@@ -11,6 +11,7 @@
                         <hr class="hr-text" data-content="OR">
                         <input placeholder="Email" label="Email" id="email" type="email" class="email form-element text-center" v-model="email" required>
                         <input placeholder="Password" label="Password" id="password" type="password" class="password form-element text-center" v-model="password" required>
+                        <div class="text-danger" v-if="errorMessage != null">{{errorMessage}}</div>
                         <button type="submit" class="login-button btn btn-submit form-element">Sign in</button>            
                     </form>
                 </div>
@@ -27,7 +28,8 @@ export default {
   data: function() {
     return {
       email: "",
-      password: ""
+      password: "",
+      errorMessage: null
     };
   },
 
@@ -56,7 +58,7 @@ export default {
       signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.FacebookAuthProvider.PROVIDER_ID
+        //firebase.auth.FacebookAuthProvider.PROVIDER_ID
       ],
       // Terms of service url.
       tosUrl: "<your-tos-url>"
@@ -73,7 +75,12 @@ export default {
 
   methods: {
     signIn() {
-      this.$store.dispatch('userSignIn', {email: this.email, password: this.password});
+      this.$store.dispatch('userSignIn', {email: this.email, password: this.password})
+      .then(function(t){
+        //success
+      }).catch((error) => {
+        this.errorMessage = error.message;
+      });
       this.$router.replace('/home');
     }
   }

@@ -42,7 +42,7 @@
     <div v-else-if="!playerBelongsToATeam()">
     <h1>Welcome to Play!</h1> <br>  
     <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="logofun">
-    <br><br><p>To gain access to our features, currently you have to be invited to a team and join first. See http://playapp.webflow.io/ for more about how we're changing community sport</p>
+    <br><br><p>To gain access to our features, currently you have to be invited to a team and join first. See <a href="http://playapp.webflow.io/">http://playapp.webflow.io/</a> for more about how we're changing community sport</p>
     </div>
   </div>
 </template>
@@ -179,23 +179,6 @@
 .logout:hover{
   cursor: pointer;
 }
-
-a{
-  color: #EEEEEE;
-  text-decoration: none;
-  font-size: 0.8rem;
-  cursor: pointer;
-  font-weight: 300;
-}
-
-a:hover {
-  text-decoration: none;
-  color: inherit;
-  font-size: .8rem;
-  cursor: pointer;
-  font-weight: 300;
-}
-
 
 .button-badge {
     background-color: indianred;

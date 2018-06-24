@@ -17,17 +17,35 @@ export const store = new Vuex.Store({
     },
     actions: {
         userSignUp({ commit }, payload) {
-            firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+            return new Promise((resolve, reject) => {firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+                .catch(function(error) {
+                    reject(error);
+                })
                 .then(firebaseUser => {
                     commit('setUser', firebaseUser);
+                    resolve(firebaseUser);
                 })
+            })
         },
 
-        userSignIn({ commit }, payload) {
-            firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+        userSignIn({ dispatch, commit }, payload) {
+            return new Promise((resolve, reject) => {firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+                .catch(function(error) {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    if(errorCode === "auth/user-not-found"){
+                        error.message = "There is no Play account associated with this email address, please sign up via the link below"
+                    }
+                    else if(errorCode === "auth/wrong-password"){
+                        error.message = "Password incorrect"
+                    }
+                    reject(error);
+                })
                 .then(firebaseUser => {
                     commit('setUser', firebaseUser);
+                    resolve("Login success");
                 })
+            });
         },
         autoSignIn({ commit }, user) {
             commit('setUser', user || false);

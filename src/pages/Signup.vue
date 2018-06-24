@@ -9,7 +9,8 @@
                                 <input placeholder="Email" label="Email" id="email" type="email" class="email form-element text-center" v-model="email" required>
                                 <input placeholder="Password" label="Password" id="password" type="password" class="password form-element text-center" v-model="password" required>
                                 <input placeholder="Confirm Password" label="Confirm Password" id="confirmPassword" type="password" class="confirmPassword form-element text-center" v-model="confirmPassword">
-                                <button type="submit" class="submit-button btn btn-submit form-element">Sign Up</button>
+                                <div class="text-danger" v-if="errorMessage != null">{{errorMessage}}</div>
+                                <button type="submit" :disabled = "signUpButtonDisabled" class="submit-button btn btn-submit form-element">Sign Up</button>
                             </form>  
                         </div>   
                         <p class="have-account" slot="additional-info">Already have an account? <router-link :to="{name: 'login'}">Log in</router-link> </p>         
@@ -37,7 +38,9 @@ export default {
         return {
             email: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            signUpButtonDisabled: false,
+            errorMessage: null
         }
     },
     components: {
@@ -46,27 +49,21 @@ export default {
 
     methods: {
         onSignUp(){
+            this.errorMessage = null;
+            this.signUpButtonDisabled = true;
+            var router = this.$router;
             if (this.password === this.confirmPassword){
-                firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-                .then(
-                    user => {
-                        //Functionality on success.
-                        firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-                            .then(
-                                user => {
-                                    this.$router.replace('home');
-                                }
-                            )
-                    }
-                )
-                .catch(
-                    error => {
-                        //handle errors here
-                        alert('Oops ' + error.message)
-                    }
-                )
+                this.$store.dispatch('userSignUp', {email: this.email, password: this.password})
+                .then((t) => {
+                    //success
+                    this.$router.replace('home');
+                }).catch((error) => {
+                    this.signUpButtonDisabled = false;
+                    this.errorMessage = error.message;
+                });;
             }else {
-                alert('Passwords do not match');
+                this.signUpButtonDisabled = false;
+                this.errorMessage = 'Passwords do not match';
             }
             
         }
