@@ -1017,7 +1017,9 @@ padding-bottom: 10px;
 }
 
 .play-photo {
-  max-width: 100%;
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
   margin-top: 2px;
   border-radius: 50em;
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
@@ -1096,13 +1098,17 @@ padding-bottom: 10px;
   .team-photo-container {
     max-width: 96px;
   }
+
+
+
 }
 @media (min-width: 768px) {
   .formation-row {
     min-height: 128px;
   }
   .player-container {
-    max-width: 128px;
+    width: 96px;
+    height: 96px;
     margin: 0 auto;
   }
 
@@ -1112,6 +1118,24 @@ padding-bottom: 10px;
   }
   .team-photo-container {
     max-width: 128px;
+  }
+
+  .play-photo {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  margin-top: 2px;
+  border-radius: 50em;
+  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+  -moz-box-shadow: 7px 9px 4px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 3px 3px -3px 50575e;
+  }
+
+  .play-photo:hover {
+  -webkit-box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
+  box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
   }
 }
 
