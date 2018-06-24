@@ -1472,6 +1472,8 @@ h3 {
   margin-bottom: 0rem;
   text-align: center;
   font-size: 1.25rem;
+  width: 125px;
+  max-height: 63px;
 }
 
 h4 {

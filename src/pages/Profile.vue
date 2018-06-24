@@ -288,8 +288,9 @@
 }
 
 .profile-photo{
-    max-height:256px;
-    max-width:256px;
+    height:256px;
+    width:256px;
+    object-fit: cover;
     border-radius: 50%;
     box-shadow:4px 4px 20px -8px rgba(0,0,0,0.75);
 }
