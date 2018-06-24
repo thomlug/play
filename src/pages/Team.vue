@@ -390,15 +390,17 @@ export default {
 }
 
 .profile-photo {
-  max-height: 10rem;
-  max-width: 10rem;
+  height: 256px;
+  width: 256px;
+  object-fit: cover;
   margin-bottom: 1rem;
   box-shadow: none;
 }
 
 .manager-photo{
-  max-height: 80px;
-  max-width: 80px;
+  height: 64px;
+  width: 64px;
+  object-fit: cover;
   border-radius: 50%;
   margin: 1rem 1rem;
 }

@@ -72,6 +72,7 @@
     float: left;
     width: 50px;
     height: 50px;
+   
     position: relative;
     display: block;
     z-index: 2;
@@ -84,6 +85,7 @@
 .chat .avatar img {
     width: 50px;
     height: 50px;
+    object-fit: cover;
     border-radius: 100%;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;

@@ -4,34 +4,52 @@
           <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="spinner">
         </div> -->
         <div class="double-bounce2">
-           <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="spinner">
+           <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7">
         </div>
     </div>
 </template>
 
 <style scoped>
-.spinner {
-  /* width: 40px;
-  height: 40px; */
-background-image: linear-gradient(-45deg,#50575e, rgba(19, 26, 29, 0.952));
-border-radius: 50%;
-  position: relative;
-  margin: 100px auto;
-}
 
-.double-bounce1,
-.double-bounce2 {
+/* this is the whole page */
+.spinner {
   width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  /* background-color: #333; */
-  opacity: 1;
+  height: auto;
+background-image: linear-gradient(-45deg,#50575e, rgba(19, 26, 29, 0.952));
+/* border-radius: 50%; */
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
+  margin-right: 100px;
+  /* margin-top: 50px; */
+  
+  /* margin: auto 50% auto 50%; */
+  /* align-items: center;
+align-content: center; */
 
-  -webkit-animation: sk-bounce 2s infinite ease-in-out;
-  animation: sk-bounce 2s infinite ease-in-out;
+}
+
+/* this is the bouncing item */
+.double-bounce1,
+.double-bounce2 {
+  /* width: 100%;
+  height: auto; */
+  border-radius: 50%;
+  /* background-image: linear-gradient(-45deg,#50575e, rgba(19, 26, 29, 0.952)); */
+  /* background-color: #333; */
+  opacity: 1;
+  position: relative;
+  /* object-position:left; */
+  /* top: auto;
+  left: auto;
+  right: auto;
+  bottom: auto; */
+/* align-items: center;
+align-content: center; */
+  -webkit-animation: sk-bounce 1.7s infinite ease-in-out;
+  animation: sk-bounce 1.7s infinite ease-in-out;
 }
 
 .double-bounce2 {
@@ -53,10 +71,10 @@ border-radius: 50%;
   0%,
   100% {
     transform: scale(0);
-    -webkit-transform: scale(0.2);
+    -webkit-transform: scale(0.15);
   }
   50% {
-    transform: scale(0);
+    transform: scale(1);
     -webkit-transform: scale(0.25);
   }
 }
