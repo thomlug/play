@@ -47,7 +47,7 @@
                       </label>
                     </div>
                     <p v-if="isSaving">
-                      Uploading file...
+                      Uploading file...<br>
                     </p>
                 </div>
               </form>
@@ -410,6 +410,7 @@ export default {
   color: #a9a9a9;
   font-size: 2.5rem;
   border-color: whitesmoke;
+  font-weight: 500;
 }
 
 .managers-block {

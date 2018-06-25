@@ -112,6 +112,16 @@ export default {
   font-weight: 550;
 }
 
+.login-button:active {
+  border-radius: 2.5%;
+  /* -webkit-box-shadow: 0px 1.5px 4px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 1.5px 4px 0px rgba(0, 0, 0, 0.75); */
+  box-shadow: 0px 1.5px 4px 0px #ddd;
+  background-color: turquoise;
+  color: #ffffff;
+  font-weight: 550;
+}
+
 .login-button:hover {
   cursor: pointer;
 }

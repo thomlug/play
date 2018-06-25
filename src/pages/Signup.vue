@@ -118,6 +118,25 @@ export default {
     .form-element{
         margin: 0.5rem 0 0.5rem 0;
         width: 14rem;
+        border-radius: 20px;
+        border: 1px solid #e5e5e5;
+    }
+
+    .submit-button{
+        background-color: lightgrey;
+        color: unset;
+        border: 0;
+        border-radius: 6px;
+        cursor: pointer;
+        box-shadow: 0px 1.5px 4px 0px #ddd;
+    }
+
+        .submit-button:active{
+        background-color: grey;
+        color: white;
+        border: 0;
+        border-radius: 6px;
+        cursor: pointer;
     }
 
     .submit-button:hover{
@@ -152,4 +171,9 @@ export default {
         font-size: 0.8rem;
     }
 
+    a {
+    color: #2acad0;
+    font-size: 1rem;
+    vertical-align: baseline;
+    }
 </style>

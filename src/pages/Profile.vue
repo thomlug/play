@@ -39,7 +39,7 @@
           </div>
                     <!-- <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange" accept="image/*" class="input-file"> -->
                       <p v-if="isSaving">
-                        Uploading file...
+                        Uploading file...<br> 
                       </p>
                   </div>
                 </form>
@@ -397,7 +397,7 @@ cursor: pointer;
   margin-right: -16px;
 }
 
-/* .btn-success:focus{
+.btn-success:focus{
   color:#50575e;
   background-color: white;
   border: 2px solid#e5e5e5;
@@ -407,7 +407,7 @@ cursor: pointer;
   margin-top: 0px;
   margin-right: -16px;
   box-shadow: none;
-} */
+}
 
 .btn-success:active{
    color:#50575e;
