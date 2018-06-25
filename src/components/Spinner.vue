@@ -6,7 +6,11 @@
         <div class="double-bounce2">
            <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7">
         </div>
+    <!-- <div class="infoimage">
+      <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/ezgif.com-crop.gif?alt=media&token=d5e40965-34d3-4a66-b5e9-970ba8f5838e">
+    </div> -->
     </div>
+
 </template>
 
 <style scoped>

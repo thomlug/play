@@ -5,7 +5,7 @@
                 <play-form>
                         <div class="col">
                             <form @submit.prevent="onSignUp" class="register-form">
-                                <h4>Sign Up</h4>
+                                <h5><b>Sign Up</b></h5>
                                 <input placeholder="Email" label="Email" id="email" type="email" class="email form-element text-center" v-model="email" required>
                                 <input placeholder="Password" label="Password" id="password" type="password" class="password form-element text-center" v-model="password" required>
                                 <input placeholder="Confirm Password" label="Confirm Password" id="confirmPassword" type="password" class="confirmPassword form-element text-center" v-model="confirmPassword">
@@ -118,6 +118,25 @@ export default {
     .form-element{
         margin: 0.5rem 0 0.5rem 0;
         width: 14rem;
+        border-radius: 20px;
+        border: 1px solid #e5e5e5;
+    }
+
+    .submit-button{
+        background-color: lightgrey;
+        color: unset;
+        border: 0;
+        border-radius: 6px;
+        cursor: pointer;
+        box-shadow: 0px 1.5px 4px 0px #ddd;
+    }
+
+        .submit-button:active{
+        background-color: grey;
+        color: white;
+        border: 0;
+        border-radius: 6px;
+        cursor: pointer;
     }
 
     .submit-button:hover{
@@ -150,5 +169,11 @@ export default {
     .have-account{
         margin-top: 1rem;
         font-size: 0.8rem;
+    }
+
+    a {
+    color: #2acad0;
+    font-size: 1rem;
+    vertical-align: baseline;
     }
 </style>

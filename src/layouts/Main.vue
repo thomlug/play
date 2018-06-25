@@ -1,5 +1,6 @@
 <template>
   <div class="container-fluid body">
+    
          <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span><span class="button-badge" v-if="isThereNewChatMessage()">&nbsp;</span>
@@ -43,6 +44,9 @@
     <h1>Welcome to Play!</h1> <br>  
     <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="logofun">
     <br><br><p>To gain access to our features, currently you have to be invited to a team and join first. See <a href="http://playapp.webflow.io/">http://playapp.webflow.io/</a> for more about how we're changing community sport</p>
+    <p>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout</p>
+    <p><b> PLAYTIP:</b> Download the Play&#8482; shortcut to your homescreen if you're using a mobile device!</p>
+    <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/ezgif.com-crop.gif?alt=media&token=d5e40965-34d3-4a66-b5e9-970ba8f5838e" class="playtips"> 
     </div>
   </div>
 </template>
@@ -128,6 +132,21 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 
+/* .bgtest{
+  height: auto;
+} */
+/* .centretext{
+  text-align: center;
+} */
+.playtips{
+  max-width: 100%; 
+  width: 210px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .logofun{
   background-color: #50575e;
   border-radius: 50%;
@@ -190,5 +209,15 @@
     position: relative;
     left: 3px;
     vertical-align: middle;
+}
+
+a{
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+p{
+  font-size: 0.8rem;
+  font-weight: 300;
 }
 </style>
