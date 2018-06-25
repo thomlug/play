@@ -181,9 +181,12 @@ input {
 
 h2 {
   color: #50575e;
+  text-align: center;
 }
 
 a {
   color: #2acad0;
+  font-size: 1rem;
+  vertical-align: baseline;
 }
 </style>

@@ -67,7 +67,7 @@
                 <h6> Preferred Position</h6>
               </div> 
                 <span class="profile-info" v-if="!editable">{{player.preffered_position}}</span>
-                <input placeholder="Preffered position" v-if="editable" v-model="player.preffered_position"/>
+                <input placeholder="Preferred position" v-if="editable" v-model="player.preffered_position"/>
               </div>
 </div>
 </div>
@@ -95,7 +95,7 @@
 </div>
 <!-- put player availability on hold - use player available ring styling -->
 
-<div v-if="canEditProfile()">
+<!-- <div v-if="canEditProfile()">
 <div class="profile-block">   
                 <h4 class="card-title">Update your status </h4>
                 <div class="availability-container">
@@ -103,7 +103,7 @@
                   <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
                 </div>
               </div>
-            </div>                       
+            </div>                        -->
             
           <!-- </div> -->
         </div>
@@ -397,9 +397,21 @@ cursor: pointer;
   margin-right: -16px;
 }
 
-.btn-success:hover{
-   color:#50575e;
+/* .btn-success:focus{
+  color:#50575e;
   background-color: white;
+  border: 2px solid#e5e5e5;
+  border-radius:20px; 
+  cursor: pointer;
+  padding: 8px;
+  margin-top: 0px;
+  margin-right: -16px;
+  box-shadow: none;
+} */
+
+.btn-success:active{
+   color:#50575e;
+  background-color: #e5e5e5;
   border: 2px solid #e5e5e5;
   border-radius:20px; 
   cursor: pointer;

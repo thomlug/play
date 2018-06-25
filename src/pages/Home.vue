@@ -170,7 +170,7 @@
       <div class="col-xl-3">
         <div class="card play-subs-card">
           <div class="card-block">          
-            <h4 class="card-title">Subs <small>(Scroll to see all players) </small></h4>
+            <h4 class="card-title">Subs <small>(Scroll sideways) </small></h4>
             <span v-if="canEdit()" class="float right">
               <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
               <button class="fa fa-trash manage-players-button" @click="showRemovePlayerModal()"></button>
@@ -1145,7 +1145,11 @@ padding-bottom: 10px;
   height: 17rem;
   border-color: transparent;
   border-radius: 10px;
-}
+  }
+
+  .player-circle{
+  padding-top: 20%;
+  }
 }
 
 .team-photo {
@@ -1215,9 +1219,10 @@ padding-bottom: 10px;
 
 .player-circle-container {
     width: 100%;
+    height: 100%;
     padding-top: 100%; /* 1:1 Aspect Ratio */
     position: relative; /* If you want text inside of it */
-    margin: 3px;
+    /* margin: 3px; */
 }
 .player-circle {
   color: white;
@@ -1308,10 +1313,23 @@ padding-bottom: 10px;
   border: 2px solid #e5e5e5;
 }
 
-.btn-edit:hover{
+/* .btn-edit:hover{
+  color: #50575e; 
+  background-color: white;
+  border: 2px solid grey;
+} */
+
+.btn-edit:active{
+  color: #50575e; 
+  background-color: #e5e5e5;
+  border: 2px solid #e5e5e5;
+}
+
+.btn-edit:focus{
   color: #50575e; 
   background-color: white;
   border: 2px solid #e5e5e5;
+  box-shadow: none;
 }
 
 .btn-primary {
@@ -1475,6 +1493,7 @@ margin-top: -12px;
   color: #50575e;
   background-color: whitesmoke;
   padding-bottom: 10px;
+  height: -webkit-fill-available;
 }
 
 dt {
@@ -1500,13 +1519,13 @@ h2 {
 }
 
 h3 {
-  font-weight: 550;
-  color: #50575e;
-  margin-bottom: 0rem;
-  text-align: center;
-  font-size: 1.25rem;
-  width: 125px;
-  max-height: 63px;
+    font-weight: 550;
+    color: #50575e;
+    margin-bottom: 0rem;
+    text-align: center;
+    font-size: 1.25rem;
+    width: 150px;
+    height: 35px;
 }
 
 h4 {
@@ -1682,10 +1701,11 @@ li{
     background-color: #50575e;
     border: 0px;
     color: gainsboro;
-    padding: 2px 30px 2px 30px;
+    /* padding: 2px 30px 2px 30px; */
     margin: -15px 5px -5px 5px;
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 2px 2px 2px -2px grey;
+    min-width: 100px;
 }
 </style>

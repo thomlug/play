@@ -5,7 +5,7 @@
                 <play-form>
                         <div class="col">
                             <form @submit.prevent="onSignUp" class="register-form">
-                                <h4>Sign Up</h4>
+                                <h5><b>Sign Up</b></h5>
                                 <input placeholder="Email" label="Email" id="email" type="email" class="email form-element text-center" v-model="email" required>
                                 <input placeholder="Password" label="Password" id="password" type="password" class="password form-element text-center" v-model="password" required>
                                 <input placeholder="Confirm Password" label="Confirm Password" id="confirmPassword" type="password" class="confirmPassword form-element text-center" v-model="confirmPassword">
@@ -151,4 +151,5 @@ export default {
         margin-top: 1rem;
         font-size: 0.8rem;
     }
+
 </style>

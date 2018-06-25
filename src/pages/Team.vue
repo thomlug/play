@@ -403,6 +403,13 @@ export default {
   object-fit: cover;
   border-radius: 50%;
   margin: 1rem 1rem;
+  color: white;
+  -webkit-box-shadow: 2px 2px 2px -2px #50575e;
+  cursor: pointer;
+  background-color: #e5e5e5;
+  color: #a9a9a9;
+  font-size: 2.5rem;
+  border-color: whitesmoke;
 }
 
 .managers-block {
@@ -500,14 +507,25 @@ cursor: pointer;
     margin: 0px -16px 0px -40px;
 }
 
-.btn-success:hover{
+.btn-success:active{
      color: #50575e;
-    background-color: white;
+    background-color: #e5e5e5;
     border: 2px solid#e5e5e5;
     border-radius: 20px;
     cursor: pointer;
     padding: 8px;
     margin: 0px -16px 0px -40px;
+}
+
+.btn-success:active{
+     color: #50575e;
+    background-color: #e5e5e5;
+    border: 2px solid#e5e5e5;
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 8px;
+    margin: 0px -16px 0px -40px;
+    box-shadow: none;
 }
 
 input{
@@ -647,7 +665,7 @@ h6 {
   cursor: pointer;
 }
 
-.manage-players-button:hover{
+/* .manage-players-button:hover{
   font-size: 2.5rem;
   color:darkgrey;
   border-radius: none;
@@ -656,6 +674,30 @@ h6 {
   float: right;
   margin-top: -40px;
   cursor: pointer;
+} */
+
+.manage-players-button:focus{
+  font-size: 2.5rem;
+  color:darkgrey;
+  border-radius: none;
+  background: none;
+  border: none;
+  float: right;
+  margin-top: -40px;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.manage-players-button:active{
+  font-size: 2.5rem;
+  color:darkgrey;
+  border-radius: none;
+  background: #e5e5e5;
+  border: none;
+  float: right;
+  margin-top: -40px;
+  cursor: pointer;
+  box-shadow: none;
 }
 
 .btn {
@@ -671,10 +713,17 @@ h6 {
   border: 2px solid #e5e5e5;
 }
 
-.btn-edit:hover{
+.btn-edit:active{
+  color: #50575e; 
+  background-color: #e5e5e5;
+  border: 2px solid #e5e5e5;
+}
+
+.btn-edit:focus{
   color: #50575e; 
   background-color: white;
   border: 2px solid #e5e5e5;
+  box-shadow: none;
 }
 
 ul {
