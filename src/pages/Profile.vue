@@ -314,6 +314,8 @@ export default {
   border-radius: 50%;
   box-shadow: 4px 4px 20px -8px rgba(0, 0, 0, 0.75);
   position: relative;
+  background-color: #e5e5e5;
+  margin-bottom: 15px;
 }
 
 div > .profile-photo {
@@ -324,9 +326,10 @@ div > .profile-photo {
 }
 
 .player-initials {
-  font-size: 4rem;
+  font-size: 6.5rem;
   margin: auto;
   color: #a9a9a9;
+  font-weight: 500;
 }
 
 .player-available {
