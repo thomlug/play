@@ -5,11 +5,11 @@
                 <play-form>
                     <div class="col">
                         <h4>Welcome to Play {{player.first_name}}</h4>
-                        
+                        <h5>Click to join {{team.name}}</h5>
                         <div class="alert alert-danger" v-if="errorMessage !== undefined">{{errorMessage}}</div>
 
-                        <button class="btn btn-primary" @click="joinPlay">Join</button>
-                        <h5>{{team.name}}</h5>
+                        <button class="btn btn-join" @click="joinPlay">Join</button>
+                        
                     </div>   
                 </play-form>
             </div>
@@ -99,7 +99,25 @@ export default {
     h4{
         text-align: center;
     }
-    
+
+    h5{
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .btn-join{
+        background-color: #2BCAD0;
+        margin-left: 39%;
+        color: white;
+        cursor: pointer;
+    }
+
+    .btn-join:active{
+        background-color: turquoise;
+        margin-left: 39%;
+        color: white;
+    }
+
     #signup-page{
         display: flex;
         flex-direction: column;
