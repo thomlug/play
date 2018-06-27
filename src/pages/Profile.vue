@@ -23,7 +23,10 @@
           <button class="btn btn-success" @click="save" v-if="editable">Save</button>
         </div>
             <div class="player-profile-content">
-              <img class="profile-photo" :src="player.photo" :class="'player-' + player.availability"/> 
+              <img v-if="player.photo" class="profile-photo" :src="player.photo" :class="'player-' + player.availability"/> 
+              <div v-else class="profile-photo">
+                <div class="player-initials">{{player.first_name | firstCharacter}}</div>
+              </div>
               <div class="content-block">
               <template v-if = "editable">
                 <form enctype="multipart/form-data" novalidate>
@@ -114,231 +117,261 @@
 </template>
 
 <script>
-  import {db} from '../firebase';
-  import MainLayout from '../layouts/Main.vue'
-  import moment from 'moment'
-  const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
+import { db } from "../firebase";
+import MainLayout from "../layouts/Main.vue";
+import moment from "moment";
+const STATUS_INITIAL = 0,
+  STATUS_SAVING = 1,
+  STATUS_SUCCESS = 2,
+  STATUS_FAILED = 3;
 
-  export default {
-    components: {
-      MainLayout
+export default {
+  components: {
+    MainLayout
+  },
+  computed: {
+    isInitial() {
+      return this.currentStatus === STATUS_INITIAL;
     },
-    computed:{
-      isInitial() {
-        return this.currentStatus === STATUS_INITIAL;
-      },
-      isSaving() {
-        return this.currentStatus === STATUS_SAVING;
-      },
-      isSuccess() {
-        return this.currentStatus === STATUS_SUCCESS;
-      },
-      isFailed() {
-        return this.currentStatus === STATUS_FAILED;
-      }
+    isSaving() {
+      return this.currentStatus === STATUS_SAVING;
     },
-    filters: {
-      camelToSentence(value){
-        if(value == undefined){
-          return '';
-        }
-        return value.replace(/([A-Z])/g, ' $1')
-            .replace(/^./, function(str){ return str.toUpperCase(); })
-      }
+    isSuccess() {
+      return this.currentStatus === STATUS_SUCCESS;
     },
-    data: function () {
-      return {
-        editable: this.$route.query.status === 'new',
-        player:  {},
-        playerId: this.$route.params.player_id,
-        uploadedFiles: [],
-        uploadError: null,
-        currentStatus: null,
-        uploadFieldName: 'photos',
-        status: this.$route.query.status
-      }
-    },
-    firebase() {
-      return{
-        player:{
-            source: db.ref('player/'+this.$route.params.player_id),
-            asObject: true
-        }
-      };
-    },
-    methods:{
-      currentUser: function(){
-            return firebase.auth().currentUser;
-      },
-      canEditProfile: function(){
-        var currentUser = this.currentUser();
-        return this.player != null &&  currentUser != null && (this.player.userUid === currentUser.uid);
-      },
-      edit: function(){
-          this.editable = true;
-      },
-      save: function(){
-          var item = {... this.player};
-          delete item['.key'];
-          db.ref('player/'+this.$route.params.player_id).set(item);
-          this.editable = false;
-          this.$router.push({name: 'home'});
-      },
-      setCurrentPlayerAvailability(availability){
-        this.$firebaseRefs.player.child('availabilityUpdated').set(this.moment().toString());        
-        this.$firebaseRefs.player.child('availability').set(availability);
-      },
-      reset() {
-        // reset form to initial state
-        this.currentStatus = STATUS_INITIAL;
-        this.uploadedFiles = [];
-        this.uploadError = null;
-      },
-      saveFile(fileData) {
-        // upload data to the server
-        this.currentStatus = STATUS_SAVING;
-
-        this.upload(fileData)
-          .then(x => {
-            this.uploadedFiles = [].concat(x);
-            this.currentStatus = STATUS_SUCCESS;
-          })
-          .catch(err => {
-            this.uploadError = err.response;
-            this.currentStatus = STATUS_FAILED;
-          });
-      },
-      filesChange(e) {
-
-         var files = e.target.files || e.dataTransfer.files;
-        if (!files.length)
-          return;
-
-        // save it
-        this.saveFile(files[0]);
-      },
-      upload(fileData){
-          var player = this.player;
-          var storageRef = firebase.storage().ref();
-          var testUploadRef = storageRef.child('images/' + player['.key']);
-          var uploadTask = testUploadRef.put(fileData);
-          var promise = new Promise((resolve, reject) => {
-
-            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-              function(snapshot) {
-                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
-                switch (snapshot.state) {
-                  case firebase.storage.TaskState.PAUSED: // or 'paused'
-                    console.log('Upload is paused');
-                    break;
-                  case firebase.storage.TaskState.RUNNING: // or 'running'
-                    console.log('Upload is running');
-                    break;
-                }
-              }, function(error) {
-
-              // A full list of error codes is available at
-              // https://firebase.google.com/docs/storage/web/handle-errors
-              switch (error.code) {
-                case 'storage/unauthorized':
-                  // User doesn't have permission to access the object
-                  reject("User doesn't have permission to access the object")
-                  break;
-              }
-              }, function() {
-              // Upload completed successfully, now we can get the download URL
-                var downloadURL = uploadTask.snapshot.downloadURL;
-                player.photo = downloadURL;
-                resolve(downloadURL);
-              });
-          });
-
-        return promise;
-      }
-    },
-    mounted() {
-      this.reset();
+    isFailed() {
+      return this.currentStatus === STATUS_FAILED;
     }
+  },
+  filters: {
+    camelToSentence(value) {
+      if (value == undefined) {
+        return "";
+      }
+      return value.replace(/([A-Z])/g, " $1").replace(/^./, function(str) {
+        return str.toUpperCase();
+      });
+    },
+    firstCharacter(value) {
+      if (!_.isUndefined(value)) {
+        return value.charAt(0);
+      }
+      return "";
+    }
+  },
+  data: function() {
+    return {
+      editable: this.$route.query.status === "new",
+      player: {},
+      playerId: this.$route.params.player_id,
+      uploadedFiles: [],
+      uploadError: null,
+      currentStatus: null,
+      uploadFieldName: "photos",
+      status: this.$route.query.status
+    };
+  },
+  firebase() {
+    return {
+      player: {
+        source: db.ref("player/" + this.$route.params.player_id),
+        asObject: true
+      }
+    };
+  },
+  methods: {
+    currentUser: function() {
+      return firebase.auth().currentUser;
+    },
+    canEditProfile: function() {
+      var currentUser = this.currentUser();
+      return (
+        this.player != null &&
+        currentUser != null &&
+        this.player.userUid === currentUser.uid
+      );
+    },
+    edit: function() {
+      this.editable = true;
+    },
+    save: function() {
+      var item = { ...this.player };
+      delete item[".key"];
+      db.ref("player/" + this.$route.params.player_id).set(item);
+      this.editable = false;
+      this.$router.push({ name: "home" });
+    },
+    setCurrentPlayerAvailability(availability) {
+      this.$firebaseRefs.player
+        .child("availabilityUpdated")
+        .set(this.moment().toString());
+      this.$firebaseRefs.player.child("availability").set(availability);
+    },
+    reset() {
+      // reset form to initial state
+      this.currentStatus = STATUS_INITIAL;
+      this.uploadedFiles = [];
+      this.uploadError = null;
+    },
+    saveFile(fileData) {
+      // upload data to the server
+      this.currentStatus = STATUS_SAVING;
+
+      this.upload(fileData)
+        .then(x => {
+          this.uploadedFiles = [].concat(x);
+          this.currentStatus = STATUS_SUCCESS;
+        })
+        .catch(err => {
+          this.uploadError = err.response;
+          this.currentStatus = STATUS_FAILED;
+        });
+    },
+    filesChange(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length) return;
+
+      // save it
+      this.saveFile(files[0]);
+    },
+    upload(fileData) {
+      var player = this.player;
+      var storageRef = firebase.storage().ref();
+      var testUploadRef = storageRef.child("images/" + player[".key"]);
+      var uploadTask = testUploadRef.put(fileData);
+      var promise = new Promise((resolve, reject) => {
+        uploadTask.on(
+          firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+          function(snapshot) {
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress =
+              snapshot.bytesTransferred / snapshot.totalBytes * 100;
+            console.log("Upload is " + progress + "% done");
+            switch (snapshot.state) {
+              case firebase.storage.TaskState.PAUSED: // or 'paused'
+                console.log("Upload is paused");
+                break;
+              case firebase.storage.TaskState.RUNNING: // or 'running'
+                console.log("Upload is running");
+                break;
+            }
+          },
+          function(error) {
+            // A full list of error codes is available at
+            // https://firebase.google.com/docs/storage/web/handle-errors
+            switch (error.code) {
+              case "storage/unauthorized":
+                // User doesn't have permission to access the object
+                reject("User doesn't have permission to access the object");
+                break;
+            }
+          },
+          function() {
+            // Upload completed successfully, now we can get the download URL
+            var downloadURL = uploadTask.snapshot.downloadURL;
+            player.photo = downloadURL;
+            resolve(downloadURL);
+          }
+        );
+      });
+
+      return promise;
+    }
+  },
+  mounted() {
+    this.reset();
   }
+};
 </script>
 
 <style scoped>
-
-.profile-bg{
-  background-color: whitesmoke;
-} 
-.row{
+.profile-bg {
   background-color: whitesmoke;
 }
-.card-title{
+.row {
+  background-color: whitesmoke;
+}
+.card-title {
   text-align: center;
 }
-.profile-block{
-    border-radius: 10px;
-    border: 0px solid #eee;
-    padding: 5px 1.5rem;
-    box-shadow: 0px 1px 6px -1px #ddd;
-    width: 100%;
-    background-color: white;
-    margin-top: 0rem;
-    margin-bottom: 1rem;
-    text-align: center;
-    padding-bottom: 10px;
+.profile-block {
+  border-radius: 10px;
+  border: 0px solid #eee;
+  padding: 5px 1.5rem;
+  box-shadow: 0px 1px 6px -1px #ddd;
+  width: 100%;
+  background-color: white;
+  margin-top: 0rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding-bottom: 10px;
 }
 
-.profile-photo{
-    height:256px;
-    width:256px;
-    object-fit: cover;
-    border-radius: 50%;
-    box-shadow:4px 4px 20px -8px rgba(0,0,0,0.75);
+.profile-photo {
+  height: 256px;
+  width: 256px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 4px 4px 20px -8px rgba(0, 0, 0, 0.75);
+  position: relative;
 }
 
-.player-available{
-    background-image: linear-gradient(45deg, #2acad0 0%, #3580d0 100%);
-    padding: 2px;
+div > .profile-photo {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
 }
 
-.player-unavailable{
-    background-image: linear-gradient(45deg, red 50%, mediumvioletred 100%);
-    padding: 2px;
+.player-initials {
+  font-size: 4rem;
+  margin: auto;
+  color: #a9a9a9;
 }
 
-.player-unknown{
-    border: 2px solid grey;
-    -webkit-filter: grayscale(100%);
+.player-available {
+  background-image: linear-gradient(45deg, #2acad0 0%, #3580d0 100%);
+  padding: 2px;
 }
 
-.player-profile-box{
+.player-unavailable {
+  background-image: linear-gradient(45deg, red 50%, mediumvioletred 100%);
+  padding: 2px;
+}
+
+.player-unknown {
+  border: 2px solid grey;
+  -webkit-filter: grayscale(100%);
+}
+
+.player-profile-box {
   margin-top: 1vh;
   display: flex;
   flex-direction: column;
   box-shadow: 0px 1px 6px 0px #eee;
 }
 
-.player-profile-banner{
+.player-profile-banner {
   width: 100%;
-  background-color: #2BCAD0;
+  background-color: #2bcad0;
   color: #ffffff;
   box-shadow: 1px 3px 3px -3px grey;
 }
 
-.player-profile-header{
+.player-profile-header {
   margin: 0rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  float:none;
+  float: none;
 }
 
-.player-profile-header-other{
-margin-top: 0rem;
+.player-profile-header-other {
+  margin-top: 0rem;
 }
 
-.player-profile-content{
+.player-profile-content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -348,61 +381,60 @@ margin-top: 0rem;
   margin-top: 0rem;
 }
 
-.availability-container{
-text-align: center;
-margin: 5px;
-padding:5px;
+.availability-container {
+  text-align: center;
+  margin: 5px;
+  padding: 5px;
 }
 
-.content-block{
+.content-block {
   margin: 0.4rem 0;
   text-align: -webkit-center;
 }
 
-.player-{
+.player- {
   margin-top: 2rem;
   color: pink;
 }
 
-.profile-info{
-  color: #9E9E9E;
+.profile-info {
+  color: #9e9e9e;
   font-weight: 400;
 }
 
-.profile-info small{
-  font-size:70%;
-  margin-top:-2px;
+.profile-info small {
+  font-size: 70%;
+  margin-top: -2px;
 }
 
-.fa-pencil{
-font-size: 1.5rem;
-color: lightgray;
-cursor: pointer;
+.fa-pencil {
+  font-size: 1.5rem;
+  color: lightgray;
+  cursor: pointer;
 }
 
-.fa-pencil:hover{
-font-size: 1.5rem;
-color: darkgray;
-cursor: pointer;
+.fa-pencil:hover {
+  font-size: 1.5rem;
+  color: darkgray;
+  cursor: pointer;
 }
 
-
-.btn-success{
-  color:#50575e;
+.btn-success {
+  color: #50575e;
   background-color: white;
   border: 2px solid#e5e5e5;
-  border-radius:20px; 
+  border-radius: 20px;
   cursor: pointer;
   padding: 8px;
   margin-top: 0px;
   margin-right: -16px;
 }
 
-.btn-success:focus{
-  color:#50575e;
+.btn-success:focus {
+  color: #50575e;
   background-color: white;
   border: 2px solid#e5e5e5;
-  border-radius:20px; 
+  border-radius: 20px;
   cursor: pointer;
   padding: 8px;
   margin-top: 0px;
@@ -410,63 +442,63 @@ cursor: pointer;
   box-shadow: none;
 }
 
-.btn-success:active{
-   color:#50575e;
+.btn-success:active {
+  color: #50575e;
   background-color: #e5e5e5;
   border: 2px solid #e5e5e5;
-  border-radius:20px; 
+  border-radius: 20px;
   cursor: pointer;
   padding: 8px;
   margin-top: 0px;
   margin-right: -16px;
 }
 
-.btn-available{
+.btn-available {
   background-color: #2bcad0;
   border-color: #2bcad0;
-  border-radius:20px; 
+  border-radius: 20px;
   cursor: pointer;
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
-.btn-available:hover{
+.btn-available:hover {
   background-color: #26bec4;
   border-color: #26bec4;
-  border-radius:20px; 
+  border-radius: 20px;
   cursor: pointer;
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
-.btn-danger{
+.btn-danger {
   background-color: #d9534f;
   border-color: #d9534f;
   cursor: pointer;
-  border-radius:20px; 
+  border-radius: 20px;
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
-.btn-danger:hover{
+.btn-danger:hover {
   background-color: #c44743;
   border-color: #c44743;
   cursor: pointer;
-  border-radius:20px; 
+  border-radius: 20px;
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
 }
 
-input{
-  font-size:13px;
-  padding:10px 10px 10px 10px;
-  display:block;
-  width:300px;
-  border:none;
-  border:1.2px solid #e3e3e3;
+input {
+  font-size: 13px;
+  padding: 10px 10px 10px 10px;
+  display: block;
+  width: 300px;
+  border: none;
+  border: 1.2px solid #e3e3e3;
   color: #50575e;
   margin: 1px;
   border-radius: 20px;
   margin-bottom: 10px;
 }
 
-.input-file{
+.input-file {
   border: 2px solid #2acad0;
   background-color: #2acad0;
   color: white;
@@ -480,7 +512,7 @@ input{
   text-align: center;
 }
 
-.input-header{
+.input-header {
   margin-left: 5px;
 }
 
@@ -489,37 +521,37 @@ input{
   font-size: 0.8rem;
 }
 
-#hide input[type=file] {
-display:none;
-margin:0px;
+#hide input[type="file"] {
+  display: none;
+  margin: 0px;
 }
 
-label{
-     background-color: #2acad0;
-    /* border: 2px solid #2acad0; */
-    box-shadow: 0px 1px 4px 0px #ddd;
-    padding: 6px;
-    cursor: pointer;
-    font-weight: 400;
-    max-width: 100%;
-    border-radius: 20px;
-    color: white;
-    margin-bottom: 20px;
+label {
+  background-color: #2acad0;
+  /* border: 2px solid #2acad0; */
+  box-shadow: 0px 1px 4px 0px #ddd;
+  padding: 6px;
+  cursor: pointer;
+  font-weight: 400;
+  max-width: 100%;
+  border-radius: 20px;
+  color: white;
+  margin-bottom: 20px;
 }
 
 /* header styles */
-a{color: #0275d8;
+a {
+  color: #0275d8;
   cursor: pointer;
   font-weight: none;
 }
 
-small{
+small {
   font-weight: 300;
 }
 
-
-h1{
-  text-transform:uppercase;
+h1 {
+  text-transform: uppercase;
   margin-bottom: 0.25rem;
   margin-top: 0.25rem;
   font-size: 2rem;
@@ -532,7 +564,7 @@ h4 {
   font-weight: 550;
 }
 
-h6{
+h6 {
   font-size: 0.8rem;
   float: none;
   margin-left: -0rem;
@@ -540,11 +572,11 @@ h6{
   text-transform: uppercase;
 }
 
-i{
+i {
   color: lightgray;
 }
 
-p{
+p {
   margin-bottom: 0px;
 }
 </style>
