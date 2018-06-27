@@ -5,10 +5,11 @@
                 <play-form>
                     <div class="col">
                         <h4>Welcome to Play {{player.first_name}}</h4>
-                        <h5>{{team.name}}</h5>
+                        
                         <div class="alert alert-danger" v-if="errorMessage !== undefined">{{errorMessage}}</div>
 
                         <button class="btn btn-primary" @click="joinPlay">Join</button>
+                        <h5>{{team.name}}</h5>
                     </div>   
                 </play-form>
             </div>
@@ -95,6 +96,10 @@ export default {
 
 <style scoped>
 
+    h4{
+        text-align: center;
+    }
+    
     #signup-page{
         display: flex;
         flex-direction: column;
@@ -136,8 +141,14 @@ export default {
         width: 14rem;
     }
 
-    .submit-button:hover{
+    .submit-button{
         cursor: pointer;
+        background-color: #2acad0;
+    }
+
+    .submit-button:active{
+        cursor: pointer;
+        background-color: turquoise;
     }
 
     .signup-page-banner{

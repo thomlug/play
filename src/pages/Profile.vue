@@ -10,7 +10,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
 
-            Please complete your profile below
+            Complete your profile below, then click Save
           </div>
           <div class="player-profile-banner text-center">
             <h1>Player Profile</h1>
