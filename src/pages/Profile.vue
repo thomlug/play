@@ -182,6 +182,7 @@
           delete item['.key'];
           db.ref('player/'+this.$route.params.player_id).set(item);
           this.editable = false;
+          this.$router.push({name: 'home'});
       },
       setCurrentPlayerAvailability(availability){
         this.$firebaseRefs.player.child('availabilityUpdated').set(this.moment().toString());        
