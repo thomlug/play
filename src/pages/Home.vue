@@ -1238,7 +1238,22 @@ padding-bottom: 10px;
   left: 0;
   bottom: 0;
   right: 0;
-  
+}
+
+.player-circle:hover {
+  color: white;
+  -webkit-box-shadow: 4px 4px 4px -4px #50575e;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #e5e5e5;
+  color: #a9a9a9;
+  font-size: 2.5rem;
+  border-color: whitesmoke;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 .fixture-title {
