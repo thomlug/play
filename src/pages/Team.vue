@@ -235,6 +235,7 @@ export default {
     },
     save: function() {
       var item = { ...this.team };
+      consoel.log(item[".key"]);
       delete item[".key"];
       db.ref("team/" + this.$route.params.team_id).set(item);
       this.editable = false;

@@ -4,19 +4,20 @@
         <div slot="main-content">    
             <div v-if="!editable">
               <h2>{{this.time}}</h2>    
-              <h6>{{this.day}}</h6> 
+              <h6>{{this.day}}</h6>  
             </div>
-            <div v-else>
+            <div class="centered-column" v-else>
               <h6>Time</h6>
               <input
                 type="time"
-                id="dateStart"
+                id="timeStart"
                 class="form-control" v-model="time">
               <h6>Day</h6>
               <input
                 type="date"
                 id="dateStart"
-                class="form-control" v-model="day">
+                class="form-control" v-model="day">                
+              <button type="button" class="btn btn-danger">Game Cancelled</button>
             </div>
         </div>    
     </three-column-edit-card>
@@ -88,6 +89,13 @@ export default {
   color: none;
 } */
 
+.centered-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .form-control{
   color: rgb(175, 175, 175);
   font-size: 0.8rem;
@@ -97,6 +105,34 @@ export default {
   border: 1px solid #e3e3e3;
   text-transform: uppercase;
   font-family: 'Roboto Condensed', sans-serif;
+}
+
+.btn {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.btn-danger {
+  background-color: indianred;
+  border: 2px solid indianred;
+  cursor: pointer;
+  border-radius:20px; 
+  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+}
+
+.btn-danger:hover{
+  background-color: indianred;
+  border: 2px solid rgb(245, 24, 24);
+}
+
+.btn-danger:focus{
+  background-color: indianred;
+  border: 2px solid rgb(245, 19, 19);
+}
+
+.btn-danger:active{
+  background-color: #da4944;
+  border: 2px solid red;
 }
 
 h3 {

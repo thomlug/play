@@ -63,7 +63,7 @@ export default {
   width: 25%;
 }
 
-button {
+.right > button {
     float: right;
     margin-right: 20px;
     text-align: center;
