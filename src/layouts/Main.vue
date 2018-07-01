@@ -26,12 +26,12 @@
               <router-link active-class="active" exact class="nav-item nav-link" to="members">Members</router-link>
             </li>
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" to="competitions">Competitions</router-link>
             </li>
             <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" to="marketing">Marketing</router-link>
-            </li>
+            </li> -->
             <li @click="logOut" class="nav-item nav-link logout">
               Log Out
             </li>
