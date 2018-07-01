@@ -2,7 +2,16 @@
     <ol class="chat">
         <div v-if="getPosition === 'other'" class="avatar">
             <img :src="message.photo" @click="goToPlayerProfile(message.playerId)" :class="{clickable: !_.isUndefined(message.playerId)}" draggable="false"/>
+                   <!-- <div v-else class="avatar">
+            <div class="player-initials">{{player.first_name | firstCharacter}}</div>
+            </div> -->
         </div>
+<!-- <div>
+              <img v-if="message.photo" class="avatar" :src="player.photo" :class="'player-' + player.availability"/> 
+              <div v-else class="profile-photo">
+                <div class="player-initials">{{player.first_name | firstCharacter}}</div>
+              </div>
+</div> -->
          <li :class="getPosition">
             <div class="msg">
                 <div class="user"  @click="goToPlayerProfile(message.playerId)" :class="{clickable: !_.isUndefined(message.playerId)}">
@@ -12,6 +21,9 @@
                 <time>{{message.date | utcToLocal}}</time>
             </div>
          </li>
+
+
+
     </ol>
 </template>
 
@@ -31,6 +43,12 @@
       utcToLocal(time){
           return moment(time).format('LT MMM Do');
       },
+        firstCharacter(value) {
+        if (!_.isUndefined(value)) {
+            return value.charAt(0);
+        }
+        return "";
+        }
     },
     computed: {
       getPosition () {
@@ -285,6 +303,13 @@
     -moz-user-select: none;
     -ms-user-select: none;
     font-weight: 300;
+}
+
+.player-initials {
+  font-size: 2.5rem;
+  margin: auto;
+  color: #a9a9a9;
+  font-weight: 500;
 }
 
 </style>

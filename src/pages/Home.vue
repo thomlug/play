@@ -170,7 +170,7 @@
       <div class="col-xl-3">
         <div class="card play-subs-card">
           <div class="card-block">          
-            <h4 class="card-title">Subs <small>(Scroll sideways) </small></h4>
+            <h4 class="card-title">Subs <small></small></h4>
             <span v-if="canEdit()" class="float right">
               <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
               <button class="fa fa-trash manage-players-button" @click="showRemovePlayerModal()"></button>
@@ -253,13 +253,27 @@
                       </div>                     
                     </div>
                   </draggable>
+<div class="paddles">
+		<!-- <button class="left-paddle paddle hidden"> -->
+		<button class="left-paddle paddle fa fa-arrow-left">	
+		</button>
+		<button class="right-paddle paddle fa fa-arrow-right">
+		</button>
+	</div>
                   <div class="scroller"
+                  
                     v-if="!editPlayerMode">
                     <div v-for="player in substitutePlayers" :key="player['.key']" class="col-4">
-                      
+
+                    
+
+
                       <div class="player-container text-center">
                         <div @click="checkPlayerNavigation(player)" v-bind:to="{name: 'profile', params: {player_id: player['.key']}}">
-                        
+
+
+
+
                           <template v-if="player.photo">
                             <img class="img-fluid rounded-circle play-photo"
                               v-bind:class="calculatePlayerClass(player)"
@@ -274,10 +288,10 @@
                           </template>
                           {{player.first_name}}
                         </div>
-                      </div>
-                      
+                      </div> 
                     </div>
                   </div>
+
               </div>
             </div>
         </div>
@@ -1723,5 +1737,37 @@ li{
     cursor: pointer;
     box-shadow: 2px 2px 2px -2px grey;
     min-width: 100px;
+}
+
+.paddles {
+}
+.paddle {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 3em;
+}
+.left-paddle {
+	left: 0;
+}
+.right-paddle {
+	right: 0;
+}
+.hidden {
+	display: none;
+}
+
+.fa-arrow-left{
+  color: lightgrey;
+  margin-top: 25px;
+  background-color: transparent;
+  border: none;
+}
+
+.fa-arrow-right{
+  color: lightgrey;
+  margin-top: 25px;
+  background-color: transparent;
+  border: none;
 }
 </style>
