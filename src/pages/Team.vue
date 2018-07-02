@@ -842,11 +842,11 @@ li{
     position: fixed;
     background-color: dodgerblue;
     border-radius: 50%;
-    padding: 10px;
+    padding: 15px;
     color: white;
-    margin-left: 0px;
+    margin-left: 15px;
     box-shadow: 2px 2px 2px -2px lightgrey;
-    top: 89%;
+    top: 20%;
     border: none;
 }
 
