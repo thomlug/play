@@ -20,7 +20,7 @@
             </div>
         <div class="player-profile-header" v-if="canEditProfile()">
           <i class="fa fa-pencil" @click="edit" v-if="!editable"></i>              
-          <button class="btn btn-success" @click="save" v-if="editable">Save</button>
+          <button class="fa fa-check" @click="save" v-if="editable" ></button>
         </div>
             <div class="player-profile-content">
               <img v-if="player.photo" class="profile-photo" :src="player.photo" :class="'player-' + player.availability"/> 
@@ -581,5 +581,29 @@ i {
 
 p {
   margin-bottom: 0px;
+}
+
+.fa-check{
+    position: fixed;
+    background-color: dodgerblue;
+    border-radius: 50%;
+    padding: 10px;
+    color: white;
+    margin-left: 0px;
+    box-shadow: 2px 2px 2px -2px lightgrey;
+    top: 89%;
+}
+
+.fa-check:focus{
+border: none;
+outline: none;
+}
+
+.fa-check:active{
+background-color:#50575e;
+}
+
+.fa{
+  border: none;
 }
 </style>

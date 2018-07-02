@@ -15,13 +15,13 @@
           <template slot="header">
             <div v-if="canEditProfile()">
               <i class="fa fa-pencil" @click="edit" v-if="!editable"></i> 
-              <button class="btn btn-success" v-on:click="save" v-if="editable">Save</button>
+              <button class="fa fa-check" v-on:click="save" v-if="editable"></button>
             </div>
           </template>
 
             <div class="team-profile-header" v-if="canEditProfile()">
               <i class="fa fa-pencil" @click="edit" v-if="!editable"></i>              
-              <button class="btn btn-success" @click="save" v-if="editable">Save</button>
+              <button class="fa fa-check" @click="save" v-if="editable"></button>
             </div>
             <br>
 
@@ -837,4 +837,30 @@ li{
   font-family: 'Roboto Condensed', sans-serif;
   margin:10px 0px;
 }
+
+.fa-check{
+    position: fixed;
+    background-color: dodgerblue;
+    border-radius: 50%;
+    padding: 10px;
+    color: white;
+    margin-left: 0px;
+    box-shadow: 2px 2px 2px -2px lightgrey;
+    top: 89%;
+    border: none;
+}
+
+.fa-check:focus{
+border: none;
+outline: none;
+}
+
+.fa-check:active{
+background-color:#50575e;
+}
+
+/* .fa{
+  border: none;
+} */
+
 </style>
