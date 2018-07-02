@@ -111,5 +111,31 @@ export default {
     border: 0px;
 }
 
+.fa-check{
+    position: inherit;
+    color: lightgray;
+    background: none;
+    box-shadow: none;
+    padding: 0px;
+}
+
+.fa-check:active{
+    position: inherit;
+    color: grey;
+    background: none;
+    box-shadow: none;
+    padding: 0px;
+}
+
+.fa-check:focus{
+    position: inherit;
+    color: grey;
+    background: none;
+    box-shadow: none;
+    padding: 0px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
 </style>
 
