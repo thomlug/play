@@ -36,29 +36,29 @@
             <div class="centered-col fixture-content">
               <div class="centered-col">
                 <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().homeTeam)">
-                  <div v-if="!_.isUndefined(getNextFixture().homePhoto)">
-                    <img :src="getNextFixture().homePhoto" class="play-photo team-photo">
+                  <div v-if="!_.isUndefined(this.currentFixtureHomeTeam.photo)">
+                    <img :src="this.currentFixtureHomeTeam.photo" class="play-photo team-photo">
                   </div>
                   <div v-else>
-                    <div class="home-circle team-circle play-photo">{{getNextFixture().homeTeam | firstCharacter}}</div>
+                    <div class="home-circle team-circle play-photo">{{this.currentFixtureHomeTeam.name | firstCharacter}}</div>
                   </div>
                 </div>
                 <div class="team-name">
-                  <h3 class="text-center">{{getNextFixture().homeTeam}}</h3>
+                  <h3 class="text-center">{{this.currentFixtureHomeTeam.name}}</h3>
                 </div>
               </div>
               <div class="centered-col vs-text text-center">VS</div>
               <div class="centered-col">
                 <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().awayTeam)">
-                  <div v-if="!_.isUndefined(getNextFixture().awayPhoto)">
-                    <img :src="getNextFixture().awayPhoto" class="play-photo team-photo">
+                  <div v-if="!_.isUndefined(this.currentFixtureAwayTeam.photo)">
+                    <img :src="this.currentFixtureAwayTeam.photo" class="play-photo team-photo">
                   </div>
                   <div v-else>
-                    <div class="away-circle team-circle play-photo">{{getNextFixture().awayTeam | firstCharacter}}</div>
+                    <div class="away-circle team-circle play-photo">{{this.currentFixtureAwayTeam.name | firstCharacter}}</div>
                   </div>
                 </div>
                 <div class="team-name">
-                  <h3 class="text-center">{{getNextFixture().awayTeam}}</h3>
+                  <h3 class="text-center">{{this.currentFixtureAwayTeam.name}}</h3>
                 </div>
                 </div>
             </div>
@@ -374,7 +374,8 @@ export default {
     Promise.all([this.playerPromise, this.teamPromise]).then(
       this.setUpPlayerFormation
     );
-  },
+  },  
+
   data: function() {
     return {
       cards: [],
@@ -429,6 +430,30 @@ export default {
     editGameInfoButtonText: function() {
       return this.editGameInfo ? "Save" : "Edit/Add";
     },
+    currentFixtureHomeTeam: function() {
+      var homeTeamKey = this.getNextFixture().homeTeam;
+      if (homeTeamKey === undefined) {
+        return {
+          name: '',
+        };
+      }
+      return _.find(this.teams, (team) => {
+        return homeTeamKey === team['.key'];
+      });
+    },
+
+    currentFixtureAwayTeam: function() {
+      var awayTeamKey = this.getNextFixture().awayTeam;
+      if (awayTeamKey === undefined) {
+        return {
+          name: '',
+        };
+      }
+      return _.find(this.teams, (team) => {
+        return awayTeamKey === team['.key'];
+      });
+    },
+    
     ...mapState(["user"])
   },
   filters: {
@@ -461,7 +486,7 @@ export default {
       }
     },
     fixtures: {
-      source: db.ref("match")
+      source: db.ref("match"),
     },
     teamFixtures: {
       source: db.ref("teamFixture"),
@@ -769,16 +794,11 @@ export default {
         return "player-unknown";
       }
     },
-    goToTeamProfile(team) {
-      //TODO: Replace this with a _.find or similar and use ===
-      for (var i = 0; i < this.teams.length; i++) {
-        if (team == this.teams[i].name) {
-          this.$router.push({
-            name: "team",
-            params: { team_id: this.teams[i][".key"] }
-          });
-        }
-      }
+    goToTeamProfile(teamKey) {
+      this.$router.push({
+        name: 'team',
+        params: { team_id: teamKey}
+      })
     },
     fixtureLocationChanged(ground) {
       var updates = {};
@@ -1105,7 +1125,7 @@ padding-bottom: 10px;
     max-width: 64px;
     margin: 0 auto;
   }
-  .team-circle {
+  .team-circle, .team-photo {
     height: 96px;
     width: 96px;
   }
