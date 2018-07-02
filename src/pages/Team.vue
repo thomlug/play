@@ -15,7 +15,7 @@
           <template slot="header">
             <div v-if="canEditProfile()">
               <i class="fa fa-pencil" @click="edit" v-if="!editable"></i> 
-              <button class="fa fa-check" v-on:click="save" v-if="editable"></button>
+              <button class="fa fa-check" @click="save" v-if="editable"></button>
             </div>
           </template>
 
@@ -235,7 +235,6 @@ export default {
     },
     save: function() {
       var item = { ...this.team };
-      consoel.log(item[".key"]);
       delete item[".key"];
       db.ref("team/" + this.$route.params.team_id).set(item);
       this.editable = false;
