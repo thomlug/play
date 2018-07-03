@@ -395,6 +395,7 @@ export default {
   object-fit: cover;
   margin-bottom: 1rem;
   box-shadow: none;
+  background-image: linear-gradient(-45deg, dodgerblue,#2acad0);
 }
 
 .manager-photo{
@@ -847,6 +848,7 @@ li{
     box-shadow: 2px 2px 2px -2px lightgrey;
     top: 20%;
     border: none;
+    cursor: pointer;
 }
 
 .fa-check:focus{
