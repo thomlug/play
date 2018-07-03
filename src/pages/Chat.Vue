@@ -15,7 +15,7 @@
                         <input class="send" @keyup.enter="addMessage" v-model="newMessage.text" placeholder="Type message here"/>
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-default float-right send-button" @click="addMessage">Send</button>
+                        <send-button class="btn btn-default float-right send-button" @click="addMessage">Send</send-button>
                     </div>
                 </div>
             </div>
@@ -209,13 +209,21 @@
 }
 
 .send-button{
-    margin-right: 2px;
     margin-top: 8px;
     color: #2bcad0;
     background: none;
     border: #2bcad0;
     border-width: 1px;
     cursor: pointer;
+}
+
+.send-button:focus{
+outline: none;
+border: none;
+}
+
+.send-button:active{
+background-color: #e5e5e5;
 }
 
 .chat-box-row{
