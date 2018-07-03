@@ -188,7 +188,7 @@
                   <div class="form-control alert alert-success" v-if="newPlayerMessages.success !== undefined">{{newPlayerMessages.success}}</div>
                   <!-- <button class="btn btn-edit mt-1" @click="hideNewPlayerModal()">Close</button> -->
                   
-                  <button class="btn btn-primary mt-1" @click="saveNewPlayer()">Save</button>
+                  <button class="btn btn-primary mt-1" @click="saveNewPlayer()">Invite</button>
                 </div>
                   <h6>Add Existing Player</h6>
                 <div class="form-group">
@@ -1184,11 +1184,21 @@ padding-bottom: 10px;
   .player-circle{
   padding-top: 20%;
   }
+
+  .fa-arrow-left{
+  display: none;
+  }
+
+  .fa-arrow-right{
+  display: none;
+  }
 }
 
 .team-photo {
-  box-shadow: 4px 4px 5px #bdbdbd;
+  /* box-shadow: 4px 4px 5px #bdbdbd; */
   color: #9e9e9e;
+  /* background-image: linear-gradient(-45deg, dodgerblue,#2acad0); */
+  background-image: linear-gradient(45deg, #2acad0 0%, #3580d0 100%);
 }
 
 .team-photo-container {
@@ -1403,7 +1413,7 @@ padding-bottom: 10px;
 
 .btn-primary:active {
   background-color: turquoise;
-  border: 2px solid skyblue;
+  border: 2px solid turquoise;
 }
 .btn-danger {
   background-color: indianred;
@@ -1415,17 +1425,17 @@ padding-bottom: 10px;
 
 .btn-danger:hover{
   background-color: indianred;
-  border: 2px solid rgb(245, 24, 24);
+  border: 2px solid #cf3e39;
 }
 
 .btn-danger:focus{
   background-color: indianred;
-  border: 2px solid rgb(245, 19, 19);
+  border: 2px solid #cf3e39;
 }
 
 .btn-danger:active{
-  background-color: #da4944;
-  border: 2px solid red;
+  background-color: #cf3e39;
+  border: 2px solid #cf3e39;
 }
 
 /* clock/time icon column styling */
@@ -1779,15 +1789,29 @@ li{
 
 .fa-arrow-left{
   color: lightgrey;
-  margin-top: 25px;
+  margin-top: 85px;
+  margin-bottom: 60px;
   background-color: transparent;
+  border: none;
+  padding-right: unset;
+}
+
+.fa-arrow-left:focus{
+  outline: none; 
   border: none;
 }
 
 .fa-arrow-right{
   color: lightgrey;
-  margin-top: 25px;
+  margin-top: 85px;
+  margin-bottom: 60px;
   background-color: transparent;
+  border: none;
+  padding-left: unset;
+}
+
+.fa-arrow-right:focus{
+  outline: none; 
   border: none;
 }
 </style>

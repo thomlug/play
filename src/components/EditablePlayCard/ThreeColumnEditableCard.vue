@@ -117,6 +117,7 @@ export default {
     background: none;
     box-shadow: none;
     padding: 0px;
+    margin: auto;
 }
 
 .fa-check:active{

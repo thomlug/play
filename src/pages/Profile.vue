@@ -592,6 +592,7 @@ p {
     margin-left: 15px;
     box-shadow: 2px 2px 2px -2px lightgrey;
     top: 20%;
+    cursor: pointer;
 }
 
 .fa-check:focus{
