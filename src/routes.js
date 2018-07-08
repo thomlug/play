@@ -12,6 +12,7 @@ import Fixtures from './components/Fixtures.vue';
 import NewFixture from './pages/NewFixture.vue';
 import Chat from './pages/Chat.vue';
 import Join from './pages/Join.vue';
+import ResetPassword from './pages/ResetPassword.vue';
 
 import { store } from './store/store';
 
@@ -39,6 +40,7 @@ function requireAuth(to, from, next) {
 export default [
     { path: '/login', component: Login, name: 'login' },
     { path: '/signup', component: Signup, name: 'signup' },
+    { path: '/resetpassword', component: ResetPassword, name: 'resetpassword' },
     { path: '/join/:player_id?/:join_id?/:team_id?', component: Join, name: 'join', beforeEnter: requireAuth },
     { path: '/chat', component: Chat, name: 'chat', beforeEnter: requireAuth },
     { path: '/members', component: Members, name: 'members', beforeEnter: requireAuth },

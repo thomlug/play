@@ -16,6 +16,7 @@
                     </form>
                 </div>
                 <p class="no-account" slot="additional-info">Don't have an account? <router-link :to="{name: 'signup', query: {redirect: $route.query.redirect}}">Sign up</router-link> </p>
+                <p class="no-account" slot="additional-info"><router-link :to="{name: 'resetpassword'}">Forgot password? </router-link> </p>
             </play-form>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12"></div>
