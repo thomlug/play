@@ -175,41 +175,43 @@
               <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
               <button class="fa fa-trash manage-players-button" @click="showRemovePlayerModal()"></button>
             </span>
-              <modal height=auto width=90%  name="add-player" :clickToClose="false">
+              <modal height=75% width=90%  name="add-player" :clickToClose="false" class="vertical-scroll">
                 <div class= "input-header">
                   <button class="fa fa-times mt-1" @click="hideNewPlayerModal()"></button>
                   <h6>Add New Player</h6>
                 </div> 
-                <div class="form-group">
-                  <input class="form-control" placeholder="First name" v-model="newPlayer.first_name"/>
-                  <input class="form-control" placeholder="Last name" v-model="newPlayer.last_name"/>
-                  <input class="form-control" placeholder="Email" type="email" v-model="newPlayer.email"/>
-                  <div class="form-control alert alert-danger" v-if="newPlayerMessages.error !== undefined">{{newPlayerMessages.error}}</div>
-                  <div class="form-control alert alert-success" v-if="newPlayerMessages.success !== undefined">{{newPlayerMessages.success}}</div>
-                  <!-- <button class="btn btn-edit mt-1" @click="hideNewPlayerModal()">Close</button> -->
-                  
-                  <button class="btn btn-primary mt-1" @click="saveNewPlayer()">Invite</button>
-                </div>
+                <div class="vertical-scroll">
+                  <div class="form-group">
+                    <input class="form-control" placeholder="First name" v-model="newPlayer.first_name"/>
+                    <input class="form-control" placeholder="Last name" v-model="newPlayer.last_name"/>
+                    <input class="form-control" placeholder="Email" type="email" v-model="newPlayer.email"/>
+                    <div class="form-control alert alert-danger" v-if="newPlayerMessages.error !== undefined">{{newPlayerMessages.error}}</div>
+                    <div class="form-control alert alert-success" v-if="newPlayerMessages.success !== undefined">{{newPlayerMessages.success}}</div>
+                    <!-- <button class="btn btn-edit mt-1" @click="hideNewPlayerModal()">Close</button> -->
+                    
+                    <button class="btn btn-primary mt-1" @click="saveNewPlayer()">Invite</button>
+                  </div>
                   <h6>Add Existing Player</h6>
-                <div class="form-group">
-                  <input class="form-control" placeholder="Search for player" v-model="searchPlayerName"/>
-                  <ul>
-                    <li v-for="player in listPlayersNotInTeam(searchPlayerName)" v-bind:key="player['.key']">
-                      <button class="fa fa-plus" @click="addExistingPlayerToTeam(player['.key'])"></button>
-                      {{player.first_name}}
-                      {{player.last_name}}
-                      
-                    </li>
-                  </ul>
+                  <div class="form-group player-search-results">
+                    <input class="form-control" placeholder="Search for player" v-model="searchPlayerName"/>
+                    <ul class='scrollable-list'>
+                      <li v-for="player in listPlayersNotInTeam(searchPlayerName)" v-bind:key="player['.key']">
+                        <button class="fa fa-plus" @click="addExistingPlayerToTeam(player['.key'])"></button>
+                        {{player.first_name}}
+                        {{player.last_name}}
+                        
+                      </li>
+                    </ul>
+                  </div>        
                 </div>        
               </modal>
-              <modal height=auto width=90% border-radius=20px name="remove-player" :clickToClose="false">
+              <modal height=75% width=90% border-radius=20px name="remove-player" :clickToClose="false">
                 <div class= "input-header">
                   <button class="fa fa-times mt-1" @click="hideRemovePlayerModal()"></button>
                   <h6>Remove Player From Team</h6>
                 </div> 
-                <div class="form-group">
-                  <ul>
+                <div class="form-group h-75">
+                  <ul class='scrollable-list'>
                     <li v-for="player in getPlayersForCurrentTeam()" v-bind:key="player['.key']">
                       <button class="fa fa-trash" @click="removePlayerFromTeam(player['.key'])"></button>
                       {{player.first_name}}
@@ -1654,11 +1656,19 @@ a:hover {
   width: 20%;
 }
 
-ul {
+.scrollable-list {
   list-style-type: none;
   padding: 0.5rem 1rem 1rem 1rem;
-  max-height: 10rem;
+  height: 100%;
   overflow-y: scroll;
+}
+
+.vertical-scroll {
+  overflow-y: scroll;
+}
+
+.player-search-results{
+  height: 15rem;
 }
 
 li{
