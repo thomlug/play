@@ -518,7 +518,10 @@ export default {
       if(teamKey == null){
         return;
       }
-      for (var i = 0; i < 5; i++) {
+      var team = this.getCurrentTeam();
+      var numFormationRows = team.sport && team.sport.toLowerCase() === 'basketball' ? 3 : 5;
+
+      for (var i = 0; i < numFormationRows; i++) {
         var formationRow = _.filter(this.getPlayersForCurrentTeam(), function(
           player
         ) {
