@@ -84,6 +84,7 @@ export default {
       },
       setGameCancelled() {
         this.currentFixture.cancelled = true;
+        this.toggleEdit();
       },
       setGameActive() {
         this.currentFixture.cancelled = false
