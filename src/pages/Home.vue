@@ -79,8 +79,8 @@
           <div class="card-block">
             <h4 class="card-title">Update Your Status <small>({{getCurrentPlayerAvailability() | camelToSentence}})</small></h4>
             <div class="status-container">
-              <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available active">Available</button>
-              <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
+              <available-button :on-click="() => this.setCurrentPlayerAvailability('available')" class="btn active">Available</available-button>
+              <danger-button :on-click="() => this.setCurrentPlayerAvailability('unavailable')" class="btn">Unavailable</danger-button>
             </div>
           </div>
         </div>
@@ -362,6 +362,8 @@ import { mapState } from "vuex";
 import PlusCircle from "../assets/plus-circle.png";
 import DateCard from '../components/EditablePlayCard/DateCard/DateCard.vue';
 import LocationCard from '../components/EditablePlayCard/LocationCard/LocationCard.vue';
+import DangerButton from '../components/DangerButton.vue';
+import AvailableButton from '../components/AvailableButton.vue';
 
 export default {
   components: {
@@ -370,7 +372,9 @@ export default {
     Avatar,
     draggable,
     DateCard,
-    LocationCard
+    LocationCard,
+    DangerButton,
+    AvailableButton
   },
   created: function() {
     Promise.all([this.playerPromise, this.teamPromise]).then(
@@ -1368,7 +1372,6 @@ padding-bottom: 10px;
 
 .btn {
   padding: 8px;
-  border-radius:20px; 
   cursor: pointer;
   margin-top: -10px;
 }
@@ -1396,52 +1399,6 @@ padding-bottom: 10px;
   background-color: white;
   border: 2px solid #e5e5e5;
   box-shadow: none;
-}
-
-.btn-primary {
-  background-color:#2acad0;
-  border: 2px solid #2acad0;
-  color: white;
-  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.btn-primary:hover {
-  background-color: #2acad0;
-  border: 2px solid turquoise;
-}
-
-.btn-primary:focus {
-  background-color:#2acad0;
-  border: 2px solid turquoise;
-}
-
-.btn-primary:active {
-  background-color: turquoise;
-  border: 2px solid turquoise;
-}
-.btn-danger {
-  background-color: indianred;
-  border: 2px solid indianred;
-  cursor: pointer;
-  border-radius:20px; 
-  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
-}
-
-.btn-danger:hover{
-  background-color: indianred;
-  border: 2px solid #cf3e39;
-}
-
-.btn-danger:focus{
-  background-color: indianred;
-  border: 2px solid #cf3e39;
-}
-
-.btn-danger:active{
-  background-color: #cf3e39;
-  border: 2px solid #cf3e39;
 }
 
 /* clock/time icon column styling */

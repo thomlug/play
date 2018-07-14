@@ -16,8 +16,11 @@
               <input
                 type="date"
                 id="dateStart"
-                class="form-control" v-model="day">                
-              <button type="button" class="btn btn-danger">Game Cancelled</button>
+                class="form-control" v-model="day">      
+                <div class="status-container">
+                  <available-button :onClick="() => this.setGameActive()" type="button" class="btn btn-primary btn-available active">Game Active</available-button>
+                  <danger-button :onClick="() => this.setGameCancelled()" type="button" class="btn btn-danger">Game Cancelled</danger-button>
+                </div>          
             </div>
         </div>    
     </three-column-edit-card>
@@ -26,6 +29,8 @@
 <script>
 import ThreeColumnEditCard from "../ThreeColumnEditableCard.vue";
 import moment from "moment";
+import DangerButton from '../../DangerButton.vue';
+import AvailableButton from '../../AvailableButton.vue';
 
 export default {
   props: {
@@ -54,7 +59,9 @@ export default {
   },
 
   components: {
-    ThreeColumnEditCard
+    ThreeColumnEditCard,
+    DangerButton,
+    AvailableButton
   },
 
   methods: {
@@ -71,6 +78,12 @@ export default {
         date = moment(dateString, "MM/DD/YYYY HH:mm a")
         date = new Date(date).toISOString();
         this.currentFixture.date = date;
+      },
+      setGameCancelled() {
+        console.log('Game Cancelled');
+      },
+      setGameActive() {
+        console.log('Game Active');
       }
   }
 };
@@ -112,28 +125,14 @@ export default {
   cursor: pointer;
 }
 
-.btn-danger {
-  background-color: indianred;
-  border: 2px solid indianred;
-  cursor: pointer;
-  border-radius:20px; 
-  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+.status-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  padding-top: 10px;
 }
 
-.btn-danger:hover{
-  background-color: indianred;
-  border: 2px solid rgb(245, 24, 24);
-}
-
-.btn-danger:focus{
-  background-color: indianred;
-  border: 2px solid rgb(245, 19, 19);
-}
-
-.btn-danger:active{
-  background-color: #da4944;
-  border: 2px solid red;
-}
 
 h3 {
   font-weight: 550;
