@@ -735,8 +735,9 @@ export default {
       }
       var teamKey = currentTeam[".key"];
       var component = this;
-      var fixture = _.orderBy(this.fixtures, "date", "desc").find(function(f) {
-        return f.status === "active" && !_.isUndefined(f[teamKey]);
+      var sortedFixtures = _.orderBy(this.fixtures, 'date', 'desc');
+      var fixture = sortedFixtures.find(f => {
+        return f.status === "active" && f.homeTeam === teamKey;
       });
 
       return !_.isUndefined(fixture) ? fixture : { startDate: "unknown" };
