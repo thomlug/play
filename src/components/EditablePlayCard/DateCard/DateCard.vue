@@ -1,10 +1,13 @@
 <template>
-    <three-column-edit-card :clickFn="toggleEdit" :can-edit="canEdit">    
+    <three-column-edit-card :clickFn="toggleEdit" :can-edit="canEdit" :class="calculateCancelledClass()">    
         <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/001-clock-with-white-face.png?alt=media&token=703b182a-ed12-4443-a194-34315062dc01" class="clock-icon"> -->
         <div slot="main-content">    
-            <div v-if="!editable">
+            <div v-if="!editable && !this.currentFixture.cancelled">
               <h2>{{this.time}}</h2>    
               <h6>{{this.day}}</h6>  
+            </div>
+            <div v-else-if="!editable && this.currentFixture.cancelled">
+              <h2>Game Cancelled</h2>
             </div>
             <div class="centered-column" v-else>
               <h6>Time</h6>
@@ -68,7 +71,7 @@ export default {
       toggleEdit() {
           if (this.editable) {
               this.formatDay();
-              this.$emit('date-changed', this.currentFixture.date)
+              this.$emit('fixture-edited', this.currentFixture);
           }
           this.editable = !this.editable;
       },
@@ -80,11 +83,16 @@ export default {
         this.currentFixture.date = date;
       },
       setGameCancelled() {
-        console.log('Game Cancelled');
+        this.currentFixture.cancelled = true;
       },
       setGameActive() {
-        console.log('Game Active');
-      }
+        this.currentFixture.cancelled = false
+      },
+
+      calculateCancelledClass() {
+        return this.currentFixture.cancelled ? "cancelled" : "active"
+      },
+      
   }
 };
 </script>
@@ -133,13 +141,16 @@ export default {
   padding-top: 10px;
 }
 
+.cancelled h2 {  
+  color:indianred;
+}
 
-h3 {
+
+h2 {
   font-weight: 550;
   color: #50575e;
   margin-bottom: 0rem;
   text-align: center;
-  font-size: 1.25rem;
 }
 
 h6 {

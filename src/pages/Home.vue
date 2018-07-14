@@ -68,7 +68,7 @@
 
 
       <!-- Date and time -->
-      <date-card :can-edit="canEdit()" :fixture="this.getNextFixture()" @date-changed="fixtureDateChanged"></date-card>
+      <date-card :can-edit="canEdit()" :fixture="this.getNextFixture()" @fixture-edited="fixtureEdited"></date-card>
 
       <!-- Location -->
       <location-card :can-edit="canEdit()" :fixture="this.getNextFixture()" @location-changed="fixtureLocationChanged"></location-card>
@@ -816,12 +816,21 @@ export default {
       updates["match/" + currentFixture[".key"] + "/ground"] = ground;
       db.ref().update(updates);
     },
-    fixtureDateChanged(date) {
+
+    fixtureEdited(fixture) {
       var updates = {};
-      var currentFixture = this.getNextFixture();
-      updates["match/" + currentFixture[".key"] + "/date"] = date;
-      db.ref().update(updates);
+
+      //Store key in variable
+      const fixtureKey = fixture[".key"];      
+      // Have to delete the key in when updating the fixture as the key cannot be updated
+      delete fixture['.key'];
+
+      updates["match/" + fixtureKey] = fixture;
+      db.ref()
+        .update(updates)
+        .catch(err => alert(err));
     },
+
     listPlayersNotInTeam(name){
       var teamKey = this.getCurrentTeamKey();
       return _.filter(this.players, function(player){
