@@ -1,17 +1,11 @@
 <template>
     <ol class="chat">
         <div v-if="getPosition === 'other'" class="avatar">
-            <img :src="message.photo" @click="goToPlayerProfile(message.playerId)" :class="{clickable: !_.isUndefined(message.playerId)}" draggable="false"/>
-                   <!-- <div v-else class="avatar">
-            <div class="player-initials">{{player.first_name | firstCharacter}}</div>
-            </div> -->
+            <img v-if="message.photo" :src="message.photo" @click="goToPlayerProfile(message.playerId)" :class="{clickable: !_.isUndefined(message.playerId)}" draggable="false"/>
+            <h3 v-else class>
+                {{message.name | firstCharacter}}
+            </h3>
         </div>
-<!-- <div>
-              <img v-if="message.photo" class="avatar" :src="player.photo" :class="'player-' + player.availability"/> 
-              <div v-else class="profile-photo">
-                <div class="player-initials">{{player.first_name | firstCharacter}}</div>
-              </div>
-</div> -->
          <li :class="getPosition">
             <div class="msg">
                 <div class="user"  @click="goToPlayerProfile(message.playerId)" :class="{clickable: !_.isUndefined(message.playerId)}">
@@ -32,7 +26,7 @@
 
    export default {
     name: 'Message',
-
+ 
     props: {
       message: {
         type: Object,
@@ -115,6 +109,14 @@
     -ms-user-select: none;
     border: 1.5px solid #e5e5e5;
 }
+
+.chat .avatar h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
 .chat .day {
     position: relative;
     display: block;

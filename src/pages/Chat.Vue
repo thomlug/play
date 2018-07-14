@@ -21,7 +21,7 @@
             </div>
         </div>
   </main-layout>
-</template>
+</template> 
 
 <script>
   import {db} from '../firebase';
