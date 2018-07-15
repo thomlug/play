@@ -125,7 +125,6 @@
         </play-profile>
       </div>
     </div>
-    </body1>
   </main-layout>
   
 </template>
