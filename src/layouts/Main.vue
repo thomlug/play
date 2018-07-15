@@ -19,6 +19,9 @@
             <li class="nav-item" v-if="user">
               <router-link active-class="active" exact class="nav-item nav-link" :to="{name: 'profile', params: {player_id: this.getThisPlayerId()}}">My Profile</router-link>
             </li>
+            <li class="nav-item">
+              <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'fixtures'}">Fixtures</router-link>
+            </li>
             <!-- <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" :to="{name: 'teams'}">Teams</router-link>
             </li>
