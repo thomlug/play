@@ -59,8 +59,7 @@
               
               <div><input class="information-block" v-if="editable" v-model="team.name"/></div>
               <p class= "team-input-header" v-if="editable" > Active players</p>
-              <div class="information-block player-number" v-if="!editable">{{team.numberOfPlayers}} players </div>
-              <div><input class="information-block" v-if="editable" v-model="team.numberOfPlayers"/></div>
+              <div class="information-block player-number">{{numberOfPlayers}} players! </div>
               <div class="col-md-3 col-sm-3 col-xs-12"></div>
             </template>
           </div>
@@ -165,6 +164,14 @@ export default {
     },
     isFailed() {
       return this.currentStatus === STATUS_FAILED;
+    },
+    numberOfPlayers() {
+     return  _.filter(this.players, p => {
+       if (!_.isUndefined(p.teams)){
+         return !_.isUndefined(p.teams[this.teamId]);
+       }
+       return false;
+     }).length
     }
   },
   filters: {
@@ -377,16 +384,16 @@ export default {
 </script>
 
 <style>
-.row{
-  background-color:transparent;
+.row {
+  background-color: transparent;
 }
-.team-profile-header{
+.team-profile-header {
   margin: 0rem 0rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  float:right;
+  float: right;
 }
 
 .profile-photo {
@@ -395,10 +402,10 @@ export default {
   object-fit: cover;
   margin-bottom: 1rem;
   box-shadow: none;
-  background-image: linear-gradient(-45deg, dodgerblue,#2acad0);
+  background-image: linear-gradient(-45deg, dodgerblue, #2acad0);
 }
 
-.manager-photo{
+.manager-photo {
   height: 64px;
   width: 64px;
   object-fit: cover;
@@ -422,7 +429,7 @@ export default {
   width: -webkit-fill-available;
 }
 
-.manager-header{
+.manager-header {
   text-transform: uppercase;
   border-top: 0px solid #2acad0;
   margin-top: 0px;
@@ -444,15 +451,15 @@ export default {
   margin: 1rem auto;
 }
 
-.profile-block{
-    border-radius: 10px;
-    border: 0px solid #eee;
-    padding: 5px 1.5rem;
-    box-shadow: 0px 1px 6px -1px #ddd;
-    width: 100%;
-    background-color: white;
-    margin-top: 0rem;
-    margin-bottom: 1rem;
+.profile-block {
+  border-radius: 10px;
+  border: 0px solid #eee;
+  padding: 5px 1.5rem;
+  box-shadow: 0px 1px 6px -1px #ddd;
+  width: 100%;
+  background-color: white;
+  margin-top: 0rem;
+  margin-bottom: 1rem;
 }
 
 /* .card{
@@ -464,23 +471,22 @@ export default {
   text-transform: uppercase;
 }
 
-
 .player-number {
   color: #bdbdbd;
   font-weight: 400;
   font-size: 1rem;
 }
 
-.fa-pencil{
-font-size: 1.5rem;
-color: lightgray;
-cursor: pointer;
+.fa-pencil {
+  font-size: 1.5rem;
+  color: lightgray;
+  cursor: pointer;
 }
 
-.fa-pencil:hover{
-font-size: 1.5rem;
-color: darkgray;
-cursor: pointer;
+.fa-pencil:hover {
+  font-size: 1.5rem;
+  color: darkgray;
+  cursor: pointer;
 }
 
 /* .edit-icon{
@@ -499,51 +505,50 @@ cursor: pointer;
   border-radius: 50%;
 } */
 
-.btn-success{
-    color: #50575e;
-    background-color: white;
-    border: 2px solid#e5e5e5;
-    border-radius: 20px;
-    cursor: pointer;
-    padding: 8px;
-    margin: 0px -16px 0px -40px;
+.btn-success {
+  color: #50575e;
+  background-color: white;
+  border: 2px solid#e5e5e5;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 8px;
+  margin: 0px -16px 0px -40px;
 }
 
-.btn-success:active{
-     color: #50575e;
-    background-color: #e5e5e5;
-    border: 2px solid#e5e5e5;
-    border-radius: 20px;
-    cursor: pointer;
-    padding: 8px;
-    margin: 0px -16px 0px -40px;
+.btn-success:active {
+  color: #50575e;
+  background-color: #e5e5e5;
+  border: 2px solid#e5e5e5;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 8px;
+  margin: 0px -16px 0px -40px;
 }
 
-.btn-success:active{
-     color: #50575e;
-    background-color: #e5e5e5;
-    border: 2px solid#e5e5e5;
-    border-radius: 20px;
-    cursor: pointer;
-    padding: 8px;
-    margin: 0px -16px 0px -40px;
-    box-shadow: none;
+.btn-success:active {
+  color: #50575e;
+  background-color: #e5e5e5;
+  border: 2px solid#e5e5e5;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 8px;
+  margin: 0px -16px 0px -40px;
+  box-shadow: none;
 }
 
-input{
-    font-size: 13px;
-    padding: 10px;
-    display: block;
-    width: 100%;
-    border: none;
-    border: 1.2px solid #e3e3e3;
-    color: #50575e;
-    border-radius: 20px;
-    margin-bottom: 10px;
-
+input {
+  font-size: 13px;
+  padding: 10px;
+  display: block;
+  width: 100%;
+  border: none;
+  border: 1.2px solid #e3e3e3;
+  color: #50575e;
+  border-radius: 20px;
+  margin-bottom: 10px;
 }
 
-.input-file{
+.input-file {
   border: 2px solid #2acad0;
   background-color: #2acad0;
   color: white;
@@ -557,9 +562,9 @@ input{
   text-align: center;
 }
 
-#hide input[type=file] {
-display:none;
-margin:0px;
+#hide input[type="file"] {
+  display: none;
+  margin: 0px;
 }
 /* #hide input[type=file] + label {
 display:inline-block;
@@ -575,54 +580,52 @@ background-image: none;
 background-color:#2D6C7A;
 color:#FFFFFF;
 } */
-label{
-    background-color: #2acad0;
-    /* border: 2px solid #2acad0; */
-    box-shadow: 0px 1px 4px 0px #ddd;
-    padding: 6px;
-    cursor: pointer;
-    font-weight: 400;
-    max-width: 100%;
-    border-radius: 20px;
-    color: white; 
+label {
+  background-color: #2acad0;
+  /* border: 2px solid #2acad0; */
+  box-shadow: 0px 1px 4px 0px #ddd;
+  padding: 6px;
+  cursor: pointer;
+  font-weight: 400;
+  max-width: 100%;
+  border-radius: 20px;
+  color: white;
 }
 
-.fixture-title{
+.fixture-title {
   margin-bottom: 0.75rem;
 }
 
 /* header styles */
-p{
+p {
   font-size: 0.8rem;
   color: #50575e;
   font-weight: 500;
-
 }
-a{
+a {
   color: #0275d8;
   cursor: pointer;
-  font-weight:none;
+  font-weight: none;
 }
 
 /* span{
   font-weight: 400;
 } */
 
-h1{
-  text-transform:uppercase;
+h1 {
+  text-transform: uppercase;
   margin-bottom: 0.25rem;
   margin-top: 0.25rem;
   font-size: 2rem;
   font-weight: 550;
-
 }
-h3{
+h3 {
   font-weight: 400;
   color: #50575e;
   font-size: large;
 }
 
-h4{
+h4 {
   font-weight: 550;
   color: #50575e;
   margin-bottom: 0rem;
@@ -637,28 +640,28 @@ h6 {
   padding: 8px;
 }
 
-.team-input-header{
+.team-input-header {
   font-size: 0.8rem;
   float: none;
   margin-left: 0rem;
   margin-bottom: 0px;
-  color: lightgray;  
-  text-transform:uppercase;
+  color: lightgray;
+  text-transform: uppercase;
 }
-.name{
+.name {
   font-size: 0.8rem;
-  text-transform:uppercase;
+  text-transform: uppercase;
   color: #50575e;
   margin-bottom: 1rem;
   font-weight: 400;
 }
-.photo_text{
+.photo_text {
   text-transform: capitalize;
 }
 
-.manage-players-button{
+.manage-players-button {
   font-size: 2.5rem;
-  color:#e5e5e5;
+  color: #e5e5e5;
   border-radius: none;
   background: none;
   border: none;
@@ -678,9 +681,9 @@ h6 {
   cursor: pointer;
 } */
 
-.manage-players-button:focus{
+.manage-players-button:focus {
   font-size: 2.5rem;
-  color:darkgrey;
+  color: darkgrey;
   border-radius: none;
   background: none;
   border: none;
@@ -690,9 +693,9 @@ h6 {
   box-shadow: none;
 }
 
-.manage-players-button:active{
+.manage-players-button:active {
   font-size: 2.5rem;
-  color:darkgrey;
+  color: darkgrey;
   border-radius: none;
   background: #e5e5e5;
   border: none;
@@ -704,25 +707,25 @@ h6 {
 
 .btn {
   padding: 8px;
-  border-radius:20px; 
+  border-radius: 20px;
   cursor: pointer;
   margin-top: 0px;
 }
 
-.btn-edit{
-  color: #50575e; 
+.btn-edit {
+  color: #50575e;
   background-color: white;
   border: 2px solid #e5e5e5;
 }
 
-.btn-edit:active{
-  color: #50575e; 
+.btn-edit:active {
+  color: #50575e;
   background-color: #e5e5e5;
   border: 2px solid #e5e5e5;
 }
 
-.btn-edit:focus{
-  color: #50575e; 
+.btn-edit:focus {
+  color: #50575e;
   background-color: white;
   border: 2px solid #e5e5e5;
   box-shadow: none;
@@ -735,15 +738,15 @@ ul {
   /* overflow-y: scroll; */
 }
 
-li{
+li {
   padding-bottom: 2px;
   /* cursor: pointer; */
-  font-weight:500;
+  font-weight: 500;
   font-size: 14px;
   color: #50575e;
 }
 
-.fa-trash{
+.fa-trash {
   color: #e5e5e5;
   font-size: 20px;
   border: 1.5px #e5e5e5 solid;
@@ -755,7 +758,7 @@ li{
   margin: 0 5px 0 5px;
 }
 
-.fa-trash:hover{
+.fa-trash:hover {
   color: darkgrey;
   font-size: 20px;
   border: 1.5px darkgray solid;
@@ -767,31 +770,31 @@ li{
   margin: 0 5px 0 5px;
 }
 
-.fa-plus{
-    color: #e5e5e5;
-    border: 1.5px #e5e5e5 solid;
-    border-radius: 50%;
-    background-color: transparent;
-    font-size: 20px;
-    vertical-align: middle;
-    cursor: pointer;
-    padding: 10px 12px 9px 12px;
-    margin: 0 5px 0 5px;
+.fa-plus {
+  color: #e5e5e5;
+  border: 1.5px #e5e5e5 solid;
+  border-radius: 50%;
+  background-color: transparent;
+  font-size: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 10px 12px 9px 12px;
+  margin: 0 5px 0 5px;
 }
 
-.fa-plus:hover{
-    color: darkgray;
-    border: 1.5px darkgray solid;
-    border-radius: 50%;
-    background-color: transparent;
-    font-size: 20px;
-    vertical-align: middle;
-    cursor: pointer;
-    padding: 10px 12px 9px 12px;
-    margin: 0 5px 0 5px;
+.fa-plus:hover {
+  color: darkgray;
+  border: 1.5px darkgray solid;
+  border-radius: 50%;
+  background-color: transparent;
+  font-size: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 10px 12px 9px 12px;
+  margin: 0 5px 0 5px;
 }
 
-.fa-minus{
+.fa-minus {
   color: #e5e5e5;
   border: 0px;
   background-color: transparent;
@@ -799,7 +802,7 @@ li{
   cursor: pointer;
 }
 
-.fa-times{
+.fa-times {
   color: lightgray;
   font-size: 20px;
   vertical-align: middle;
@@ -810,7 +813,7 @@ li{
   float: right;
 }
 
-.fa-times:hover{
+.fa-times:hover {
   color: indianred;
   font-size: 20px;
   vertical-align: middle;
@@ -821,12 +824,12 @@ li{
   float: right;
 }
 
-.form-group{
-    margin: 0 6px 0 6px;
-    width: 97%;
+.form-group {
+  margin: 0 6px 0 6px;
+  width: 97%;
 }
 
-.form-control{
+.form-control {
   color: rgb(175, 175, 175);
   font-size: 0.8rem;
   padding: 0.8rem;
@@ -834,34 +837,33 @@ li{
   border-radius: 20px;
   border: 1px solid #e3e3e3;
   text-transform: none;
-  font-family: 'Roboto Condensed', sans-serif;
-  margin:10px 0px;
+  font-family: "Roboto Condensed", sans-serif;
+  margin: 10px 0px;
 }
 
-.fa-check{
-    position: fixed;
-    background-color: dodgerblue;
-    border-radius: 50%;
-    padding: 15px;
-    color: white;
-    margin-left: 15px;
-    box-shadow: 2px 2px 2px -2px lightgrey;
-    top: 20%;
-    border: none;
-    cursor: pointer;
+.fa-check {
+  position: fixed;
+  background-color: dodgerblue;
+  border-radius: 50%;
+  padding: 15px;
+  color: white;
+  margin-left: 15px;
+  box-shadow: 2px 2px 2px -2px lightgrey;
+  top: 20%;
+  border: none;
+  cursor: pointer;
 }
 
-.fa-check:focus{
-border: none;
-outline: none;
+.fa-check:focus {
+  border: none;
+  outline: none;
 }
 
-.fa-check:active{
-background-color:#50575e;
+.fa-check:active {
+  background-color: #50575e;
 }
 
 /* .fa{
   border: none;
 } */
-
 </style>
