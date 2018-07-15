@@ -11,9 +11,11 @@
             </div>
             <div class="card play-card">
               <div class="card-block" v-if="canEdit()">
-                <div class="float right">
-                  <button class="fa fa-plus manage-players-button" @click="showNewFixtureModal()"></button>
-                  <button class="fa fa-trash manage-players-button"></button>
+                <div class="heading">
+                  <h2 class="text-center">
+                    Fixtures for {{getCurrentTeam().name}}
+                  </h2>
+                  <button class="fa fa-plus manage-players-button" @click="showNewFixtureModal()"></button> 
                 </div>
                 <modal height=90% width=90%  name="add-fixture" :clickToClose="false" class="vertical-scroll">
                 <div class= "input-header">
@@ -85,7 +87,7 @@
               </modal>
               </div>
             </div>
-            <play-fixture :can-edit="canEdit()" v-for="fixture in teamFixtures" :fixture="fixture" :key="fixture['.key']"/>
+            <play-fixture :can-edit="canEdit()" v-for="fixture in teamFixtures" :fixture="fixture" :key="fixture['.key']" @delete-fixture="deleteFixture"/>
         </div>
     </main-layout>
 </template>
@@ -218,6 +220,10 @@ export default {
       this.hideNewFixtureModal();
     },
 
+    deleteFixture(fixture) {
+      this.$firebaseRefs.fixtures.child(fixture['.key']).remove();
+    },
+
     formatDateTime() {
       var date = new Date(this.day);
       var dateString =
@@ -276,13 +282,20 @@ export default {
   overflow-y: scroll;
 }
 
+.heading {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .manage-players-button {
   /* font-size: 2.5rem;
   color:#e5e5e5;
   border-radius: none;
   background: none;
   border: none; */
-  float: right;
+  float: right !important;
   /* margin-top: -40px; */
   cursor: pointer;
 }
@@ -309,27 +322,6 @@ export default {
   float: right;
 }
 
-.fa-trash {
-  color: #e5e5e5;
-  border: 1.5px #e5e5e5 solid;
-  border-radius: 50%;
-  background-color: transparent;
-  font-size: 20px;
-  vertical-align: middle;
-  cursor: pointer;
-  padding: 10px 12px 9px 12px;
-}
-
-.fa-trash:hover {
-  color: darkgray;
-  border: 1.5px darkgrey solid;
-  border-radius: 50%;
-  background-color: transparent;
-  font-size: 20px;
-  vertical-align: middle;
-  cursor: pointer;
-  padding: 10px 12px 9px 12px;
-}
 
 .fa-plus {
   color: #e5e5e5;

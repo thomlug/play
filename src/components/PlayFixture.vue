@@ -1,6 +1,9 @@
 <template>
 <div class="card play-card">
         <div class="card-block">
+            <button @click="deleteFixture()" class="fa fa-trash float-right"></button>
+        </div>
+        <div class="card-block">          
           <div class="centered-col fixture-content">
             <div class="centered-col">
               <div class="team-photo-container" @click="goToTeamProfile(this.fixture.homeTeam)">
@@ -35,7 +38,7 @@
                 <h3 class="text-center">{{this.fixture.awayTeamName}}</h3>
               </div>
             </div>
-          </div>
+          </div>          
         </div> 
         <div class="card-block text-center">
           <h2>{{time}}</h2>
@@ -108,13 +111,13 @@ export default {
   firebase: {
     teams: {
       source: db.ref("team")
-    }
+    },
   },
 
   methods: {
-    fixtureEdited() {},
-
-    fixtureLocationChanged() {}
+    deleteFixture() {
+      this.$emit('delete-fixture', this.fixture);
+    }
   }
 };
 </script>
@@ -246,6 +249,23 @@ export default {
   margin-top: -2rem;
 }
 
+.fa-trash {
+  color: indianred;
+  border: 1.5px indianred solid;
+  border-radius: 50%;
+  background-color: transparent;
+  font-size: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 10px 12px 9px 12px;
+}
+
+.fa-trash:hover {
+  box-shadow: 1px 1px #9e9e9e;
+  cursor: pointer;
+}
+
+
 @media (max-width: 768px) {
   .player-container {
     max-width: 64px;
@@ -253,11 +273,17 @@ export default {
   }
   .team-circle,
   .team-photo {
-    height: 96px;
-    width: 96px;
+    height: 64px;
+    width: 64px;
   }
   .team-photo-container {
-    max-width: 96px;
+    max-width: 64px;
+  }
+
+  .fa-trash{
+    font-size: 10px !important;
+    padding: 5px 6px 6px 5px;
+    margin-top: -10px;
   }
 }
 @media (min-width: 768px) {
