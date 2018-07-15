@@ -60,10 +60,6 @@
 
               <!-- <span v-if="!editable">{{player.age}}</span>
               <input v-if="editable" v-model="player.age"/> -->
-              <div class="content-block profile-info" v-if="!editable">
-                <div>{{player.availability | camelToSentence}}</div>
-                <div><small>Last Updated {{moment(player.availabilityUpdated).calendar()}}</small></div>
-              </div>
 
               <div class="content-block">
               <div class= "input-header" v-if="editable" >
@@ -98,17 +94,21 @@
 </div>
 <!-- put player availability on hold - use player available ring styling -->
 
-<!-- <div v-if="canEditProfile()">
-<div class="profile-block">   
+            <div v-if="canEditProfile()">
+              <div class="profile-block">   
                 <h4 class="card-title">Update your status </h4>
-                <div class="availability-container">
-                  <button v-on:click="setCurrentPlayerAvailability('available')" type="button" class="btn btn-primary btn-available">Available</button>
-                  <button v-on:click="setCurrentPlayerAvailability('unavailable')" type="button" class="btn btn-danger">Unavailable</button>
+                <div v-for="team in player.teams" :key="team.teamKey" class="availability-container row">
+                  <div class="col-md-4">
+                    <div>{{getTeam(team.teamKey).name}} <small>({{team.availability | camelToSentence}})</small></div>
+                    <div>
+                      <span><small>Last updated today at 1:22am</small></span>
+                    </div>
+                  </div>
+                  <button v-on:click="setCurrentPlayerAvailability('available', team.teamKey)" type="button" class="btn btn-primary btn-available col-md-4">Available</button>
+                  <button v-on:click="setCurrentPlayerAvailability('unavailable', team.teamKey)" type="button" class="btn btn-danger col-md-4">Unavailable</button>
                 </div>
               </div>
-            </div>                        -->
-            
-          <!-- </div> -->
+            </div>               
         </div>
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
     </div>
@@ -176,7 +176,13 @@ export default {
       player: {
         source: db.ref("player/" + this.$route.params.player_id),
         asObject: true
-      }
+      },
+      teams: {
+        source: db.ref("team"),
+        readyCallback: function() {
+          this.teamPromise.resolve();
+        }
+      },
     };
   },
   methods: {
@@ -191,6 +197,9 @@ export default {
         this.player.userUid === currentUser.uid
       );
     },
+    getTeam: function(teamKey){
+      return _.find(this.teams, function(team){return team['.key'] === teamKey});
+    },
     edit: function() {
       this.editable = true;
     },
@@ -201,11 +210,17 @@ export default {
       this.editable = false;
       this.$router.push({ name: "home" });
     },
-    setCurrentPlayerAvailability(availability) {
+    setCurrentPlayerAvailability(availability, teamKey) {
       this.$firebaseRefs.player
+        .child("teams")
+        .child(teamKey)
         .child("availabilityUpdated")
         .set(this.moment().toString());
-      this.$firebaseRefs.player.child("availability").set(availability);
+      this.$firebaseRefs.player
+        .child("teams")
+        .child(teamKey)
+        .child("availability")
+        .set(availability);
     },
     reset() {
       // reset form to initial state
