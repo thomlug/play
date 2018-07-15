@@ -3,7 +3,7 @@
         <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="location-icon"> -->
         <div slot="main-content">    
             
-            <h6 v-if="!this.editable">{{this.currentFixture.ground}}</h6>
+            <h6 v-if="!this.editable"><a :href="'https://www.google.com/maps/search/?api=1&query=' + this.currentFixture.ground" target="_blank" rel="noopener noreferrer">{{this.currentFixture.ground}}</a></h6>
              <div v-else>
                 <h6>Location</h6>
                 <input class="form-control" type="text" v-model="currentFixture.ground"> 
