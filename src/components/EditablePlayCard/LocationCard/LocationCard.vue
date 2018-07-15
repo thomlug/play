@@ -1,5 +1,5 @@
 <template>
-    <three-column-edit-card :clickFn="toggleEdit" :can-edit="canEdit">    
+    <three-column-edit-card :clickFn="toggleEdit" :can-edit="canEdit" :editable="editable">    
         <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="location-icon"> -->
         <div slot="main-content">    
             

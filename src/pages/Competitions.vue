@@ -34,8 +34,8 @@
           </div>
           <div class="card-block card-outer">
             <div class="container-fluid">
-              <fixtures v-for="fixture in weeklyFixtures" :fixture="fixture"
-                        :competition="currentCompetition" v-if="fixture.competition == currentCompetition"></fixtures>
+              <fixture v-for="fixture in weeklyFixtures" :fixture="fixture"
+                        :competition="currentCompetition" v-if="fixture.competition == currentCompetition"></fixture>
             </div>
           </div>
           <div class="card-footer">
@@ -87,7 +87,7 @@
   import MainLayout from '../layouts/Main.vue';
   import Slick from 'vue-slick';
   import moment from 'moment';
-  import Fixtures from '../components/Fixtures.vue';
+  import Fixture from '../components/PlayFixture.vue';
   import Avatar from '../components/Avatar.vue';
   import VLink from '../components/VLink.vue';
   import CompetitionItem from '../components/CompetitionItem.vue'
@@ -106,7 +106,7 @@
     components: {
       MainLayout,
       Slick,
-      Fixtures,
+      Fixture,
       Avatar,
       VLink,
       CompetitionItem

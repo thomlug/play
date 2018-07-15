@@ -1,5 +1,5 @@
 <template>
-    <three-column-edit-card :clickFn="toggleEdit" :can-edit="canEdit" :class="calculateCancelledClass()">    
+    <three-column-edit-card :clickFn="toggleEdit" :can-edit="canEdit" :editable="editable" :class="calculateCancelledClass()">    
         <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/001-clock-with-white-face.png?alt=media&token=703b182a-ed12-4443-a194-34315062dc01" class="clock-icon"> -->
         <div slot="main-content">    
             <div v-if="!editable && !this.currentFixture.cancelled">
@@ -86,7 +86,8 @@ export default {
         this.toggleEdit();
       },
       setGameActive() {
-        this.currentFixture.cancelled = false
+        this.currentFixture.cancelled = false;
+        this.toggleEdit();
       },
 
       calculateCancelledClass() {

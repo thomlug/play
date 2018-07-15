@@ -817,18 +817,18 @@ export default {
       db.ref().update(updates);
     },
 
-    fixtureEdited(fixture) {
+    fixtureEdited(updatedFixture) {
       var updates = {};
-
       //Store key in variable
-      const fixtureKey = fixture[".key"];      
-      // Have to delete the key in when updating the fixture as the key cannot be updated
-      delete fixture['.key'];
+      const fixtureKey = updatedFixture[".key"];      
 
-      updates["match/" + fixtureKey] = fixture;
-      db.ref()
-        .update(updates)
-        .catch(err => alert(err));
+      var fixtureWithoutKey = updatedFixture;
+      // Have to delete the key in when updating the fixture as the key cannot be updated
+      delete fixtureWithoutKey['.key'];
+      
+      this.$firebaseRefs.fixtures
+        .child(fixtureKey)
+        .set(fixtureWithoutKey);
     },
 
     listPlayersNotInTeam(name){

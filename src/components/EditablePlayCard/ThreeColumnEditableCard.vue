@@ -25,17 +25,12 @@
 export default {
     props: {
         clickFn: Function,
-        canEdit: Boolean
+        canEdit: Boolean,
+        editable: Boolean
     },
     
-    data: function() {
-        return {
-            editable: false,
-        }
-    },
     methods: {
         clicked() {
-            this.editable = !this.editable;
             this.clickFn();
         }
     }
