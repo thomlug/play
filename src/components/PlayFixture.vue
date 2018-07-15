@@ -1,6 +1,5 @@
 <template>
-  <div>
-      <div class="card play-card">
+<div class="card play-card">
         <div class="card-block">
           <div class="centered-col fixture-content">
             <div class="centered-col">
@@ -17,7 +16,7 @@
               </div>
             </div>
             <div class="centered-col vs-text text-center">VS</div>
-            <div class="centered-col">
+            <div v-if="!_.isUndefined(this.fixture.awayTeam)" class="centered-col">
               <div class="team-photo-container" @click="goToTeamProfile(this.fixture.awayTeam)">
                 <div v-if="!_.isUndefined(awayTeam.photo)">
                   <img :src="awayTeam.photo" class="play-photo team-photo">
@@ -30,23 +29,28 @@
                 <h3 class="text-center">{{awayTeam.name}}</h3>
               </div>
             </div>
+            <div v-else class="centered-col">
+              <div class="away-circle team-circle play-photo">{{this.fixture.awayTeamName | firstCharacter}}</div>
+              <div class="team-name">
+                <h3 class="text-center">{{this.fixture.awayTeamName}}</h3>
+              </div>
+            </div>
           </div>
-        </div>    
+        </div> 
+        <div class="card-block text-center">
+          <h2>{{time}}</h2>
+          <h6>{{day}}</h6>
+          <h6>{{fixture.ground}}</h6>  
+        </div>   
       </div>
-      <!-- Date and time -->
-        <date-card :can-edit="canEdit" :fixture="fixture" @fixture-edited="fixtureEdited"></date-card>
-    
-        <!-- Location -->
-        <location-card :can-edit="canEdit" :fixture="fixture" @location-changed="fixtureLocationChanged"></location-card>
-  </div>
 </template>
 
 <script>
 import { db } from "../firebase";
 import Avatar from "./Avatar.vue";
 import moment from "moment";
-import DateCard from './EditablePlayCard/DateCard/DateCard.vue';
-import LocationCard from './EditablePlayCard/LocationCard/LocationCard.vue';
+import DateCard from "./EditablePlayCard/DateCard/DateCard.vue";
+import LocationCard from "./EditablePlayCard/LocationCard/LocationCard.vue";
 
 export default {
   components: {
@@ -75,6 +79,12 @@ export default {
       return _.find(this.teams, team => {
         return team[".key"] === awayTeamKey;
       });
+    },
+    time() {
+      return moment(this.fixture.date).format("hh:mm A");
+    },
+    day() {
+      return moment(this.fixture.date).format("dddd DD MMM YY");
     }
   },
 
@@ -102,13 +112,9 @@ export default {
   },
 
   methods: {
-      fixtureEdited() {
+    fixtureEdited() {},
 
-      },
-
-      fixtureLocationChanged() {
-
-      }
+    fixtureLocationChanged() {}
   }
 };
 </script>

@@ -48,7 +48,7 @@
                 </div>
               </div>
               <div class="centered-col vs-text text-center">VS</div>
-              <div class="centered-col">
+              <div v-if="!_.isUndefined(getNextFixture().awayTeam)" class="centered-col">
                 <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().awayTeam)">
                   <div v-if="!_.isUndefined(this.currentFixtureAwayTeam.photo)">
                     <img :src="this.currentFixtureAwayTeam.photo" class="play-photo team-photo">
@@ -61,7 +61,14 @@
                   <h3 class="text-center">{{this.currentFixtureAwayTeam.name}}</h3>
                 </div>
                 </div>
+                <div v-else class="centered-col">
+                  <div class="away-circle team-circle play-photo">{{getNextFixture().awayTeamName | firstCharacter}}</div>
+                  <div class="team-name">
+                    <h3 class="text-center">{{getNextFixture().awayTeamName}}</h3>
+                  </div>
             </div>
+            </div>
+            
           </div>
         </div>
 
@@ -360,10 +367,10 @@ import draggable from "vuedraggable";
 import Avatar from "../components/Avatar.vue";
 import { mapState } from "vuex";
 import PlusCircle from "../assets/plus-circle.png";
-import DateCard from '../components/EditablePlayCard/DateCard/DateCard.vue';
-import LocationCard from '../components/EditablePlayCard/LocationCard/LocationCard.vue';
-import DangerButton from '../components/DangerButton.vue';
-import AvailableButton from '../components/AvailableButton.vue';
+import DateCard from "../components/EditablePlayCard/DateCard/DateCard.vue";
+import LocationCard from "../components/EditablePlayCard/LocationCard/LocationCard.vue";
+import DangerButton from "../components/DangerButton.vue";
+import AvailableButton from "../components/AvailableButton.vue";
 
 export default {
   components: {
@@ -380,7 +387,7 @@ export default {
     Promise.all([this.playerPromise, this.teamPromise]).then(
       this.setUpPlayerFormation
     );
-  },  
+  },
 
   data: function() {
     return {
@@ -414,9 +421,9 @@ export default {
       playerPromise: this.$helpers.defer(function(resolve, reject) {}),
       teamPromise: this.$helpers.defer(function(resolve, reject) {}),
       plusCircle: PlusCircle,
-      searchPlayerName:'',
+      searchPlayerName: "",
       newPlayer: {},
-      newPlayerMessages: {error:undefined, success:undefined}
+      newPlayerMessages: { error: undefined, success: undefined }
     };
   },
   watch: {
@@ -440,11 +447,11 @@ export default {
       var homeTeamKey = this.getNextFixture().homeTeam;
       if (homeTeamKey === undefined) {
         return {
-          name: '',
+          name: ""
         };
       }
-      return _.find(this.teams, (team) => {
-        return homeTeamKey === team['.key'];
+      return _.find(this.teams, team => {
+        return homeTeamKey === team[".key"];
       });
     },
 
@@ -452,14 +459,14 @@ export default {
       var awayTeamKey = this.getNextFixture().awayTeam;
       if (awayTeamKey === undefined) {
         return {
-          name: '',
+          name: ""
         };
       }
-      return _.find(this.teams, (team) => {
-        return awayTeamKey === team['.key'];
+      return _.find(this.teams, team => {
+        return awayTeamKey === team[".key"];
       });
     },
-    
+
     ...mapState(["user"])
   },
   filters: {
@@ -492,7 +499,7 @@ export default {
       }
     },
     fixtures: {
-      source: db.ref("match"),
+      source: db.ref("match")
     },
     teamFixtures: {
       source: db.ref("teamFixture"),
@@ -501,46 +508,61 @@ export default {
         this.gameInfoList = _.toPairs(gameInfo);
       }
     },
-    admins:{
-      source: db.ref("admin")        
+    admins: {
+      source: db.ref("admin")
     }
   },
   methods: {
-    canEdit(){
+    canEdit() {
       var currentUser = firebase.auth().currentUser;
       var team = this.getCurrentTeam();
-      return team != null
-       && currentUser != null 
-       && (_.some(team.manager, (managerId) => {return managerId === currentUser.uid})
-        || _.some(this.admins, (admin) => {return admin.userUid === currentUser.uid})
-        );
+      return (
+        team != null &&
+        currentUser != null &&
+        (_.some(team.manager, managerId => {
+          return managerId === currentUser.uid;
+        }) ||
+          _.some(this.admins, admin => {
+            return admin.userUid === currentUser.uid;
+          }))
+      );
     },
     setUpPlayerFormation() {
       this.playerFormation = [];
       var teamKey = this.getCurrentTeamKey();
-      
-      if(teamKey == null){
+
+      if (teamKey == null) {
         return;
       }
       var team = this.getCurrentTeam();
-      var numFormationRows = team.sport && team.sport.toLowerCase() === 'basketball' ? 3 : 5;
+      var numFormationRows =
+        team.sport && team.sport.toLowerCase() === "basketball" ? 3 : 5;
 
       for (var i = 0; i < numFormationRows; i++) {
         var formationRow = _.filter(this.getPlayersForCurrentTeam(), function(
           player
         ) {
-          return !_.isUndefined(player.teams) && player.teams[teamKey].position[0] === i + 1;
+          return (
+            !_.isUndefined(player.teams) &&
+            player.teams[teamKey].position[0] === i + 1
+          );
         });
         this.playerFormation.push(
           _.sortBy(formationRow, function(player) {
-            return !_.isUndefined(player.teams) && player.teams[teamKey].position[1];
+            return (
+              !_.isUndefined(player.teams) && player.teams[teamKey].position[1]
+            );
           })
         );
       }
       this.substitutePlayers = _.filter(
         this.getPlayersForCurrentTeam(),
         function(p) {
-          return p.teams == undefined || !_.isUndefined(p.teams[teamKey].position) && p.teams[teamKey].position[0] === 0;
+          return (
+            p.teams == undefined ||
+            (!_.isUndefined(p.teams[teamKey].position) &&
+              p.teams[teamKey].position[0] === 0)
+          );
         }
       );
       this.substitutePlayers = _.sortBy(this.substitutePlayers, function(
@@ -587,7 +609,7 @@ export default {
       }
     },
     toggleEditGameInfo() {
-      if(!this.canEdit()){
+      if (!this.canEdit()) {
         return;
       }
 
@@ -623,12 +645,12 @@ export default {
       this.editPlayerMode = false;
     },
     toggleEditPlayersPositions() {
-      if(!this.canEdit()){
+      if (!this.canEdit()) {
         return;
       }
 
       if (this.editPlayerMode) {
-        var teamKey = this.getCurrentTeam()['.key'];
+        var teamKey = this.getCurrentTeam()[".key"];
         _.each(this.playerFormation, (row, rowIndex) => {
           _.each(row, (player, colIndex) => {
             player.teams[teamKey].position[0] = rowIndex + 1;
@@ -680,7 +702,7 @@ export default {
     getCurrentPlayer() {
       var currentUser = firebase.auth().currentUser;
       var emptyPlayer = { availability: "unknown" };
-      if(currentUser == null){
+      if (currentUser == null) {
         return emptyPlayer;
       }
       var userUid = currentUser.uid;
@@ -690,47 +712,51 @@ export default {
         }) || emptyPlayer
       );
     },
-    getCurrentPlayerAvailability(){
+    getCurrentPlayerAvailability() {
       var currentPlayer = this.getCurrentPlayer();
       var teamKey = this.getCurrentTeamKey();
 
-      if(currentPlayer == null || teamKey == null || currentPlayer.teams == null){
+      if (
+        currentPlayer == null ||
+        teamKey == null ||
+        currentPlayer.teams == null
+      ) {
         return "unknown";
       }
 
-      return currentPlayer.teams[teamKey].availability
+      return currentPlayer.teams[teamKey].availability;
     },
     getNextGameInfo() {
       return this.getNextFixtureDetails().gameInfo || {};
     },
     getNextFixtureDetails() {
       var teamKey = this.getCurrentTeamKey();
-      if (teamKey  === undefined) {
+      if (teamKey === undefined) {
         return {};
       }
-      var teamFixture = _.find(this.teamFixtures, (teamFixture) => {
-        return _.some(_.keys(teamFixture), (key) => {
-           return key === teamKey;
+      var teamFixture = _.find(this.teamFixtures, teamFixture => {
+        return _.some(_.keys(teamFixture), key => {
+          return key === teamKey;
         });
       });
       return !_.isUndefined(teamFixture) ? teamFixture : {};
     },
-    getCurrentTeamKey(){
+    getCurrentTeamKey() {
       var team = this.getCurrentTeam();
-      if (_.isUndefined(team)){
+      if (_.isUndefined(team)) {
         return;
       }
-      
-      return team['.key'];
+
+      return team[".key"];
     },
     getCurrentTeam() {
       var player = this.getCurrentPlayer();
-      var currentTeam = _.find(this.teams, (team) => {
-        return  player.teamKey === team['.key'];
+      var currentTeam = _.find(this.teams, team => {
+        return player.teamKey === team[".key"];
       });
 
       var result = currentTeam || _.head(this.teams);
-      return result || {sport: 'football'};
+      return result || { sport: "football" };
     },
     getNextFixture() {
       var currentTeam = this.getCurrentTeam();
@@ -739,7 +765,7 @@ export default {
       }
       var teamKey = currentTeam[".key"];
       var component = this;
-      var sortedFixtures = _.orderBy(this.fixtures, 'date', 'desc');
+      var sortedFixtures = _.orderBy(this.fixtures, "date", "desc");
       var fixture = sortedFixtures.find(f => {
         return f.status === "active" && f.homeTeam === teamKey;
       });
@@ -806,9 +832,9 @@ export default {
     },
     goToTeamProfile(teamKey) {
       this.$router.push({
-        name: 'team',
-        params: { team_id: teamKey}
-      })
+        name: "team",
+        params: { team_id: teamKey }
+      });
     },
     fixtureLocationChanged(ground) {
       var updates = {};
@@ -820,37 +846,38 @@ export default {
     fixtureEdited(updatedFixture) {
       var updates = {};
       //Store key in variable
-      const fixtureKey = updatedFixture[".key"];      
+      const fixtureKey = updatedFixture[".key"];
 
       var fixtureWithoutKey = updatedFixture;
       // Have to delete the key in when updating the fixture as the key cannot be updated
-      delete fixtureWithoutKey['.key'];
-      
-      this.$firebaseRefs.fixtures
-        .child(fixtureKey)
-        .set(fixtureWithoutKey);
+      delete fixtureWithoutKey[".key"];
+
+      this.$firebaseRefs.fixtures.child(fixtureKey).set(fixtureWithoutKey);
     },
 
-    listPlayersNotInTeam(name){
+    listPlayersNotInTeam(name) {
       var teamKey = this.getCurrentTeamKey();
-      return _.filter(this.players, function(player){
-        return player[teamKey] === undefined 
-          && ((player.first_name != null && player.first_name.toLowerCase().includes(name.toLowerCase())) 
-            || (player.last_name != null && player.last_name.toLowerCase().includes(name.toLowerCase()))
-          );
-      })
+      return _.filter(this.players, function(player) {
+        return (
+          player[teamKey] === undefined &&
+          ((player.first_name != null &&
+            player.first_name.toLowerCase().includes(name.toLowerCase())) ||
+            (player.last_name != null &&
+              player.last_name.toLowerCase().includes(name.toLowerCase())))
+        );
+      });
     },
-    showRemovePlayerModal(){
-      if(!this.canEdit()){
+    showRemovePlayerModal() {
+      if (!this.canEdit()) {
         return;
       }
-      this.$modal.show('remove-player');
+      this.$modal.show("remove-player");
     },
-    hideRemovePlayerModal(){
-      this.$modal.hide('remove-player');
+    hideRemovePlayerModal() {
+      this.$modal.hide("remove-player");
     },
-    removePlayerFromTeam(playerKey){
-      if(!this.canEdit()){
+    removePlayerFromTeam(playerKey) {
+      if (!this.canEdit()) {
         return;
       }
       var teamKey = this.getCurrentTeamKey();
@@ -861,34 +888,34 @@ export default {
         .remove();
       this.$firebaseRefs.players
         .child(playerKey)
-        .child('teams')
+        .child("teams")
         .child(teamKey)
         .remove();
     },
-    showNewPlayerModal(){
-      if(!this.canEdit()){
+    showNewPlayerModal() {
+      if (!this.canEdit()) {
         return;
       }
-      this.$modal.show('add-player');
+      this.$modal.show("add-player");
     },
-    hideNewPlayerModal(){
-      this.$modal.hide('add-player');
+    hideNewPlayerModal() {
+      this.$modal.hide("add-player");
       this.newPlayerMessages.error = undefined;
       this.newPlayerMessages.success = undefined;
       this.newPlayer = {};
     },
-    addExistingPlayerToTeam(playerKey){
+    addExistingPlayerToTeam(playerKey) {
       var teamKey = this.getCurrentTeamKey();
-    
+
       this.$firebaseRefs.players
         .child(playerKey)
         .child(teamKey)
         .set(1);
       this.$firebaseRefs.players
         .child(playerKey)
-        .child('teams')
+        .child("teams")
         .child(teamKey)
-        .set({'teamKey': teamKey, 'position': [0,0]});
+        .set({ teamKey: teamKey, position: [0, 0] });
       this.$firebaseRefs.players
         .child(playerKey)
         .child("position")
@@ -898,51 +925,65 @@ export default {
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(String(email).toLowerCase());
     },
-    saveNewPlayer(){
+    saveNewPlayer() {
       this.newPlayerMessages.error = undefined;
       this.newPlayerMessages.sucess = undefined;
 
-      if(!this.canEdit()){
+      if (!this.canEdit()) {
         return;
       }
-      if(!this.validateEmail(this.newPlayer.email)){
+      if (!this.validateEmail(this.newPlayer.email)) {
         this.newPlayerMessages.error = "Invalid email address";
         return;
       }
-      
-      var playerExists = _.some(this.players, (player) => {
-        return player.email != null && player.email.toLowerCase() === this.newPlayer.email.toLowerCase();
+
+      var playerExists = _.some(this.players, player => {
+        return (
+          player.email != null &&
+          player.email.toLowerCase() === this.newPlayer.email.toLowerCase()
+        );
       });
 
-      if(playerExists){
-        this.newPlayerMessages.error = "Player already exists with that email address";
+      if (playerExists) {
+        this.newPlayerMessages.error =
+          "Player already exists with that email address";
         return;
       }
       var teamKey = this.getCurrentTeamKey();
       this.newPlayer[teamKey] = 1;
       this.newPlayer.teamKey = teamKey;
       this.newPlayer.teams = {};
-      this.newPlayer.teams[teamKey] = {'teamKey': teamKey, 'position': [0,0]};
-      this.newPlayer.signUpPage = window.location.origin + '/#/join/';
+      this.newPlayer.teams[teamKey] = { teamKey: teamKey, position: [0, 0] };
+      this.newPlayer.signUpPage = window.location.origin + "/#/join/";
       this.newPlayer.position = [0, 0];
-      this.newPlayer.signUpToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-      this.newPlayer.signedUpBy = this.getCurrentPlayer().first_name + ' ' + this.getCurrentPlayer().last_name;
+      this.newPlayer.signUpToken =
+        Math.random()
+          .toString(36)
+          .substring(2, 15) +
+        Math.random()
+          .toString(36)
+          .substring(2, 15);
+      this.newPlayer.signedUpBy =
+        this.getCurrentPlayer().first_name +
+        " " +
+        this.getCurrentPlayer().last_name;
       var result = db.ref("player").push(this.newPlayer);
-      this.newPlayerMessages.success = "Player added. They will receive an email with a sign-up link";
+      this.newPlayerMessages.success =
+        "Player added. They will receive an email with a sign-up link";
     },
-    listTeamsCurrentUserBelongsTo(){
+    listTeamsCurrentUserBelongsTo() {
       var player = this.getCurrentPlayer();
-      return _.filter(this.teams, (team) => {
-          return _.some(player.teams, (playerTeam) =>{
-            return playerTeam.teamKey === team['.key'];
+      return _.filter(this.teams, team => {
+        return _.some(player.teams, playerTeam => {
+          return playerTeam.teamKey === team[".key"];
         });
       });
     },
-    changeToTeam(teamId){
+    changeToTeam(teamId) {
       var player = this.getCurrentPlayer();
       this.$firebaseRefs.players
-        .child(player['.key'])
-        .child('teamKey')
+        .child(player[".key"])
+        .child("teamKey")
         .set(teamId);
       var gameInfo = this.getNextGameInfo();
       this.gameInfoList = _.toPairs(gameInfo);
@@ -952,8 +993,7 @@ export default {
 </script>
 
 <style scoped>
-
-.row-home{
+.row-home {
   background-color: transparent;
 }
 .game-info {
@@ -1033,7 +1073,7 @@ export default {
   background: transparent;
 }
 
-.card{
+.card {
   border: 0px;
 }
 .card-block-lineup {
@@ -1047,18 +1087,18 @@ export default {
   padding-bottom: 20px;
 }
 
-.card-block-lineup-football{
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/soccer%20pitch%20blue%20really%20long%20last.png?alt=media&token=34046254-a7a7-4a09-8d22-69ee7d663be2");  
+.card-block-lineup-football {
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/soccer%20pitch%20blue%20really%20long%20last.png?alt=media&token=34046254-a7a7-4a09-8d22-69ee7d663be2");
 }
 
-.card-block-lineup-basketball{
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/Basketball%20court.png?alt=media&token=9ce355da-639f-4d6b-b7c7-aec0a6026193");  
+.card-block-lineup-basketball {
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/Basketball%20court.png?alt=media&token=9ce355da-639f-4d6b-b7c7-aec0a6026193");
 }
 
-.info-card-block{
-max-height: 35rem;
-overflow-y: scroll;
-padding-bottom: 10px;
+.info-card-block {
+  max-height: 35rem;
+  overflow-y: scroll;
+  padding-bottom: 10px;
 }
 
 .team-name {
@@ -1089,7 +1129,6 @@ padding-bottom: 10px;
 
 .team-circle {
   color: #9e9e9e;
-  
 }
 
 .player-selected {
@@ -1102,10 +1141,9 @@ padding-bottom: 10px;
   padding: 2px;
 }
 
-
 /* .player-available:before {
   /* border: 2px solid #2bcad0; */
-  /* background-image: linear-gradient(to bottom, blue 0%, pink 100%); */
+/* background-image: linear-gradient(to bottom, blue 0%, pink 100%); */
 /* } */
 
 .player-unavailable {
@@ -1115,10 +1153,10 @@ padding-bottom: 10px;
 }
 
 .player-unknown {
-    border: 2px solid gray;
-    -webkit-filter: grayscale(70%);
-    opacity: 0.8;
-    /* background-image: linear-gradient(45deg, grey 0%, darkgrey 100%);
+  border: 2px solid gray;
+  -webkit-filter: grayscale(70%);
+  opacity: 0.8;
+  /* background-image: linear-gradient(45deg, grey 0%, darkgrey 100%);
   padding: 2px; */
 }
 
@@ -1134,8 +1172,6 @@ padding-bottom: 10px;
   color: rgb(90, 28, 77);
 } */
 
-
-
 @media (max-width: 768px) {
   .formation-row {
     min-height: 64px;
@@ -1144,14 +1180,14 @@ padding-bottom: 10px;
     max-width: 64px;
     margin: 0 auto;
   }
-  .team-circle, .team-photo {
+  .team-circle,
+  .team-photo {
     height: 96px;
     width: 96px;
   }
   .team-photo-container {
     max-width: 96px;
   }
-
 }
 @media (min-width: 768px) {
   .formation-row {
@@ -1172,44 +1208,44 @@ padding-bottom: 10px;
   }
 
   .play-photo {
-  width: 96px;
-  height: 96px;
-  object-fit: cover;
-  margin-top: 2px;
-  border-radius: 50em;
-  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
-  -moz-box-shadow: 7px 9px 4px -8px rgba(0, 0, 0, 0.75);
-  box-shadow: 3px 3px 3px -3px 50575e;
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    margin-top: 2px;
+    border-radius: 50em;
+    -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+    -moz-box-shadow: 7px 9px 4px -8px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 3px 3px -3px 50575e;
   }
 
   .play-photo:hover {
-  -webkit-box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
-  box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
-  cursor: pointer;
+    -webkit-box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
+    box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
+    cursor: pointer;
   }
 
   .play-subs-card {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  box-shadow: 0 1px 3px#ddd, 0 1px 2px #ddd;
-  text-transform: uppercase;
-  color: #50575e;
-  height: 17rem;
-  border-color: transparent;
-  border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px#ddd, 0 1px 2px #ddd;
+    text-transform: uppercase;
+    color: #50575e;
+    height: 17rem;
+    border-color: transparent;
+    border-radius: 10px;
   }
 
-  .player-circle{
-  padding-top: 20%;
+  .player-circle {
+    padding-top: 20%;
   }
 
-  .fa-arrow-left{
-  display: none;
+  .fa-arrow-left {
+    display: none;
   }
 
-  .fa-arrow-right{
-  display: none;
+  .fa-arrow-right {
+    display: none;
   }
 }
 
@@ -1229,7 +1265,7 @@ padding-bottom: 10px;
   text-align: center;
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
-  background: linear-gradient(-90deg,#2faad0,#2bcad0);
+  background: linear-gradient(-90deg, #2faad0, #2bcad0);
   font-weight: bold;
   font-size: 4rem;
   font-family: "Roboto", sans-serif;
@@ -1281,11 +1317,11 @@ padding-bottom: 10px;
 }
 
 .player-circle-container {
-    width: 100%;
-    height: 100%;
-    padding-top: 100%; /* 1:1 Aspect Ratio */
-    position: relative; /* If you want text inside of it */
-    /* margin: 3px; */
+  width: 100%;
+  height: 100%;
+  padding-top: 100%; /* 1:1 Aspect Ratio */
+  position: relative; /* If you want text inside of it */
+  /* margin: 3px; */
 }
 .player-circle {
   color: white;
@@ -1336,31 +1372,30 @@ padding-bottom: 10px;
 .btn-available.active,
 .open .dropdown-toggle.btn-available {
   background-color: #2acad0;
-  border:2px solid #2acad0;
+  border: 2px solid #2acad0;
   cursor: pointer;
   -webkit-box-shadow: 2px 2px -2px 2px #50575e;
-  border-radius:20px; 
+  border-radius: 20px;
 }
 .open .dropdown-toggle.btn-available:hover {
   background-color: pink;
   cursor: pointer;
   border-radius: 0;
   -webkit-box-shadow: 4px 4px -4px 4px #50575e;
-  border-radius:20px; 
+  border-radius: 20px;
 }
 
-.btn{
+.btn {
   margin: 2px;
-  padding: .5rem 1.5rem;
+  padding: 0.5rem 1.5rem;
 }
-
 
 .btn-cancel {
   background-color: white;
   border: 2px solid #d9534f;
   color: #50575e;
   cursor: pointer;
-  border-radius:20px; 
+  border-radius: 20px;
   /* -webkit-box-shadow: 3px 3px 3px -3px #50575e; */
 }
 
@@ -1368,7 +1403,7 @@ padding-bottom: 10px;
   background-color: white;
   border: 2px solid #c44743;
   cursor: pointer;
-  border-radius:20px; 
+  border-radius: 20px;
   /* -webkit-box-shadow: 3px 3px 3px -3px #50575e; */
 }
 /*adjust jumbotron front size*/
@@ -1385,8 +1420,8 @@ padding-bottom: 10px;
   margin-top: -10px;
 }
 
-.btn-edit{
-  color: #50575e; 
+.btn-edit {
+  color: #50575e;
   background-color: white;
   border: 2px solid #e5e5e5;
 }
@@ -1397,14 +1432,14 @@ padding-bottom: 10px;
   border: 2px solid grey;
 } */
 
-.btn-edit:active{
-  color: #50575e; 
+.btn-edit:active {
+  color: #50575e;
   background-color: #e5e5e5;
   border: 2px solid #e5e5e5;
 }
 
-.btn-edit:focus{
-  color: #50575e; 
+.btn-edit:focus {
+  color: #50575e;
   background-color: white;
   border: 2px solid #e5e5e5;
   box-shadow: none;
@@ -1475,27 +1510,25 @@ padding-bottom: 10px;
 }
 
 .close:hover {
-  color:indianred;
+  color: indianred;
   font-size: 2rem;
   vertical-align: middle;
   border: none;
   background: none;
   cursor: pointer;
 }
-.plus-circle{
-
- border: 0px solid;
- box-shadow: 2px 2px -2px 2px grey;
- margin-right: 20px;
-margin-top: -12px;
+.plus-circle {
+  border: 0px solid;
+  box-shadow: 2px 2px -2px 2px grey;
+  margin-right: 20px;
+  margin-top: -12px;
 }
 
 .plus-circle:hover {
-
- border: 0px solid;
- box-shadow: 4px 4px -4px 4px grey;
- margin-right: 20px;
- margin-top: -12px;
+  border: 0px solid;
+  box-shadow: 4px 4px -4px 4px grey;
+  margin-right: 20px;
+  margin-top: -12px;
 }
 
 .edit-icon {
@@ -1551,13 +1584,13 @@ h2 {
 }
 
 h3 {
-    font-weight: 550;
-    color: #50575e;
-    margin-bottom: 0rem;
-    text-align: center;
-    font-size: 1.25rem;
-    width: 150px;
-    height: 35px;
+  font-weight: 550;
+  color: #50575e;
+  margin-bottom: 0rem;
+  text-align: center;
+  font-size: 1.25rem;
+  width: 150px;
+  height: 35px;
 }
 
 h4 {
@@ -1606,12 +1639,12 @@ a:hover {
   font-size: 0.8rem;
 }
 
-.form-group{
-    margin: 0 6px 0 6px;
-    width: 97%;
+.form-group {
+  margin: 0 6px 0 6px;
+  width: 97%;
 }
 
-.form-control{
+.form-control {
   color: rgb(175, 175, 175);
   font-size: 0.8rem;
   padding: 0.8rem;
@@ -1619,8 +1652,8 @@ a:hover {
   border-radius: 20px;
   border: 1px solid #e3e3e3;
   text-transform: none;
-  font-family: 'Roboto Condensed', sans-serif;
-  margin:10px 0px;
+  font-family: "Roboto Condensed", sans-serif;
+  margin: 10px 0px;
 }
 .player-5-wide {
   width: 20%;
@@ -1637,63 +1670,63 @@ a:hover {
   overflow-y: scroll;
 }
 
-.player-search-results{
+.player-search-results {
   height: 15rem;
 }
 
-li{
+li {
   padding-bottom: 2px;
   /* cursor: pointer; */
   font-size: 14px;
 }
 
-.fa-trash{
-    color: #e5e5e5;
-    border: 1.5px #e5e5e5 solid;
-    border-radius: 50%;
-    background-color: transparent;
-    font-size: 20px;
-    vertical-align: middle;
-    cursor: pointer;
-    padding: 10px 12px 9px 12px;
+.fa-trash {
+  color: #e5e5e5;
+  border: 1.5px #e5e5e5 solid;
+  border-radius: 50%;
+  background-color: transparent;
+  font-size: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 10px 12px 9px 12px;
 }
 
-.fa-trash:hover{
-    color: darkgray;
-    border: 1.5px darkgrey solid;
-    border-radius: 50%;
-    background-color: transparent;
-    font-size: 20px;
-    vertical-align: middle;
-    cursor: pointer;
-    padding: 10px 12px 9px 12px;
+.fa-trash:hover {
+  color: darkgray;
+  border: 1.5px darkgrey solid;
+  border-radius: 50%;
+  background-color: transparent;
+  font-size: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 10px 12px 9px 12px;
 }
 
-.fa-plus{
-    color: #e5e5e5;
-    border: 1.5px #e5e5e5 solid;
-    border-radius: 50%;
-    background-color: transparent;
-    font-size: 20px;
-    vertical-align: middle;
-    cursor: pointer;
-    padding: 10px 12px 9px 12px;
-    margin-left: 5px;
+.fa-plus {
+  color: #e5e5e5;
+  border: 1.5px #e5e5e5 solid;
+  border-radius: 50%;
+  background-color: transparent;
+  font-size: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 10px 12px 9px 12px;
+  margin-left: 5px;
 }
 
-.fa-plus:hover{
-    color: darkgray;
-    border: 1.5px darkgray solid;
-    border-radius: 50%;
-    background-color: transparent;
-    font-size: 20px;
-    vertical-align: middle;
-    cursor: pointer;
-    padding: 10px 12px 9px 12px;
-    margin-left: 5px;
+.fa-plus:hover {
+  color: darkgray;
+  border: 1.5px darkgray solid;
+  border-radius: 50%;
+  background-color: transparent;
+  font-size: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 10px 12px 9px 12px;
+  margin-left: 5px;
 }
 
-.manage-players-button{
+.manage-players-button {
   /* font-size: 2.5rem;
   color:#e5e5e5;
   border-radius: none;
@@ -1704,7 +1737,7 @@ li{
   cursor: pointer;
 }
 
-.manage-players-button:hover{
+.manage-players-button:hover {
   /* font-size: 2.5rem;
   color:#2acad0;
   border-radius: none;
@@ -1715,7 +1748,7 @@ li{
   cursor: pointer;
 }
 
-.fa-times{
+.fa-times {
   color: lightgray;
   font-size: 20px;
   vertical-align: middle;
@@ -1723,10 +1756,10 @@ li{
   background: none;
   cursor: pointer;
   margin-top: -10px;
-  float:right;
+  float: right;
 }
 
-.fa-times:hover{
+.fa-times:hover {
   color: indianred;
   font-size: 20px;
   vertical-align: middle;
@@ -1734,40 +1767,40 @@ li{
   background: none;
   cursor: pointer;
   margin-top: -10px;
-  float:right;
+  float: right;
 }
 
-.btn-teams{
-    background-color: #50575e;
-    border: 0px;
-    color: gainsboro;
-    /* padding: 2px 30px 2px 30px; */
-    margin: -15px 5px -5px 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 2px 2px 2px -2px grey;
-    min-width: 100px;
+.btn-teams {
+  background-color: #50575e;
+  border: 0px;
+  color: gainsboro;
+  /* padding: 2px 30px 2px 30px; */
+  margin: -15px 5px -5px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px -2px grey;
+  min-width: 100px;
 }
 
 .paddles {
 }
 .paddle {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	width: 3em;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3em;
 }
 .left-paddle {
-	left: 0;
+  left: 0;
 }
 .right-paddle {
-	right: 0;
+  right: 0;
 }
 .hidden {
-	display: none;
+  display: none;
 }
 
-.fa-arrow-left{
+.fa-arrow-left {
   color: lightgrey;
   margin-top: 85px;
   margin-bottom: 60px;
@@ -1776,12 +1809,12 @@ li{
   padding-right: unset;
 }
 
-.fa-arrow-left:focus{
-  outline: none; 
+.fa-arrow-left:focus {
+  outline: none;
   border: none;
 }
 
-.fa-arrow-right{
+.fa-arrow-right {
   color: lightgrey;
   margin-top: 85px;
   margin-bottom: 60px;
@@ -1790,8 +1823,8 @@ li{
   padding-left: unset;
 }
 
-.fa-arrow-right:focus{
-  outline: none; 
+.fa-arrow-right:focus {
+  outline: none;
   border: none;
 }
 </style>
