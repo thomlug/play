@@ -76,8 +76,10 @@
                 <div class= "input-header" v-if="editable" >
                   <h6> Phone Number</h6>
                 </div>
-                <i class="fa fa-phone" v-if="!editable"></i> 
-                <a  v-if="!editable" :href="'tel:'+player.phone">{{player.phone}} </a>
+                
+                <i class="fa fa-phone" v-if="!editable"></i>
+                <a v-if="!editable && (player.phone != null || player.phone !== '')" :href="'tel:'+player.phone">{{player.phone}} </a>
+                <span v-if="!editable && (player.phone == null || player.phone === '')" >No number</span>
                 <input placeholder="Phone number"  v-if="editable" v-model="player.phone"/>
               </div>
 
@@ -92,8 +94,6 @@
               </span>
               </div>
 </div>
-<!-- put player availability on hold - use player available ring styling -->
-
             <div v-if="canEditProfile()">
               <div class="profile-block">   
                 <h4 class="card-title">Update your status </h4>
@@ -101,14 +101,27 @@
                   <div class="col-md-4">
                     <div>{{getTeam(team.teamKey).name}} <small>({{team.availability | camelToSentence}})</small></div>
                     <div>
-                      <span><small>Last updated today at 1:22am</small></span>
+                      <span><small>Last Updated {{team.availabilityUpdated | lastUpdated}}</small></span>
                     </div>
                   </div>
                   <button v-on:click="setCurrentPlayerAvailability('available', team.teamKey)" type="button" class="btn btn-primary btn-available col-md-4">Available</button>
                   <button v-on:click="setCurrentPlayerAvailability('unavailable', team.teamKey)" type="button" class="btn btn-danger col-md-4">Unavailable</button>
                 </div>
               </div>
-            </div>               
+            </div>     
+            <div v-else>
+              <div class="profile-block">   
+                <h4 class="card-title">Availability </h4>
+                <div v-for="team in player.teams" :key="team.teamKey" class="availability-container row">
+                  <div class="col-md-6">
+                    {{getTeam(team.teamKey).name}} <small>({{team.availability | camelToSentence}})</small>
+                  </div>
+                  <div class="col-md-6">
+                    <span><small>Last Updated {{team.availabilityUpdated | lastUpdated}}</small></span>
+                  </div>
+                </div>
+              </div>
+            </div>          
         </div>
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
     </div>
@@ -157,6 +170,12 @@ export default {
         return value.charAt(0);
       }
       return "";
+    },
+    lastUpdated(value){
+      if(value == null || value === ''){
+        return "Never";
+      }
+      return moment(value).calendar();
     }
   },
   data: function() {
