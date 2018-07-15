@@ -2,27 +2,27 @@
     <ol class="chat">
         <div v-if="getPosition === 'other'" class="avatar">
             <img v-if="message.photo" :src="message.photo" @click="goToPlayerProfile(message.playerId)" :class="{clickable: !_.isUndefined(message.playerId)}" draggable="false"/>
-            <h3 v-else class>
+            <h3 v-else @click="goToPlayerProfile(message.playerId)" :class="{clickable: !_.isUndefined(message.playerId)}">
                 {{message.name | firstCharacter}}
             </h3>
         </div>
          <li :class="getPosition">
             <div class="msg">
-                <div class="user"  @click="goToPlayerProfile(message.playerId)" :class="{clickable: !_.isUndefined(message.playerId)}">
+                <div class="user" @click="goToPlayerProfile(message.playerId)" :class="{clickable: !_.isUndefined(message.playerId)}">
                     {{message.name}}
                 </div>
-                <p>{{ message.text }}</p>
+                <p v-html="$options.filters.makeClickableLinks(message.text)"></p>
                 <time>{{message.date | utcToLocal}}</time>
             </div>
          </li>
-
-
-
     </ol>
 </template>
 
 <script>
-  import moment from 'moment'
+    import moment from 'moment';    
+    import * as linkify from 'linkifyjs';
+    import linkifyHtml from 'linkifyjs/html';
+    var sanitizeHtml = require('sanitize-html');
 
    export default {
     name: 'Message',
@@ -36,6 +36,9 @@
     filters: {
       utcToLocal(time){
           return moment(time).format('LT MMM Do');
+      },
+      makeClickableLinks(msg){
+          return linkifyHtml(sanitizeHtml(msg));
       },
         firstCharacter(value) {
         if (!_.isUndefined(value)) {
