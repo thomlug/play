@@ -77,9 +77,9 @@
                   <h6> Phone Number</h6>
                 </div>
                 
-                <i class="fa fa-phone" v-if="!editable"></i>
+                <h6><i class="fa fa-phone" v-if="!editable"></i>
                 <a v-if="!editable && (player.phone != null || player.phone !== '')" :href="'tel:'+player.phone">{{player.phone}} </a>
-                <span v-if="!editable && (player.phone == null || player.phone === '')" >No number</span>
+                <span v-if="!editable && (player.phone == null || player.phone === '')" >No number</span></h6>
                 <input placeholder="Phone number"  v-if="editable" v-model="player.phone"/>
               </div>
 
@@ -114,7 +114,7 @@
                 <h4 class="card-title">Availability </h4>
                 <div v-for="team in player.teams" :key="team.teamKey" class="availability-container row">
                   <div class="col-md-6">
-                    {{getTeam(team.teamKey).name}} <small>({{team.availability | camelToSentence}})</small>
+                    {{getTeam(team.teamKey).name}} <small>{{team.availability | camelToSentence}}</small>
                   </div>
                   <div class="col-md-6">
                     <span><small>Last Updated {{team.availabilityUpdated | lastUpdated}}</small></span>
@@ -422,6 +422,7 @@ div > .profile-photo {
   text-align: center;
   margin: 5px;
   padding: 5px;
+  background-color: transparent;
 }
 
 .content-block {

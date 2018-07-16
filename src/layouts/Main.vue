@@ -212,8 +212,9 @@
 }
 
 a{
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 300;
+  color: #0275d8;
 }
 
 p{

@@ -602,7 +602,7 @@ p {
   font-weight: 500;
 }
 a {
-  color: #0275d8;
+  color: #2acad0;
   cursor: pointer;
   font-weight: none;
 }

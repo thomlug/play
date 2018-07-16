@@ -89,9 +89,9 @@
       <div class="col-xl-6">
         <div class="card play-card">
           <div class="card-block">
-            <span v-if="canEdit()" class="float-right">
-              <button class="fa fa-times" v-if="editPlayerMode" v-on:click="cancelEditPlayersPositions()"></button>
-              <button class="btn btn-edit" v-on:click="toggleEditPlayersPositions()">{{editPlayerButtonText}}</button>
+            <span v-if="canEdit()" class="float-right" :class="{'fixed-top' : editPlayerMode}">
+              <button class="btn btn-edit moveplayer" v-on:click="toggleEditPlayersPositions()">{{editPlayerButtonText}}</button>
+              <button class="fa fa-times exitEdit" v-if="editPlayerMode" v-on:click="cancelEditPlayersPositions()"></button>
             </span>
             <h4 class="card-title">Starting Lineup</h4>
             <h4><small>Last Updated {{moment(getNextFixtureDetails().dateFormationLastUpdated).calendar()}}</small></h4>
@@ -172,8 +172,8 @@
           <div class="card-block">          
             <h4 class="card-title">Subs <small></small></h4>
             <span v-if="canEdit()" class="float right">
-              <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
               <button class="fa fa-trash manage-players-button" @click="showRemovePlayerModal()"></button>
+              <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
             </span>
               <modal height=75% width=90%  name="add-player" :clickToClose="false" class="vertical-scroll">
                 <div class= "input-header">
@@ -431,7 +431,7 @@ export default {
   },
   computed: {
     editPlayerButtonText: function() {
-      return this.editPlayerMode ? "Save" : "Move Players";
+      return this.editPlayerMode ? "Save LineUp" : "Move Players";
     },
     editGameInfoButtonText: function() {
       return this.editGameInfo ? "Save" : "Edit/Add";
@@ -953,6 +953,31 @@ export default {
 
 <style scoped>
 
+.fixed-top{
+  position: fixed;
+  top: 11%;
+  left: 58%;
+  z-index: 999;
+  width: 100%;
+}
+
+.fixed-top > .moveplayer {
+  color: white !important;
+  background-color: dodgerblue !important;
+  border: 2px solid dodgerblue;
+  border-radius: 20px;
+}
+
+.fixed-top > .exitEdit {
+  color:white !important;
+  background-color: dodgerblue!important;
+  border: none;
+  border-radius: 20px; 
+  float: left;
+  margin-top: -10px;
+  margin-right: 3px;
+  padding: 9px 12px 10px 12px;
+}
 .row-home{
   background-color: transparent;
 }
@@ -1151,7 +1176,6 @@ padding-bottom: 10px;
   .team-photo-container {
     max-width: 96px;
   }
-
 }
 @media (min-width: 768px) {
   .formation-row {
@@ -1389,6 +1413,8 @@ padding-bottom: 10px;
   color: #50575e; 
   background-color: white;
   border: 2px solid #e5e5e5;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
 /* .btn-edit:hover{
@@ -1734,7 +1760,7 @@ li{
   background: none;
   cursor: pointer;
   margin-top: -10px;
-  float:right;
+  float:left;
 }
 
 .btn-teams{
