@@ -1424,6 +1424,7 @@ export default {
   color: #50575e;
   background-color: white;
   border: 2px solid #e5e5e5;
+  border-radius: 20px;
 }
 
 /* .btn-edit:hover{
@@ -1581,6 +1582,7 @@ h1 {
 h2 {
   text-align: center;
   color: #50575e;
+  font-weight: 400;
 }
 
 h3 {
