@@ -148,7 +148,7 @@ export default {
 
 
 h2 {
-  font-weight: 550;
+  font-weight: 400;
   color: #50575e;
   margin-bottom: 0rem;
   text-align: center;

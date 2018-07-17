@@ -59,7 +59,7 @@
               
               <div><input class="information-block" v-if="editable" v-model="team.name"/></div>
               <p class= "team-input-header" v-if="editable" > Active players</p>
-              <div class="information-block player-number">{{numberOfPlayers}} players! </div>
+              <div class="information-block player-number">{{numberOfPlayers}} players </div>
               <div class="col-md-3 col-sm-3 col-xs-12"></div>
             </template>
           </div>

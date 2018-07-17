@@ -77,10 +77,10 @@
                   <h6> Phone Number</h6>
                 </div>
                 
-                <i class="fa fa-phone" v-if="!editable"></i>
+                <div class="profile-info"><i class="fa fa-phone" v-if="!editable"></i>
                 <a v-if="!editable && (player.phone != null || player.phone !== '')" :href="'tel:'+player.phone">{{player.phone}} </a>
                 <span v-if="!editable && (player.phone == null || player.phone === '')" >No number</span>
-                <input placeholder="Phone number"  v-if="editable" v-model="player.phone"/>
+                <input placeholder="Phone number"  v-if="editable" v-model="player.phone"/></div>
               </div>
 
               <div class="content-block">
@@ -104,7 +104,7 @@
                       <span><small>Last Updated {{team.availabilityUpdated | lastUpdated}}</small></span>
                     </div>
                   </div>
-                  <button v-on:click="setCurrentPlayerAvailability('available', team.teamKey)" type="button" class="btn btn-primary btn-available col-md-4">Available</button>
+                  <button v-on:click="setCurrentPlayerAvailability('available', team.teamKey)" type="button" class="btn btn-primary btn-available col-md-4 btn-round">Available</button>
                   <button v-on:click="setCurrentPlayerAvailability('unavailable', team.teamKey)" type="button" class="btn btn-danger col-md-4">Unavailable</button>
                 </div>
               </div>
@@ -496,6 +496,7 @@ div > .profile-photo {
   border-radius: 20px;
   cursor: pointer;
   -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+  padding: 0px;
 }
 
 .btn-available:hover {
@@ -581,6 +582,7 @@ a {
   color: #0275d8;
   cursor: pointer;
   font-weight: none;
+  font-size: 1rem;
 }
 
 small {
@@ -640,5 +642,10 @@ background-color:#50575e;
 
 .fa{
   border: none;
+}
+
+.btn-round {
+padding: 2px;
+border-radius: 50%
 }
 </style>

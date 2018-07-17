@@ -97,4 +97,9 @@ h6 {
   text-align: center;
   margin-bottom: 0rem;
 }
+
+a {
+    color: rgb(175, 175, 175);
+    font-size: 1rem;
+}
 </style>
