@@ -171,8 +171,8 @@ export default {
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
   background: lightgrey;
-  font-weight: bold;
-  font-size: 4rem;
+  font-weight: 400;
+  font-size: 2.5rem;
   font-family: "Roboto", sans-serif;
   color: darkgrey;
   -webkit-box-shadow: 2px 2px 2px -2px #50575e;
@@ -185,8 +185,8 @@ export default {
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
   background: lightgrey;
-  font-weight: bold;
-  font-size: 4rem;
+  font-weight: 400;
+  font-size: 2.5rem;
   font-family: "Roboto", sans-serif;
   color: White;
   -webkit-box-shadow: 4px 4px 4px -4px #50575e;
@@ -282,7 +282,7 @@ export default {
 
   .fa-trash{
     font-size: 10px !important;
-    padding: 5px 6px 6px 5px;
+    padding: 4px 6px 6px 6px;
     margin-top: -10px;
   }
 }
@@ -321,6 +321,10 @@ export default {
 
   .player-circle {
     padding-top: 20%;
+  }
+
+  .away-circle {
+    font-size: 4rem;
   }
 }
 </style>
