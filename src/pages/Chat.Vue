@@ -242,6 +242,7 @@ a{
   color: #0275d8;
   cursor: pointer;
   font-weight:300;
+  color: #50575e;
 }
 
 p{

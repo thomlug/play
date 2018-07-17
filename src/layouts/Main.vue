@@ -7,6 +7,7 @@
         </button>
         <a class="navbar-brand" href="#/home">
           <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="img-fluid play-logo">
+          <div class="home">HOME</div>
           </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <ul class="navbar-nav">
@@ -222,5 +223,16 @@ a{
 p{
   font-size: 0.8rem;
   font-weight: 300;
+}
+
+.button:focus{
+  outline: none;
+}
+
+.home{
+    font-size: 0.6rem;
+    padding: 0px 0px 0px 11px;
+    margin: 0px;
+    color: grey;
 }
 </style>

@@ -118,6 +118,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 10px;
+    color: gray;
 }
 
 .chat .day {
@@ -316,5 +317,6 @@
   color: #a9a9a9;
   font-weight: 500;
 }
+
 
 </style>

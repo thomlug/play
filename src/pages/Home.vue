@@ -101,7 +101,7 @@
               <button class="btn btn-edit" v-on:click="toggleEditPlayersPositions()">{{editPlayerButtonText}}</button>
             </span>
             <h4 class="card-title">Starting Lineup</h4>
-            <h4><small>Last Updated {{moment(getNextFixtureDetails().dateFormationLastUpdated).calendar()}}</small></h4>
+            <h4><small>Updated {{moment(getNextFixtureDetails().dateFormationLastUpdated).calendar()}}</small></h4>
           </div>
         </div>
 <!-- starting line-up -->
@@ -1418,6 +1418,7 @@ export default {
   padding: 8px;
   cursor: pointer;
   margin-top: -10px;
+  border-radius: 25px;
 }
 
 .btn-edit {
@@ -1673,7 +1674,7 @@ a:hover {
 }
 
 .player-search-results {
-  height: 15rem;
+  height: none;
 }
 
 li {

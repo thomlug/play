@@ -239,7 +239,7 @@ export default {
   margin-top: 1rem;
   text-align: center;
   font-size: 1.25rem;
-  width: 150px;
+  width: 140px;
   height: 35px;
 }
 
