@@ -20,7 +20,7 @@
             </div>
         <div class="player-profile-header" v-if="canEditProfile()">
           <i class="fa fa-pencil" @click="edit" v-if="!editable"></i>              
-          <button class="fa fa-check" @click="save" v-if="editable" ></button>
+          <button class="fa fa-check fixed-check" @click="save" v-if="editable" ></button>
         </div>
             <div class="player-profile-content">
               <img v-if="player.photo" class="profile-photo" :src="player.photo" :class="'player-' + player.availability"/> 
@@ -98,14 +98,14 @@
               <div class="profile-block">   
                 <h4 class="card-title">Update your status </h4>
                 <div v-for="team in player.teams" :key="team.teamKey" class="availability-container row">
-                  <div class="col-md-4">
-                    <div>{{getTeam(team.teamKey).name}} <small>({{team.availability | camelToSentence}})</small></div>
+                  <div>
+                    <div>{{getTeam(team.teamKey).name}} <small>{{team.availability | camelToSentence}}</small></div>
                     <div>
                       <span><small>Last Updated {{team.availabilityUpdated | lastUpdated}}</small></span>
                     </div>
                   </div>
-                  <button v-on:click="setCurrentPlayerAvailability('available', team.teamKey)" type="button" class="btn btn-primary btn-available col-md-4 btn-round">Available</button>
-                  <button v-on:click="setCurrentPlayerAvailability('unavailable', team.teamKey)" type="button" class="btn btn-danger col-md-4">Unavailable</button>
+                  <button v-on:click="setCurrentPlayerAvailability('available', team.teamKey)" type="button" class="btn btn-primary btn-available col-md-4 btn-round-tick fa fa-check"></button>
+                  <button v-on:click="setCurrentPlayerAvailability('unavailable', team.teamKey)" type="button" class="btn btn-danger col-md-4 btn-round-cross fa fa-times"></button>
                 </div>
               </div>
             </div>     
@@ -114,10 +114,10 @@
                 <h4 class="card-title">Availability </h4>
                 <div v-for="team in player.teams" :key="team.teamKey" class="availability-container row">
                   <div class="col-md-6">
-                    {{getTeam(team.teamKey).name}} <small>({{team.availability | camelToSentence}})</small>
+                    {{getTeam(team.teamKey).name}} <small>{{team.availability | camelToSentence}}</small>
                   </div>
                   <div class="col-md-6">
-                    <span><small>Last Updated {{team.availabilityUpdated | lastUpdated}}</small></span>
+                    <span><small>Updated {{team.availabilityUpdated | lastUpdated}}</small></span>
                   </div>
                 </div>
               </div>
@@ -323,7 +323,7 @@ export default {
   background-color: whitesmoke;
 }
 .row {
-  background-color: whitesmoke;
+  background-color: transparent;
 }
 .card-title {
   text-align: center;
@@ -422,6 +422,7 @@ div > .profile-photo {
   text-align: center;
   margin: 5px;
   padding: 5px;
+  display: inherit;
 }
 
 .content-block {
@@ -587,6 +588,7 @@ a {
 
 small {
   font-weight: 300;
+  color:#9e9e9e;
 }
 
 h1 {
@@ -620,15 +622,20 @@ p {
 }
 
 .fa-check{
-    position: fixed;
-    background-color: dodgerblue;
+
     border-radius: 50%;
     padding: 15px;
     color: white;
     margin-left: 15px;
     box-shadow: 2px 2px 2px -2px lightgrey;
-    top: 20%;
+
     cursor: pointer;
+}
+
+.fixed-check{
+position: fixed;
+background-color: dodgerblue;
+top: 20%;
 }
 
 .fa-check:focus{
@@ -644,8 +651,25 @@ background-color:#50575e;
   border: none;
 }
 
-.btn-round {
-padding: 2px;
-border-radius: 50%
+.btn-round-tick {
+    border-radius: 50%;
+   width: unset;
+       padding: 20px 20px 20px 20px;
+}
+
+.btn-round-cross {
+   border-radius: 50%;
+   width: unset;
+       padding: 20px 23px 20px 23px;
+}
+
+.fa-times{
+border-radius: 50%;
+
+    color: white;
+    margin-left: 15px;
+    box-shadow: 2px 2px 2px -2px lightgrey;
+    
+    cursor: pointer;
 }
 </style>

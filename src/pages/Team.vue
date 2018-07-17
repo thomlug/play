@@ -15,13 +15,13 @@
           <template slot="header">
             <div v-if="canEditProfile()">
               <i class="fa fa-pencil" @click="edit" v-if="!editable"></i> 
-              <button class="fa fa-check" @click="save" v-if="editable"></button>
+              <button class="fa fa-check fixed-check" @click="save" v-if="editable"></button>
             </div>
           </template>
 
             <div class="team-profile-header" v-if="canEditProfile()">
               <i class="fa fa-pencil" @click="edit" v-if="!editable"></i>              
-              <button class="fa fa-check" @click="save" v-if="editable"></button>
+              <button class="fa fa-check fixed-check" @click="save" v-if="editable"></button>
             </div>
             <br>
 
@@ -86,7 +86,7 @@
               </div>
               <modal height=auto width=90%  name="add-manager" :clickToClose="false">
                 <div class= "input-header">
-                  <button class="fa fa-times mt-1" @click="hideAddManagerModal()"></button>
+                  <button class="fa fa-times mt-1 team-times" @click="hideAddManagerModal()"></button>
                   <h6>Add Existing Player as Manager</h6>
                 </div> 
                 <div class="form-group">
@@ -103,7 +103,7 @@
               </modal>
                <modal height=auto width=90% name="remove-manager" :clickToClose="false">
                 <div class= "input-header">
-                  <button class="fa fa-times mt-1" @click="hideRemoveManagerModal()"></button>
+                  <button class="fa fa-times mt-1 team-times" @click="hideRemoveManagerModal()"></button>
                   <h6>Remove as manager</h6>
                   
                 </div> 
@@ -803,14 +803,21 @@ li {
 
 .fa-times {
   color: lightgray;
-  font-size: 20px;
+
   vertical-align: middle;
   border: none;
   background: none;
   cursor: pointer;
-  margin-top: -10px;
-  float: right;
+
+  
 }
+
+.team-times {
+font-size: 20px;
+   margin-top: -10px;
+   float: right;
+ }
+
 
 .fa-times:hover {
   color: indianred;
@@ -841,14 +848,14 @@ li {
 }
 
 .fa-check {
-  position: fixed;
-  background-color: dodgerblue;
+  
+ 
   border-radius: 50%;
   padding: 15px;
   color: white;
   margin-left: 15px;
   box-shadow: 2px 2px 2px -2px lightgrey;
-  top: 20%;
+  
   border: none;
   cursor: pointer;
 }
@@ -862,6 +869,11 @@ li {
   background-color: #50575e;
 }
 
+.fixed-check{
+position: fixed;
+background-color: dodgerblue;
+top: 20%;
+}
 /* .fa{
   border: none;
 } */

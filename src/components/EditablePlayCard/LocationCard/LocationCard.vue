@@ -101,5 +101,6 @@ h6 {
 a {
     color: rgb(175, 175, 175);
     font-size: 1rem;
+    font-weight: 400;
 }
 </style>
