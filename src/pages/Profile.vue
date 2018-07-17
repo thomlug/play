@@ -114,7 +114,7 @@
                 <h4 class="card-title">Availability </h4>
                 <div v-for="team in player.teams" :key="team.teamKey" class="availability-container row">
                   <div class="col-md-6">
-                    {{getTeam(team.teamKey).name}} <small>{{team.availability | camelToSentence}}</small>
+                    <div class="not-bold">{{getTeam(team.teamKey).name}}</div> <small>{{team.availability | camelToSentence}}</small>
                   </div>
                   <div class="col-md-6">
                     <span><small>Updated {{team.availabilityUpdated | lastUpdated}}</small></span>
@@ -584,6 +584,7 @@ a {
   cursor: pointer;
   font-weight: none;
   font-size: 1rem;
+  font-weight: 400;
 }
 
 small {
@@ -671,5 +672,9 @@ border-radius: 50%;
     box-shadow: 2px 2px 2px -2px lightgrey;
     
     cursor: pointer;
+}
+
+.not-bold{
+  font-weight:400;
 }
 </style>
