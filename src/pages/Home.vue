@@ -1665,7 +1665,7 @@ a:hover {
 .scrollable-list {
   list-style-type: none;
   padding: 0.5rem 1rem 1rem 1rem;
-  height: 100%;
+  height: 120%;
   overflow-y: scroll;
 }
 
@@ -1674,7 +1674,7 @@ a:hover {
 }
 
 .player-search-results {
-  height: none;
+  height: 330px;
 }
 
 li {
