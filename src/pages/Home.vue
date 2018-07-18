@@ -1809,7 +1809,7 @@ li {
   margin-bottom: 60px;
   background-color: transparent;
   border: none;
-  padding-right: unset;
+  padding-right: 25px;
 }
 
 .fa-arrow-left:focus {
@@ -1823,7 +1823,7 @@ li {
   margin-bottom: 60px;
   background-color: transparent;
   border: none;
-  padding-left: unset;
+  padding-left: 25px;
 }
 
 .fa-arrow-right:focus {
