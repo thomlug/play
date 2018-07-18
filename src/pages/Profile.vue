@@ -118,7 +118,7 @@
                 <h4 class="card-title">Availability </h4>
                 <div v-for="team in player.teams" :key="team.teamKey" class="availability-container row">
                   <div class="col-md-6">
-                    <h6>{{getTeam(team.teamKey).name}}</h6> <small>{{team.availability | camelToSentence}}</small>
+                    <div class="not-bold">{{getTeam(team.teamKey).name}}</div> <small>{{team.availability | camelToSentence}}</small>>
                   </div>
                   <div class="col-md-6">
                     <span><small>Updated {{team.availabilityUpdated | lastUpdated}}</small></span>
@@ -684,13 +684,6 @@ border-radius: 50%;
     cursor: pointer;
 }
 
-.fa-times:active{
-background-color: #d9534f;
-}
-
-.fa-times:hover{
-border-radius: 50%;
-}
 
 .not-bold{
   font-weight:400;
