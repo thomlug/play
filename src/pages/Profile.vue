@@ -99,13 +99,17 @@
                 <h4 class="card-title">Update your status </h4>
                 <div v-for="team in player.teams" :key="team.teamKey" class="availability-container row">
                   <div>
-                    <div><h6>{{getTeam(team.teamKey).name}}</h6><small>{{team.availability | camelToSentence}}</small></div>
+                    <div>
+                    <h6>{{getTeam(team.teamKey).name}}</h6><small>{{team.availability | camelToSentence}}</small>
                     <div>
                       <span><small>Last Updated {{team.availabilityUpdated | lastUpdated}}</small></span>
                     </div>
                   </div>
+                  </div>
+                  <div>
                   <button v-on:click="setCurrentPlayerAvailability('available', team.teamKey)" type="button" class="btn btn-primary btn-available col-md-4 btn-round-tick fa fa-check"></button>
                   <button v-on:click="setCurrentPlayerAvailability('unavailable', team.teamKey)" type="button" class="btn btn-danger col-md-4 btn-round-cross fa fa-times"></button>
+                  </div>
                 </div>
               </div>
             </div>     
@@ -610,7 +614,7 @@ h6 {
   font-size: 0.8rem;
   float: none;
   margin-left: -0rem;
-  color: lightgray;
+  color: #50575e;
   text-transform: uppercase;
 }
 
