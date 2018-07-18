@@ -98,7 +98,7 @@ h6 {
   font-weight: none;
   text-align: center;
   margin-bottom: 0rem;
-  color: #50575e;
+  color: lightgray;
 }
 
 a {
