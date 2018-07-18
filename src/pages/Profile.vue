@@ -684,6 +684,14 @@ border-radius: 50%;
     cursor: pointer;
 }
 
+.fa-times:hover{
+  border-radius: 50%;
+}
+
+.fa-times:active {
+  background-color: #50575e;
+}
+
 .not-bold{
   font-weight:400;
 }

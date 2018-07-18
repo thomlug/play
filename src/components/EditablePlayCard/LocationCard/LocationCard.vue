@@ -110,6 +110,6 @@ a {
 
 .fa.fa-map-marker::before {
     font-size: 25px;
-    padding: 5px 0 0 0;
+    display:sub;
 }
 </style>
