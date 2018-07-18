@@ -4,9 +4,11 @@
         <div slot="main-content">    
             
             <h6 v-if="!this.editable && (currentFixture.ground != null || currentFixture.ground != '')">
+                <div class="fa fa-map-marker">
                 <a :href="'https://www.google.com/maps/search/?api=1&query=' + this.currentFixture.ground" target="_blank" rel="noopener noreferrer">
                     {{this.currentFixture.ground}}
                 </a>
+                </div>
             </h6>
             <h6 v-else-if="!this.editable">
                 Manager to confirm
@@ -102,5 +104,11 @@ a {
     color: rgb(175, 175, 175);
     font-size: 1rem;
     font-weight: 400;
+    font-family: roboto condensed;
+}
+
+.fa.fa-map-marker::before {
+    font-size: 25px;
+    padding: 5px 0 0 0;
 }
 </style>

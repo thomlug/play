@@ -99,7 +99,7 @@
                 <h4 class="card-title">Update your status </h4>
                 <div v-for="team in player.teams" :key="team.teamKey" class="availability-container row">
                   <div>
-                    <div>{{getTeam(team.teamKey).name}} <small>{{team.availability | camelToSentence}}</small></div>
+                    <div><h6>{{getTeam(team.teamKey).name}}</h6><small>{{team.availability | camelToSentence}}</small></div>
                     <div>
                       <span><small>Last Updated {{team.availabilityUpdated | lastUpdated}}</small></span>
                     </div>
@@ -114,7 +114,7 @@
                 <h4 class="card-title">Availability </h4>
                 <div v-for="team in player.teams" :key="team.teamKey" class="availability-container row">
                   <div class="col-md-6">
-                    <div class="not-bold">{{getTeam(team.teamKey).name}}</div> <small>{{team.availability | camelToSentence}}</small>
+                    <h6>{{getTeam(team.teamKey).name}}</h6> <small>{{team.availability | camelToSentence}}</small>
                   </div>
                   <div class="col-md-6">
                     <span><small>Updated {{team.availabilityUpdated | lastUpdated}}</small></span>
@@ -646,7 +646,13 @@ outline: none;
 
 .fa-check:active{
 background-color:#50575e;
+border-radius: 50%; 
 }
+
+.fa-check:hover{
+border-radius: 50%; 
+}
+
 
 .fa{
   border: none;
@@ -661,7 +667,7 @@ background-color:#50575e;
 .btn-round-cross {
    border-radius: 50%;
    width: unset;
-       padding: 20px 23px 20px 23px;
+       padding: 21px 23px 21px 23px;
 }
 
 .fa-times{
@@ -672,6 +678,14 @@ border-radius: 50%;
     box-shadow: 2px 2px 2px -2px lightgrey;
     
     cursor: pointer;
+}
+
+.fa-times:active{
+background-color: #d9534f;
+}
+
+.fa-times:hover{
+border-radius: 50%;
 }
 
 .not-bold{
