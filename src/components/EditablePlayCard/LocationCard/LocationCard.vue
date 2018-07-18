@@ -110,6 +110,6 @@ a {
 
 .fa.fa-map-marker::before {
     font-size: 25px;
-    display:sub;
+    vertical-align: sub;
 }
 </style>
