@@ -584,7 +584,7 @@ label {
 
 /* header styles */
 a {
-  color: #0275d8;
+  color: #2acad0;
   cursor: pointer;
   font-weight: none;
   font-size: 1rem;

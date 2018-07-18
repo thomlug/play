@@ -1592,7 +1592,7 @@ h3 {
   margin-bottom: 0rem;
   text-align: center;
   font-size: 1.25rem;
-  width: 150px;
+  width: 140px;
   height: 35px;
 }
 
