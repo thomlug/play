@@ -98,7 +98,7 @@
           <div class="card-block">
             <span v-if="canEdit()" class="float-right">
               <button class="fa fa-times" v-if="editPlayerMode" v-on:click="cancelEditPlayersPositions()"></button>
-              <button class="btn btn-edit" v-on:click="toggleEditPlayersPositions()">{{editPlayerButtonText}}</button>
+              <button class="btn btn-edit move-down" v-on:click="toggleEditPlayersPositions()">{{editPlayerButtonText}}</button>
             </span>
             <h4 class="card-title">Starting Lineup</h4>
             <h4><small>Updated {{moment(getNextFixtureDetails().dateFormationLastUpdated).calendar()}}</small></h4>
@@ -1829,5 +1829,9 @@ li {
 .fa-arrow-right:focus {
   outline: none;
   border: none;
+}
+
+.move-down{
+  margin: 15px 15px 0 15px;
 }
 </style>
