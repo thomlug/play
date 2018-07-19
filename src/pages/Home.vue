@@ -766,7 +766,7 @@ export default {
       }
       var teamKey = currentTeam[".key"];
       var component = this;
-      var sortedFixtures = _.orderBy(this.fixtures, "date", "desc");
+      var sortedFixtures = _.orderBy(this.fixtures, "date", "asc");
       var fixture = sortedFixtures.find(f => {
         return f.status === "active" && f.homeTeam === teamKey;
       });
