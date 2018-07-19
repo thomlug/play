@@ -62,16 +62,23 @@
               <input v-if="editable" v-model="player.age"/> -->
 
               <div class="content-block">
-              <div class= "input-header" v-if="editable" >
-                <h6> Preferred Position</h6>
-              </div> 
+                <div class= "input-header" v-if="editable" >
+                  <h6> Preferred Position</h6>
+                </div> 
                 <span class="profile-info" v-if="!editable">{{player.preffered_position}}</span>
                 <input placeholder="Preferred position" v-if="editable" v-model="player.preffered_position"/>
+              </div>
+              <div class="content-block">
+                <div class= "input-header" v-if="editable" >
+                  <h6> Jersey Number</h6>
+                </div> 
+                <span class="profile-info" v-if="!editable">{{player.jerseyNumber}}</span>
+                <input placeholder="Jersey number" v-if="editable" v-model="player.jerseyNumber"/>
               </div>
 </div>
 </div>
 
-<div class="profile-block">
+            <div class="profile-block">
                <div class="content-block">
                 <div class= "input-header" v-if="editable" >
                   <h6> Phone Number</h6>
@@ -86,7 +93,7 @@
               <div class="content-block">
               <span>  
               <div class= "input-header" v-if="editable" >
-              <h6 class= "input-header" > Email</h6>
+              <h6 class= "input-header"> Email</h6>
               </div>
                 <i class="fa fa-envelope" v-if="!editable"></i>
                 <a  v-if="!editable" :href="'mailto:'+player.email">{{player.email}} </a>
@@ -231,7 +238,6 @@ export default {
       delete item[".key"];
       db.ref("player/" + this.$route.params.player_id).set(item);
       this.editable = false;
-      this.$router.push({ name: "home" });
     },
     setCurrentPlayerAvailability(availability, teamKey) {
       this.$firebaseRefs.player
