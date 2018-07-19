@@ -100,10 +100,21 @@
               <button class="fa fa-times" v-if="editPlayerMode" v-on:click="cancelEditPlayersPositions()"></button>
               <button class="btn btn-edit move-down" v-on:click="toggleEditPlayersPositions()">{{editPlayerButtonText}}</button>
             </span>
-            <h4 class="card-title">Starting Lineup</h4>
+            <h4 class="card-title">Starting Lineup <span class="fa fa-info-circle clickable" @click="showLineupInfoModal()"></span></h4>
             <h4><small>Updated {{moment(getNextFixtureDetails().dateFormationLastUpdated).calendar()}}</small></h4>
           </div>
         </div>
+         <modal height=75% width=90% border-radius=20px name="lineup-info">
+                <div class= "input-header">
+                  <button class="fa fa-times mt-1" @click="hideLineupInfoModal()"></button>
+                  <h6>Starting Lineup Help</h6>
+                </div> 
+                <div>
+                 <div>Blue ring means available</div>
+                 <div>Red ring means unavailable</div>
+                 <div>Grey means unknown</div>
+                </div> 
+              </modal>
 <!-- starting line-up -->
         <div class="card play-card lineup">
          <div class="card-block-lineup" :class="'card-block-lineup-' + getCurrentTeam().sport.toLowerCase()">
@@ -874,6 +885,12 @@ export default {
     },
     hideRemovePlayerModal() {
       this.$modal.hide("remove-player");
+    },
+    showLineupInfoModal() {
+      this.$modal.show("lineup-info");
+    },
+    hideLineupInfoModal() {
+      this.$modal.hide("lineup-info");
     },
     removePlayerFromTeam(playerKey) {
       if (!this.canEdit()) {
@@ -1832,5 +1849,9 @@ li {
 
 .move-down{
   margin: 15px 15px 0 15px;
+}
+
+.clickable{
+  cursor: pointer;
 }
 </style>
