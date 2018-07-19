@@ -3,8 +3,8 @@
         <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/001-clock-with-white-face.png?alt=media&token=703b182a-ed12-4443-a194-34315062dc01" class="clock-icon"> -->
         <div slot="main-content">    
             <div v-if="!editable && !this.currentFixture.cancelled">
-              <h2>{{this.fixtureTime}}</h2>    
-              <h6>{{this.fixtureDay}}</h6>  
+              <h2>{{this.formattedTime}}</h2>    
+              <h6>{{this.formattedDay}}</h6>  
             </div>
             <div v-else-if="!editable && this.currentFixture.cancelled">
               <h2>Game Cancelled</h2>
@@ -82,7 +82,7 @@ export default {
     fixtureDay: {
       get() {
         return moment(this.fixture.date).isValid()
-          ? moment(this.fixture.date).format("LL")
+          ? this.fixture.date.split("T")[0] //Split the ISO string to date and time and take the first argument which is the date in yyyy-MM-dd format
           : "Manager to confirm";
       },
 
@@ -101,6 +101,18 @@ export default {
         date = new Date(date).toISOString();
         this.fixture.date = date;
       }
+    },
+
+    formattedTime() {
+      return moment(this.fixture.date).isValid()
+        ? moment(this.fixture.date).format("hh:mm a")
+        : "";
+    },
+
+    formattedDay() {
+      return moment(this.fixture.date).isValid()
+          ? moment(this.fixture.date).format("dddd MMMM DD YYYY")
+          : "Manager to confirm";
     }
   },
 
