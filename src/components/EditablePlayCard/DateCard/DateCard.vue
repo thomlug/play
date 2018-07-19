@@ -3,8 +3,8 @@
         <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/001-clock-with-white-face.png?alt=media&token=703b182a-ed12-4443-a194-34315062dc01" class="clock-icon"> -->
         <div slot="main-content">    
             <div v-if="!editable && !this.currentFixture.cancelled">
-              <h2>{{this.time}}</h2>    
-              <h6>{{this.day}}</h6>  
+              <h2>{{this.fixtureTime}}</h2>    
+              <h6>{{this.fixtureDay}}</h6>  
             </div>
             <div v-else-if="!editable && this.currentFixture.cancelled">
               <h2>Game Cancelled</h2>
@@ -14,12 +14,12 @@
               <input
                 type="time"
                 id="timeStart"
-                class="form-control" v-model="time">
+                class="form-control" v-model="fixtureTime">
               <h6>Day</h6>
               <input
                 type="date"
                 id="dateStart"
-                class="form-control" v-model="day">      
+                class="form-control" v-model="fixtureDay">      
                 <div class="status-container">
                   <available-button :onClick="() => this.setGameActive()" type="button" class="btn btn-primary btn-available active">Game Active</available-button>
                   <danger-button :onClick="() => this.setGameCancelled()" type="button" class="btn btn-danger">Game Cancelled</danger-button>
@@ -32,8 +32,8 @@
 <script>
 import ThreeColumnEditCard from "../ThreeColumnEditableCard.vue";
 import moment from "moment";
-import DangerButton from '../../DangerButton.vue';
-import AvailableButton from '../../AvailableButton.vue';
+import DangerButton from "../../DangerButton.vue";
+import AvailableButton from "../../AvailableButton.vue";
 
 export default {
   props: {
@@ -46,17 +46,61 @@ export default {
 
   data() {
     return {
-      time: "",
-      day: "",
-      currentFixture: {},
       editable: false
     };
   },
-  watch: {
-    fixture: function(value) {
-      this.time = moment(value.date).isValid() ? moment(value.date).format("hh:mm A") : "";
-      this.day = moment(value.date).isValid() ? moment(value.date).format("dddd DD MMM YY") : "Manager to confirm";
-      this.currentFixture = value;
+
+  computed: {
+    currentFixture() {
+      return this.fixture
+    },
+
+    fixtureTime: {
+      get() {        
+        return moment(this.fixture.date).isValid()
+        ? moment(this.fixture.date).format("HH:mm")
+        : "";
+      },
+
+      set(newTime) {
+        var date = new Date(this.fixtureDay);
+        var dateString =
+          "0" +
+          (date.getMonth() + 1) +
+          "/" +
+          date.getDate() +
+          "/" +
+          date.getFullYear() +
+          " " +
+          newTime;
+        date = moment(dateString, "MM/DD/YYYY HH:mm a");
+        date = new Date(date).toISOString();
+        this.fixture.date = date;
+      }
+    },
+
+    fixtureDay: {
+      get() {
+        return moment(this.fixture.date).isValid()
+          ? moment(this.fixture.date).format("LL")
+          : "Manager to confirm";
+      },
+
+      set(newDay) {
+        var date = new Date(newDay);
+        var dateString =
+          "0" +
+          (date.getMonth() + 1) +
+          "/" +
+          date.getDate() +
+          "/" +
+          date.getFullYear() +
+          " " +
+          this.fixtureTime;
+        date = moment(dateString, "MM/DD/YYYY HH:mm a");
+        date = new Date(date).toISOString();
+        this.fixture.date = date;
+      }
     }
   },
 
@@ -67,33 +111,25 @@ export default {
   },
 
   methods: {
-      toggleEdit() {
-          if (this.editable) {
-              this.formatDay();
-              this.$emit('fixture-edited', this.currentFixture);
-          }
-          this.editable = !this.editable;
-      },
-      formatDay() {
-        var date = new Date(this.day);
-        var dateString = "0" + (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + " " + this.time;
-        date = moment(dateString, "MM/DD/YYYY HH:mm a")
-        date = new Date(date).toISOString();
-        this.currentFixture.date = date;
-      },
-      setGameCancelled() {
-        this.currentFixture.cancelled = true;
-        this.toggleEdit();
-      },
-      setGameActive() {
-        this.currentFixture.cancelled = false;
-        this.toggleEdit();
-      },
+    toggleEdit() {
+      if (this.editable) {
+        this.$emit("fixture-edited", this.currentFixture);
+      }
+      this.editable = !this.editable;
+    },
 
-      calculateCancelledClass() {
-        return this.currentFixture.cancelled ? "cancelled" : "active"
-      },
-      
+    setGameCancelled() {
+      this.currentFixture.cancelled = true;
+      this.toggleEdit();
+    },
+    setGameActive() {
+      this.currentFixture.cancelled = false;
+      this.toggleEdit();
+    },
+
+    calculateCancelledClass() {
+      return this.currentFixture.cancelled ? "cancelled" : "active";
+    }
   }
 };
 </script>
@@ -118,7 +154,7 @@ export default {
   align-items: center;
 }
 
-.form-control{
+.form-control {
   color: rgb(175, 175, 175);
   font-size: 0.8rem;
   padding: 0.5rem;
@@ -126,7 +162,7 @@ export default {
   border-radius: 20px;
   border: 1px solid #e3e3e3;
   text-transform: uppercase;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .btn {
@@ -142,10 +178,9 @@ export default {
   padding-top: 10px;
 }
 
-.cancelled h2 {  
-  color:indianred;
+.cancelled h2 {
+  color: indianred;
 }
-
 
 h2 {
   font-weight: 400;

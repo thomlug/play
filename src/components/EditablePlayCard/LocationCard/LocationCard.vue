@@ -3,10 +3,10 @@
         <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="location-icon"> -->
         <div slot="main-content">    
             
-            <h6 v-if="!this.editable && (currentFixture.ground != null || currentFixture.ground != '')">
+            <h6 v-if="!this.editable && (ground != null || ground != '')">
                 <div class="fa fa-map-marker">
-                <a :href="'https://www.google.com/maps/search/?api=1&query=' + this.currentFixture.ground" target="_blank" rel="noopener noreferrer">
-                    {{this.currentFixture.ground}}
+                <a :href="'https://www.google.com/maps/search/?api=1&query=' + this.ground" target="_blank" rel="noopener noreferrer">
+                    {{this.ground}}
                 </a>
                 </div>
             </h6>
@@ -15,7 +15,7 @@
             </h6>
              <div v-else>
                 <h6>Location</h6>
-                <input class="form-control" type="text" v-model="currentFixture.ground"> 
+                <input class="form-control" type="text" v-model="ground"> 
             </div>
             
         </div>    
@@ -35,16 +35,22 @@ export default {
   },   
   data() {
       return {
-          currentFixture: {},
           editable: false
       }
   },
 
-  watch: {
-      fixture: function(value) {
-          this.currentFixture = value;
+  computed: {
+      ground: {
+          //Need this computed property as the fixture prop changes
+          get() {
+              return this.fixture.ground
+          },
+          
+          set(newGround) {
+              this.fixture.ground = newGround;
+          }
       }
-  },      
+  },
 
   components: {
     ThreeColumnEditCard
@@ -53,7 +59,7 @@ export default {
   methods: {
       toggleEdit() {
           if (this.editable) {
-              this.$emit('location-changed', this.currentFixture.ground)
+              this.$emit('location-changed', this.ground)
           }
           this.editable = !this.editable;
       }

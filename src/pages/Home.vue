@@ -387,7 +387,7 @@ export default {
     Promise.all([this.playerPromise, this.teamPromise]).then(
       this.setUpPlayerFormation
     );
-  },
+  },  
 
   data: function() {
     return {
@@ -758,6 +758,7 @@ export default {
       var result = currentTeam || _.head(this.teams);
       return result || { sport: "football" };
     },
+
     getNextFixture() {
       var currentTeam = this.getCurrentTeam();
       if (currentTeam === undefined) {
@@ -843,13 +844,14 @@ export default {
       db.ref().update(updates);
     },
 
-    fixtureEdited(updatedFixture) {
-      var updates = {};
-      //Get the key for the current fixture
-      const fixtureKey = this.getNextFixture()[".key"];
+    fixtureEdited(fixture) {
+      // Clone fixture object
+      var updatedFixture = {
+        ...fixture
+      };
       // Have to delete the key in when updating the fixture as the key cannot be updated
       delete updatedFixture[".key"];
-      this.$firebaseRefs.fixtures.child(fixtureKey).set(updatedFixture);
+      this.$firebaseRefs.fixtures.child(fixture['.key']).set(updatedFixture);
     },
 
     listPlayersNotInTeam(name) {
