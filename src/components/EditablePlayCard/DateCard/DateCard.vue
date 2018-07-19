@@ -55,7 +55,7 @@ export default {
   watch: {
     fixture: function(value) {
       this.time = moment(value.date).isValid() ? moment(value.date).format("hh:mm A") : "";
-      this.day = moment(value.date).isValid() ? moment(value.date).isValid().format("dddd DD MMM YY") : "Manager to confirm";
+      this.day = moment(value.date).isValid() ? moment(value.date).format("dddd DD MMM YY") : "Manager to confirm";
       this.currentFixture = value;
     }
   },

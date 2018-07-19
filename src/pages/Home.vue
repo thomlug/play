@@ -845,14 +845,11 @@ export default {
 
     fixtureEdited(updatedFixture) {
       var updates = {};
-      //Store key in variable
-      const fixtureKey = updatedFixture[".key"];
-
-      var fixtureWithoutKey = updatedFixture;
+      //Get the key for the current fixture
+      const fixtureKey = this.getNextFixture()[".key"];
       // Have to delete the key in when updating the fixture as the key cannot be updated
-      delete fixtureWithoutKey[".key"];
-
-      this.$firebaseRefs.fixtures.child(fixtureKey).set(fixtureWithoutKey);
+      delete updatedFixture[".key"];
+      this.$firebaseRefs.fixtures.child(fixtureKey).set(updatedFixture);
     },
 
     listPlayersNotInTeam(name) {
