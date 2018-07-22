@@ -873,6 +873,7 @@ font-size: 20px;
 position: fixed;
 background-color: dodgerblue;
 top: 20%;
+z-index: 1;
 }
 /* .fa{
   border: none;

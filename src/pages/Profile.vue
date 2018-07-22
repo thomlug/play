@@ -647,6 +647,7 @@ p {
 position: fixed;
 background-color: dodgerblue;
 top: 20%;
+z-index: 1;
 }
 
 .fa-check:focus{
