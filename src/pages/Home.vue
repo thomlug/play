@@ -119,11 +119,11 @@
                  </span><br>
                  <span>
                  <div class="help-unknown">X</div>
-                 Means the player availability is unknown
+                 Means the players' availability is unconfirmed
                  </span><br>
                 <span>
                  <div class="help-not-registered">X</div>
-                 Means the player is invited but not registered yet
+                 Means the player is invited but not registered to app
                  </span><br>
                 </div> 
               </modal>
@@ -1872,7 +1872,7 @@ li {
     color: rgb(175, 175, 175);
     border: 2px solid rgb(175, 175, 175);
     border-radius: 50%;
-    padding: 2.5px 6.5px 2px 6.5px;
+    padding: 3px 6.5px 2px 6.5px;
     font-size: small;
     font-weight: 300;
     margin: -5px -5px -5px 2px;
@@ -1894,6 +1894,8 @@ li {
   color: #a9a9a9;
   display: inline-grid;
   vertical-align: middle;
+  box-shadow: 2px 2px 2px -2px grey;
+  margin-bottom: 5px;
 }
 
 .help-unavailable{
@@ -1907,6 +1909,8 @@ li {
   color: #a9a9a9;
   display: inline-grid;
   vertical-align: middle;
+  box-shadow: 2px 2px 2px -2px grey;
+  margin-bottom: 5px;
 }
 
 .help-unknown{
@@ -1920,6 +1924,8 @@ li {
   color: #a9a9a9;
   display: inline-grid;
   vertical-align: middle;
+  box-shadow: 2px 2px 2px -2px grey;
+  margin-bottom: 5px;
 }
 
 .help-not-registered{
@@ -1933,5 +1939,11 @@ li {
     color: #a9a9a9;
         display: inline-grid;
     vertical-align: middle;
+    box-shadow: 2px 2px 2px -2px grey;
+    margin-bottom: 5px;
+}
+
+.lineup-info{
+  padding:5px;
 }
 </style>
