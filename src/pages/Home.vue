@@ -100,7 +100,7 @@
               <button class="fa fa-times" v-if="editPlayerMode" v-on:click="cancelEditPlayersPositions()"></button>
               <button class="btn btn-edit move-down" v-on:click="toggleEditPlayersPositions()">{{editPlayerButtonText}}</button>
             </span>
-            <h4 class="card-title">Starting Lineup <span class="fa fa-info-circle clickable" @click="showLineupInfoModal()"></span></h4>
+            <h4 class="card-title">Starting Lineup <span class="fa fa-info clickable" @click="showLineupInfoModal()"></span></h4>
             <h4><small>Updated {{moment(getNextFixtureDetails().dateFormationLastUpdated).calendar()}}</small></h4>
           </div>
         </div>
@@ -1853,5 +1853,17 @@ li {
 
 .clickable{
   cursor: pointer;
+}
+
+.fa-info{
+    cursor: pointer;
+    color: rgb(175, 175, 175);
+    border: 2px solid rgb(175, 175, 175);
+    border-radius: 50%;
+    padding: 2.5px 6.5px 2px 6.5px;
+    font-size: small;
+    font-weight: 300;
+    margin: -5px -5px -5px 2px;
+    vertical-align: middle;
 }
 </style>
