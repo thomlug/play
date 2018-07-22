@@ -1019,7 +1019,7 @@ export default {
 
 .game-info h4 {
   font-weight: 550;
-  font-size: 1.25rem;
+  font-size: 0.9rem;
 }
 
 .game-info > h6 {
@@ -1865,5 +1865,9 @@ li {
     font-weight: 300;
     margin: -5px -5px -5px 2px;
     vertical-align: middle;
+}
+
+.list-group-item{
+  border: 1px solid whitesmoke;
 }
 </style>
