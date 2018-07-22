@@ -104,15 +104,27 @@
             <h4><small>Updated {{moment(getNextFixtureDetails().dateFormationLastUpdated).calendar()}}</small></h4>
           </div>
         </div>
-         <modal height=75% width=90% border-radius=20px name="lineup-info">
+         <modal height=50% width=90% border-radius=40px name="lineup-info">
                 <div class= "input-header">
                   <button class="fa fa-times mt-1" @click="hideLineupInfoModal()"></button>
                   <h6>Starting Lineup Help</h6>
                 </div> 
                 <div>
-                 <div>Blue ring means available</div>
-                 <div>Red ring means unavailable</div>
-                 <div>Grey means unknown</div>
+                 <span><div class="help-available">X</div>
+                 Means the player is available
+                 </span><br>
+                 <span>
+                 <div class="help-unavailable">X</div>
+                 Means the player is unavailable
+                 </span><br>
+                 <span>
+                 <div class="help-unknown">X</div>
+                 Means the player availability is unknown
+                 </span><br>
+                <span>
+                 <div class="help-not-registered">X</div>
+                 Means the player is invited but not registered yet
+                 </span><br>
                 </div> 
               </modal>
 <!-- starting line-up -->
@@ -1869,5 +1881,57 @@ li {
 
 .list-group-item{
   border: 1px solid whitesmoke;
+}
+
+.help-available{
+  height: 64px;
+  width: 64px;
+  border:2px solid #2bcad0;
+  border-radius: 50%;
+  font-size: 2.5rem;
+  text-align: center;
+  background-color: #e5e5e5;
+  color: #a9a9a9;
+  display: inline-grid;
+  vertical-align: middle;
+}
+
+.help-unavailable{
+  height: 64px;
+  width: 64px;
+  border:2px solid indianred;
+  border-radius: 50%;
+  font-size: 2.5rem;
+  text-align: center;
+  background-color: #e5e5e5;
+  color: #a9a9a9;
+  display: inline-grid;
+  vertical-align: middle;
+}
+
+.help-unknown{
+  height: 64px;
+  width: 64px;
+  border:2px solid grey;
+  border-radius: 50%;
+  font-size: 2.5rem;
+  text-align: center;
+  background-color: #e5e5e5;
+  color: #a9a9a9;
+  display: inline-grid;
+  vertical-align: middle;
+}
+
+.help-not-registered{
+  height: 64px;
+  width: 64px;
+  border:2px solid whitesmoke;
+  border-radius: 50%;
+  font-size: 2.5rem;
+    text-align: center;
+    background-color: #e5e5e5;
+    color: #a9a9a9;
+        display: inline-grid;
+    vertical-align: middle;
 }
 </style>
