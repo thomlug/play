@@ -30,50 +30,49 @@
           </div>
         </div>
 
-        <div class="card play-card">
-      <div class="card-block">
-            <h4 class="fixture-title">Next Fixture</h4>
-            <div class="centered-col fixture-content">
-              <div class="centered-col">
-                <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().homeTeam)">
-                  <div v-if="!_.isUndefined(this.currentFixtureHomeTeam.photo)">
-                    <img :src="this.currentFixtureHomeTeam.photo" class="play-photo team-photo">
-                  </div>
-                  <div v-else>
-                    <div class="home-circle team-circle play-photo">{{this.currentFixtureHomeTeam.name | firstCharacter}}</div>
-                  </div>
-                </div>
-                <div class="team-name">
-                  <h3 class="text-center">{{this.currentFixtureHomeTeam.name}}</h3>
-                </div>
-              </div>
-              <div class="centered-col vs-text text-center">VS</div>
-              <div v-if="!_.isUndefined(getNextFixture().awayTeam)" class="centered-col">
-                <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().awayTeam)">
-                  <div v-if="!_.isUndefined(this.currentFixtureAwayTeam.photo)">
-                    <img :src="this.currentFixtureAwayTeam.photo" class="play-photo team-photo">
-                  </div>
-                  <div v-else>
-                    <div class="away-circle team-circle play-photo">{{this.currentFixtureAwayTeam.name | firstCharacter}}</div>
-                  </div>
-                </div>
-                <div class="team-name">
-                  <h3 class="text-center">{{this.currentFixtureAwayTeam.name}}</h3>
-                </div>
-                </div>
-                <div v-else class="centered-col">
-                  <div class="away-circle team-circle play-photo">{{getNextFixture().awayTeamName | firstCharacter}}</div>
-                  <div class="team-name">
-                    <h3 class="text-center">{{getNextFixture().awayTeamName}}</h3>
-                  </div>
-            </div>
-            </div>
-            
-          </div>
-        </div>
-
-
-
+           <three-column-edit-card :clickFn="toggleEditAwayTeam" :can-edit="canEdit()" :editable="awayTeamEditable">    
+                <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="location-icon"> -->
+                <div slot="main-content">    
+                  <h4 class="fixture-title">Next Fixture</h4>
+                    
+                    <div class="centered-col fixture-content">
+                      <div class="centered-col">
+                        <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().homeTeam)">
+                          <div v-if="!_.isUndefined(this.currentFixtureHomeTeam.photo)">
+                            <img :src="this.currentFixtureHomeTeam.photo" class="play-photo team-photo">
+                          </div>
+                          <div v-else>
+                            <div class="home-circle team-circle play-photo">{{this.currentFixtureHomeTeam.name | firstCharacter}}</div>
+                          </div>
+                        </div>
+                        <div class="team-name">
+                          <h3 class="text-center">{{this.currentFixtureHomeTeam.name}}</h3>
+                        </div>
+                      </div>
+                      <div class="centered-col vs-text text-center">VS</div>
+                      <div v-if="!_.isUndefined(getNextFixture().awayTeam)" class="centered-col">
+                        <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().awayTeam)">
+                          <div v-if="!_.isUndefined(this.currentFixtureAwayTeam.photo)">
+                            <img :src="this.currentFixtureAwayTeam.photo" class="play-photo team-photo">
+                          </div>
+                          <div v-else>
+                            <div class="away-circle team-circle play-photo">{{this.currentFixtureAwayTeam.name | firstCharacter}}</div>
+                          </div>
+                        </div>
+                        <div class="team-name">
+                          <h3  class="text-center">{{this.currentFixtureAwayTeam.name}}</h3>
+                        </div>
+                        </div>
+                        <div v-else class="centered-col">
+                          <div class="away-circle team-circle play-photo">{{getNextFixture().awayTeamName | firstCharacter}}</div>
+                          <div class="team-name">
+                            <input v-if="awayTeamEditable" class="form-control" type="text" v-model="getNextFixture().awayTeamName"> 
+                            <h3 v-else class="text-center">{{getNextFixture().awayTeamName}}</h3>
+                          </div>
+                      </div>
+                    </div>   
+                  </div>   
+            </three-column-edit-card>
       <!-- Date and time -->
       <date-card :can-edit="canEdit()" :fixture="this.getNextFixture()" @fixture-edited="fixtureEdited"></date-card>
 
@@ -394,6 +393,7 @@ import DateCard from "../components/EditablePlayCard/DateCard/DateCard.vue";
 import LocationCard from "../components/EditablePlayCard/LocationCard/LocationCard.vue";
 import DangerButton from "../components/DangerButton.vue";
 import AvailableButton from "../components/AvailableButton.vue";
+import ThreeColumnEditCard from "../components/EditablePlayCard/ThreeColumnEditableCard.vue";
 
 export default {
   components: {
@@ -404,7 +404,8 @@ export default {
     DateCard,
     LocationCard,
     DangerButton,
-    AvailableButton
+    AvailableButton,
+    ThreeColumnEditCard
   },
   created: function() {
     Promise.all([this.playerPromise, this.teamPromise]).then(
@@ -446,7 +447,8 @@ export default {
       plusCircle: PlusCircle,
       searchPlayerName: "",
       newPlayer: {},
-      newPlayerMessages: { error: undefined, success: undefined }
+      newPlayerMessages: { error: undefined, success: undefined },
+      awayTeamEditable: false
     };
   },
   watch: {
@@ -876,7 +878,16 @@ export default {
       delete updatedFixture[".key"];
       this.$firebaseRefs.fixtures.child(fixture['.key']).set(updatedFixture);
     },
-
+    toggleEditAwayTeam(){
+      if(this.awayTeamEditable){
+        var fixture = this.getNextFixture();
+        this.$firebaseRefs.fixtures
+        .child(fixture['.key'])
+        .child("awayTeamName")
+        .set(fixture.awayTeamName);
+      }
+      this.awayTeamEditable = !this.awayTeamEditable;
+    },
     listPlayersNotInTeam(name) {
       var teamKey = this.getCurrentTeamKey();
       return _.filter(this.players, function(player) {
