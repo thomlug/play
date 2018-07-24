@@ -87,7 +87,7 @@
               </modal>
               </div>
             </div>
-            <play-fixture :can-edit="canEdit()" v-for="fixture in teamFixtures" :fixture="fixture" :key="fixture['.key']" @delete-fixture="deleteFixture"/>
+            <play-fixture :can-edit="canEdit()" v-for="fixture in teamFixtures" :fixture="fixture" :key="fixture['.key']" @delete-fixture="deleteFixture" @undo-complete="undoComplete"/>
         </div>
     </main-layout>
 </template>
@@ -223,7 +223,12 @@ export default {
     deleteFixture(fixture) {
       this.$firebaseRefs.fixtures.child(fixture['.key']).remove();
     },
-
+    undoComplete(fixture) {
+      this.$firebaseRefs.fixtures
+      .child(fixture['.key'])
+      .child("status")
+      .set("active");
+    },
     formatDateTime() {
       var date = new Date(this.day);
       var dateString =

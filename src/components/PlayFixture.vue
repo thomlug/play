@@ -1,7 +1,8 @@
 <template>
 <div class="card play-card">
         <div class="card-block">
-            <button @click="deleteFixture()" class="fa fa-trash float-right"></button>
+            <button @click="deleteFixture()" class="fa fa-trash red-button float-right"></button>
+            <button v-if="fixture.status !== 'active'" @click="uncompleteFixture()" class="fa fa-undo grey-button float-right"></button>
         </div>
         <div class="card-block">          
           <div class="centered-col fixture-content">
@@ -117,6 +118,9 @@ export default {
   methods: {
     deleteFixture() {
       this.$emit('delete-fixture', this.fixture);
+    },
+    uncompleteFixture() {
+      this.$emit('undo-complete', this.fixture);
     }
   }
 };
@@ -249,9 +253,7 @@ export default {
   margin-top: -2rem;
 }
 
-.fa-trash {
-  color: indianred;
-  border: 1.5px indianred solid;
+.fa {
   border-radius: 50%;
   background-color: transparent;
   font-size: 20px;
@@ -260,9 +262,19 @@ export default {
   padding: 10px 12px 9px 12px;
 }
 
-.fa-trash:hover {
+.fa:hover {
   box-shadow: 1px 1px #9e9e9e;
   cursor: pointer;
+}
+
+.red-button{
+  color: indianred;
+  border: 1.5px indianred solid;
+}
+
+.grey-button{
+  color: #E5E5E5;
+  border: 1.5px #E5E5E5 solid;
 }
 
 

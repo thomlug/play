@@ -21,8 +21,9 @@
                 id="dateStart"
                 class="form-control" v-model="fixtureDay">      
                 <div class="status-container">
-                  <available-button :onClick="() => this.setGameActive()" type="button" class="btn btn-primary btn-available active">Game Active</available-button>
-                  <danger-button :onClick="() => this.setGameCancelled()" type="button" class="btn btn-danger">Game Cancelled</danger-button>
+                  <div><available-button :onClick="() => this.setGameActive()" type="button" class="btn btn-primary btn-available active">Game Active</available-button></div>
+                  <div><danger-button :onClick="() => this.setGameCancelled()" type="button" class="btn btn-danger">Game Cancelled</danger-button></div>
+                  <div><available-button :onClick="() => this.setGameComplete()" type="button" class="btn btn-success">Game Complete</available-button></div>
                 </div>          
             </div>
         </div>    
@@ -138,6 +139,10 @@ export default {
       this.currentFixture.cancelled = false;
       this.toggleEdit();
     },
+    setGameComplete() {
+      this.currentFixture.status = "past";
+      this.toggleEdit();
+    },
 
     calculateCancelledClass() {
       return this.currentFixture.cancelled ? "cancelled" : "active";
@@ -188,6 +193,7 @@ export default {
   align-items: stretch;
   justify-content: space-between;
   padding-top: 10px;
+  flex-wrap: wrap;
 }
 
 .cancelled h2 {
