@@ -103,25 +103,25 @@
             <h4><small>Updated {{moment(getNextFixtureDetails().dateFormationLastUpdated).calendar()}}</small></h4>
           </div>
         </div>
-         <modal height=50% width=90% border-radius=40px name="lineup-info">
+         <modal height=50% width=370px border-radius=40px name="lineup-info">
                 <div class= "input-header">
                   <button class="fa fa-times mt-1" @click="hideLineupInfoModal()"></button>
                   <h6>Starting Lineup Help</h6>
                 </div> 
                 <div>
-                 <span><div class="help-available">X</div>
+                 <span><div class="help-available"> </div>
                  Means the player is available
                  </span><br>
                  <span>
-                 <div class="help-unavailable">X</div>
+                 <div class="help-unavailable"> </div>
                  Means the player is unavailable
                  </span><br>
                  <span>
-                 <div class="help-unknown">X</div>
+                 <div class="help-unknown"> </div>
                  Means the players' availability is unconfirmed
                  </span><br>
                 <span>
-                 <div class="help-not-registered">X</div>
+                 <div class="help-not-registered"> </div>
                  Means the player is invited but not registered to app
                  </span><br>
                 </div> 
