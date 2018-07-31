@@ -110,7 +110,14 @@
         return this.player ? this.player['.key'] : '/';
       },
       isThereNewChatMessage(){
-        var latestMessage = this.messages[0];
+        if(this.player == null){
+          return false;
+        }
+        var playerTeams = _.keys(this.player.teams);
+        var teamMessages = _.filter(this.messages, function(message){
+          return _.some(playerTeams, function(team){return team === message.conversation});
+        })
+        var latestMessage = teamMessages[0];
         if(latestMessage != null && this.player != null && this.player.lastChatViewedDate != null){
           return latestMessage.date > this.player.lastChatViewedDate;
         }
