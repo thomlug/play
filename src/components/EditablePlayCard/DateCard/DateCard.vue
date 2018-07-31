@@ -19,7 +19,8 @@
               <input
                 type="date"
                 id="dateStart"
-                class="form-control" v-model="fixtureDay">      
+                class="form-control" v-model="fixtureDay">
+                <h4 class="card-title top-padding">Game status</h4>      
                 <div class="status-container">
                   <div><available-button :onClick="() => this.setGameActive()" type="button" class="btn btn-primary btn-available active">On</available-button></div>
                   <div><danger-button :onClick="() => this.setGameCancelled()" type="button" class="btn btn-danger">Off</danger-button></div>
@@ -205,6 +206,14 @@ h2 {
   color: #50575e;
   margin-bottom: 0rem;
   text-align: center;
+}
+
+h4 {
+  font-size: large;
+  color: #50575e;
+  font-weight: 400;
+  padding: 15px 0 0px 0;
+  color: #a9a9a9;
 }
 
 h6 {
