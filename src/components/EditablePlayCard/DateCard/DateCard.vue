@@ -21,9 +21,9 @@
                 id="dateStart"
                 class="form-control" v-model="fixtureDay">      
                 <div class="status-container">
-                  <div><available-button :onClick="() => this.setGameActive()" type="button" class="btn btn-primary btn-available active">Game Active</available-button></div>
-                  <div><danger-button :onClick="() => this.setGameCancelled()" type="button" class="btn btn-danger">Game Cancelled</danger-button></div>
-                  <div><available-button :onClick="() => this.setGameComplete()" type="button" class="btn btn-success">Game Complete</available-button></div>
+                  <div><available-button :onClick="() => this.setGameActive()" type="button" class="btn btn-primary btn-available active">On</available-button></div>
+                  <div><danger-button :onClick="() => this.setGameCancelled()" type="button" class="btn btn-danger">Off</danger-button></div>
+                  <div><available-button :onClick="() => this.setGameComplete()" type="button" class="btn btn-success">Done</available-button></div>
                 </div>          
             </div>
         </div>    
@@ -213,4 +213,5 @@ h6 {
   text-align: center;
   margin-bottom: 0rem;
 }
+
 </style>
