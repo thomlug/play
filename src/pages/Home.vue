@@ -411,7 +411,7 @@ export default {
     Promise.all([this.playerPromise, this.teamPromise]).then(
       this.setUpPlayerFormation
     );
-  },  
+  },
 
   data: function() {
     return {
@@ -639,20 +639,17 @@ export default {
       }
 
       if (this.editGameInfo) {
-        var updates = {};
-        var currentFixture = this.getNextFixtureDetails();
-        var gameInfo = Object.assign(
-          ...this.gameInfoList.map(d => ({ [d[0]]: d[1] }))
-        );
-        updates[
-          "teamFixture/" + currentFixture[".key"] + "/gameInfo"
-        ] = gameInfo;
-        db
-          .ref()
-          .update(updates)
-          .catch(error => {
-            alert(error.mesasge);
-          });
+        let updates = {};
+        let currentFixtureDetails = this.getNextFixtureDetails();
+        let fixtureDetailsCopy = { ...currentFixtureDetails };
+
+        let gameInfo = _.isEmpty(this.gameInfoList)
+          ? {}
+          : Object.assign(...this.gameInfoList.map(d => ({ [d[0]]: d[1] })));
+        this.$firebaseRefs.teamFixtures
+          .child(currentFixtureDetails[".key"])
+          .child("gameInfo")
+          .set(gameInfo);
       }
       this.editGameInfo = !this.editGameInfo;
     },
@@ -876,15 +873,15 @@ export default {
       };
       // Have to delete the key in when updating the fixture as the key cannot be updated
       delete updatedFixture[".key"];
-      this.$firebaseRefs.fixtures.child(fixture['.key']).set(updatedFixture);
+      this.$firebaseRefs.fixtures.child(fixture[".key"]).set(updatedFixture);
     },
-    toggleEditAwayTeam(){
-      if(this.awayTeamEditable){
+    toggleEditAwayTeam() {
+      if (this.awayTeamEditable) {
         var fixture = this.getNextFixture();
         this.$firebaseRefs.fixtures
-        .child(fixture['.key'])
-        .child("awayTeamName")
-        .set(fixture.awayTeamName);
+          .child(fixture[".key"])
+          .child("awayTeamName")
+          .set(fixture.awayTeamName);
       }
       this.awayTeamEditable = !this.awayTeamEditable;
     },
@@ -1870,34 +1867,34 @@ li {
   border: none;
 }
 
-.move-down{
+.move-down {
   margin: 15px 15px 0 15px;
 }
 
-.clickable{
+.clickable {
   cursor: pointer;
 }
 
-.fa-info{
-    cursor: pointer;
-    color: rgb(175, 175, 175);
-    border: 2px solid rgb(175, 175, 175);
-    border-radius: 50%;
-    padding: 3px 6.5px 2px 6.5px;
-    font-size: small;
-    font-weight: 300;
-    margin: -5px -5px -5px 2px;
-    vertical-align: middle;
+.fa-info {
+  cursor: pointer;
+  color: rgb(175, 175, 175);
+  border: 2px solid rgb(175, 175, 175);
+  border-radius: 50%;
+  padding: 3px 6.5px 2px 6.5px;
+  font-size: small;
+  font-weight: 300;
+  margin: -5px -5px -5px 2px;
+  vertical-align: middle;
 }
 
-.list-group-item{
+.list-group-item {
   border: 1px solid whitesmoke;
 }
 
-.help-available{
+.help-available {
   height: 64px;
   width: 64px;
-  border:2px solid #2bcad0;
+  border: 2px solid #2bcad0;
   border-radius: 50%;
   font-size: 2.5rem;
   text-align: center;
@@ -1909,10 +1906,10 @@ li {
   margin-bottom: 5px;
 }
 
-.help-unavailable{
+.help-unavailable {
   height: 64px;
   width: 64px;
-  border:2px solid indianred;
+  border: 2px solid indianred;
   border-radius: 50%;
   font-size: 2.5rem;
   text-align: center;
@@ -1924,10 +1921,10 @@ li {
   margin-bottom: 5px;
 }
 
-.help-unknown{
+.help-unknown {
   height: 64px;
   width: 64px;
-  border:2px solid grey;
+  border: 2px solid grey;
   border-radius: 50%;
   font-size: 2.5rem;
   text-align: center;
@@ -1939,22 +1936,22 @@ li {
   margin-bottom: 5px;
 }
 
-.help-not-registered{
+.help-not-registered {
   height: 64px;
   width: 64px;
-  border:2px solid whitesmoke;
+  border: 2px solid whitesmoke;
   border-radius: 50%;
   font-size: 2.5rem;
-    text-align: center;
-    background-color: #e5e5e5;
-    color: #a9a9a9;
-        display: inline-grid;
-    vertical-align: middle;
-    box-shadow: 2px 2px 2px -2px grey;
-    margin-bottom: 5px;
+  text-align: center;
+  background-color: #e5e5e5;
+  color: #a9a9a9;
+  display: inline-grid;
+  vertical-align: middle;
+  box-shadow: 2px 2px 2px -2px grey;
+  margin-bottom: 5px;
 }
 
-.lineup-info{
-  padding:5px;
+.lineup-info {
+  padding: 5px;
 }
 </style>
