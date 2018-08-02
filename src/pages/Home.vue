@@ -409,7 +409,11 @@ export default {
   },
   created: function() {
     Promise.all([this.playerPromise, this.teamPromise]).then(
-      this.setUpPlayerFormation
+      () => {
+        this.setUpPlayerFormation();
+        var gameInfo = this.getNextGameInfo();
+        this.gameInfoList = _.toPairs(gameInfo);
+      }
     );
   },
 
@@ -526,13 +530,6 @@ export default {
     fixtures: {
       source: db.ref("match")
     },
-    teamFixtures: {
-      source: db.ref("teamFixture"),
-      readyCallback: function() {
-        var gameInfo = this.getNextGameInfo();
-        this.gameInfoList = _.toPairs(gameInfo);
-      }
-    },
     admins: {
       source: db.ref("admin")
     }
@@ -640,14 +637,13 @@ export default {
 
       if (this.editGameInfo) {
         let updates = {};
-        let currentFixtureDetails = this.getNextFixtureDetails();
-        let fixtureDetailsCopy = { ...currentFixtureDetails };
+        let currentTeamKey = this.getCurrentTeamKey();
 
         let gameInfo = _.isEmpty(this.gameInfoList)
           ? {}
           : Object.assign(...this.gameInfoList.map(d => ({ [d[0]]: d[1] })));
-        this.$firebaseRefs.teamFixtures
-          .child(currentFixtureDetails[".key"])
+        this.$firebaseRefs.teams
+          .child(currentTeamKey)
           .child("gameInfo")
           .set(gameInfo);
       }
@@ -749,7 +745,7 @@ export default {
       return currentPlayer.teams[teamKey].availability;
     },
     getNextGameInfo() {
-      return this.getNextFixtureDetails().gameInfo || {};
+      return this.getCurrentTeam().gameInfo || {};
     },
     getNextFixtureDetails() {
       var teamKey = this.getCurrentTeamKey();
