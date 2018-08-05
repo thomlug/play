@@ -5,9 +5,12 @@
             
             <h6 v-if="!this.editable && (ground != null && ground != '')">
                 <div class="fa fa-map-marker">
-                <a :href="'https://www.google.com/maps/search/?api=1&query=' + this.ground" target="_blank" rel="noopener noreferrer">
-                    {{this.ground}}
-                </a>
+                    <a :href="'https://www.google.com/maps/search/?api=1&query=' + this.ground" target="_blank" rel="noopener noreferrer">
+                        {{this.ground}}
+                    </a>
+                </div>
+                <div>
+                    <small>{{groundNotes}}</small>
                 </div>
             </h6>
             <h6 v-else-if="!this.editable">
@@ -16,6 +19,8 @@
              <div v-else>
                 <h6>Location</h6>
                 <input class="form-control" type="text" v-model="ground"> 
+                <h6>Notes</h6>
+                <input class="form-control" type="text" v-model="groundNotes"> 
             </div>
             
         </div>    
@@ -40,6 +45,15 @@ export default {
   },
 
   computed: {
+      groundNotes:{
+          get() {
+              return this.fixture.groundNotes
+          },
+          
+          set(newGroundNotes) {
+              this.fixture.groundNotes = newGroundNotes;
+          }
+      },
       ground: {
           //Need this computed property as the fixture prop changes
           get() {
@@ -59,7 +73,7 @@ export default {
   methods: {
       toggleEdit() {
           if (this.editable) {
-              this.$emit('location-changed', this.ground)
+              this.$emit('location-changed', this.fixture)
           }
           this.editable = !this.editable;
       }

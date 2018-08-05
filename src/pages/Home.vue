@@ -855,10 +855,11 @@ export default {
         params: { team_id: teamKey }
       });
     },
-    fixtureLocationChanged(ground) {
+    fixtureLocationChanged(fixture) {
       var updates = {};
       var currentFixture = this.getNextFixture();
-      updates["match/" + currentFixture[".key"] + "/ground"] = ground;
+      updates["match/" + currentFixture[".key"] + "/ground"] = fixture.ground;
+      updates["match/" + currentFixture[".key"] + "/groundNotes"] = fixture.groundNotes;
       db.ref().update(updates);
     },
 
