@@ -24,8 +24,8 @@
         <div class="card play-card">
           <div class="card-block">
             <!-- <h4 class="card-title">Change your current team <small>({{this.getCurrentTeam().name}})</small></h4> -->
-            <div class="status-container">
-              <button v-for="team in listTeamsCurrentUserBelongsTo()" :key="team['.key']" v-on:click="changeToTeam(team['.key'])" type="button" class="btn-teams">{{team.name}}</button>
+            <div class="status-container team-buttons-container">
+              <button v-for="team in listTeamsCurrentUserBelongsTo()" :key="team['.key']" v-on:click="changeToTeam(team['.key'])" type="button" class="btn-teams" :class="{'btn-teams-active': getCurrentTeamKey() === team['.key'] }">{{team.name}}</button>
             </div>
           </div>
         </div>
@@ -1201,6 +1201,10 @@ export default {
   padding-top: 10px;
 }
 
+.team-buttons-container{
+  overflow-x: auto;
+  justify-content: normal;
+}
 /* .player-container a {
   color: rgb(90, 28, 77);
 } */
@@ -1808,14 +1812,18 @@ li {
 
 .btn-teams {
   background-color: #50575e;
-  border: 0px;
+  border: 3px solid transparent;
   color: gainsboro;
   /* padding: 2px 30px 2px 30px; */
-  margin: -15px 5px -5px 5px;
+  margin: 0px 5px 10px 5px;
   border-radius: 5px;
   cursor: pointer;
   box-shadow: 2px 2px 2px -2px grey;
   min-width: 100px;
+}
+
+.btn-teams-active{
+  border: 3px solid #2acad0;
 }
 
 .paddles {
