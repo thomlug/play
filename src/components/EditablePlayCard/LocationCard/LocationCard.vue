@@ -3,7 +3,7 @@
         <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="location-icon"> -->
         <div slot="main-content">    
             
-            <h6 v-if="!this.editable && (ground != null || ground != '')">
+            <h6 v-if="!this.editable && (ground != null && ground != '')">
                 <div class="fa fa-map-marker">
                 <a :href="'https://www.google.com/maps/search/?api=1&query=' + this.ground" target="_blank" rel="noopener noreferrer">
                     {{this.ground}}
@@ -11,7 +11,7 @@
                 </div>
             </h6>
             <h6 v-else-if="!this.editable">
-                Manager to confirm
+                No location added yet, contact team manager
             </h6>
              <div v-else>
                 <h6>Location</h6>
