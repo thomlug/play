@@ -1,37 +1,39 @@
 <template>
-    <div class="row">
+    <div class="row" v-if="!loading">
         <div class="col-md-4 col-sm-4 col-xs-12"></div>
         <div class="col-md-4 col-sm-4 col-xs-12">
             <play-form>
                 <h2 slot="page-header">Welcome to Play {{ this.user ? user.uid : ''}}</h2>
-                <div class="col">
-                    <form class="login-form" @submit.prevent="signIn">
-                        <h4>Sign in</h4>
-                        <div id="firebaseui-auth-container"></div> 
-                        <hr class="hr-text" data-content="OR">
-                        <input placeholder="Email" label="Email" id="email" type="email" class="email form-element text-center" v-model="email" required>
-                        <input placeholder="Password" label="Password" id="password" type="password" class="password form-element text-center" v-model="password" required>
-                        <div class="text-danger" v-if="errorMessage != null">{{errorMessage}}</div>
-                        <button type="submit" class="login-button btn btn-submit form-element">Sign in</button>            
-                    </form>
-                </div>
+                <div id="firebaseui-auth-container">                    
+                    <h4>Sign in</h4>                    
+                </div>                        
+                <div class="divider text-center">OR</div>
+                <form @submit.prevent="signIn()" class="signin-container">
+                  <input placeholder="Email" label="Email" id="email" type="email" class="email form-element text-center" v-model="email" required>
+                  <input placeholder="Password" label="Password" id="password" type="password" class="password form-element text-center" v-model="password" required>
+                  <div class="text-danger" v-if="errorMessage != null">{{errorMessage}}</div>
+                  <button type="submit" class="login-button btn btn-submit form-element">Sign in</button> 
+                </form> 
                 <p class="no-account" slot="additional-info">Don't have an account? <router-link :to="{name: 'signup', query: {redirect: $route.query.redirect}}">Sign up</router-link> </p>
                 <p class="no-account" slot="additional-info"><router-link :to="{name: 'resetpassword'}">Forgot password? </router-link> </p>
-            </play-form>
+            </play-form>            
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12"></div>
     </div>
+    <spinner v-else></spinner>
 </template>
 
 <script>
 import PlayForm from "../components/PlayForm.vue";
+import Spinner from '../components/Spinner.vue';
 export default {
   data: function() {
     return {
       email: "",
       password: "",
       errorMessage: null,
-      redirect: this.$route.query.redirect
+      redirect: this.$route.query.redirect,
+      loading: false
     };
   },
 
@@ -42,7 +44,8 @@ export default {
   },
 
   components: {
-    PlayForm
+    PlayForm,
+    Spinner
   },
 
   mounted() {
@@ -50,7 +53,7 @@ export default {
     var uiConfig = {
       callbacks: {
         signInSuccess: function(currentUser, credential, redirectUrl) {
-          this.$store.dispatch('autoSignIn', currentUser);
+          this.$store.dispatch("autoSignIn", currentUser);
           return true;
         }
       },
@@ -59,7 +62,7 @@ export default {
       signInSuccessUrl: this.$route.query.redirect || "#/home",
       signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID
         //firebase.auth.FacebookAuthProvider.PROVIDER_ID
       ],
       // Terms of service url.
@@ -67,29 +70,64 @@ export default {
     };
     // Initialize the FirebaseUI Widget using Firebase.
 
-    if (this.$root.ui!= "") {
-        this.$root.ui.reset()
-    } else {    
-        this.$root.ui = new firebaseui.auth.AuthUI(firebase.auth());
+    if (this.$root.ui != "") {
+      this.$root.ui.reset();
+    } else {
+      this.$root.ui = new firebaseui.auth.AuthUI(firebase.auth());
     }
     this.$root.ui.start("#firebaseui-auth-container", uiConfig);
   },
 
   methods: {
     signIn() {
-      this.$store.dispatch('userSignIn', {email: this.email, password: this.password})
-      .then(function(t){
-        //success
-      }).catch((error) => {
-        this.errorMessage = error.message;
-      });
-      this.$router.replace('/home');
+      this.loading = true;
+      this.$store
+        .dispatch("userSignIn", { email: this.email, password: this.password })
+        .then(function(t) {
+          //success
+          this.loading = false;
+        })
+        .catch(error => {
+          this.errorMessage = error.message;
+        });
+      this.$router.replace("/home");
     }
   }
 };
 </script>
 
 <style scoped>
+.mdl-shadow--2dp {
+  box-shadow: none;
+}
+
+.firebaseui-info-bar {
+  margin-top: 20px;
+}
+
+.firebaseui-id-page-callback { background: none !important; }
+
+#firebaseui-auth-container {
+  text-align: center;
+}
+
+div.mdl-progress::after {
+  display: block;
+  color: black;
+  content: "Authenticating";
+  margin: 20px auto;
+  text-align: center;
+}
+
+.mdl-progress {
+  height: 5px;
+}
+
+.divider {
+  width: 100%;
+  margin: 5% 0;
+}
+
 .login-form {
   display: flex;
   align-items: center;
@@ -99,8 +137,18 @@ export default {
 
 .form-element {
   margin: 0.5rem 0;
-  width: 12.5rem;
+  height: auto;
+  width: 100%;
+  max-width: 220px;
+  min-height: 40px;
   font-size: 0.85rem;
+}
+
+.signin-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-button {

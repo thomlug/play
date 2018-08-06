@@ -31,6 +31,7 @@ export default {
         this.$router.replace('/login');
       }else {
         //proceed
+        this.$router.replace(this.$route.path);
       }
     });
   }
