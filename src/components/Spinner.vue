@@ -4,7 +4,9 @@
           <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="spinner">
         </div> -->
         <div class="double-bounce2">
-           <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7">
+          <div class="logo-container">
+            <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7">
+          </div>
         </div>
 
         <h4 class="loading-text text-center">If page does not load, please refresh</h4>
@@ -34,12 +36,18 @@ background-image: linear-gradient(-45deg,#50575e, rgba(19, 26, 29, 0.952));
   right: 0;
   bottom: 0;
   margin-right: 100px;
+  min-height: 100vh;
   /* margin-top: 50px; */
   
   /* margin: auto 50% auto 50%; */
   /* align-items: center;
 align-content: center; */
 
+}
+
+.logo-container{
+  margin: 0 auto; 
+  width: 25%;
 }
 
 /* this is the bouncing item */
@@ -81,11 +89,11 @@ align-content: center; */
 @keyframes sk-bounce {
   0%,
   100% {
-    transform: scale(0);
+    transform: scale(0.15);
     -webkit-transform: scale(0.15);
   }
   50% {
-    transform: scale(1);
+    transform: scale(0.25);
     -webkit-transform: scale(0.25);
   }
 }
