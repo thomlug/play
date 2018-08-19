@@ -101,7 +101,7 @@
               </span>
               </div>
 </div>
-            <div v-if="canEditProfile()">
+            <div v-if="canEditProfile() && !editable">
               <div class="profile-block">   
                 <h4 class="card-title">Update your status </h4>
                 <div v-for="team in player.teams" :key="team.teamKey" class="availability-container row">
@@ -120,7 +120,7 @@
                 </div>
               </div>
             </div>     
-            <div v-else>
+            <div v-else-if="!editable">
               <div class="profile-block">   
                 <h4 class="card-title">Availability </h4>
                 <div v-for="team in player.teams" :key="team.teamKey" class="availability-container row">
