@@ -1959,4 +1959,19 @@ li {
 .lineup-info {
   padding: 5px;
 }
+
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
+  
+  .player-available {
+    border: 2px solid #2bcad0;
+    padding: 0px;
+  }
+
+
+  .player-unavailable {
+    border: 2px solid red;
+    padding: 0px;
+  }
+}
+
 </style>
