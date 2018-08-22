@@ -440,7 +440,6 @@ div > .profile-photo {
   .availability-container {
     margin-left: 30%;
   }
-
 }
 
 .content-block {
@@ -710,5 +709,15 @@ border-radius: 50%;
 
 .not-bold{
   font-weight:400;
+}
+
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+.player-available {
+  padding: 0px;
+}
+
+.player-unavailable {
+  padding: 0px;
+}
 }
 </style>

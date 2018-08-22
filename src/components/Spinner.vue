@@ -78,8 +78,8 @@ align-content: center; */
 
 @media (max-width: 768px) {
 .double-bounce2{
-margin-left: 10%;
-margin-right: 25%
+margin-left: 12.5%;
+margin-right: 33%
 }
 }
 
