@@ -1425,12 +1425,15 @@ export default {
 .btn {
   margin: 2px;
   padding: 0.5rem 1.5rem;
-  box-shadow: 0 0 0 0 white;
 }
 
-.button {
-  box-shadow: 0 0 0 0 white;
+/* .btn:focus {
+ outline: 0px transparent;
 }
+
+.button:focus {
+outline: 0px transparent;
+} */
 
 .btn-cancel {
   background-color: white;
@@ -1829,6 +1832,10 @@ li {
 
 .btn-teams-active{
   border: 3px solid #2acad0;
+}
+
+.btn-teams:focus{
+  outline: 0px transparent;
 }
 
 .paddles {
