@@ -108,7 +108,7 @@
                   <button class="fa fa-times mt-1" @click="hideLineupInfoModal()"></button>
                   <h6>Starting Lineup Help</h6>
                 </div> 
-                <div>
+                <div class="leftpad">
                  <span><div class="help-available"> </div>
                  Means the player is available
                  </span><br>
@@ -1425,6 +1425,11 @@ export default {
 .btn {
   margin: 2px;
   padding: 0.5rem 1.5rem;
+  box-shadow: 0 0 0 0 white;
+}
+
+.button {
+  box-shadow: 0 0 0 0 white;
 }
 
 .btn-cancel {
@@ -1960,6 +1965,9 @@ li {
   padding: 5px;
 }
 
+.leftpad{
+  padding: 0 0 0 20px;
+}
 @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
   
   .player-available {

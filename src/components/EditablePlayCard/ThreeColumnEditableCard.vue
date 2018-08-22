@@ -89,6 +89,7 @@ export default {
     background: white;
     border: 0px;
     padding: 0px;
+    outline: 0px;
 }
 
 .check-button{
@@ -104,6 +105,7 @@ export default {
     padding: 0px;
     background: white;
     border: 0px;
+    outline: 1px solid transparent;
 }
 
 .fa-check{
@@ -130,8 +132,15 @@ export default {
     box-shadow: none;
     padding: 0px;
     border: none;
-    outline: none;
+    outline: 3px solid pink ;
     box-shadow: none;
+}
+
+.btn:focus{
+    box-shadow: 0 0 0 0 white;
+}
+.button:focus{
+    outline: 0px;
 }
 </style>
 

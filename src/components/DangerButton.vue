@@ -21,16 +21,17 @@ export default {
   border: 2px solid indianred;
   cursor: pointer;
   border-radius: 20px;
-  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+  -webkit-box-shadow: 2px 2px 2px -2px #50575e;
 }
 
 .btn-danger:hover {
   background-color: indianred;
-  border: 2px solid #cf3e39;
+  /* border: 2px solid #cf3e39; */
+  box-shadow: 4px 4px 4px -4px grey;
 }
 
 .btn-danger:focus {
-  background-color: indianred;
+  background-color: #cf3e39;
   border: 2px solid #cf3e39;
 }
 

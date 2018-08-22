@@ -21,18 +21,19 @@ export default {
   border: 2px solid #2acad0;
   color: white;
   border-radius: 20px;
-  -webkit-box-shadow: 3px 3px 3px -3px #50575e;
+  -webkit-box-shadow: 2px 2px 2px -2px #50575e;
   padding-left: 15px;
   padding-right: 15px;
 }
 
 .btn-primary:hover {
   background-color: #2acad0;
-  border: 2px solid turquoise;
+  /* border: 2px solid turquoise; */
+  box-shadow: 4px 4px 4px -4px grey;
 }
 
 .btn-primary:focus {
-  background-color: #2acad0;
+  background-color: turquoise;
   border: 2px solid turquoise;
 }
 
