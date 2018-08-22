@@ -438,7 +438,8 @@ div > .profile-photo {
 
 @media (min-width: 768px) {
   .availability-container {
-    margin-left: 30%;
+    margin-left: 25%;
+    margin-right: 25%;
   }
 }
 
