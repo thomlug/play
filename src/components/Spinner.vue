@@ -76,6 +76,13 @@ align-content: center; */
   animation-delay: -10s;
 }
 
+@media (max-width: 768px) {
+.double-bounce2{
+margin-left: 10%;
+margin-right: 25%
+}
+}
+
 @-webkit-keyframes sk-bounce {
   0%,
   100% {

@@ -435,6 +435,14 @@ div > .profile-photo {
   display: inherit;
 }
 
+
+@media (min-width: 768px) {
+  .availability-container {
+    margin-left: 30%;
+  }
+
+}
+
 .content-block {
   margin: 0.4rem 0;
   text-align: -webkit-center;

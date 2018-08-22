@@ -105,7 +105,7 @@
         </div>
          <modal height=50% width=370px border-radius=40px name="lineup-info">
                 <div class= "input-header">
-                  <button class="fa fa-times mt-1" @click="hideLineupInfoModal()"></button>
+                  <button class="fa fa-times" @click="hideLineupInfoModal()"></button>
                   <h6>Starting Lineup Help</h6>
                 </div> 
                 <div class="leftpad">
@@ -1975,6 +1975,12 @@ li {
 .leftpad{
   padding: 0 0 0 20px;
 }
+
+/* .mt-1{
+    background: #2acad0;
+    border: 0;
+    box-shadow: 2px 2px 2px -2px grey;
+} */
 @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
   
   .player-available {
