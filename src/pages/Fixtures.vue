@@ -124,7 +124,7 @@ export default {
       var teamFixtures = _.filter(this.fixtures, fixture => {
         return fixture.homeTeam === this.getCurrentPlayer().teamKey;
       });
-      return teamFixtures;
+      return _.orderBy(teamFixtures, "date", "asc");
     }
   },
 
