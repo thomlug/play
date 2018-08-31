@@ -358,9 +358,8 @@
                     </div>
                   </div>
                   <form class="game-info-form" v-else>
-                    <div class="form-group">
-                      <button type="button" class="close float-right" aria-label="Close" @click="removeGameInfo(index)">
-                        <span aria-hidden="true">&times;</span>
+                    <div class="form-group game-info-group">
+                      <button type="button" class="fa fa-trash float-right" @click="removeGameInfo(index)">
                       </button>
                       <h6 for="gameInfoTitle">Title</h6>
                       <input style="margin-bottom: 5px;" v-model="gameInfo[0]" class="form-control">
@@ -1726,6 +1725,14 @@ li {
   padding-bottom: 2px;
   /* cursor: pointer; */
   font-size: 14px;
+}
+
+.game-info-group > .fa-trash {
+  border: none;
+}
+
+.game-info-group > .fa-trash:hover {
+  border: none;
 }
 
 .fa-trash {
