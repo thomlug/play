@@ -339,10 +339,14 @@
 <!-- game info -->
         <div class="card play-card">
           <div class="card-block">
-            <span v-if="canEdit()" class="float-right">
-              <button class="float-right btn btn-edit" @click="toggleEditGameInfo()">{{editGameInfoButtonText}}</button>
-              <Avatar class="plus-circle" :image="this.plusCircle" @click.native="newGameInfo()" alt="plus" v-if="editGameInfo" />
-            </span>
+            <div v-if="canEdit()" class="float-right">            
+              <button v-if="!editGameInfo" class="float-right btn edit-game-info-button" @click="toggleEditGameInfo()">
+                <i class="fa fa-pencil"></i>
+              </button>  
+              <button v-if="editGameInfo" class="fa fa-plus" @click="newGameInfo()" alt="add" ></button>
+              <button v-if="editGameInfo" class="fa fa-check" @click="toggleEditGameInfo()"></button>
+              <button class="fa fa-times" v-if="editGameInfo" @click="cancelEditGameInfo()"></button>
+            </div>
             <div class="card-title">
               <h4>Game Info</h4>
             </div>
@@ -407,13 +411,11 @@ export default {
     ThreeColumnEditCard
   },
   created: function() {
-    Promise.all([this.playerPromise, this.teamPromise]).then(
-      () => {
-        this.setUpPlayerFormation();
-        var gameInfo = this.getNextGameInfo();
-        this.gameInfoList = _.toPairs(gameInfo);
-      }
-    );
+    Promise.all([this.playerPromise, this.teamPromise]).then(() => {
+      this.setUpPlayerFormation();
+      var gameInfo = this.getNextGameInfo();
+      this.gameInfoList = _.toPairs(gameInfo);
+    });
   },
 
   data: function() {
@@ -649,6 +651,10 @@ export default {
       this.editGameInfo = !this.editGameInfo;
     },
 
+    cancelEditGameInfo() {
+      this.editGameInfo = false;
+    },
+
     newGameInfo() {
       this.gameInfoList.unshift(["", ""]);
     },
@@ -858,7 +864,8 @@ export default {
       var updates = {};
       var currentFixture = this.getNextFixture();
       updates["match/" + currentFixture[".key"] + "/ground"] = fixture.ground;
-      updates["match/" + currentFixture[".key"] + "/groundNotes"] = fixture.groundNotes;
+      updates["match/" + currentFixture[".key"] + "/groundNotes"] =
+        fixture.groundNotes;
       db.ref().update(updates);
     },
 
@@ -1200,7 +1207,7 @@ export default {
   padding-top: 10px;
 }
 
-.team-buttons-container{
+.team-buttons-container {
   overflow-x: auto;
   justify-content: normal;
 }
@@ -1491,6 +1498,27 @@ outline: 0px transparent;
   box-shadow: none;
 }
 
+.edit-game-info-button {
+  font-size: 1.3rem;
+  color: #e5e5e5;
+  background: white;
+  padding: 2px;
+}
+
+.edit-game-info-button:focus {
+  background: white;
+  border: 0px;
+  padding: 0px;
+  outline: 0px;
+}
+
+.edit-game-info-button:hover {
+  cursor: pointer;
+  color: darkgrey;
+  padding: 2px;
+  background: white;
+}
+
 /* clock/time icon column styling */
 .column-time {
   float: left;
@@ -1607,85 +1635,6 @@ outline: 0px transparent;
   height: -webkit-fill-available;
 }
 
-dt {
-  font-weight: 550;
-  font-size: 1rem;
-  color: #50575e;
-}
-
-dd {
-  color: rgb(175, 175, 175);
-  font-weight: 400;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-}
-
-h1 {
-  text-transform: uppercase;
-}
-
-h2 {
-  text-align: center;
-  color: #50575e;
-  font-weight: 400;
-}
-
-h3 {
-  font-weight: 550;
-  color: #50575e;
-  margin-bottom: 0rem;
-  text-align: center;
-  font-size: 1.25rem;
-  width: 140px;
-  height: 35px;
-}
-
-h4 {
-  font-size: large;
-  color: #50575e;
-  font-weight: 400;
-}
-
-h5 {
-  font-weight: 550;
-  color: #50575e;
-  margin-bottom: 0rem;
-  text-align: center;
-}
-
-h6 {
-  color: rgb(175, 175, 175);
-  font-weight: none;
-  text-align: center;
-  margin-bottom: 0rem;
-  padding: 8px;
-}
-
-h7 {
-  color: gray;
-  font-weight: 400;
-}
-
-small {
-  color: rgb(175, 175, 175);
-  font-weight: none;
-  font-size: 65%;
-}
-
-a {
-  color: #eeeeee;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-}
-
-a:hover {
-  text-decoration: none;
-  color: inherit;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-}
-
 .form-group {
   margin: 0 6px 0 6px;
   width: 97%;
@@ -1735,6 +1684,25 @@ li {
   border: none;
 }
 
+.fa-check {
+  color: #e5e5e5;
+  border: 1.5px #e5e5e5 solid;
+  border-radius: 50%;
+  position: inherit;
+  background-color: transparent;
+  font-size: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 10px 12px 9px 12px;
+  margin-left: 5px;
+}
+
+.fa-check:focus {
+  background: white;
+  border: 0px;
+  outline: 1px solid transparent;
+}
+
 .fa-trash {
   color: #e5e5e5;
   border: 1.5px #e5e5e5 solid;
@@ -1744,6 +1712,11 @@ li {
   vertical-align: middle;
   cursor: pointer;
   padding: 10px 12px 9px 12px;
+}
+
+.fa-check:hover {
+  color: darkgray;
+  border: 1.5px darkgray solid;
 }
 
 .fa-trash:hover {
@@ -1837,11 +1810,11 @@ li {
   min-width: 100px;
 }
 
-.btn-teams-active{
+.btn-teams-active {
   border: 3px solid #2acad0;
 }
 
-.btn-teams:focus{
+.btn-teams:focus {
   outline: 0px transparent;
 }
 
@@ -1979,8 +1952,82 @@ li {
   padding: 5px;
 }
 
-.leftpad{
+.leftpad {
   padding: 0 0 0 20px;
+}
+
+dt {
+  font-weight: 550;
+  font-size: 1rem;
+  color: #50575e;
+}
+
+dd {
+  color: rgb(175, 175, 175);
+  font-weight: 400;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+h2 {
+  text-align: center;
+  color: #50575e;
+  font-weight: 400;
+}
+
+h3 {
+  font-weight: 550;
+  color: #50575e;
+  margin-bottom: 0rem;
+  text-align: center;
+  font-size: 1.25rem;
+  width: 140px;
+  height: 35px;
+}
+
+h4 {
+  font-size: large;
+  color: #50575e;
+  font-weight: 400;
+}
+
+h5 {
+  font-weight: 550;
+  color: #50575e;
+  margin-bottom: 0rem;
+  text-align: center;
+}
+
+h6 {
+  color: rgb(175, 175, 175);
+  font-weight: none;
+  text-align: center;
+  margin-bottom: 0rem;
+  padding: 8px;
+}
+
+small {
+  color: rgb(175, 175, 175);
+  font-weight: none;
+  font-size: 65%;
+}
+
+a {
+  color: #eeeeee;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+a:hover {
+  text-decoration: none;
+  color: inherit;
+  text-transform: uppercase;
+  font-size: 0.8rem;
 }
 
 /* .mt-1{
@@ -1988,18 +2035,16 @@ li {
     border: 0;
     box-shadow: 2px 2px 2px -2px grey;
 } */
-@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
-  
+@media screen and (-ms-high-contrast: active),
+  screen and (-ms-high-contrast: none) {
   .player-available {
     border: 2px solid #2bcad0;
     padding: 0px;
   }
-
 
   .player-unavailable {
     border: 2px solid red;
     padding: 0px;
   }
 }
-
 </style>
