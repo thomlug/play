@@ -74,7 +74,7 @@
                   </div>   
             </three-column-edit-card>
       <!-- Date and time -->
-      <date-card :can-edit="canEdit()" :fixture="this.getNextFixture()" @fixture-edited="fixtureEdited"></date-card>
+      <date-card :can-edit="canEdit()" :fixture="this.getNextFixture()" @fixture-edited="fixtureEdited" @fixture-completed="fixtureCompleted"></date-card>
 
       <!-- Location -->
       <location-card :can-edit="canEdit()" :fixture="this.getNextFixture()" @location-changed="fixtureLocationChanged"></location-card>
@@ -877,6 +877,29 @@ export default {
       // Have to delete the key in when updating the fixture as the key cannot be updated
       delete updatedFixture[".key"];
       this.$firebaseRefs.fixtures.child(fixture[".key"]).set(updatedFixture);
+    },
+    fixtureCompleted(fixture){
+      // Reset all players availability to unknown
+      var teamKey = fixture.homeTeam;
+      var players = _.filter(this.players, function(p) {
+        return !_.isUndefined(p[teamKey]);
+      });
+      var availability = 'unknown';
+      _.each(players, (player) => {
+        this.$firebaseRefs.players
+        .child(player[".key"])
+        .child("teams")
+        .child(teamKey)
+        .child("availabilityUpdated")
+        .set(this.moment().toString());
+        this.$firebaseRefs.players
+          .child(player[".key"])
+          .child("teams")
+          .child(teamKey)
+          .child("availability")
+          .set(availability);
+      });
+      
     },
     toggleEditAwayTeam() {
       if (this.awayTeamEditable) {

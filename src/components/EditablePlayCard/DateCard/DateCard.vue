@@ -142,6 +142,7 @@ export default {
     },
     setGameComplete() {
       this.currentFixture.status = "past";
+      this.$emit("fixture-completed", this.currentFixture);
       this.toggleEdit();
     },
 
