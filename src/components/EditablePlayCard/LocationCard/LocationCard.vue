@@ -17,7 +17,7 @@
                 No location added yet, contact team manager
             </h6>
              <div v-else>
-                <h6>Location</h6>
+                <h6>Location Link</h6>
                 <input class="form-control" type="text" v-model="ground"> 
                 <h6>Notes</h6>
                 <input class="form-control" type="text" v-model="groundNotes"> 
