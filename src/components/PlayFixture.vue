@@ -325,6 +325,11 @@ export default {
   }
 
   .play-photo:hover {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    margin-top: 2px;
+    border-radius: 50em;
     -webkit-box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
     box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
