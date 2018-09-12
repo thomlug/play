@@ -72,7 +72,7 @@
                 <div class= "input-header" v-if="editable" >
                   <h6> Jersey Number</h6>
                 </div> 
-                <span class="profile-info" v-if="!editable">{{player.jerseyNumber}}</span>
+                <span class="profile-info .jersey-number" v-if="!editable">{{player.jerseyNumber}}</span>
                 <input placeholder="Jersey number" v-if="editable" v-model="player.jerseyNumber"/>
               </div>
 </div>
@@ -720,5 +720,11 @@ border-radius: 50%;
 .player-unavailable {
   padding: 0px;
 }
+
+.jersey-number{
+  color: darkgrey;
+  font-weight: 550;
+}
+
 }
 </style>

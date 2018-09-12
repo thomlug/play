@@ -358,7 +358,7 @@
                   <div v-if="!editGameInfo">
                     <div class="form-group game-info">
                       <h4 class="form-text" >{{gameInfo[0] | camelToSentence}}</h4>
-                      <h6 class="form-text" >{{gameInfo[1]}}</h6>
+                      <h6 class="form-text" v-html="$options.filters.makeClickableLinks(gameInfo[1])"></h6>
                     </div>
                   </div>
                   <form class="game-info-form" v-else>
@@ -397,6 +397,11 @@ import LocationCard from "../components/EditablePlayCard/LocationCard/LocationCa
 import DangerButton from "../components/DangerButton.vue";
 import AvailableButton from "../components/AvailableButton.vue";
 import ThreeColumnEditCard from "../components/EditablePlayCard/ThreeColumnEditableCard.vue";
+import * as linkify from 'linkifyjs';
+import linkifyHtml from 'linkifyjs/html';
+
+var sanitizeHtml = require('sanitize-html');
+
 
 export default {
   components: {
@@ -513,7 +518,10 @@ export default {
         return value.charAt(0);
       }
       return "";
-    }
+    },
+    makeClickableLinks(msg){
+      return linkifyHtml(sanitizeHtml(msg));
+    },
   },
   firebase: {
     players: {

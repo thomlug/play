@@ -22,9 +22,12 @@
                 class="form-control" v-model="fixtureDay">
                 <h4 class="card-title top-padding">Game status</h4>      
                 <div class="status-container">
-                  <div><available-button :onClick="() => this.setGameActive()" type="button" class="btn btn-primary btn-available active">On</available-button></div>
-                  <div><danger-button :onClick="() => this.setGameCancelled()" type="button" class="btn btn-danger">Off</danger-button></div>
-                  <div><available-button :onClick="() => this.setGameComplete()" type="button" class="btn btn-success">Done</available-button></div>
+                  <div><available-button :onClick="() => this.setGameActive()" type="button" class="btn ">On</available-button></div>
+                  <div><danger-button :onClick="() => this.setGameCancelled()" type="button" class="btn ">Off</danger-button></div>
+                  <div><available-button :onClick="() => this.setGameComplete()" type="button" class="btn ">Done</available-button></div>
+                <!-- //btn-primary btn-available active// -->
+                <!-- //btn-danger// -->
+                <!-- //btn-success// -->
                 </div>          
             </div>
         </div>    
@@ -223,5 +226,4 @@ h6 {
   text-align: center;
   margin-bottom: 0rem;
 }
-
 </style>
