@@ -24,7 +24,7 @@
                 <div class="status-container">
                   <div><available-button :onClick="() => this.setGameActive()" type="button" class="btn ">On</available-button></div>
                   <div><danger-button :onClick="() => this.setGameCancelled()" type="button" class="btn ">Off</danger-button></div>
-                  <div><available-button :onClick="() => this.setGameComplete()" type="button" class="btn ">Done</available-button></div>
+                  <div><done-button :onClick="() => this.setGameComplete()" type="button" class="btn ">Done</done-button></div>
                 <!-- //btn-primary btn-available active// -->
                 <!-- //btn-danger// -->
                 <!-- //btn-success// -->
@@ -39,6 +39,7 @@ import ThreeColumnEditCard from "../ThreeColumnEditableCard.vue";
 import moment from "moment";
 import DangerButton from "../../DangerButton.vue";
 import AvailableButton from "../../AvailableButton.vue";
+import DoneButton from "../../DoneButton.vue";
 
 export default {
   props: {
@@ -124,7 +125,8 @@ export default {
   components: {
     ThreeColumnEditCard,
     DangerButton,
-    AvailableButton
+    AvailableButton,
+    DoneButton
   },
 
   methods: {
