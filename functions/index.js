@@ -2,6 +2,8 @@
 
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+const moment = require('moment');
+
 admin.initializeApp();
 
 const SibApiV3Sdk = require('sib-api-v3-sdk');
@@ -74,12 +76,15 @@ exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event
         
         return admin.database().ref('/match').once('value').then(snapshot => {
             var fixtures = snapshot.val();
+            var startDate = moment.format();
+            var endDate = moment.add(2, 'days');
+            var range = moment.range(startDate, endDate);
 
-            var teamFixtures = _.find(fixtures, fixture => {
-                fixture.homeTeam === team[".key"]
+            var upcomingFixtures = _.find(fixtures, fixture => {
+                fixture.homeTeam === team[".key"] && range.contains(fixture.date);
             });
 
-            return teamFixtures;
+            return upcomingFixtures;
         })
     })
     
