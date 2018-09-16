@@ -5,6 +5,8 @@ import TableComponent from 'vue-table-component';
 import './firebase';
 import helpersPlugin from './components/helpersPlugin.vue';
 import { store } from './store/store';
+import Tabs from 'vue-tabs-component';
+
 
 import App from './App.vue'
 import routes from './routes.js'
@@ -19,9 +21,10 @@ import VModal from 'vue-js-modal'
 Vue.use(VueRouter);
 Vue.use(TableComponent);
 Vue.use(VueFire);
-Vue.use(VueLodash, lodash)
+Vue.use(VueLodash, lodash);
 Vue.use(helpersPlugin);
-Vue.use(VModal)
+Vue.use(VModal);
+Vue.use(Tabs);
 
 Vue.prototype.moment = moment
 
