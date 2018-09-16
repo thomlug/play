@@ -13,6 +13,7 @@ import NewFixture from './pages/NewFixture.vue';
 import Chat from './pages/Chat.vue';
 import Join from './pages/Join.vue';
 import ResetPassword from './pages/ResetPassword.vue';
+import PrivacyPolicy from './pages/PrivacyPolicy.vue';
 
 import { store } from './store/store';
 
@@ -52,6 +53,7 @@ export default [
     { path: '/results/:match_id', component: Results, name: 'results', beforeEnter: requireAuth },
     { path: '/profile/:player_id', component: Profile, name: 'profile', beforeEnter: requireAuth },
     { path: '/team/:team_id', component: Team, name: 'team', beforeEnter: requireAuth },
+    { path: '/privacypolicy', component: PrivacyPolicy, name: 'privacypolicy' },
     { path: '/home', alias: '', component: Home, name: 'home', beforeEnter: requireAuth },
     { path: '*', redirect: '/' }
 ]
