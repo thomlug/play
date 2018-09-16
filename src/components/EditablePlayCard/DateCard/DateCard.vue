@@ -71,7 +71,6 @@ export default {
       set(newTime) {
         var date = new Date(this.fixtureDay);
         var dateString =
-          "0" +
           (date.getMonth() + 1) +
           "/" +
           date.getDate() +
@@ -79,7 +78,7 @@ export default {
           date.getFullYear() +
           " " +
           newTime;
-        date = moment(dateString, "MM/DD/YYYY HH:mm a");
+        date = moment(dateString, "M/DD/YYYY HH:mm a");
         date = new Date(date).toISOString();
         this.fixture.date = date;
       }
@@ -95,7 +94,6 @@ export default {
       set(newDay) {
         var date = new Date(newDay);
         var dateString =
-          "0" +
           (date.getMonth() + 1) +
           "/" +
           date.getDate() +
@@ -103,7 +101,7 @@ export default {
           date.getFullYear() +
           " " +
           this.fixtureTime;
-        date = moment(dateString, "MM/DD/YYYY HH:mm a");
+        date = moment(dateString, "M/DD/YYYY HH:mm a");
         date = new Date(date).toISOString();
         this.fixture.date = date;
       }

@@ -247,7 +247,6 @@ export default {
     formatDateTime() {
       var date = new Date(this.day);
       var dateString =
-        "0" +
         (date.getMonth() + 1) +
         "/" +
         date.getDate() +
@@ -255,7 +254,7 @@ export default {
         date.getFullYear() +
         " " +
         this.time;
-      date = moment(dateString, "MM/DD/YYYY HH:mm a");
+      date = moment(dateString, "M/DD/YYYY HH:mm a");
       date = new Date(date).toISOString();
       this.newFixture.date = date;
     }
