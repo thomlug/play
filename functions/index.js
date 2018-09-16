@@ -65,6 +65,26 @@ exports.sendSignUpEmail = functions.database.ref('/player/{playerId}').onCreate(
      
 });
 
+exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event => {
+    console.log("Running daily email reminder function");
+    return admin.database().ref('/team/-KrO7uGoJ4s4wa5JstB4/').once('value')
+    .then(teamSnapshot => {
+        var team = teamSnapshot.val();
+        console.log("Team is: " + team);
+        
+        return admin.database().ref('/match').once('value').then(snapshot => {
+            var fixtures = snapshot.val();
+
+            var teamFixtures = _.find(fixtures, fixture => {
+                fixture.homeTeam === team[".key"]
+            });
+
+            return teamFixtures;
+        })
+    })
+    
+})
+
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
