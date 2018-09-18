@@ -301,6 +301,7 @@ a:focus, a:hover {
   cursor: pointer;
   box-shadow: 2px 2px 2px -2px grey;
   min-width: 100px;
+  font-size: 12.8px;
 }
 
 .btn-teams:active{
