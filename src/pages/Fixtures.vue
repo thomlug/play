@@ -263,6 +263,12 @@ export default {
 </script>
 
 <style>
+
+a:focus, a:hover {
+    color: #2acad0;
+    text-decoration: none;
+}
+
 .form-content {
   padding: 10px;
 }
@@ -295,6 +301,19 @@ export default {
   cursor: pointer;
   box-shadow: 2px 2px 2px -2px grey;
   min-width: 100px;
+}
+
+.btn-teams:active{
+      border: 0px solid #2acad0;
+    background-image: linear-gradient(45deg,#2acad0, dodgerblue);
+    color: white;
+}
+
+.btn-teams:focus{
+      border: 0px solid #2acad0;
+    background-image: linear-gradient(45deg,#2acad0, dodgerblue);
+    color: white;
+    outline:0px;
 }
 
 .vertical-scroll {
