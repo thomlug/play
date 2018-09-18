@@ -19,7 +19,7 @@
                 </div>
                 <modal height=90% width=90%  name="add-fixture" :clickToClose="false" class="vertical-scroll">
                 <div class= "input-header">
-                  <button class="fa fa-times mt-1" @click="hideNewFixtureModal()"></button>
+                  <button class="fa fa-times-fixture mt-1" @click="hideNewFixtureModal()"></button>
                   <h6>Add New Fixture</h6>
                 </div> 
                 <form @submit.prevent="addNewFixture" class="vertical-scroll form-content">
@@ -339,7 +339,7 @@ a:focus, a:hover {
   cursor: pointer;
 }
 
-.fa-times {
+.fa-times-fixture {
   color: lightgray;
   font-size: 20px;
   vertical-align: middle;
@@ -350,7 +350,7 @@ a:focus, a:hover {
   float: right;
 }
 
-.fa-times:hover {
+.fa-times-fixture:hover {
   color: indianred;
   font-size: 20px;
   vertical-align: middle;
