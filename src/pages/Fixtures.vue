@@ -391,7 +391,7 @@ display: contents;
   .tabs-component-tabs {
     border: 0;
     align-items: stretch;
-    display: contents;
+    display: flex;
     justify-content: flex-start;
     margin-bottom: -10px;
   }
