@@ -45,10 +45,42 @@
     <spinner v-if="this.player === undefined"></spinner>
     <slot v-else-if="playerBelongsToATeam()"></slot>
     <div v-else-if="!playerBelongsToATeam()">
-    <h1>Welcome to Play!</h1> <br>  
+    <h2>Welcome to Play! <br><br>  
     <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="logofun">
-    <br><br><p>To gain access to our features, currently you have to be invited to a team and join first. See <a href="http://playapp.webflow.io/">http://playapp.webflow.io/</a> for more about how we're changing community sport</p>
-    <p>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout</p>
+    </h2>
+    <br><br><p><h6>You have logged in, but to gain access to the team dashboard you have to be invited by your manager with an email link first. Check your inbox!
+    <br><br><br><h5><b>Try These Steps</b></h5>
+    <br> 
+<span class="fa-stack">
+    <!-- The icon that will wrap the number -->
+    <span class="fa fa-circle-o fa-stack-2x"></span>
+    <!-- a strong element with the custom content, in this case a number -->
+    <strong class="fa-stack-1x">
+      1   
+    </strong>
+</span>Check your emails to see if you've been invited.
+    <br>
+<span class="fa-stack">
+    <!-- The icon that will wrap the number -->
+    <span class="fa fa-circle-o fa-stack-2x"></span>
+    <!-- a strong element with the custom content, in this case a number -->
+    <strong class="fa-stack-1x">
+      2    
+    </strong>
+</span>Search for messages from 'Playapp' in your inbox.
+    <br>
+    <span class="fa-stack">
+    <!-- The icon that will wrap the number -->
+    <span class="fa fa-circle-o fa-stack-2x"></span>
+    <!-- a strong element with the custom content, in this case a number -->
+    <strong class="fa-stack-1x">
+      3    
+    </strong>
+</span>Follow the invite process in your invitation.
+    <br><br>If that doesnt work, ask you manager to re-invite you to the team if he has not already, then follow the steps in the email invite
+    <br><br><b>Remember: You can only join an existing team if you're invited!</b></h6>    
+    <p><br><br>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout.See <a href="http://playapp.webflow.io/">http://playapp.webflow.io/</a> for more about how we're changing community sport</p>
+    <!-- <p>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout</p> -->
     <p><b> PLAYTIP:</b> Download the Play&#8482; shortcut to your homescreen if you're using a mobile device!</p>
     <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/ezgif.com-crop.gif?alt=media&token=d5e40965-34d3-4a66-b5e9-970ba8f5838e" class="playtips"> 
     </div>
@@ -161,8 +193,9 @@
 .logofun{
   background-color: #50575e;
   border-radius: 50%;
-  width: 80px;
+  width: 100px;
   align-content: center;
+  /* margin-left: 40%; */
 }
 .play-logo{
   max-height:50px;
@@ -225,21 +258,29 @@
 a{
   font-size: 0.8rem;
   font-weight: 300;
+  color: #2acad0;
 }
 
 p{
   font-size: 0.8rem;
   font-weight: 300;
+  color: rgb(125, 125, 125);
 }
 
 .button:focus{
   outline: none;
+}
+h2{
+text-align: center;
+}
+h6{
+color: rgb(175, 175, 175);
 }
 
 .home{
     font-size: 0.6rem;
     padding: 0px 0px 0px 11px;
     margin: 0px;
-    color: grey;
+    color: rgb(135, 135, 135);
 }
 </style>
