@@ -12,9 +12,9 @@
             <div class="card play-card">
               <div class="card-block" v-if="canEdit()">
                 <div class="heading">
-                  <h2 class="text-center">
+                  <h3 class="text-center">
                     Fixtures for {{getCurrentTeam().name}}
-                  </h2>
+                  </h3>
                   <button class="fa fa-plus manage-players-button" @click="showNewFixtureModal()"></button> 
                 </div>
                 <modal height=90% width=90%  name="add-fixture" :clickToClose="false" class="vertical-scroll">
@@ -365,7 +365,9 @@ export default {
   padding: 10px 12px 9px 12px;
   margin-left: 5px;
 }
-
+h2{
+  color: #50575e;
+}
 h6 {
   color: rgb(175, 175, 175);
   font-weight: none;
@@ -375,22 +377,23 @@ h6 {
 }
 
 .tabs-component {
-  margin: 4em 0;
+  margin: 1em 0;
 }
 
 .tabs-component-tabs {
-  border: solid 1px #ddd;
+  /* border: solid 1px #ddd; */
   border-radius: 6px;
   margin-bottom: 5px;
+display: contents;
 }
 
 @media (min-width: 700px) {
   .tabs-component-tabs {
     border: 0;
     align-items: stretch;
-    display: flex;
+    display: contents;
     justify-content: flex-start;
-    margin-bottom: -1px;
+    margin-bottom: -10px;
   }
 }
 
@@ -398,7 +401,7 @@ h6 {
   color: #999;
   font-size: 14px;
   font-weight: 600;
-  margin-right: 0;
+  /* margin-right: 40px; */
   list-style: none;
 }
 
@@ -423,9 +426,9 @@ h6 {
   .tabs-component-tab {
     background-color: #fff;
     border: solid 1px #ddd;
-    border-radius: 3px 3px 0 0;
+    border-radius: 10px 10px 0 0;
     margin-right: .5em;
-    transform: translateY(2px);
+    /* transform: translateY(2px); */
     transition: transform .3s ease;
   }
 
@@ -442,20 +445,24 @@ h6 {
   display: flex;
   padding: .75em 1em;
   text-decoration: none;
+  font-size: larger;
+    border-radius: 10px;
+  background-color: white;
+  margin-top: 10px;
 }
 
 .tabs-component-panels {
-  padding: 4em 0;
+  /* padding: 1em 0; */
 }
 
 @media (min-width: 700px) {
   .tabs-component-panels {
     border-top-left-radius: 0;
-    background-color: #fff;
-    border: solid 1px #ddd;
-    border-radius: 0 6px 6px 6px;
+    /* background-color: #fff;
+    border: solid 1px #ddd; */
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .05);
-    padding: 4em 2em;
+    /* padding: 4em 2em; */
   }
 }
 </style>

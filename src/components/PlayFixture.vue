@@ -343,5 +343,8 @@ export default {
   .away-circle {
     font-size: 4rem;
   }
+  .away-circle:hover{
+    font-size: 4rem;  
+  }
 }
 </style>
