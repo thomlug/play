@@ -1875,7 +1875,7 @@ li {
   margin-bottom: 60px;
   background-color: transparent;
   border: none;
-  padding-right: 25px;
+  padding-right: 30px;
   font-size: larger;
 }
 
@@ -1890,7 +1890,7 @@ li {
   margin-bottom: 60px;
   background-color: transparent;
   border: none;
-  padding-left: 25px;
+  padding-left: 30px;
   font-size: larger;
 }
 

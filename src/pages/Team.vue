@@ -732,7 +732,7 @@ h6 {
 
 ul {
   list-style-type: none;
-  padding: 0.5rem 1rem 1rem 1rem;
+  /* padding: 0.5rem 1rem 1rem 1rem; */
   /* max-height: 10rem; */
   /* overflow-y: scroll; */
 }
