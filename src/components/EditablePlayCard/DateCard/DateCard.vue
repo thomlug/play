@@ -198,7 +198,7 @@ export default {
   align-items: stretch;
   justify-content: space-between;
   /* padding-top: 10px; */
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 .cancelled h2 {
