@@ -1368,7 +1368,7 @@ export default {
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
   background: lightgrey;
-  font-weight: bold;
+  font-weight: lighter;
   font-size: 4rem;
   font-family: "Roboto", sans-serif;
   color: darkgrey;
@@ -1382,7 +1382,7 @@ export default {
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
   background: lightgrey;
-  font-weight: bold;
+  font-weight: lighter;
   font-size: 4rem;
   font-family: "Roboto", sans-serif;
   color: White;
