@@ -286,9 +286,9 @@
                   </draggable>
 <div class="paddles">
 		<!-- <button class="left-paddle paddle hidden"> -->
-		<button class="left-paddle paddle fa fa-arrow-left">	
+		<button class="left-paddle paddle fa fa-caret-left">	
 		</button>
-		<button class="right-paddle paddle fa fa-arrow-right">
+		<button class="right-paddle paddle fa fa-caret-right">
 		</button>
 	</div>
                   <div class="scroller"
@@ -1314,11 +1314,11 @@ export default {
     padding-top: 20%;
   }
 
-  .fa-arrow-left {
+  .fa-caret-left {
     display: none;
   }
 
-  .fa-arrow-right {
+  .fa-caret-right {
     display: none;
   }
 }
@@ -1869,30 +1869,32 @@ li {
   display: none;
 }
 
-.fa-arrow-left {
+.fa-caret-left {
   color: lightgrey;
   margin-top: 85px;
   margin-bottom: 60px;
   background-color: transparent;
   border: none;
   padding-right: 25px;
+  font-size: larger;
 }
 
-.fa-arrow-left:focus {
+.fa-caret-left:focus {
   outline: none;
   border: none;
 }
 
-.fa-arrow-right {
+.fa-caret-right {
   color: lightgrey;
   margin-top: 85px;
   margin-bottom: 60px;
   background-color: transparent;
   border: none;
   padding-left: 25px;
+  font-size: larger;
 }
 
-.fa-arrow-right:focus {
+.fa-caret-right:focus {
   outline: none;
   border: none;
 }
