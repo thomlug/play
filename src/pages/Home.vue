@@ -1240,7 +1240,7 @@ export default {
 
 .team-buttons-container {
   overflow-x: auto;
-  justify-content: normal;
+  justify-content: center;
 }
 /* .player-container a {
   color: rgb(90, 28, 77);
@@ -1842,7 +1842,9 @@ li {
 }
 
 .btn-teams-active {
-  border: 3px solid #2acad0;
+    border: 0px solid #2acad0;
+    background-image: linear-gradient(45deg,#2acad0, dodgerblue);
+    color: white;
 }
 
 .btn-teams:focus {
