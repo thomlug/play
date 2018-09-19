@@ -66,7 +66,7 @@
                         <div v-else class="centered-col">
                           <div class="away-circle team-circle play-photo">{{getNextFixture().awayTeamName | firstCharacter}}</div>
                           <div class="team-name">
-                            <input v-if="awayTeamEditable" class="form-control" type="text" v-model="getNextFixture().awayTeamName"> 
+                            <input v-if="awayTeamEditable" class="form-control-edit" type="text" v-model="getNextFixture().awayTeamName"> 
                             <h3 v-else class="text-center">{{getNextFixture().awayTeamName}}</h3>
                           </div>
                       </div>
@@ -1377,20 +1377,7 @@ export default {
   cursor: pointer;
 }
 
-.away-circle:hover {
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  border-radius: 50%; /* may require vendor prefixes */
-  background: lightgrey;
-  background-image: linear-gradient(70deg,lightgrey,30%, whitesmoke, lightgrey);
-  font-weight: normal;
-  font-size: 4rem;
-  font-family: "Roboto", sans-serif;
-  color: White;
-  -webkit-box-shadow: 4px 4px 4px -4px #50575e;
-  cursor: pointer;
-}
+
 
 .player-circle-container {
   width: 100%;
@@ -1676,13 +1663,26 @@ outline: 0px transparent;
 .form-control {
   color: rgb(175, 175, 175);
   font-size: 0.8rem;
-  /* padding: 0.8rem; */
+  padding: 0.8rem;
   border: 0px;
   border-radius: 20px;
   border: 1px solid #e3e3e3;
   text-transform: none;
   font-family: "Roboto Condensed", sans-serif;
   /* margin: 10px 0px; */
+}
+
+.form-control-edit {
+  color: rgb(175, 175, 175);
+  font-size: 0.8rem;
+  padding: 0.4rem;
+  border: 0px;
+  border-radius: 20px;
+  border: 1px solid #e3e3e3;
+  text-transform: none;
+  font-family: "Roboto Condensed", sans-serif;
+  /* margin: 10px 0px; */
+  width:140px;
 }
 .player-5-wide {
   width: 20%;
@@ -1901,9 +1901,9 @@ li {
   border: none;
 }
 
-.move-down {
+/* .move-down {
   margin: 15px 15px 0 15px;
-}
+} */
 
 .clickable {
   cursor: pointer;
