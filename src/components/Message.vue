@@ -216,6 +216,7 @@
     border-bottom-right-radius: 0px;
     background: #2bcad0;
     font-weight: 400;
+    background-image: linear-gradient(90deg,#2acad0, turquoise);
 }
 
 .self .msg > time{

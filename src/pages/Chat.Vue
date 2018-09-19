@@ -183,6 +183,7 @@
     background-color: #2BCAD0;
     color: #ffffff;
     box-shadow: 1px 3px 3px -3px grey;
+    background-image: linear-gradient(90deg,#2acad0, turquoise, #2acad0);
 }
 
 .chat-pane-body{
