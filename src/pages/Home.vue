@@ -103,7 +103,7 @@
             <h4><small>Updated {{moment(getNextFixtureDetails().dateFormationLastUpdated).calendar()}}</small></h4>
           </div>
         </div>
-         <modal height=auto width=370px border-radius=40px name="lineup-info">
+         <modal height=auto width=350px border-radius=40px name="lineup-info">
                 <div class= "input-header">
                   <button class="fa fa-times" @click="hideLineupInfoModal()"></button>
                   <h6>Starting Lineup Help</h6>
@@ -204,7 +204,7 @@
               <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
               <button class="fa fa-trash manage-players-button" @click="showRemovePlayerModal()"></button>
             </span>
-              <modal height=auto width=400px  name="add-player" :clickToClose="false" class="vertical-scroll">
+              <modal height=auto width=350px  name="add-player" :clickToClose="false" class="vertical-scroll">
                 <div class= "input-header">
                   <button class="fa fa-times mt-1" @click="hideNewPlayerModal()"></button>
                   <h6>Add New Player</h6>
@@ -234,7 +234,7 @@
                   </div>        
                 </div>        
               </modal>
-              <modal height=auto width=400px border-radius=20px name="remove-player" :clickToClose="false">
+              <modal height=auto width=350px border-radius=20px name="remove-player" :clickToClose="false">
                 <div class= "input-header">
                   <button class="fa fa-times mt-1" @click="hideRemovePlayerModal()"></button>
                   <h6>Remove Player From Team</h6>
@@ -1669,7 +1669,7 @@ outline: 0px transparent;
   border: 1px solid #e3e3e3;
   text-transform: none;
   font-family: "Roboto Condensed", sans-serif;
-  /* margin: 10px 0px; */
+  margin: 10px 0px;
 }
 
 .form-control-edit {
