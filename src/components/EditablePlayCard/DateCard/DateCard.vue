@@ -187,10 +187,10 @@ export default {
   font-family: "Roboto Condensed", sans-serif;
 }
 
-.btn {
+/* .btn {
   margin-top: 10px;
   cursor: pointer;
-}
+} */
 
 .status-container {
   display: flex;
