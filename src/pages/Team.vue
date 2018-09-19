@@ -705,12 +705,12 @@ h6 {
   box-shadow: none;
 }
 
-.btn {
+/* .btn {
   padding: 8px;
   border-radius: 20px;
   cursor: pointer;
   margin-top: 0px;
-}
+} */
 
 .btn-edit {
   color: #50575e;
