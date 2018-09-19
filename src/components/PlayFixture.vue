@@ -175,6 +175,7 @@ export default {
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
   background: lightgrey;
+  background-image: linear-gradient(70deg,lightgrey,30%, whitesmoke, lightgrey);
   font-weight: 400;
   font-size: 2.5rem;
   font-family: "Roboto", sans-serif;
@@ -183,19 +184,20 @@ export default {
   cursor: pointer;
 }
 
-.away-circle:hover {
+/* .away-circle:hover {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
   background: lightgrey;
+  background-image: linear-gradient(70deg,lightgrey,30%, whitesmoke, lightgrey);
   font-weight: 400;
   font-size: 2.5rem;
   font-family: "Roboto", sans-serif;
   color: White;
   -webkit-box-shadow: 4px 4px 4px -4px #50575e;
   cursor: pointer;
-}
+} */
 
 .player-circle-container {
   width: 100%;
@@ -220,7 +222,7 @@ export default {
   right: 0;
 }
 
-.player-circle:hover {
+/* .player-circle:hover {
   color: white;
   -webkit-box-shadow: 4px 4px 4px -4px #50575e;
   cursor: pointer;
@@ -234,7 +236,7 @@ export default {
   left: 0;
   bottom: 0;
   right: 0;
-}
+} */
 
 .team-name > h3 {
   font-weight: 550;
