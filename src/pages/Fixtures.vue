@@ -17,7 +17,7 @@
                   </h3>
                   <button class="fa fa-plus manage-players-button" @click="showNewFixtureModal()"></button> 
                 </div>
-                <modal height=90% width=90%  name="add-fixture" :clickToClose="false" class="vertical-scroll">
+                <modal height=auto width=90%  name="add-fixture" :clickToClose="false" class="vertical-scroll">
                 <div class= "input-header">
                   <button class="fa fa-times-fixture mt-1" @click="hideNewFixtureModal()"></button>
                   <h6>Add New Fixture</h6>
@@ -26,14 +26,14 @@
                   <div class="row">
                     <div class="col-sm-12 col-md-6">
                       <div class="form-group">
-                        <label for="homeTeam">My Team</label>
-                        <p> {{getCurrentTeam().name}}</p>
+                        <h6 for="homeTeam">My Team</h6>
+                        <div class="my-team"> {{getCurrentTeam().name}}</div>
                       </div>
                     </div>
 
                     <div class="col-sm-12 col-md-6">
                       <div class="form-group">
-                        <label for="awayTeam">Opposition</label>
+                        <h6 for="awayTeam">Opposition</h6>
                         <input 
                             type="text"
                             id="awayTeam"
@@ -47,7 +47,7 @@
                   <div class="row">
                     <div class="col-sm-12 col-md-6">
                       <div class="form-group">
-                        <label for="timeStart">Start Time</label>
+                        <h6 for="timeStart">Start Time</h6>
                         <input
                           type="time"
                           placeholder="Start Time"
@@ -58,7 +58,7 @@
                     </div>
                     <div class="col-sm-12 col-md-6">
                       <div class="form-group">
-                        <label for="dateStart">Start Day</label>
+                        <h6 for="dateStart">Start Day</h6>
                         <input
                           type="date"
                           id="dateStart"
@@ -69,7 +69,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="ground">Map Location</label>
+                    <h6 for="ground">Map Location</h6>
                     <input
                       type="text"
                       id="ground"
@@ -78,8 +78,9 @@
                       required>
                   </div>  
 
-                  <div class="form-group-add">
-                    <input 
+                  <div class="form-group">
+                    <input
+                     background="form-control-add"
                       type="submit"
                       value="Add New Fixture"/>
                   </div>     
@@ -409,6 +410,12 @@ h6 {
   padding: 8px;
 }
 
+.my-team{
+  text-align: center;
+        border: 1px solid lightgrey;
+    padding: 8px;
+    border-radius: 3px;
+}
 .tabs-component {
   margin: 1em 0;
 }
