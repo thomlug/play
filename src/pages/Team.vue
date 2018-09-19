@@ -433,6 +433,7 @@ export default {
   border-top: 0px solid #2acad0;
   margin-top: 0px;
   padding-top: 1rem;
+  padding-bottom: 10px;
   width: 100%;
 }
 

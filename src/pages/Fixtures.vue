@@ -26,14 +26,14 @@
                   <div class="row">
                     <div class="col-sm-12 col-md-6">
                       <div class="form-group">
-                        <label for="homeTeam">Home Team</label>
+                        <label for="homeTeam">My Team</label>
                         <p> {{getCurrentTeam().name}}</p>
                       </div>
                     </div>
 
                     <div class="col-sm-12 col-md-6">
                       <div class="form-group">
-                        <label for="awayTeam">Away Team</label>
+                        <label for="awayTeam">Opposition</label>
                         <input 
                             type="text"
                             id="awayTeam"
@@ -69,19 +69,19 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="ground">Ground</label>
+                    <label for="ground">Map Location</label>
                     <input
                       type="text"
                       id="ground"
-                      placeholder="Enter ground"
+                      placeholder="Enter Game Address"
                       class="form-control" v-model="newFixture.ground"
                       required>
                   </div>  
 
-                  <div class="form-group">
+                  <div class="form-group-add">
                     <input 
                       type="submit"
-                      value="Add new fixture"/>
+                      value="Add New Fixture"/>
                   </div>     
                 </form>        
               </modal>
@@ -273,6 +273,14 @@ a:focus, a:hover {
   padding: 10px;
 }
 
+.form-group-add{
+/* background: #2acad0; */
+background-image: linear-gradient(70deg, turquoise, #2acad0);
+color: white;
+border-radius: 3px;
+box-shadow: 2px, 2px, 2px, -2px grey;
+}
+
 .play-card {
   margin-top: 10px;
   margin-bottom: 0px;
@@ -388,6 +396,11 @@ a:focus, a:hover {
 h2{
   color: #50575e;
 }
+
+h3{
+  margin-bottom: 0px;
+}
+
 h6 {
   color: rgb(175, 175, 175);
   font-weight: none;
