@@ -1368,6 +1368,7 @@ export default {
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
   background: lightgrey;
+  background-image: linear-gradient(70deg,lightgrey,30%, whitesmoke, lightgrey);
   font-weight: normal;
   font-size: 4rem;
   font-family: "Roboto", sans-serif;
@@ -1382,6 +1383,7 @@ export default {
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
   background: lightgrey;
+  background-image: linear-gradient(70deg,lightgrey,30%, whitesmoke, lightgrey);
   font-weight: normal;
   font-size: 4rem;
   font-family: "Roboto", sans-serif;
@@ -1660,7 +1662,7 @@ outline: 0px transparent;
 
   /* navbar extra width */
   background: #292b2c;
-  color: #50575e;
+  background-image: linear-gradient(10deg,white,50%, whitesmoke);
   background-color: whitesmoke;
   padding-bottom: 10px;
   height: -webkit-fill-available;
@@ -1674,13 +1676,13 @@ outline: 0px transparent;
 .form-control {
   color: rgb(175, 175, 175);
   font-size: 0.8rem;
-  padding: 0.8rem;
+  /* padding: 0.8rem; */
   border: 0px;
   border-radius: 20px;
   border: 1px solid #e3e3e3;
   text-transform: none;
   font-family: "Roboto Condensed", sans-serif;
-  margin: 10px 0px;
+  /* margin: 10px 0px; */
 }
 .player-5-wide {
   width: 20%;
@@ -2040,7 +2042,7 @@ h5 {
 h6 {
   color: rgb(175, 175, 175);
   font-weight: none;
-  text-align: center;
+  /* text-align: center; */
   margin-bottom: 0rem;
   padding: 8px;
 }

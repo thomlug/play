@@ -7,7 +7,7 @@
         </button>
         <a class="navbar-brand" href="#/home">
           <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="img-fluid play-logo">
-          <div class="home">HOME</div>
+          <!-- <div class="home">HOME</div> -->
           </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <ul class="navbar-nav">
@@ -284,9 +284,14 @@ color: rgb(175, 175, 175);
     margin: 0px;
     color: rgb(135, 135, 135);
 }
-
-.funcard{
-  background-image:linear-gradient(45deg,dodgerblue,#2acad0);
-  box-shadow: 4px 4px 4px -4px grey;
+.bg-inverse{
+      background-image: linear-gradient(18deg,#292b2c,85%, #50576C);
 }
+.funcard{
+    background-image: linear-gradient(45deg,turquoise,#2acad0);
+    /* box-shadow: 4px 4px 4px -4px grey; */
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
 </style>
