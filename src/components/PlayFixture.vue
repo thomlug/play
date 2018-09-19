@@ -184,20 +184,6 @@ export default {
   cursor: pointer;
 }
 
-/* .away-circle:hover {
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  border-radius: 50%; /* may require vendor prefixes */
-  background: lightgrey;
-  background-image: linear-gradient(70deg,lightgrey,30%, whitesmoke, lightgrey);
-  font-weight: 400;
-  font-size: 2.5rem;
-  font-family: "Roboto", sans-serif;
-  color: White;
-  -webkit-box-shadow: 4px 4px 4px -4px #50575e;
-  cursor: pointer;
-} */
 
 .player-circle-container {
   width: 100%;
