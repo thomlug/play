@@ -87,7 +87,7 @@
               <modal height=auto width=90%  name="add-manager" :clickToClose="false">
                 <div class= "input-header">
                   <button class="fa fa-times mt-1 team-times" @click="hideAddManagerModal()"></button>
-                  <h6>Add Existing Player as Manager</h6>
+                  <h6>ADD EXISTING PLAYER AS MANAGER</h6>
                 </div> 
                 <div class="form-group">
                   
@@ -104,7 +104,7 @@
                <modal height=auto width=90% name="remove-manager" :clickToClose="false">
                 <div class= "input-header">
                   <button class="fa fa-times mt-1 team-times" @click="hideRemoveManagerModal()"></button>
-                  <h6>Remove as manager</h6>
+                  <h6>REMOVE AS MANAGER</h6>
                   
                 </div> 
                 <div class="form-group">
