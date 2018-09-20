@@ -1116,6 +1116,8 @@ export default {
   font-size: 1.25em;
   justify-content: flex-start;
   margin-top: -2rem;
+  /* margin-left: 2rem;
+  margin-left: 2rem; */
 }
 
 .play-card {
@@ -1837,10 +1839,10 @@ li {
   color: gainsboro;
   /* padding: 2px 30px 2px 30px; */
   margin: 0px 5px 10px 5px;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
   box-shadow: 2px 2px 2px -2px grey;
-  min-width: 100px;
+  min-width: 115px;
 }
 
 .btn-teams-active {
@@ -2021,7 +2023,7 @@ h3 {
   color: #50575e;
   margin-bottom: 0rem;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   width: 140px;
   height: 35px;
 }
