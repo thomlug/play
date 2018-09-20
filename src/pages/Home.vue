@@ -239,7 +239,7 @@
               <modal height=auto width=350px border-radius=20px name="remove-player" :clickToClose="false">
                 <div class= "input-header">
                   <button class="fa fa-times mt-1" @click="hideRemovePlayerModal()"></button>
-                  <h6>Remove Player From Team</h6>
+                  <div class="text-center"><h6>Remove Player From Team</h6></div>
                 </div> 
                 <div class="form-group h-75">
                   <ul class='scrollable-list'>

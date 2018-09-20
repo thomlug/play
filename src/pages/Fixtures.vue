@@ -273,7 +273,9 @@ a:focus, a:hover {
 .form-content {
   padding: 10px;
 }
-
+.form-control{
+  border-radius:20px;
+}
 .form-group-add{
 /* background: #2acad0; */
 background-image: linear-gradient(70deg, turquoise, #2acad0);
@@ -290,6 +292,7 @@ box-shadow: 2px, 2px, 2px, -2px grey;
   color: #50575e;
   border-radius: 10px;
   border-color: transparent;
+    overflow-x: scroll;
 }
 
 .status-container {
@@ -306,10 +309,10 @@ box-shadow: 2px, 2px, 2px, -2px grey;
   color: gainsboro;
   /* padding: 2px 30px 2px 30px; */
   margin: -15px 5px -5px 5px;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
   box-shadow: 2px 2px 2px -2px grey;
-  min-width: 100px;
+  min-width: 115px;
   font-size: 12.8px;
 }
 
@@ -411,10 +414,10 @@ h6 {
 }
 
 .my-team{
-  text-align: center;
-        border: 1px solid lightgrey;
-    padding: 8px;
-    border-radius: 3px;
+text-align: center;
+    border: 1px solid lightgrey;
+    padding: 7px;
+    border-radius: 20px;
 }
 .tabs-component {
   margin: 1em 0;
