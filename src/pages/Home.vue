@@ -207,7 +207,7 @@
               <modal height=auto width=350px  name="add-player" :clickToClose="false" class="vertical-scroll">
                 <div class= "input-header">
                   <button class="fa fa-times mt-1" @click="hideNewPlayerModal()"></button>
-                  <h6>Add New Player</h6>
+                  <h6><div class="text-center">Add New Player</div></h6>
                 </div> 
                 <div class="vertical-scroll">
                   <div class="form-group">
@@ -218,9 +218,11 @@
                     <div class="form-control alert alert-success" v-if="newPlayerMessages.success !== undefined">{{newPlayerMessages.success}}</div>
                     <!-- <button class="btn btn-edit mt-1" @click="hideNewPlayerModal()">Close</button> -->
                     
-                    <button class="btn btn-primary mt-1" @click="saveNewPlayer()">Invite</button>
+                    <button class="btn btn-primary mt-2" @click="saveNewPlayer()">Invite</button>
                   </div>
-                  <h6>Add Existing Player</h6>
+                  <br><br>
+            
+                  <div class="text-center"><h6>Add Existing Player</h6></div>
                   <div class="form-group player-search-results">
                     <input class="form-control" placeholder="Search for player" v-model="searchPlayerName"/>
                     <ul class='scrollable-list'>
@@ -2069,11 +2071,12 @@ a:hover {
   font-size: 0.8rem;
 }
 
-/* .mt-1{
+.mt-2{
     background: #2acad0;
+    background-image: linear-gradient(45deg, turquoise, #2acad0);
     border: 0;
     box-shadow: 2px 2px 2px -2px grey;
-} */
+}
 @media screen and (-ms-high-contrast: active),
   screen and (-ms-high-contrast: none) {
   .player-available {
