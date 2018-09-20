@@ -76,9 +76,9 @@ exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event
         
         return admin.database().ref('/match').once('value').then(snapshot => {
             var fixtures = snapshot.val();
-            var startDate = moment.format();
-            var endDate = moment.add(2, 'days');
-            var range = moment.range(startDate, endDate);
+            var startDate = moment().format();
+            var endDate = moment().add(2, 'days');
+            var range = moment().range(startDate, endDate);
 
             var upcomingFixtures = _.find(fixtures, fixture => {
                 fixture.homeTeam === team[".key"] && range.contains(fixture.date);
