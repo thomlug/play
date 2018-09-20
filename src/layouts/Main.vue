@@ -48,7 +48,7 @@
     <div class="funcard"><br><h2>Welcome to Play! <br><br>
     <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="logofun">
     </h2><br><br></div>
-    <p><h6>You have logged in, but to gain access to the team dashboard you have to be invited by your manager with an email link first. Check your inbox!
+    <p><h6><div class="darktext">You have logged in, but to gain access to the team dashboard you have to be invited by your manager with an email link first. Check your inbox!
     <br><br><br><h5><b>Try These Steps</b></h5>
     <br> 
 <span class="fa-stack">
@@ -67,7 +67,7 @@
     <strong class="fa-stack-1x">
       2    
     </strong>
-</span>Search for messages from 'Playapp' in your inbox.
+</span>Search for 'Playapp' in your inbox.
     <br>
     <span class="fa-stack">
     <!-- The icon that will wrap the number -->
@@ -76,14 +76,22 @@
     <strong class="fa-stack-1x">
       3    
     </strong>
-</span>Follow the invite process in your invitation.
-    <br><br>If that doesnt work, ask you manager to re-invite you to the team if he has not already, then follow the steps in the email invite
-    <br><br><b>Remember: You can only join an existing team if you're invited!</b></h6>    
+</span>Follow the invite process in your invitation.<br>   
+<span class="fa-stack">
+    <!-- The icon that will wrap the number -->
+    <span class="fa fa-circle-o fa-stack-2x"></span>
+    <!-- a strong element with the custom content, in this case a number -->
+    <strong class="fa-stack-1x">
+      4   
+    </strong>
+</span>Try on your mobile.
+<br><br>If that doesnt work, ask you manager to re-invite you to the team if he has not already, then follow the steps in the email invite<br>
+    <br><br><b>Remember: You can only join an existing team if you're invited!</b></div></h6>    
     
     <!-- <p>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout</p> -->
-    <p><br><b> PLAYTIP:</b> Download the Play&#8482; shortcut to your homescreen if you're using a mobile device!</p>
+    <p><br><div class="centretext"><b> PLAYTIP:</b> Download the Play&#8482; shortcut to your homescreen if you're using a mobile device!</div></p>
     <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/ezgif.com-crop.gif?alt=media&token=d5e40965-34d3-4a66-b5e9-970ba8f5838e" class="playtips"> 
-    <p><br>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout.See <a href="http://playapp.webflow.io/">http://playapp.webflow.io/</a> for more about how we're changing community sport</p></div>
+    <p><br>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout.See <a href="http://playapp.webflow.io/">http://playapp.webflow.io/</a> for more about how we're changing community sport</p></div></div>
   </div>
 </template>
 
@@ -178,9 +186,13 @@
 /* .bgtest{
   height: auto;
 } */
-/* .centretext{
+.centretext{
   text-align: center;
-} */
+}
+
+.darktext{
+  color: #50575e;
+}
 .playtips{
   max-width: 100%; 
   width: 210px;
