@@ -200,7 +200,9 @@
         <div class="card play-subs-card">
           <div class="card-block">          
             <h4 class="card-title">Subs <small></small></h4>
+            
             <span v-if="canEdit()" class="float right">
+              <button class="fa fa-grip-horizontal"></button>
               <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
               <button class="fa fa-trash manage-players-button" @click="showRemovePlayerModal()"></button>
             </span>
@@ -1575,15 +1577,15 @@ outline: 0px transparent;
 .scroller {
   position: absolute;
   display: flex;
-  /* top: 4.5rem; */
+  top: 4.5rem;
   left: 1rem;
   right: 1rem;
-  bottom: 0rem;
+  /* bottom: 0rem; */
   width: calc(#{$finalHeight} + #{$scrollBarHeight});
   max-height: $finalWidth;
   margin: 0;
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 40px;
   background: none;
   overflow-y: auto;
   overflow-x: scroll;
@@ -2070,7 +2072,10 @@ a:hover {
   text-transform: uppercase;
   font-size: 0.8rem;
 }
-
+.fa-grip-horizontal{
+  font-size: 1rem;
+  color:lightgray;
+}
 .mt-2{
     background: #2acad0;
     background-image: linear-gradient(45deg, turquoise, #2acad0);
