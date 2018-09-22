@@ -1575,7 +1575,7 @@ outline: 0px transparent;
 .scroller {
   position: absolute;
   display: flex;
-  top: 4.5rem;
+  /* top: 4.5rem; */
   left: 1rem;
   right: 1rem;
   bottom: 0rem;
@@ -1699,9 +1699,9 @@ outline: 0px transparent;
   overflow-y: scroll;
 }
 
-.vertical-scroll {
+/* .vertical-scroll {
   overflow-y: scroll;
-}
+} */
 
 .player-search-results {
   height: none;
