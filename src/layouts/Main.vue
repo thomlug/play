@@ -218,7 +218,7 @@
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: bold;
   background-color: whitesmoke;
-  /* background-image: linear-gradient(180deg, whitesmoke, 90%,white); */
+  background-image: linear-gradient(180deg, whitesmoke, 90%,white);
   height: auto;
 }
 

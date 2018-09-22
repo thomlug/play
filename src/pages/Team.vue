@@ -458,8 +458,8 @@ export default {
   box-shadow: 0px 1px 6px -1px #ddd;
   width: 100%;
   background-color: white;
-  margin-top: 0rem;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0rem;
 }
 
 /* .card{
