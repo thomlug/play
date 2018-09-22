@@ -202,7 +202,8 @@
             <h4 class="card-title">Subs <small></small></h4>
             
             <span v-if="canEdit()" class="float right">
-              <button class="fa fa-grip-horizontal"></button>
+              <!-- <button class="fa fa-grip-horizontal manage-players-button"></button> -->
+              <!-- <i class="fas fa-grip-horizontal"></i> -->
               <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
               <button class="fa fa-trash manage-players-button" @click="showRemovePlayerModal()"></button>
             </span>
@@ -2073,8 +2074,15 @@ a:hover {
   font-size: 0.8rem;
 }
 .fa-grip-horizontal{
-  font-size: 1rem;
-  color:lightgray;
+  color: #e5e5e5;
+  border: 1.5px #e5e5e5 solid;
+  border-radius: 50%;
+  background-color: transparent;
+  font-size: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 10px 12px 9px 12px;
+  margin-left: 5px;
 }
 .mt-2{
     background: #2acad0;
