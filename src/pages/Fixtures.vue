@@ -5,12 +5,12 @@
                 <div class="card-block">
             <!-- <h4 class="card-title">Change your current team <small>({{this.getCurrentTeam().name}})</small></h4> -->
                     <div class="status-container">
-                        <button v-for="team in listTeamsCurrentUserBelongsTo()" :key="team['.key']" v-on:click="changeToTeam(team['.key'])" type="button" class="btn-teams">{{team.name}}</button>
+                        <button v-for="team in listTeamsCurrentUserBelongsTo()" :key="team['.key']" v-on:click="changeToTeam(team['.key'])" type="button" class="btn-teams-fix">{{team.name}}</button>
                     </div>                    
                 </div>
             </div>
             <div class="card play-card">
-              <div class="card-block" v-if="canEdit()">
+              <div class="card-block lesspad" v-if="canEdit()">
                 <div class="heading">
                   <h3 class="text-center">
                     Fixtures for {{getCurrentTeam().name}}
@@ -292,23 +292,26 @@ box-shadow: 2px, 2px, 2px, -2px grey;
   color: #50575e;
   border-radius: 10px;
   border-color: transparent;
-    overflow-x: scroll;
+  
 }
-
+.overflow{
+  overflow-x: scroll;
+}
 .status-container {
   display: flex;
   flex-direction: row;
   align-items: stretch;
   justify-content: center;
   padding-top: 10px;
+  overflow-x: scroll;
 }
 
-.btn-teams {
+.btn-teams-fix {
   background-color: #50575e;
-  border: 0px;
+  border: 3px solid transparent;
   color: gainsboro;
   /* padding: 2px 30px 2px 30px; */
-  margin: -15px 5px -5px 5px;
+  margin: 0px 5px 10px 5px;
   border-radius: 20px;
   cursor: pointer;
   box-shadow: 2px 2px 2px -2px grey;
@@ -316,13 +319,13 @@ box-shadow: 2px, 2px, 2px, -2px grey;
   font-size: 12.8px;
 }
 
-.btn-teams:active{
+.btn-teams-fix:active{
       border: 0px solid #2acad0;
     background-image: linear-gradient(45deg,#2acad0, dodgerblue);
     color: white;
 }
 
-.btn-teams:focus{
+.btn-teams-fix:focus{
       border: 0px solid #2acad0;
     background-image: linear-gradient(45deg,#2acad0, dodgerblue);
     color: white;
@@ -412,7 +415,9 @@ h6 {
   margin-bottom: 0rem;
   padding: 8px;
 }
-
+.lesspad{
+  padding: 0.5rem;
+}
 .my-team{
 text-align: center;
     border: 1px solid lightgrey;
@@ -492,6 +497,7 @@ display: contents;
     border-radius: 10px;
   background-color: white;
   margin-top: 10px;
+  max-width: auto;
 }
 
 .tabs-component-panels {
