@@ -101,6 +101,7 @@
             </span>
             <h4 class="card-title">Starting Lineup <span class="fa fa-info clickable" @click="showLineupInfoModal()"></span></h4>
             <h4><small>Updated {{moment(getNextFixtureDetails().dateFormationLastUpdated).calendar()}}</small></h4>
+          <div class="grip-center-bottom">=</div>
           </div>
         </div>
          <modal height=auto width=350px border-radius=40px name="lineup-info">
@@ -2081,17 +2082,31 @@ a:hover {
 .grip-center{
   text-align: center;
   position: absolute;
-  top: 13%;
+  top: 15%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  font-weight: 400;
-  font-size: 2.5rem;
+  font-weight: 300;
+  font-size: 2rem;
+  color: lightgrey
+}
+.grip-center-bottom{
+  text-align: center;
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  font-weight: 300;
+  font-size: 2rem;
   color: lightgrey
 }
 }
 @media (min-width: 768px) {
 .grip-center{
+font-size: 0px;
+}
+.grip-center-bottom{
 font-size: 0px;
 }
 }
