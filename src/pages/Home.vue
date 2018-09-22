@@ -1244,7 +1244,7 @@ export default {
 
 .team-buttons-container {
   overflow-x: auto;
-  justify-content: center;
+  justify-content: left;
 }
 /* .player-container a {
   color: rgb(90, 28, 77);
