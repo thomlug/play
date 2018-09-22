@@ -199,11 +199,14 @@
       <div class="col-xl-3">
         <div class="card play-subs-card">
           <div class="card-block">          
-            <h4 class="card-title">Subs <small></small></h4>
+           <span>
+             <h4 class="card-title">Subs<div class="grip-center">=</div></h4>
+             
+          </span>
             
             <span v-if="canEdit()" class="float right">
               <!-- <button class="fa fa-grip-horizontal manage-players-button"></button> -->
-              <!-- <i class="fas fa-grip-horizontal"></i> -->
+              
               <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
               <button class="fa fa-trash manage-players-button" @click="showRemovePlayerModal()"></button>
             </span>
@@ -1184,6 +1187,7 @@ export default {
 
 .backdrop {
   background-color: whitesmoke;
+  background-image: linear-gradient(180deg, whitesmoke,80%,white);
 }
 
 .play-photo {
@@ -1585,8 +1589,8 @@ outline: 0px transparent;
   width: calc(#{$finalHeight} + #{$scrollBarHeight});
   max-height: $finalWidth;
   margin: 0;
-  padding-top: 10px;
-  padding-bottom: 40px;
+  /* padding-top: 10px; */
+  padding-bottom: 45px;
   background: none;
   overflow-y: auto;
   overflow-x: scroll;
@@ -1881,7 +1885,7 @@ li {
 .fa-caret-left {
   color: lightgrey;
   margin-top: 85px;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
   background-color: transparent;
   border: none;
   padding-right: 30px;
@@ -1896,7 +1900,7 @@ li {
 .fa-caret-right {
   color: lightgrey;
   margin-top: 85px;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
   background-color: transparent;
   border: none;
   padding-left: 30px;
@@ -2073,9 +2077,28 @@ a:hover {
   text-transform: uppercase;
   font-size: 0.8rem;
 }
+@media (max-width: 768px) {
+.grip-center{
+  text-align: center;
+  position: absolute;
+  top: 13%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  font-weight: 400;
+  font-size: 2.5rem;
+  color: lightgrey
+}
+}
+@media (min-width: 768px) {
+.grip-center{
+font-size: 0px;
+}
+}
+
 .fa-grip-horizontal{
   color: #e5e5e5;
-  border: 1.5px #e5e5e5 solid;
+  /* border: 1.5px #e5e5e5 solid; */
   border-radius: 50%;
   background-color: transparent;
   font-size: 20px;
@@ -2083,6 +2106,7 @@ a:hover {
   cursor: pointer;
   padding: 10px 12px 9px 12px;
   margin-left: 5px;
+  display: unset;
 }
 .mt-2{
     background: #2acad0;
