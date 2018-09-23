@@ -144,12 +144,12 @@ export default {
   box-shadow: 3px 3px 3px -3px 50575e;
 }
 
-.play-photo:hover {
+/* .play-photo:hover {
   -webkit-box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
   box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
   cursor: pointer;
-}
+} */
 
 .fixture-content {
   display: flex;
@@ -312,7 +312,7 @@ export default {
     box-shadow: 3px 3px 3px -3px 50575e;
   }
 
-  .play-photo:hover {
+  /* .play-photo:hover {
     width: 96px;
     height: 96px;
     object-fit: cover;
@@ -322,7 +322,7 @@ export default {
     -moz-box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
     box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
     cursor: pointer;
-  }
+  } */
 
   .player-circle {
     padding-top: 20%;

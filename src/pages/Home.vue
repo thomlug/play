@@ -1302,6 +1302,7 @@ export default {
     -webkit-box-shadow: 3px 3px 3px -3px #50575e;
     -moz-box-shadow: 7px 9px 4px -8px rgba(0, 0, 0, 0.75);
     box-shadow: 3px 3px 3px -3px 50575e;
+    cursor: pointer;
   }
 
   .play-photo:hover {
