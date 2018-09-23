@@ -301,7 +301,7 @@ box-shadow: 2px, 2px, 2px, -2px grey;
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: center;
+  justify-content: left;
   padding-top: 10px;
   overflow-x: scroll;
 }
