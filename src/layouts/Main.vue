@@ -48,9 +48,10 @@
     <div class="funcard"><br><h2>Welcome to Play! <br><br>
     <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="logofun">
     </h2><br><br></div>
-    <p><h6><div class="darktext">You have logged in, but to gain access to the team dashboard you have to be invited by your manager with an email link first. Check your inbox!
-    <br><br><br><h5><b>Try These Steps</b></h5>
+    <p><h6><div class="darktext centretext">You have logged in, but to gain access to the team dashboard you have to be invited by your manager with an email link first. Check your inbox!</div></h6>
+    <br><br><br><div class="darktext centretext"><h5><b>Try These Steps</b></h5></div>
     <br> 
+    <div class="centre-margin">
 <span class="fa-stack">
     <!-- The icon that will wrap the number -->
     <span class="fa fa-circle-o fa-stack-2x"></span>
@@ -84,15 +85,16 @@
     <strong class="fa-stack-1x">
       4   
     </strong>
-</span>Try on your mobile.
-<br><br>If that doesnt work, ask you manager to re-invite you to the team if he has not already, then follow the steps in the email invite<br>
-    <br><br><b>Remember: You can only join an existing team if you're invited!</b></div></h6>    
+</span>Or try again on your mobile.
+</div>
+<br><br><div class="centretext">If that doesnt work, ask you manager to re-invite you to the team if he has not already, then follow the steps in the email invite<br></div>
+    <br><br><div class="centretext"><b>Remember: You can only join an existing team if you're invited!</b></div>  
     
     <!-- <p>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout</p> -->
     <p><br><div class="centretext"><b> PLAYTIP:</b> Download the Play&#8482; shortcut to your homescreen if you're using a mobile device!</div></p>
     <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/ezgif.com-crop.gif?alt=media&token=d5e40965-34d3-4a66-b5e9-970ba8f5838e" class="playtips"> 
-    <p><br>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout.See <a href="http://playapp.webflow.io/">http://playapp.webflow.io/</a> for more about how we're changing community sport</p></div></div>
-  </div>
+    <div class="centretext"><br>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout.See <a href="http://playapp.webflow.io/">http://playapp.webflow.io/</a> for more about how we're changing community sport</p></div></div></div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -189,9 +191,14 @@
 .centretext{
   text-align: center;
 }
-
+@media (min-width:700px){
+.centre-margin{
+  margin-left: 40%
+}
+}
 .darktext{
   color: #50575e;
+  font-weight: 400;
 }
 .playtips{
   max-width: 100%; 
