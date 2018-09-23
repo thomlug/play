@@ -498,6 +498,8 @@ display: contents;
   background-color: white;
   margin-top: 10px;
   max-width: auto;
+  margin-left: 5px;
+    margin-right: 5px;
 }
 
 .tabs-component-panels {
