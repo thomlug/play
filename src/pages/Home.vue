@@ -1886,8 +1886,8 @@ li {
 
 .fa-caret-left {
   color: lightgrey;
-  margin-top: 85px;
-  margin-bottom: 80px;
+  margin-top: 170px;
+  /* margin-bottom: 80px; */
   background-color: transparent;
   border: none;
   padding-right: 30px;
@@ -1901,8 +1901,8 @@ li {
 
 .fa-caret-right {
   color: lightgrey;
-  margin-top: 85px;
-  margin-bottom: 80px;
+  margin-top: 170px;
+  /* margin-bottom: 80px; */
   background-color: transparent;
   border: none;
   padding-left: 30px;
