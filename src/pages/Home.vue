@@ -385,6 +385,31 @@
             </div>
           </div>
         </div>
+
+         <div class="card play-card" v-if="isAdmin()">
+            <div class="card-block">
+              <button class="btn btn-primary" @click="showNewTeamModal()"><span class="fa fa-plus"></span> Add New Team</button>
+
+          </div>
+          <modal height=auto width=350px border-radius=20px name="new-team" :clickToClose="false">
+            <div class= "input-header">
+              <button class="fa fa-times mt-1" @click="hideNewTeamModal()"></button>
+              <div class="text-center"><h6>Add New Team</h6></div>
+            </div> 
+            <form v-on:submit.prevent="addNewTeam" class="h-75">
+              <div class="form-group">
+                  <label for="name" class="form-control-label">Team Name:</label>
+                  <input type="text" class="form-control" id="name" v-model="newTeam.name"> 
+              </div>
+              <div class="form-group">
+                  <label for="sport" class="form-control-label">Sport:</label>
+                  <input type="text" class="form-control" id="sport" v-model="newTeam.sport"> 
+              </div>            
+              <button type="button" class="btn btn-secondary" @click="hideNewTeamModal()">Close</button>
+              <input type="submit" class="btn btn-primary" value="Save">
+            </form>        
+          </modal>
+        </div>
       </div>
       </div>  
   </main-layout>
@@ -467,7 +492,8 @@ export default {
       searchPlayerName: "",
       newPlayer: {},
       newPlayerMessages: { error: undefined, success: undefined },
-      awayTeamEditable: false
+      awayTeamEditable: false,
+      newTeam: {}
     };
   },
   watch: {
@@ -553,6 +579,44 @@ export default {
     }
   },
   methods: {
+    isAdmin(){
+      var currentUser = firebase.auth().currentUser;
+      return _.some(this.admins, admin => {
+            return admin.userUid === currentUser.uid;
+          });
+    },
+    addNewTeam() {
+      if(!this.isAdmin()){
+        return;
+      }
+      
+      this.newTeam.manager = {1: firebase.auth().currentUser.uid};
+      this.newTeam.competition = "Default";
+      this.newTeam.sport = this.newTeam.sport != null ? this.newTeam.sport : 'default';
+      var newTeam = db.ref("team").push(this.newTeam);
+      var newTeamKey = newTeam.key;
+      var playerKey = this.getCurrentPlayer()['.key'];
+      this.$firebaseRefs.players
+        .child(playerKey)
+        .child(newTeamKey)
+        .set(1);
+      this.$firebaseRefs.players
+        .child(playerKey)
+        .child("teams")
+        .child(newTeamKey)
+        .set({ teamKey: newTeamKey, position: [0, 0] });
+      this.$firebaseRefs.players
+        .child(playerKey)
+        .child("position")
+        .set([0, 0]);
+        this.$firebaseRefs.players
+        .child(playerKey)
+        .child("teamKey")
+        .set(newTeamKey);
+      this.newTeam.name = "";
+      this.newTeam.competition = "";
+      this.hideNewTeamModal();
+    },
     canEdit() {
       var currentUser = firebase.auth().currentUser;
       var team = this.getCurrentTeam();
@@ -561,10 +625,7 @@ export default {
         currentUser != null &&
         (_.some(team.manager, managerId => {
           return managerId === currentUser.uid;
-        }) ||
-          _.some(this.admins, admin => {
-            return admin.userUid === currentUser.uid;
-          }))
+        }) || this.isAdmin())
       );
     },
     setUpPlayerFormation() {
@@ -971,6 +1032,15 @@ export default {
         .child(teamKey)
         .remove();
     },
+    showNewTeamModal(){
+      if (!this.isAdmin()) {
+          return;
+      }
+      this.$modal.show("new-team");
+    },
+    hideNewTeamModal(){
+      this.$modal.hide("new-team");
+    },
     showNewPlayerModal() {
       if (!this.canEdit()) {
         return;
@@ -1166,6 +1236,10 @@ export default {
   border-color: transparent;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.card-block-lineup-default {
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/soccer%20pitch%20blue%20really%20long%20last.png?alt=media&token=34046254-a7a7-4a09-8d22-69ee7d663be2");
 }
 
 .card-block-lineup-football {
