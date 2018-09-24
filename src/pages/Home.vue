@@ -2010,7 +2010,7 @@ box-shadow: transparent;
 
 .fa-caret-left {
   color: lightgrey;
-  margin-top: 168px;
+  margin-top: 170px;
   /* margin-bottom: 80px; */
   background-color: transparent;
   border: none;
@@ -2025,7 +2025,7 @@ box-shadow: transparent;
 
 .fa-caret-right {
   color: lightgrey;
-  margin-top: 168px;
+  margin-top: 170px;
   /* margin-bottom: 80px; */
   background-color: transparent;
   border: none;
