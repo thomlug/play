@@ -14,12 +14,12 @@
               <input
                 type="time"
                 id="timeStart"
-                class="form-control" v-model="fixtureTime">
+                class="form-control top-bottom" v-model="fixtureTime">
               <h6>Day</h6>
               <input
                 type="date"
                 id="dateStart"
-                class="form-control" v-model="fixtureDay">
+                class="form-control top-bottom" v-model="fixtureDay">
                 <h4 class="card-title top-padding">Game status</h4>      
                 <div class="status-container">
                   <div><available-button :onClick="() => this.setGameActive()" type="button" class="btn ">On</available-button></div>
@@ -187,6 +187,10 @@ export default {
   text-align: center;
   text-transform: uppercase;
   font-family: "Roboto Condensed", sans-serif;
+}
+
+.top-bottom{
+    margin: 5px 0 5px 0;
 }
 
 /* .btn {

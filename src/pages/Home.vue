@@ -1904,9 +1904,8 @@ box-shadow: transparent;
 }
 
 .new-team{
-  margin: 10px;
+  margin: 10px 2px 10px 2px;
 }
-
 
 .btn:focus{
   box-shadow: transparent;

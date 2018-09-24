@@ -24,6 +24,8 @@ export default {
   -webkit-box-shadow: 2px 2px 2px -2px #50575e;
   padding-left: 15px;
   padding-right: 15px;
+  margin: 2px;
+  padding: 8px 10px 8px 10px;
 }
 
 .btn-primary:hover {

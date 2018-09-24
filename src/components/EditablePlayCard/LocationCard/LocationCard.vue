@@ -18,9 +18,9 @@
             </h6>
              <div v-else>
                 <h6>Map Location</h6>
-                <input class="form-control" type="text" v-model="ground"> 
+                <input class="form-control top-bottom" type="text" v-model="ground"> 
                 <h6>Notes</h6>
-                <input class="form-control" type="text" v-model="groundNotes"> 
+                <input class="form-control top-bottom" type="text" v-model="groundNotes"> 
             </div>
             
         </div>    
@@ -105,6 +105,10 @@ export default {
   text-align: center;
   text-transform: uppercase;
   font-family: 'Roboto Condensed', sans-serif;
+}
+
+.top-bottom{
+    margin: 5px 0 5px 0;
 }
 
 h3 {

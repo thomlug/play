@@ -22,6 +22,7 @@ export default {
   cursor: pointer;
   border-radius: 20px;
   -webkit-box-shadow: 2px 2px 2px -2px #50575e;
+  margin: 2px;
 }
 
 .btn-danger:hover {
