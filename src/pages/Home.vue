@@ -1427,7 +1427,7 @@ export default {
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
   background: linear-gradient(-90deg, #2faad0, #2bcad0);
-  font-weight: bold;
+  font-weight: inherit;
   font-size: 4rem;
   font-family: "Roboto", sans-serif;
   color: white;
@@ -1441,7 +1441,7 @@ export default {
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
   background: #2bcad0;
-  font-weight: bold;
+  font-weight: inherit;
   font-size: 4rem;
   font-family: "Roboto", sans-serif;
   color: 50575e;
@@ -1456,7 +1456,7 @@ export default {
   border-radius: 50%; /* may require vendor prefixes */
   background: lightgrey;
   background-image: linear-gradient(70deg,lightgrey,30%, whitesmoke, lightgrey);
-  font-weight: normal;
+  font-weight: inherit;
   font-size: 4rem;
   font-family: "Roboto", sans-serif;
   color: darkgrey;
@@ -1869,24 +1869,28 @@ li {
   color: #50575e;
   border: 0px;
   font-size: xx-large;
-  padding: 28px 11px 26px 12px;
+  padding: 28px 11px 28px 12px;
   background-color: whitesmoke;
 }
 
 .make-team:hover{
-  color: white !important;
+  color: #50575e !important;
   border: 0px !important;
-  background-color: #2acad0 !important;
-  background-image: linear-gradient(45deg,turquoise,#2acad0);
-  padding: 28px 11px 26px 12px !important;
+  background-color: rgb(226, 226, 226) !important;
+  /* background-image: linear-gradient(45deg,turquoise,#2acad0); */
+  padding: 28px 11px 28px 12px !important;
   font-size: xx-large !important;
 }
 
 .make-team:active{
-  color: #50575e;;
-  border: 0px;
-  background-color: rgb(226, 226, 226);
+  color: darkslategrey !important;
+  border: 0px !important;
+  background-color: #2acad0 !important;
+  background-image: linear-gradient(45deg,turquoise,#2acad0);
+  padding: 28px 11px 28px 12px !important;
+  font-size: xx-large !important;
 }
+
 .make-team-box{
 background-color: transparent;
 border: 0px;
@@ -1894,9 +1898,15 @@ display:grid;
 margin: -15px auto -10px auto;
 box-shadow: transparent;
 }
-.new-team{
-  margin-top: 10px;
+
+.make-team-box:focus{
+box-shadow: transparent;
 }
+
+.new-team{
+  margin: 10px;
+}
+
 
 .btn:focus{
   box-shadow: transparent;

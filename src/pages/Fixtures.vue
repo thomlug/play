@@ -269,12 +269,18 @@ a:focus, a:hover {
     color: #2acad0;
     text-decoration: none;
 }
+.form{
+  padding: 10px;
+}
 
 .form-content {
   padding: 10px;
 }
 .form-control{
   border-radius:20px;
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  text-align: center;
 }
 .form-group-add{
 /* background: #2acad0; */

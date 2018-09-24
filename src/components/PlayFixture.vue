@@ -184,6 +184,20 @@ export default {
   cursor: pointer;
 }
 
+.home-circle {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: lightgrey;
+  background-image: linear-gradient(70deg,turquoise,30%, #2acad0, turquoise);
+  font-weight: 400;
+  font-size: 2.5rem;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  -webkit-box-shadow: 2px 2px 2px -2px #50575e;
+  cursor: pointer;
+}
 
 .player-circle-container {
   width: 100%;
@@ -333,6 +347,14 @@ export default {
   }
   .away-circle:hover{
     font-size: 4rem;  
+  }
+
+  .home-circle{
+    font-size: 4rem;
+  }
+
+  .home-circle:hover{
+    font-size: 4rem;
   }
 }
 </style>
