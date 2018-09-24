@@ -18,7 +18,7 @@ export default {
 <style scoped>
 .btn-primary {
   background-color: #2acad0;
-  border: 2px solid #2acad0;
+  border: 0px solid #2acad0 !important;
   color: white;
   border-radius: 20px;
   -webkit-box-shadow: 2px 2px 2px -2px #50575e;
@@ -28,17 +28,20 @@ export default {
 
 .btn-primary:hover {
   background-color: #2acad0;
-  /* border: 2px solid turquoise; */
+  border: 0px solid turquoise;
+  background-image: linear-gradient(70deg,turquoise,30%, #2acad0, turquoise);
   box-shadow: 4px 4px 4px -4px grey;
 }
 
 .btn-primary:focus {
   background-color: turquoise;
-  border: 2px solid turquoise;
+  background-image: linear-gradient(70deg,turquoise,30%, #2acad0, turquoise);
+  border: 0px solid turquoise;
 }
 
 .btn-primary:active {
   background-color: turquoise;
-  border: 2px solid turquoise;
+  background-image: linear-gradient(70deg,turquoise,30%, #2acad0, turquoise);
+  border: 0px solid turquoise;
 }
 </style>

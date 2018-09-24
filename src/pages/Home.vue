@@ -1440,7 +1440,7 @@ export default {
   text-align: center;
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
-  background: #2bcad0;
+  background-image: linear-gradient(70deg,turquoise,30%, #2acad0, turquoise);
   font-weight: inherit;
   font-size: 4rem;
   font-family: "Roboto", sans-serif;
@@ -2211,9 +2211,9 @@ a:hover {
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  font-weight: 300;
-  font-size: 2rem;
-  color: lightgrey
+  font-weight: 250;
+  font-size: 1.5rem;
+  color: #50575e
 }
 .grip-center-bottom{
   text-align: center;
@@ -2222,9 +2222,9 @@ a:hover {
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  font-weight: 300;
-  font-size: 2rem;
-  color: lightgrey
+  font-weight: 250;
+  font-size: 1.5rem;
+  color: #50575e
 }
 }
 @media (min-width: 768px) {
