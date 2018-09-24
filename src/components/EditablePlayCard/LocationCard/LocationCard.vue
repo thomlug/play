@@ -100,7 +100,9 @@ export default {
   padding: 0.5rem;
   border: 0px;
   border-radius: 20px;
-  border: 1px solid #e3e3e3;
+    border: 1px solid whitesmoke;
+  background-color: whitesmoke;
+  text-align: center;
   text-transform: uppercase;
   font-family: 'Roboto Condensed', sans-serif;
 }

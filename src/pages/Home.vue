@@ -388,7 +388,7 @@
 
          <div class="card play-card" v-if="isAdmin()">
             <div class="card-block">
-              <button class="btn btn-primary" @click="showNewTeamModal()"><span class="fa fa-plus"></span> Add New Team</button>
+              <button class="make-team-box" @click="showNewTeamModal()"><span class="fa fa-plus make-team"></span> Make New Team</button>
 
           </div>
           <modal height=auto width=350px border-radius=20px name="new-team" :clickToClose="false">
@@ -405,8 +405,8 @@
                   <label for="sport" class="form-control-label">Sport:</label>
                   <input type="text" class="form-control" id="sport" v-model="newTeam.sport"> 
               </div>            
-              <button type="button" class="btn btn-secondary" @click="hideNewTeamModal()">Close</button>
-              <input type="submit" class="btn btn-primary" value="Save">
+              <button type="button" class="btn btn-secondary new-team" @click="hideNewTeamModal()">Close</button>
+              <input type="submit" class="btn btn-primary new-team" value="Save">
             </form>        
           </modal>
         </div>
@@ -1661,7 +1661,7 @@ outline: 0px transparent;
   top: 4.5rem;
   left: 1rem;
   right: 1rem;
-  /* bottom: 0rem; */
+  bottom: 1rem;
   width: calc(#{$finalHeight} + #{$scrollBarHeight});
   max-height: $finalWidth;
   margin: 0;
@@ -1753,10 +1753,11 @@ outline: 0px transparent;
   padding: 0.8rem;
   border: 0px;
   border-radius: 20px;
-  border: 1px solid #e3e3e3;
+  border: 1px solid whitesmoke;
   text-transform: none;
   font-family: "Roboto Condensed", sans-serif;
   margin: 10px 0px;
+  background-color: whitesmoke;
 }
 
 .form-control-edit {
@@ -1765,11 +1766,13 @@ outline: 0px transparent;
   padding: 0.4rem;
   border: 0px;
   border-radius: 20px;
-  border: 1px solid #e3e3e3;
+  border: 1px solid whitesmoke;
   text-transform: none;
   font-family: "Roboto Condensed", sans-serif;
   /* margin: 10px 0px; */
   width:140px;
+  background-color: whitesmoke;
+  text-align: center;
 }
 .player-5-wide {
   width: 20%;
@@ -1860,6 +1863,43 @@ li {
   cursor: pointer;
   padding: 10px 12px 9px 12px;
   margin-left: 5px;
+}
+
+.make-team{
+  color: #50575e;
+  border: 0px;
+  font-size: xx-large;
+  padding: 28px 11px 26px 12px;
+  background-color: whitesmoke;
+}
+
+.make-team:hover{
+  color: white !important;
+  border: 0px !important;
+  background-color: #2acad0 !important;
+  background-image: linear-gradient(45deg,turquoise,#2acad0);
+  padding: 28px 11px 26px 12px !important;
+  font-size: xx-large !important;
+}
+
+.make-team:active{
+  color: #50575e;;
+  border: 0px;
+  background-color: rgb(226, 226, 226);
+}
+.make-team-box{
+background-color: transparent;
+border: 0px;
+display:grid;
+margin: -15px auto -10px auto;
+box-shadow: transparent;
+}
+.new-team{
+  margin-top: 10px;
+}
+
+.btn:focus{
+  box-shadow: transparent;
 }
 
 .fa-plus:hover {
@@ -1960,7 +2000,7 @@ li {
 
 .fa-caret-left {
   color: lightgrey;
-  margin-top: 170px;
+  margin-top: 168px;
   /* margin-bottom: 80px; */
   background-color: transparent;
   border: none;
@@ -1975,7 +2015,7 @@ li {
 
 .fa-caret-right {
   color: lightgrey;
-  margin-top: 170px;
+  margin-top: 168px;
   /* margin-bottom: 80px; */
   background-color: transparent;
   border: none;
