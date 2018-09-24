@@ -22,10 +22,8 @@ export default {
   color: white;
   border-radius: 20px;
   -webkit-box-shadow: 2px 2px 2px -2px #50575e;
-  padding-left: 15px;
-  padding-right: 15px;
   margin: 2px;
-  padding: 8px 10px 8px 10px;
+  padding: 8px 16px 8px 16px;
 }
 
 .btn-primary:hover {

@@ -96,7 +96,7 @@
         <div class="card play-card">
           <div class="card-block">
             <span v-if="canEdit()" class="float-right">
-              <button class="fa fa-times" v-if="editPlayerMode" v-on:click="cancelEditPlayersPositions()"></button>
+              <button class="fa fa-times red-ex" v-if="editPlayerMode" v-on:click="cancelEditPlayersPositions()"></button>
               <button class="btn btn-edit move-down" v-on:click="toggleEditPlayersPositions()">{{editPlayerButtonText}}</button>
             </span>
             <h4 class="card-title">Starting Lineup <span class="fa fa-info clickable" @click="showLineupInfoModal()"></span></h4>
@@ -1906,7 +1906,13 @@ box-shadow: transparent;
 .new-team{
   margin: 10px 2px 10px 2px;
 }
-
+.red-ex{
+    background-color: indianred !important;
+    color: white !important;
+    padding: 8px 10.5px;
+    border-radius: 20px;
+    margin: -8px 0 0 4px;
+}
 .btn:focus{
   box-shadow: transparent;
 }
