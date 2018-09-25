@@ -406,7 +406,7 @@
                   <input type="text" class="form-control" id="sport" v-model="newTeam.sport"> 
               </div>            
               <!-- <button type="button" class="btn btn-secondary new-team" @click="hideNewTeamModal()">Close</button> -->
-              <input type="submit" class="btn btn-primary new-team" value="Save">
+              <input type="submit" class="btn btn-primary new-team" value="Create">
             </form>        
           </modal>
         </div>

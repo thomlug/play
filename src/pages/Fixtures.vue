@@ -12,7 +12,7 @@
             <div class="card play-card">
               <div class="card-block lesspad" v-if="canEdit()">
                 <div class="heading">
-                  <h3 class="text-center">
+                  <h3 class="fix-title">
                     Fixtures for {{getCurrentTeam().name}}
                   </h3>
                   <button class="fa fa-plus manage-players-button" @click="showNewFixtureModal()"></button> 
@@ -312,6 +312,12 @@ box-shadow: 2px, 2px, 2px, -2px grey;
   overflow-x: scroll;
 }
 
+.fix-title{
+  font-size: larger;
+  margin-top: 10px;
+  text-align: center;
+}
+
 .btn-teams-fix {
   background-color: #50575e;
   border: 3px solid transparent;
@@ -323,6 +329,7 @@ box-shadow: 2px, 2px, 2px, -2px grey;
   box-shadow: 2px 2px 2px -2px grey;
   min-width: 115px;
   font-size: 12.8px;
+  border: 0px solid #2acad0;
 }
 
 .btn-teams-fix:active{
@@ -410,9 +417,9 @@ h2{
   color: #50575e;
 }
 
-h3{
+/* h3{
   margin-bottom: 0px;
-}
+} */
 
 h6 {
   color: rgb(175, 175, 175);

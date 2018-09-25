@@ -87,7 +87,7 @@
               <modal height=auto width=90%  name="add-manager" :clickToClose="false">
                 <div class= "input-header">
                   <button class="fa fa-times mt-1 team-times" @click="hideAddManagerModal()"></button>
-                  <h6>ADD EXISTING PLAYER AS MANAGER</h6>
+                  <h6><div class="centre-h6">ADD EXISTING PLAYER AS MANAGER</div></h6>
                 </div> 
                 <div class="form-group">
                   
@@ -106,7 +106,7 @@
                <modal height=auto width=90% name="remove-manager" :clickToClose="false">
                 <div class= "input-header">
                   <button class="fa fa-times mt-1 team-times" @click="hideRemoveManagerModal()"></button>
-                  <h6>REMOVE AS MANAGER</h6>
+                  <h6><div class="centre-h6">REMOVE AS MANAGER</div></h6>
                   
                 </div> 
                 <div class="form-group">
@@ -431,7 +431,9 @@ export default {
   overflow-x: scroll;
   width: -webkit-fill-available;
 }
-
+.centre-h6{
+  text-align:center;
+}
 .manager-header {
   text-transform: uppercase;
   border-top: 0px solid #2acad0;
@@ -640,7 +642,6 @@ h4 {
 h6 {
   color: rgb(175, 175, 175);
   font-weight: none;
-  text-align: center;
   margin-bottom: 0rem;
   padding: 8px;
 }
