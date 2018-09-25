@@ -123,7 +123,7 @@
                  </span><br>
                 <span>
                  <div class="help-not-registered"> </div>
-                 Means the player is invited but not registered to app
+                 Means the player is invited but not registered
                  </span><br>
                 </div> 
               </modal>
@@ -2000,10 +2000,11 @@ box-shadow: transparent !important;
   cursor: pointer;
   box-shadow: 2px 2px 2px -2px grey;
   min-width: 115px;
+  border: 0px solid #2acad0;
 }
 
 .btn-teams-active {
-    border: 0px solid #2acad0;
+    
     background-image: linear-gradient(45deg,#2acad0, dodgerblue);
     color: white;
 }
