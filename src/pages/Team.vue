@@ -755,7 +755,7 @@ li {
   vertical-align: middle;
   cursor: pointer;
   padding: 10px 12px 9px 12px;
-  margin: 0 5px 0 5px;
+  /* margin: 0 5px 0 5px; */
 }
 
 .fa-trash:hover {
@@ -767,7 +767,7 @@ li {
   vertical-align: middle;
   cursor: pointer;
   padding: 10px 12px 9px 12px;
-  margin: 0 5px 0 5px;
+  /* margin: 0 5px 0 5px; */
 }
 
 .fa-plus {
@@ -779,7 +779,7 @@ li {
   vertical-align: middle;
   cursor: pointer;
   padding: 10px 12px 9px 12px;
-  margin: 0 5px 0 5px;
+  /* margin: 0 5px 0 5px; */
 }
 
 .fa-plus:hover {
@@ -791,7 +791,7 @@ li {
   vertical-align: middle;
   cursor: pointer;
   padding: 10px 12px 9px 12px;
-  margin: 0 5px 0 5px;
+  /* margin: 0 5px 0 5px; */
 }
 
 .fa-minus {

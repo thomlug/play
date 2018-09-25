@@ -218,7 +218,7 @@
 }
 .play-logo{
   max-height:50px;
-
+z-index: 1;
 }
 
 .body{
@@ -313,5 +313,18 @@ color: rgb(175, 175, 175);
     margin-left: -15px;
     margin-right: -15px;
 }
+/* .funcard:after {
+    background: inherit;
+    bottom: 53%;
+    content: '';
+    display: block;
+    height: 50%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    transform: skewY(-1deg);
+    transform-origin: 100%;
+    z-index: 0;
+} */
 
 </style>
