@@ -542,7 +542,8 @@ input {
   display: block;
   width: 100%;
   border: none;
-  border: 1.2px solid #e3e3e3;
+  border: 1.2px solid whitesmoke;
+  background-color: whitesmoke;
   color: #50575e;
   border-radius: 20px;
   /* margin-bottom: 10px; */
