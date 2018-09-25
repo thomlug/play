@@ -83,7 +83,7 @@
 <!-- update your status -->
         <div class="card play-card">
           <div class="card-block">
-            <h4 class="card-title">Update Your Status <small>({{getCurrentPlayerAvailability() | camelToSentence}})</small></h4>
+            <h4 class="card-title">Update Your Status <small>{{getCurrentPlayerAvailability() | camelToSentence}}</small></h4>
             <div class="status-container">
               <available-button :on-click="() => this.setCurrentPlayerAvailability('available')" class="btn active">Available</available-button>
               <danger-button :on-click="() => this.setCurrentPlayerAvailability('unavailable')" class="btn">Unavailable</danger-button>
@@ -2150,7 +2150,7 @@ box-shadow: transparent !important;
 }
 
 .leftpad {
-  padding: 0 0 0 20px;
+  padding: 20px;
 }
 
 dt {
