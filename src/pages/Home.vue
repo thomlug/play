@@ -398,14 +398,14 @@
             </div> 
             <form v-on:submit.prevent="addNewTeam" class="h-75">
               <div class="form-group">
-                  <label for="name" class="form-control-label">Team Name:</label>
+                  <h6 for="name" class="form-control-label">Team Name:</h6>
                   <input type="text" class="form-control" id="name" v-model="newTeam.name"> 
               </div>
               <div class="form-group">
-                  <label for="sport" class="form-control-label">Sport:</label>
+                  <h6 for="sport" class="form-control-label">Sport:</h6>
                   <input type="text" class="form-control" id="sport" v-model="newTeam.sport"> 
               </div>            
-              <button type="button" class="btn btn-secondary new-team" @click="hideNewTeamModal()">Close</button>
+              <!-- <button type="button" class="btn btn-secondary new-team" @click="hideNewTeamModal()">Close</button> -->
               <input type="submit" class="btn btn-primary new-team" value="Save">
             </form>        
           </modal>
@@ -1904,8 +1904,23 @@ box-shadow: transparent;
 }
 
 .new-team{
-  margin: 10px 2px 10px 2px;
+    background-image: linear-gradient(45deg,turquoise, #2acad0, turquoise);
+    width: 100px;
+    margin: 5px 0 10px 37%;
+    border-color: transparent;
 }
+
+.new-team:active{
+box-shadow: transparent;
+background-image: linear-gradient(45deg,turquoise, #2acad0);
+color: darkslategray;
+box-shadow: transparent;
+
+}
+.new-team:focus{
+box-shadow: transparent !important;
+}
+
 .red-ex{
     background-color: indianred !important;
     color: white !important;
