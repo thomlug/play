@@ -1540,11 +1540,13 @@ export default {
   padding: 0.5rem 1.5rem;
 }
 
-/* .btn:focus {
+.btn:focus {
  outline: 0px transparent;
+-webkit-box-shadow: 0 0 0 0px rgba(2,117,216,.25);
+    box-shadow: 0 0 0 0px rgba(2,117,216,.25);
 }
 
-.button:focus {
+/* .button:focus {
 outline: 0px transparent;
 } */
 
@@ -2274,6 +2276,17 @@ font-size: 0px;
     border: 0;
     box-shadow: 2px 2px 2px -2px grey;
 }
+.alert-danger{
+  background-color: indianred;
+  opacity: 0.8;
+  color: white;
+}
+.alert-success{
+background-color: dodgerblue;
+opacity: 0.8;
+color: white;
+}
+
 @media screen and (-ms-high-contrast: active),
   screen and (-ms-high-contrast: none) {
   .player-available {
