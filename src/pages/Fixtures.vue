@@ -318,7 +318,7 @@ box-shadow: 2px, 2px, 2px, -2px grey;
   color: gainsboro;
   /* padding: 2px 30px 2px 30px; */
   margin: 0px 5px 10px 5px;
-  border-radius: 20px;
+  border-radius: 40px;
   cursor: pointer;
   box-shadow: 2px 2px 2px -2px grey;
   min-width: 115px;

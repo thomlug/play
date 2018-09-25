@@ -225,7 +225,7 @@
                     <div class="form-control alert alert-success" v-if="newPlayerMessages.success !== undefined">{{newPlayerMessages.success}}</div>
                     <!-- <button class="btn btn-edit mt-1" @click="hideNewPlayerModal()">Close</button> -->
                     
-                    <button class="btn btn-primary mt-2" @click="saveNewPlayer()">Invite</button>
+                    <button class="btn btn-primary new-team" @click="saveNewPlayer()">Invite</button>
                   </div>
                   <br><br>
             
@@ -1994,7 +1994,7 @@ box-shadow: transparent !important;
   color: gainsboro;
   /* padding: 2px 30px 2px 30px; */
   margin: 0px 5px 10px 5px;
-  border-radius: 20px;
+  border-radius: 40px;
   cursor: pointer;
   box-shadow: 2px 2px 2px -2px grey;
   min-width: 115px;
