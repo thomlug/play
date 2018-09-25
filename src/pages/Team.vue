@@ -93,11 +93,13 @@
                   
                   <input class="form-control" placeholder="Search for player" v-model="searchPlayerName"/>
                   <ul>
+                    <div class="scroll-for-manager">
                     <li v-for="player in listRegisteredPlayers(searchPlayerName)" v-bind:key="player['.key']">
                      <button class="fa fa-plus" @click="addExistingPlayerAsTeamManager(player.userUid)"></button>
                       {{player.first_name}}
                       {{player.last_name}}
                     </li> 
+                    </div>
                   </ul>
                 </div>        
               </modal>
@@ -109,12 +111,14 @@
                 </div> 
                 <div class="form-group">
                   <ul>
+                    <div class="scroll-for-manager">
                     <li v-for="manager in teamManagers" v-bind:key="manager['.key']">
                       <button class="fa fa-trash" @click="removeManagerFromTeam(manager.userUid)"></button>
                       {{manager.first_name}}
                       {{manager.last_name}}
                       
                     </li>
+                    </div>
                   </ul>
                 </div>        
                 
@@ -734,9 +738,11 @@ h6 {
 
 ul {
   list-style-type: none;
-  /* padding: 0.5rem 1rem 1rem 1rem; */
-  /* max-height: 10rem; */
-  /* overflow-y: scroll; */
+}
+.scroll-for-manager{
+  padding: 0.5rem 1rem 1rem 1rem;
+  max-height: 10rem;
+  overflow-y: scroll;
 }
 
 li {
@@ -843,7 +849,8 @@ font-size: 20px;
   padding: 0.8rem;
   border: 0px;
   border-radius: 20px;
-  border: 1px solid #e3e3e3;
+  border: 1px solid whitesmoke;
+  background-color: whitesmoke;
   text-transform: none;
   font-family: "Roboto Condensed", sans-serif;
   margin: 10px 0px;
