@@ -2068,8 +2068,8 @@ box-shadow: transparent !important;
 
 .fa-info {
   cursor: pointer;
-  color: rgb(175, 175, 175);
-  border: 2px solid rgb(175, 175, 175);
+  color: #e5e5e5;
+  border: 2px solid #e5e5e5;
   border-radius: 50%;
   padding: 3px 6.5px 2px 6.5px;
   font-size: small;
