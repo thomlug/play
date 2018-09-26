@@ -37,7 +37,92 @@
                 <h4 class="fixture-title">Next Fixture</h4>
                     <button class="fa fa-plus home-add-fixture-button" @click="showNewFixtureModal()" v-if="canEdit()"></button>
                     
-                    
+ <modal height=auto width=90%  name="add-fixture" :clickToClose="false" class="vertical-scroll">
+
+                <div class= "input-header">
+                  <button class="fa fa-times mt-1" @click="hideNewFixtureModal()"></button>
+                  <h6>Add New Fixture</h6>
+                </div> 
+
+ </modal>
+
+                    <!-- <div class="card-block lesspad" v-if="canEdit()">
+                <div class="heading">
+                  <h3 class="fix-title">
+                    Fixtures for {{getCurrentTeam().name}}
+                  </h3>
+                  <button class="fa fa-plus home-add-fixture-button" @click="showNewFixtureModal()" v-if="canEdit()"></button> 
+                </div>
+                <modal height=auto width=90%  name="add-fixture" :clickToClose="false" class="vertical-scroll">
+                <div class= "input-header">
+                  <button class="fa fa-times-fixture mt-1" @click="hideNewFixtureModal()"></button>
+                  <h6>Add New Fixture</h6>
+                </div> 
+                <form @submit.prevent="addNewFixture" class="vertical-scroll form-content">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                      <div class="form-group">
+                        <h6 for="homeTeam">My Team</h6>
+                        <div class="my-team"> {{getCurrentTeam().name}}</div>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                      <div class="form-group">
+                        <h6 for="awayTeam">Opposition</h6>
+                        <input 
+                            type="text"
+                            id="awayTeam"
+                            class="form-control"
+                            v-model="newFixture.awayTeamName"
+                            required>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                      <div class="form-group">
+                        <h6 for="timeStart">Start Time</h6>
+                        <input
+                          type="time"
+                          placeholder="Start Time"
+                          id="timeStart"
+                          class="form-control" v-model="time"
+                          required>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                      <div class="form-group">
+                        <h6 for="dateStart">Start Day</h6>
+                        <input
+                          type="date"
+                          id="dateStart"
+                          class="form-control" v-model="day"
+                          required>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <h6 for="ground">Map Location</h6>
+                    <input
+                      type="text"
+                      id="ground"
+                      placeholder="Enter Game Address"
+                      class="form-control" v-model="newFixture.ground"
+                      required>
+                  </div>  
+
+                  <div class="form-group">
+                    <input
+                     background="form-control-add"
+                      type="submit"
+                      value="Add New Fixture"/>
+                  </div>     
+                </form>        
+              </modal>
+              </div> -->
                     <div class="centered-col fixture-content">
                       <div class="centered-col">
                         <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().homeTeam)">
@@ -630,6 +715,28 @@ export default {
           return managerId === currentUser.uid;
         }) || this.isAdmin())
       );
+    },
+        showNewFixtureModal() {
+      if (!this.canEdit()) {
+        return;
+      }
+      this.$modal.show("add-fixture");
+    },
+    hideNewFixtureModal() {
+      this.$modal.hide("add-fixture");
+      this.newFixture = {};
+    },
+
+    addNewFixture() {
+      var currentTeam = this.getCurrentTeam();
+      this.newFixture.homeTeam = currentTeam[".key"];
+      this.formatDateTime();
+      this.$firebaseRefs.fixtures.push(this.newFixture);
+      this.hideNewFixtureModal();
+    },
+
+    deleteFixture(fixture) {
+      this.$firebaseRefs.fixtures.child(fixture['.key']).remove();
     },
     setUpPlayerFormation() {
       this.playerFormation = [];
