@@ -35,7 +35,7 @@
                 <div slot="main-content">
             
                 <h4 class="fixture-title">Next Fixture</h4>
-                    <button class="fa fa-plus home-add-players-button" @click="showNewFixtureModal()"></button>
+                    <button class="fa fa-plus home-add-fixture-button" @click="showNewFixtureModal()" v-if="canEdit()"></button>
                     
                     
                     <div class="centered-col fixture-content">
@@ -1149,14 +1149,14 @@ export default {
   background-color: transparent;
 }
 
-.home-add-players-button{
+.home-add-fixture-button{
   margin: -46px 0px 0px 0px;
   position: relative;
   left: -85%;
 }
 
-.home-add-players-button:focus{
-outline-color: transparent;
+.home-add-fixture-button:focus{
+outline-color: white;
 }
 
 .game-info {
