@@ -32,8 +32,11 @@
 
            <three-column-edit-card :clickFn="toggleEditAwayTeam" :can-edit="canEdit()" :editable="awayTeamEditable">    
                 <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="location-icon"> -->
-                <div slot="main-content">    
-                  <h4 class="fixture-title">Next Fixture</h4>
+                <div slot="main-content">
+            
+                <h4 class="fixture-title">Next Fixture</h4>
+                    <button class="fa fa-plus home-add-players-button" @click="showNewFixtureModal()"></button>
+                    
                     
                     <div class="centered-col fixture-content">
                       <div class="centered-col">
@@ -406,7 +409,7 @@
                   <input type="text" class="form-control" id="sport" v-model="newTeam.sport"> 
               </div>            
               <!-- <button type="button" class="btn btn-secondary new-team" @click="hideNewTeamModal()">Close</button> -->
-              <input type="submit" class="btn btn-primary new-team" value="Create">
+              <input type="submit" class="btn btn-primary new-team" value="Create!">
             </form>        
           </modal>
         </div>
@@ -1145,6 +1148,17 @@ export default {
 .row-home {
   background-color: transparent;
 }
+
+.home-add-players-button{
+  margin: -46px 0px 0px 0px;
+  position: relative;
+  left: -85%;
+}
+
+.home-add-players-button:focus{
+outline-color: transparent;
+}
+
 .game-info {
   font-size: small !important;
   background-color: transparent;
