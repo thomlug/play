@@ -79,10 +79,7 @@
                   </div>  
 
                   <div class="form-group">
-                    <input
-                     background="form-control-add"
-                      type="submit"
-                      value="Add New Fixture"/>
+ <input background="form-control-add" type="submit" value="Add Game!" class="btn btn-primary new-team">
                   </div>     
                 </form>        
               </modal>
@@ -345,6 +342,13 @@ box-shadow: 2px, 2px, 2px, -2px grey;
     outline:0px;
 }
 
+.btn {
+    padding: 8px;
+    cursor: pointer;
+    margin-top: -10px;
+    border-radius: 25px;
+}
+
 .vertical-scroll {
   overflow-y: scroll;
 }
@@ -354,6 +358,24 @@ box-shadow: 2px, 2px, 2px, -2px grey;
   flex-flow: row;
   align-items: center;
   justify-content: center;
+}
+
+.new-team{
+    background-image: linear-gradient(45deg,turquoise, #2acad0, turquoise);
+    width: 100px;
+    margin: 5px 0 10px 37%;
+    border-color: transparent;
+}
+
+.new-team:active{
+box-shadow: transparent;
+background-image: linear-gradient(45deg,turquoise, #2acad0);
+color: darkslategray;
+box-shadow: transparent;
+
+}
+.new-team:focus{
+box-shadow: transparent !important;
 }
 
 .manage-players-button {

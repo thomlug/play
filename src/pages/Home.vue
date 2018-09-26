@@ -100,11 +100,11 @@
                   </div>  
 
                   <div class="form-group">
-                    <input
-                     background="form-control-add"
-                      type="submit"
-                      value="Add New Fixture"/>
-                  </div>     
+      
+                   
+
+                  <input background="form-control-add" type="submit" value="Add Game!" class="btn btn-primary new-team">
+</div> 
                 </form>       
  </modal>
 
