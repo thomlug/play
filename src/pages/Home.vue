@@ -41,24 +41,9 @@
 
                 <div class= "input-header">
                   <button class="fa fa-times mt-1" @click="hideNewFixtureModal()"></button>
-                  <h6>Add New Fixture</h6>
+                  <h6><div class="text-center"> Add New Fixture</div></h6>
                 </div> 
-
- </modal>
-
-                    <!-- <div class="card-block lesspad" v-if="canEdit()">
-                <div class="heading">
-                  <h3 class="fix-title">
-                    Fixtures for {{getCurrentTeam().name}}
-                  </h3>
-                  <button class="fa fa-plus home-add-fixture-button" @click="showNewFixtureModal()" v-if="canEdit()"></button> 
-                </div>
-                <modal height=auto width=90%  name="add-fixture" :clickToClose="false" class="vertical-scroll">
-                <div class= "input-header">
-                  <button class="fa fa-times-fixture mt-1" @click="hideNewFixtureModal()"></button>
-                  <h6>Add New Fixture</h6>
-                </div> 
-                <form @submit.prevent="addNewFixture" class="vertical-scroll form-content">
+<form @submit.prevent="addNewFixture" class="vertical-scroll form-content">
                   <div class="row">
                     <div class="col-sm-12 col-md-6">
                       <div class="form-group">
@@ -120,9 +105,9 @@
                       type="submit"
                       value="Add New Fixture"/>
                   </div>     
-                </form>        
-              </modal>
-              </div> -->
+                </form>       
+ </modal>
+
                     <div class="centered-col fixture-content">
                       <div class="centered-col">
                         <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().homeTeam)">
@@ -581,7 +566,16 @@ export default {
       newPlayer: {},
       newPlayerMessages: { error: undefined, success: undefined },
       awayTeamEditable: false,
-      newTeam: {}
+      newTeam: {},
+      newFixture:{        
+        homeTeam: "",
+        awayTeamName: "",
+        date: "",
+        ground: "",
+        status: "active"
+      },
+      time: "",
+      day: ""
     };
   },
   watch: {
@@ -734,7 +728,20 @@ export default {
       this.$firebaseRefs.fixtures.push(this.newFixture);
       this.hideNewFixtureModal();
     },
-
+    formatDateTime() {
+      var date = new Date(this.day);
+      var dateString =
+        (date.getMonth() + 1) +
+        "/" +
+        date.getDate() +
+        "/" +
+        date.getFullYear() +
+        " " +
+        this.time;
+      date = moment(dateString, "M/DD/YYYY HH:mm a");
+      date = new Date(date).toISOString();
+      this.newFixture.date = date;
+    },
     deleteFixture(fixture) {
       this.$firebaseRefs.fixtures.child(fixture['.key']).remove();
     },
@@ -2409,6 +2416,12 @@ opacity: 0.8;
 color: white;
 }
 
+.my-team{
+text-align: center;
+    border: 1px solid lightgrey;
+    padding: 7px;
+    border-radius: 20px;
+}
 @media screen and (-ms-high-contrast: active),
   screen and (-ms-high-contrast: none) {
   .player-available {
