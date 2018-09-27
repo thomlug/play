@@ -59,7 +59,7 @@
     <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="logofun">
     </h2><br><br></div>
     <p><h6><div class="darktext centretext">You have logged in, but to gain access to the team dashboard you have to be invited by your manager with an email link first. Check your inbox!</div></h6>
-    <br><br><br><div class="darktext centretext"><h5><b>Try These Steps</b></h5></div>
+    <br><br><br><div class="darktext centretext"><h5>Try These Steps</h5></div>
     <br> 
     <div class="centre-margin">
 <span class="fa-stack">

@@ -725,7 +725,7 @@ border-radius: 50%;
 
 .profile-info-jersey{
   color:#50575e;
-  font-weight: 550;
+  font-weight: 450;
   font-size: larger;
 }
 
