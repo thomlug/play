@@ -26,7 +26,7 @@
             <br>
 
          <div>
-            <Avatar  v-if="team.photo" @click="goToTeam(team['.key'])" class="profile-photo" :image="team.photo"/>     
+            <Avatar  v-if="team.photo" @click="goToTeam(team['.key'])" class="profile-photo nav-photo" :image="team.photo"/>     
             <!-- <div v-else class="default-manager-circle manager-photo" @click="goToTeam(team['.key'])">
                       {{manager.first_name | firstCharacter}}
             </div>  -->
@@ -889,4 +889,19 @@ box-shadow: 2px 2px 2px -2px grey;
 /* .fa{
   border: none;
 } */
+
+
+.nav-photo{
+    width: 36px;
+    height: 36px;
+    margin-right: 12%;
+    box-shadow: none;
+    float: right;
+    margin-top: 5px;
+}
+@media (min-width: 768px){
+.nav-photo{
+display: none;
+}
+}
 </style>
