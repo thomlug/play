@@ -10,7 +10,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
 
-            Complete your profile below, then click Save
+            Complete profile below, then click blue circle
           </div>
           <div class="player-profile-banner text-center">
             <h1>Player Profile</h1>

@@ -13,8 +13,8 @@
             
               <div class="player-profile-content-nav" >
               <img v-if="player.photo" class="profile-photo nav-photo" :src="player.photo" :class="'player-' + player.availability"/> 
-              <div v-else class="profile-photo">
-              <div class="player-initials">{{player.first_name | firstCharacter}}</div>
+              <div v-else class="initial-circle">
+              <div class="player-initials-nav">{{player.first_name | firstCharacter}}</div>
               </div>
               </div>
           </router-link>
@@ -149,17 +149,19 @@
       },
     },
 
-    methods: {
-      logOut(){
-        this.$store.dispatch('userSignOut');
-        this.$router.replace('/login')
-      },
+filters:{
       firstCharacter(value) {
       if (!_.isUndefined(value)) {
         return value.charAt(0);
       }
       return "";
     },
+},
+    methods: {
+      logOut(){
+        this.$store.dispatch('userSignOut');
+        this.$router.replace('/login')
+      },
         goToPlayer(key){
       this.$router.push({name: 'profile', params: {player_id: key}});
     },
@@ -318,13 +320,33 @@ h6{
 color: rgb(175, 175, 175);
 }
 
+.initial-circle{
+display: inline;  
+}
+
+.player-initials-nav{ 
+    width: 36px;
+    height: 36px;
+    margin-right: 12%;
+    box-shadow: none;
+    float: right;
+    margin-top: 5px;
+    font-size: x-large;
+    background-color: #50575e;
+    background-image: linear-gradient(45deg, #50575e,66%, darkslategrey);
+    border-radius: 30px;
+    color: lightgrey;
+    text-align: center;
+}
+
 .player-profile-content-nav{
 display: inline;
 }
+
 .nav-photo{
     width: 36px;
     height: 36px;
-    margin-right: 10%;
+    margin-right: 12%;
     box-shadow: none;
     float: right;
     margin-top: 5px;
