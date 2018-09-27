@@ -78,17 +78,20 @@ exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event
         snapshot.forEach(childSnapShot => {
             fixtures.push(childSnapShot.val());
         });
-        var startDate = moment().format();
+        var startDate = moment();
         var endDate = moment().add(2, 'days');
-        var range = moment.range(startDate, endDate);
 
         // find the fixtures within next 48 hours
-        var upcomingFixtures = _.find(fixtures, fixture => {
-            return range.contains(fixture.date);
+        var upcomingFixtures = _.filter(fixtures, fixture => {
+            if (_.isUndefined(fixture.date)) {
+                return false;
+            }
+            var date = moment(fixture.date);
+            return (date.isBetween(startDate, endDate, null, '[]') && !fixture.reminderSent && fixture.status === 'active');
         });
-        
+
         upcomingFixtures.map(fixture => {
-            if (!_.isUndefined(fixture.homeTeam)) {
+            if (!_.isUndefined(fixture.homeTeam) && fixture.homeTeam === '-KrO7uGoJ4s4wa5JstB4') {
                 return admin.database().ref('/player').once('value').then(snapshot => {
                     // get an array of all players
                     var players = [];
@@ -97,26 +100,50 @@ exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event
                     });
 
                     // get all players in the current fixture
-                    var playersInTeam = _.find(players, player => {
-                        return _includes(player.teams, fixture.homeTeam);
+                    var playersInTeam = _.filter(players, player => {
+                        if (_.isUndefined(player.teams)) {
+                            return false;
+                        }
+                        var playerTeams = player.teams;
+                        var playerTeamsArray = Object.keys(playerTeams).map(k => {
+                            return playerTeams[k];
+                        });
+
+                        return _.find(playerTeamsArray, team => {
+                            return team.teamKey === fixture.homeTeam;
+                        });
                     });
-                    playersInTeam.map(player => {
-                        var apiKey = defaultClient.authentications['api-key'];
-                        apiKey.apiKey = functions.config().sendinblue.apikey;
-                        var emailParams = {
-                            FIRSTNAME: player.first_name,
-                            OPPOSITION: fixture.awayTeamName,
-                            GAMETIME: moment(fixture.date).format("hh:mm a"),
-                            GAMEDATE: moment(fixture.date).format("dddd MMMM DD YYYY")
-                        };
-                        var apiInstance = new SibApiV3Sdk.SMTPApi();
-                        var sendSmtpEmail = {
-                            to: [{ 'name': player.first_name + ' ' + player.last_name, 'email': player.email }],
-                            params: emailParams,
-                            templateId: 16
-                        }; // SendSmtpEmail | Values to send a transactional email
-                        console.log(sendSmtpEmail);
+
+                    return admin.database().ref('/team/' + fixture.homeTeam).once('value').then(snapshot => {
+                        playersInTeam.map(player => {
+                            var apiKey = defaultClient.authentications['api-key'];
+                            apiKey.apiKey = functions.config().sendinblue.apikey;
+                            var emailParams = {
+                                FIRSTNAME: player.first_name,
+                                OPPOSITION: fixture.awayTeamName,
+                                GAMETIME: moment(fixture.date).format("hh:mm a"),
+                                GAMEDATE: moment(fixture.date).format("dddd MMMM DD YYYY"),
+                                TEAMNAME: snapshot.val().name
+                            };
+                            var apiInstance = new SibApiV3Sdk.SMTPApi();
+                            var sendSmtpEmail = {
+                                to: [{ 'name': player.first_name + ' ' + player.last_name, 'email': player.email }],
+                                params: emailParams,
+                                templateId: 16
+                            }; // SendSmtpEmail | Values to send a transactional email
+                            console.log(sendSmtpEmail);    
+                            // return apiInstance.sendTransacEmail(sendSmtpEmail).then(function (data) {
+                            //     console.log('API called successfully. Returned data: ' + data);
+                            // }, function (error) {
+                            //     console.error(error);
+                            //     return null;
+                            // });
+                        })
+                        
+                        updateReminderSent(fixture);
                     })
+
+                   
                 })
             }
         });
@@ -128,4 +155,9 @@ exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
+}
+
+function updateReminderSent(fixture) {
+    console.log("Reminder sent");
+    return admin.database().ref("match/" + fixture[".key"]).child("reminderSent").set(true);
 }
