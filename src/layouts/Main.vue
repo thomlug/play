@@ -8,6 +8,16 @@
         <a class="navbar-brand" href="#/home">
           <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="img-fluid play-logo">
           <!-- <div class="home">HOME</div> -->
+          
+          <router-link active-class="active" exact :to="{name: 'profile', params: {player_id: this.getThisPlayerId()}}">
+            
+              <div class="player-profile-content-nav" >
+              <img v-if="player.photo" class="profile-photo nav-photo" :src="player.photo" :class="'player-' + player.availability"/> 
+              <div v-else class="profile-photo">
+              <div class="player-initials">{{player.first_name | firstCharacter}}</div>
+              </div>
+              </div>
+          </router-link>
           </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <ul class="navbar-nav">
@@ -107,7 +117,8 @@
     data() {
       return {
         player: undefined,
-        playerPromise: this.$helpers.defer(function(resolve, reject) {})
+        playerPromise: this.$helpers.defer(function(resolve, reject) {}),
+        photo:{},
       }
     },
     created: function() {
@@ -143,6 +154,15 @@
         this.$store.dispatch('userSignOut');
         this.$router.replace('/login')
       },
+      firstCharacter(value) {
+      if (!_.isUndefined(value)) {
+        return value.charAt(0);
+      }
+      return "";
+    },
+        goToPlayer(key){
+      this.$router.push({name: 'profile', params: {player_id: key}});
+    },
       setUpPlayer(){
           this.player = _.find(this.players, p => {
             return p.userUid === this.user.uid;
@@ -296,6 +316,23 @@ color: white;
 }
 h6{
 color: rgb(175, 175, 175);
+}
+
+.player-profile-content-nav{
+display: inline;
+}
+.nav-photo{
+    width: 36px;
+    height: 36px;
+    margin-right: 10%;
+    box-shadow: none;
+    float: right;
+    margin-top: 5px;
+}
+@media (min-width: 768px){
+.nav-photo{
+display: none;
+}
 }
 
 .home{
