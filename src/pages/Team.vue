@@ -26,7 +26,7 @@
             <br>
 
          <div>
-            <Avatar  v-if="team.photo" @click="goToTeam(team['.key'])" class="profile-photo nav-photo" :image="team.photo"/>     
+            <Avatar  v-if="team.photo" @click="goToTeam(team['.key'])" class="profile-photo" :image="team.photo"/>     
             <!-- <div v-else class="default-manager-circle manager-photo" @click="goToTeam(team['.key'])">
                       {{manager.first_name | firstCharacter}}
             </div>  -->
