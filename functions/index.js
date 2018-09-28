@@ -60,7 +60,7 @@ exports.sendSignUpEmail = functions.database.ref('/player/{playerId}').onCreate(
             console.log(sendSmtpEmail);
 
             return apiInstance.sendTransacEmail(sendSmtpEmail).then(function (data) {
-                console.log('API called successfully. Returned data: ' + data);
+                console.log('API called successfully. Returned data: ', data);
             }, function (error) {
                 console.error(error);
                 return null;
@@ -71,12 +71,16 @@ exports.sendSignUpEmail = functions.database.ref('/player/{playerId}').onCreate(
 });
 
 exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event => {
-    console.log("Running daily email reminder function");
+    // get fixture data from firebase
     return admin.database().ref('/match').once('value').then(snapshot => {
         // get an array of all fixtures
         var fixtures = [];
-        snapshot.forEach(childSnapShot => {
-            fixtures.push(childSnapShot.val());
+        snapshot.forEach(childSnapshot => {
+            var fixture = Object.assign(
+                {key: childSnapshot.key},
+                childSnapshot.val()
+                )
+            fixtures.push(fixture);
         });
         var startDate = moment();
         var endDate = moment().add(2, 'days');
@@ -90,8 +94,10 @@ exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event
             return (date.isBetween(startDate, endDate, null, '[]') && !fixture.reminderSent && fixture.status === 'active');
         });
 
+        // for each fixture
         upcomingFixtures.map(fixture => {
-            if (!_.isUndefined(fixture.homeTeam) && fixture.homeTeam === '-KrO7uGoJ4s4wa5JstB4') {
+            if (!_.isUndefined(fixture.homeTeam)) {
+                // get player data from firebase
                 return admin.database().ref('/player').once('value').then(snapshot => {
                     // get an array of all players
                     var players = [];
@@ -113,9 +119,17 @@ exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event
                             return team.teamKey === fixture.homeTeam;
                         });
                     });
+                    
 
+                    // get the home team data from firebase
                     return admin.database().ref('/team/' + fixture.homeTeam).once('value').then(snapshot => {
+                        // send email to each player
                         playersInTeam.map(player => {
+                            // Validate email exists
+                            if (!validateEmail(player.email)) {
+                                console.error('Invalid email: ' + player.email);
+                                return null;
+                            }
                             var apiKey = defaultClient.authentications['api-key'];
                             apiKey.apiKey = functions.config().sendinblue.apikey;
                             var emailParams = {
@@ -131,13 +145,15 @@ exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event
                                 params: emailParams,
                                 templateId: 16
                             }; // SendSmtpEmail | Values to send a transactional email
-                            console.log(sendSmtpEmail);    
-                            // return apiInstance.sendTransacEmail(sendSmtpEmail).then(function (data) {
-                            //     console.log('API called successfully. Returned data: ' + data);
-                            // }, function (error) {
-                            //     console.error(error);
-                            //     return null;
-                            // });
+                            console.log(sendSmtpEmail); 
+                            
+                            //Send the email
+                            return apiInstance.sendTransacEmail(sendSmtpEmail).then(function (data) {
+                                console.log('API called successfully. Returned data: ',  data);
+                            }, function (error) {
+                                console.error(error);
+                                return null;
+                            });
                         })
                         
                         updateReminderSent(fixture);
@@ -158,6 +174,10 @@ function validateEmail(email) {
 }
 
 function updateReminderSent(fixture) {
-    console.log("Reminder sent");
-    return admin.database().ref("match/" + fixture[".key"]).child("reminderSent").set(true);
+    const fixtureKey = fixture.key;
+    const newFixture = Object.assign(
+        fixture,
+        {reminderSent: true}
+    )
+    return admin.database().ref("match/" + fixtureKey).update(newFixture);
 }
