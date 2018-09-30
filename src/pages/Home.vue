@@ -184,19 +184,19 @@
                 </div> 
                 <div class="leftpad">
                  <span><div class="help-available"> </div>
-                 Means the player is available
+                 Player is available
                  </span><br>
                  <span>
                  <div class="help-unavailable"> </div>
-                 Means the player is unavailable
+                 Player is unavailable
                  </span><br>
                  <span>
                  <div class="help-unknown"> </div>
-                 Means the players' availability is unconfirmed
+                 Players' availability is unconfirmed
                  </span><br>
                 <span>
                  <div class="help-not-registered"> </div>
-                 Means the player is invited but not registered
+                 Player is invited but not registered
                  </span><br>
                 </div> 
               </modal>

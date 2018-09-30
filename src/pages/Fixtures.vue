@@ -343,7 +343,7 @@ box-shadow: 2px, 2px, 2px, -2px grey;
 }
 
 .btn {
-    padding: 8px;
+    /* padding: 8px; */
     cursor: pointer;
     margin-top: -10px;
     border-radius: 25px;

@@ -352,7 +352,7 @@ display: inline;
     margin-right: 12%;
     box-shadow: none;
     float: right;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 @media (min-width: 768px){
 .nav-photo{
