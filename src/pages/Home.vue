@@ -139,7 +139,7 @@
                         <div v-else class="centered-col">
                           <div class="away-circle team-circle play-photo">{{getNextFixture().awayTeamName | firstCharacter}}</div>
                           <div class="team-name">
-                            <input v-if="awayTeamEditable" class="form-control-edit" type="text" v-model="getNextFixture().awayTeamName"> 
+                            <input v-if="awayTeamEditable" class="form-control-edit" type="text" :maxlength="26" v-model="getNextFixture().awayTeamName"> 
                             <h3 v-else class="text-center">{{getNextFixture().awayTeamName}}</h3>
                           </div>
                       </div>
@@ -462,9 +462,9 @@
          <div class="card play-card" v-if="isAdmin()">
             <div class="card-block">
               <button class="make-team-box" @click="showNewTeamModal()"><span class="fa fa-plus make-team"></span> Make New Team</button>
-<button class="fa fa-times-fixture mt-1" @click="hideNewFixtureModal()"></button>
+
           </div>
-          <modal height=auto width=350px border-radius=20px name="new-team" :clickToClose="false">
+          <modal height=auto width=350px border-radius=25px name="new-team" :clickToClose="false">
             <div class= "input-header">
               <button class="fa fa-times mt-1" @click="hideNewTeamModal()"></button>
               <div class="text-center"><h6>Add New Team</h6></div>

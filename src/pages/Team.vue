@@ -91,7 +91,7 @@
                 </div> 
                 <div class="form-group">
                   
-                  <input class="form-control" placeholder="Search for player" v-model="searchPlayerName"/>
+                  <input class="form-control" placeholder="Search for player" :maxlength="25" v-model="searchPlayerName"/>
                   <ul>
                     <div class="scroll-for-manager">
                     <li v-for="player in listRegisteredPlayers(searchPlayerName)" v-bind:key="player['.key']">

@@ -54,8 +54,8 @@
                   <h4>{{player.first_name}} {{player.last_name}}</h4>
                 </span>
               
-                <input placeholder="First name"  v-if="editable" v-model="player.first_name"/>
-                <input placeholder="Last name" v-if="editable" v-model="player.last_name"/>
+                <input placeholder="First name" :maxlength="10"  v-if="editable" v-model="player.first_name"/>
+                <input placeholder="Last name" :maxlength="20"   v-if="editable" v-model="player.last_name"/>
               </div>
 
               <!-- <span v-if="!editable">{{player.age}}</span>
@@ -66,14 +66,14 @@
                   <h6> Preferred Position</h6>
                 </div> 
                 <span class="profile-info" v-if="!editable">{{player.preffered_position}}</span>
-                <input placeholder="Preferred position" v-if="editable" v-model="player.preffered_position"/>
+                <input placeholder="Preferred position" :maxlength="25" v-if="editable" v-model="player.preffered_position"/>
               </div>
               <div class="content-block">
                 <div class= "input-header" v-if="editable" >
                   <h6> Jersey Number</h6>
                 </div> 
                 <span class="profile-info-jersey" v-if="!editable">{{player.jerseyNumber}}</span>
-                <input placeholder="Jersey number" v-if="editable" v-model="player.jerseyNumber"/>
+                <input placeholder="Jersey number" :maxlength="3" v-if="editable" v-model="player.jerseyNumber"/>
               </div>
 </div>
 </div>
@@ -87,7 +87,7 @@
                 <div class="profile-info"><i class="fa fa-phone" v-if="!editable"></i>
                 <a v-if="!editable && (player.phone != null || player.phone !== '')" :href="'tel:'+player.phone">{{player.phone}} </a>
                 <span v-if="!editable && (player.phone == null || player.phone === '')" >No number</span>
-                <input placeholder="Phone number"  v-if="editable" v-model="player.phone"/></div>
+                <input placeholder="Phone number" :maxlength="15"  v-if="editable" v-model="player.phone"/></div>
               </div>
 
               <div class="content-block">

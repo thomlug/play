@@ -18,9 +18,9 @@
             </h6>
              <div v-else>
                 <h6>Map Location</h6>
-                <input class="form-control top-bottom" type="text" v-model="ground"> 
+                <input class="form-control top-bottom" type="text" maxlength="50" v-model="ground"> 
                 <h6>Notes</h6>
-                <input class="form-control top-bottom" type="text" v-model="groundNotes"> 
+                <input class="form-control top-bottom" type="text" maxlength="50" v-model="groundNotes"> 
             </div>
             
         </div>    
@@ -136,6 +136,6 @@ a {
 
 .fa.fa-map-marker::before {
     font-size: 25px;
-    vertical-align: sub;
+    vertical-align: bottom;
 }
 </style>
