@@ -392,17 +392,19 @@ box-shadow: transparent !important;
 
 .times-align{
   margin-top: 0px;
+  float: right;
+  font-size: 20px;
 }
 
 .fa-times {
   color: lightgray;
-  font-size: 20px;
+  
   vertical-align: middle;
   border: none;
   background: none;
   cursor: pointer;
   /* margin-top: -10px; */
-  float: right;
+  
 }
 
 .fa-times:hover {
