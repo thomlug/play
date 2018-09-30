@@ -5,13 +5,15 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span><span class="button-badge" v-if="isThereNewChatMessage()">&nbsp;</span>
         </button>
+        <div>
         <a class="navbar-brand" href="#/home">
           <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="img-fluid play-logo">
           <!-- <div class="home">HOME</div> -->
-          
+          </a>
+          <a>
           <router-link active-class="active" exact :to="{name: 'profile', params: {player_id: this.getThisPlayerId()}}">
             
-              <div class="player-profile-content-nav" >
+              <div class="player-profile-content-nav" v-if="!_.isUndefined(player)">
               <img v-if="player.photo" class="profile-photo nav-photo" :src="player.photo" :class="'player-' + player.availability"/> 
               <div v-else class="initial-circle">
               <div class="player-initials-nav">{{player.first_name | firstCharacter}}</div>
@@ -19,6 +21,7 @@
               </div>
           </router-link>
           </a>
+          </div>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <ul class="navbar-nav">
             <li class="nav-item">
