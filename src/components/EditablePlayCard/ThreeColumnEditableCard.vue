@@ -61,7 +61,7 @@ export default {
 
 .right > button {
     float: right;
-    margin-right: 20px;
+    margin-right: 10px;
     text-align: center;
     font-size: 1.3rem;    
     height: 1.5rem;
@@ -69,6 +69,9 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    top: 62%;
+    cursor: pointer;
 }
 
 .edit-button {    
