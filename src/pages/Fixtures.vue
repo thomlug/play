@@ -20,7 +20,7 @@
                 <modal height=auto width=90%  name="add-fixture" :clickToClose="false" class="vertical-scroll">
                 <div class= "input-header">
                   <button class="fa fa-times-fixture mt-1" @click="hideNewFixtureModal()"></button>
-                  <h6>Add New Fixture</h6>
+                  <h6><div class="text-center"> Add New Fixture</div></h6>
                 </div> 
                 <form @submit.prevent="addNewFixture" class="vertical-scroll form-content">
                   <div class="row">
@@ -345,7 +345,7 @@ box-shadow: 2px, 2px, 2px, -2px grey;
 .btn {
     /* padding: 8px; */
     cursor: pointer;
-    margin-top: -10px;
+    /* margin-top: -10px; */
     border-radius: 25px;
 }
 
@@ -446,7 +446,7 @@ h2{
 h6 {
   color: rgb(175, 175, 175);
   font-weight: none;
-  text-align: center;
+  /* text-align: center; */
   margin-bottom: 0rem;
   padding: 8px;
 }

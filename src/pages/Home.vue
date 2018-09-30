@@ -447,9 +447,9 @@
                     <div class="form-group game-info-group">
                       <button type="button" class="fa fa-trash float-right" @click="removeGameInfo(index)">
                       </button>
-                      <h6 for="gameInfoTitle">Title</h6>
+                      <h6 for="gameInfoTitle stay-left{">Title</h6>
                       <input style="margin-bottom: 5px;" v-model="gameInfo[0]" class="form-control">
-                      <h6 for="gameInfoDetails">Details</h6>
+                      <h6 for="gameInfoDetails stay-left{">Details</h6>
                       <input v-model="gameInfo[1]" class="form-control">
                     </div>
                   </form>
@@ -1999,7 +1999,7 @@ li {
   color: #50575e;
   border: 0px;
   font-size: xx-large;
-  padding: 28px 11px 28px 12px;
+  padding: 28px 12px 28px 12px;
   background-color: whitesmoke;
 }
 
@@ -2008,7 +2008,7 @@ li {
   border: 0px !important;
   background-color: rgb(226, 226, 226) !important;
   /* background-image: linear-gradient(45deg,turquoise,#2acad0); */
-  padding: 28px 11px 28px 12px !important;
+  padding: 28px 12px 28px 12px !important;
   font-size: xx-large !important;
 }
 
@@ -2017,8 +2017,11 @@ li {
   border: 0px !important;
   background-color: #2acad0 !important;
   background-image: linear-gradient(45deg,turquoise,#2acad0);
-  padding: 28px 11px 28px 12px !important;
+  padding: 28px 12px 28px 12px !important;
   font-size: xx-large !important;
+}
+.stay-left{
+text-align: left!important;
 }
 
 .make-team-box{

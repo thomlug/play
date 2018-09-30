@@ -674,6 +674,7 @@ h6 {
   float: right;
   margin-top: -40px;
   cursor: pointer;
+  margin: 0 5px 0 5px;
 }
 
 /* .manage-players-button:hover{
@@ -709,6 +710,7 @@ h6 {
   margin-top: -40px;
   cursor: pointer;
   box-shadow: none;
+  margin: 0 5px 0 5px;
 }
 
 /* .btn {
@@ -787,7 +789,7 @@ li {
   vertical-align: middle;
   cursor: pointer;
   padding: 10px 12px 9px 12px;
-  margin: 0 5px 0 5px;
+  /* margin: 0 5px 0 5px; */
 }
 
 
