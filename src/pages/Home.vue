@@ -462,7 +462,7 @@
          <div class="card play-card" v-if="isAdmin()">
             <div class="card-block">
               <button class="make-team-box" @click="showNewTeamModal()"><span class="fa fa-plus make-team"></span> Make New Team</button>
-
+<button class="fa fa-times-fixture mt-1" @click="hideNewFixtureModal()"></button>
           </div>
           <modal height=auto width=350px border-radius=20px name="new-team" :clickToClose="false">
             <div class= "input-header">

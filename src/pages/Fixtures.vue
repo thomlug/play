@@ -16,10 +16,11 @@
                     Fixtures for {{getCurrentTeam().name}}
                   </h3>
                   <button class="fa fa-plus manage-players-button" @click="showNewFixtureModal()"></button> 
+                  
                 </div>
-                <modal height=auto width=90%  name="add-fixture" :clickToClose="false" class="vertical-scroll">
+                <modal height=auto width=90% border-radius=25px name="add-fixture" :clickToClose="false" class="vertical-scroll">
                 <div class= "input-header">
-                  <button class="fa fa-times-fixture mt-1" @click="hideNewFixtureModal()"></button>
+                  <button class="fa fa-times times-align" @click="hideNewFixtureModal()"></button>
                   <h6><div class="text-center"> Add New Fixture</div></h6>
                 </div> 
                 <form @submit.prevent="addNewFixture" class="vertical-scroll form-content">
@@ -389,25 +390,29 @@ box-shadow: transparent !important;
   cursor: pointer;
 }
 
-.fa-times-fixture {
+.times-align{
+  margin-top: 0px;
+}
+
+.fa-times {
   color: lightgray;
   font-size: 20px;
   vertical-align: middle;
   border: none;
   background: none;
   cursor: pointer;
-  margin-top: -10px;
+  /* margin-top: -10px; */
   float: right;
 }
 
-.fa-times-fixture:hover {
+.fa-times:hover {
   color: indianred;
   font-size: 20px;
   vertical-align: middle;
   border: none;
   background: none;
   cursor: pointer;
-  margin-top: -10px;
+  /* margin-top: -10px; */
   float: right;
 }
 
