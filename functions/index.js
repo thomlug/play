@@ -2,7 +2,7 @@
 
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-const Moment = require('moment');
+const Moment = require('moment-timezone');
 const MomentRange = require('moment-range');
 const moment = MomentRange.extendMoment(Moment);
 const _ = require('lodash');
@@ -96,7 +96,7 @@ exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event
 
         // for each fixture
         upcomingFixtures.map(fixture => {
-            if (!_.isUndefined(fixture.homeTeam)) {
+            if (!_.isUndefined(fixture.homeTeam) && fixture.homeTeam == '-KrO7uGoJ4s4wa5JstB4') {
                 // get player data from firebase
                 return admin.database().ref('/player').once('value').then(snapshot => {
                     // get an array of all players
@@ -132,11 +132,12 @@ exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event
                             }
                             var apiKey = defaultClient.authentications['api-key'];
                             apiKey.apiKey = functions.config().sendinblue.apikey;
+                            var localDate = moment.utc(fixture.date).tz('Antarctica/McMurdo');
                             var emailParams = {
                                 FIRSTNAME: player.first_name,
                                 OPPOSITION: fixture.awayTeamName,
-                                GAMETIME: moment(fixture.date).format("hh:mm a"),
-                                GAMEDATE: moment(fixture.date).format("dddd MMMM DD YYYY"),
+                                GAMETIME: localDate.format("hh:mm a"),
+                                GAMEDATE: localDate.format("dddd MMMM DD YYYY"),
                                 TEAMNAME: snapshot.val().name
                             };
                             var apiInstance = new SibApiV3Sdk.SMTPApi();
@@ -148,12 +149,12 @@ exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event
                             console.log(sendSmtpEmail); 
                             
                             //Send the email
-                            return apiInstance.sendTransacEmail(sendSmtpEmail).then(function (data) {
-                                console.log('API called successfully. Returned data: ',  data);
-                            }, function (error) {
-                                console.error(error);
-                                return null;
-                            });
+                            // return apiInstance.sendTransacEmail(sendSmtpEmail).then(function (data) {
+                            //     console.log('API called successfully. Returned data: ',  data);
+                            // }, function (error) {
+                            //     console.error(error);
+                            //     return null;
+                            // });
                         })
                         
                         updateReminderSent(fixture);
