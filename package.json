@@ -17,6 +17,7 @@
     "lodash": "^4.17.4",
     "loglevel": "^1.4.1",
     "moment": "^2.19.3",
+    "moment-timezone": "^0.5.21",
     "sanitize-html": "^1.18.2",
     "split-string": "^5.0.4",
     "to-regex": "^3.0.2",

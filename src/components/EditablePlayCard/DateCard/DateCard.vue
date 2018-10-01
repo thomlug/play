@@ -63,8 +63,8 @@ export default {
 
     fixtureTime: {
       get() {        
-        return moment(this.fixture.date).isValid()
-        ? moment(this.fixture.date).format("HH:mm")
+        return moment(this.fixture.date).isValid()        
+        ?  moment(moment.utc(this.fixture.date).toDate()).local().format("HH:mm")
         : "";
       },
 
@@ -78,7 +78,9 @@ export default {
           date.getFullYear() +
           " " +
           newTime;
-        date = moment.utc(dateString, "M/DD/YYYY HH:mm a").format();
+        date = moment(dateString, "M/DD/YYYY HH:mm a");
+        date = new Date(date).toISOString();
+        console.log(date);
         this.fixture.date = date;
       }
     },
@@ -86,7 +88,7 @@ export default {
     fixtureDay: {
       get() {
         return moment(this.fixture.date).isValid()
-          ? this.fixture.date.split("T")[0] //Split the ISO string to date and time and take the first argument which is the date in yyyy-MM-dd format
+          ?  moment(moment.utc(this.fixture.date).toDate()).local().format().split("T")[0] //Split the ISO string to date and time and take the first argument which is the date in yyyy-MM-dd format
           : "Manager to confirm";
       },
 
@@ -100,20 +102,22 @@ export default {
           date.getFullYear() +
           " " +
           this.fixtureTime;
-        date = moment.utc(dateString, "M/DD/YYYY HH:mm a").format();
+        date = moment(dateString, "M/DD/YYYY HH:mm a");
+        date = new Date(date).toISOString();
+        console.log(date);
         this.fixture.date = date;
       }
     },
 
     formattedTime() {
       return moment(this.fixture.date).isValid()
-        ? moment(this.fixture.date).format("hh:mm a")
+        ? moment(moment.utc(this.fixture.date).toDate()).local().format("hh:mm a")
         : "";
     },
 
     formattedDay() {
       return moment(this.fixture.date).isValid()
-          ? moment(this.fixture.date).format("dddd MMMM DD YYYY")
+          ?  moment(moment.utc(this.fixture.date).toDate()).local().format("dddd MMMM DD YYYY")
           : "Manager to confirm";
     }
   },
