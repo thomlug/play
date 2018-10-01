@@ -180,5 +180,7 @@ function updateReminderSent(fixture) {
         fixture,
         {reminderSent: true}
     )
+    // delete the 'key' field so it isn't pushed to the database
+    delete newFixture.key;
     return admin.database().ref("match/" + fixtureKey).update(newFixture);
 }
