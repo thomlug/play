@@ -253,7 +253,7 @@ export default {
         date.getFullYear() +
         " " +
         this.time;
-      date = moment(dateString, "M/DD/YYYY HH:mm a").format();
+      date = moment.utc(dateString, "M/DD/YYYY HH:mm a").format();
       this.newFixture.date = date;
     }
   }
