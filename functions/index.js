@@ -96,7 +96,7 @@ exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event
 
         // for each fixture
         upcomingFixtures.map(fixture => {
-            if (!_.isUndefined(fixture.homeTeam) && fixture.homeTeam == '-KrO7uGoJ4s4wa5JstB4') {
+            if (!_.isUndefined(fixture.homeTeam)) {
                 // get player data from firebase
                 return admin.database().ref('/player').once('value').then(snapshot => {
                     // get an array of all players
@@ -149,12 +149,12 @@ exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event
                             console.log(sendSmtpEmail); 
                             
                             //Send the email
-                            // return apiInstance.sendTransacEmail(sendSmtpEmail).then(function (data) {
-                            //     console.log('API called successfully. Returned data: ',  data);
-                            // }, function (error) {
-                            //     console.error(error);
-                            //     return null;
-                            // });
+                            return apiInstance.sendTransacEmail(sendSmtpEmail).then(function (data) {
+                                console.log('API called successfully. Returned data: ',  data);
+                            }, function (error) {
+                                console.error(error);
+                                return null;
+                            });
                         })
                         
                         updateReminderSent(fixture);
