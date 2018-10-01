@@ -78,8 +78,7 @@ export default {
           date.getFullYear() +
           " " +
           newTime;
-        date = moment(dateString, "M/DD/YYYY HH:mm a");
-        date = new Date(date).toISOString();
+        date = moment(dateString, "M/DD/YYYY HH:mm a").format();
         this.fixture.date = date;
       }
     },
@@ -101,8 +100,7 @@ export default {
           date.getFullYear() +
           " " +
           this.fixtureTime;
-        date = moment(dateString, "M/DD/YYYY HH:mm a");
-        date = new Date(date).toISOString();
+        date = moment(dateString, "M/DD/YYYY HH:mm a").format();
         this.fixture.date = date;
       }
     },
