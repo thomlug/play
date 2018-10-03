@@ -107,7 +107,7 @@
                 <div v-for="team in player.teams" :key="team.teamKey" class="availability-container row">
                   <div>
                     <div>
-                    <h6>{{getTeam(team.teamKey).name}}</h6><small>{{team.availability | camelToSentence}}</small>
+                    <h6><div class="bigger">{{getTeam(team.teamKey).name}}</div></h6><small>{{team.availability | camelToSentence}}</small>
                     <div>
                       <span><small>Last Updated {{team.availabilityUpdated | lastUpdated}}</small></span>
                     </div>
@@ -335,6 +335,9 @@ export default {
 .row {
   background-color: transparent;
 }
+.red{
+  color: indianred;
+}
 .card-title {
   text-align: center;
 }
@@ -430,19 +433,25 @@ div > .profile-photo {
 }
 
 .availability-container {
-  text-align: center;
-  margin: 5px;
-  padding: 5px;
-  display: inherit;
+    text-align: center;
+    margin: 5px;
+    padding: 15px;
+    display: inherit;
+    border-radius: 5px;
+    box-shadow: 1px 1.5px 3px 0.5px lightgrey;
+
 }
 
+.bigger{
+  font-size: 1.2rem !important;
+}
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .availability-container {
     margin-left: 25%;
     margin-right: 25%;
   }
-}
+} */
 
 .content-block {
   margin: 0.4rem 0;

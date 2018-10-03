@@ -408,14 +408,14 @@ box-shadow: transparent !important;
 }
 
 .fa-times:hover {
-  color: indianred;
-  font-size: 20px;
+  /* color: indianred;
+  font-size: 20px; */
   vertical-align: middle;
   border: none;
   background: none;
   cursor: pointer;
   /* margin-top: -10px; */
-  float: right;
+  
 }
 
 

@@ -14,8 +14,6 @@
       </div>
     </div>
 
-
-
 <!-- next fixture -->
     <div class="row backdrop">
       <div class="col-xl-3">
@@ -477,7 +475,9 @@
               <div class="form-group">
                   <h6 for="sport" class="form-control-label">Sport:</h6>
                   <input type="text" class="form-control" id="sport" v-model="newTeam.sport"> 
-              </div>            
+              </div>  
+              
+                        
               <!-- <button type="button" class="btn btn-secondary new-team" @click="hideNewTeamModal()">Close</button> -->
               <input type="submit" class="btn btn-primary new-team" value="Create!">
             </form>        
