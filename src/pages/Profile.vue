@@ -434,12 +434,11 @@ div > .profile-photo {
 
 .availability-container {
     text-align: center;
-    margin: 5px;
     padding: 15px;
     display: inherit;
     border-radius: 5px;
-    box-shadow: 1px 1.5px 3px 0.5px lightgrey;
-
+    box-shadow: 0px 1px 6px -1px #ddd;
+    margin-bottom: 10px;
 }
 
 .bigger{
