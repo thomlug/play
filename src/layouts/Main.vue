@@ -22,18 +22,20 @@
       </div>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'home'}">Dashboard</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'chat'}">Chat<span class="button-badge" v-if="isThereNewChatMessage()">&nbsp;</span></router-link>
-          </li>
-          <li class="nav-item" v-if="user">
-            <router-link active-class="active" exact class="nav-item nav-link" :to="{name: 'profile', params: {player_id: this.getThisPlayerId()}}">My Profile</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'fixtures'}">Fixtures</router-link>
-          </li>
+          <div v-if="playerBelongsToATeam()">
+            <li class="nav-item">
+              <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'home'}">Dashboard</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'chat'}">Chat<span class="button-badge" v-if="isThereNewChatMessage()">&nbsp;</span></router-link>
+            </li>
+            <li class="nav-item" v-if="user">
+              <router-link active-class="active" exact class="nav-item nav-link" :to="{name: 'profile', params: {player_id: this.getThisPlayerId()}}">My Profile</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'fixtures'}">Fixtures</router-link>
+            </li>
+          </div>
             <!-- <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" :to="{name: 'teams'}">Teams</router-link>
             </li>
