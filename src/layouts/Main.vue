@@ -63,9 +63,7 @@
       </div>
       <h6 class="darktext centretext">You have logged in, but to gain access to the team dashboard you have to be invited by your manager with an email link first. Check your inbox!</h6>
       <br><br><br><h5 class="darktext centretext">Try These Steps</h5>
-    </div>
-    <br> 
-    <div class="centre-margin">
+      <div class="centre-margin">
       <span class="fa-stack">
     <!-- The icon that will wrap the number -->
         <span class="fa fa-circle-o fa-stack-2x"></span>
@@ -100,30 +98,32 @@
             4   
           </strong>
       </span>Or try again on your mobile.
-    </div>
-    <br>
-    <br>
-    <div class="centretext">
-      If that doesnt work, ask you manager to re-invite you to the team if he has not already, then follow the steps in the email invite
+      </div>
       <br>
-    </div>
-    <br>
-    <br>
-    <div class="centretext">
-      <b>Remember: You can only join an existing team if you're invited!</b>
-    </div>  
+      <br>
+      <div class="centretext">
+        If that doesnt work, ask you manager to re-invite you to the team if he has not already, then follow the steps in the email invite
+        <br>
+      </div>
+      <br>
+      <br>
+      <div class="centretext">
+        <b>Remember: You can only join an existing team if you're invited!</b>
+      </div>  
     
     <!-- <p>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout</p> -->
-    <br>
-    <div class="centretext">
-      <b> PLAYTIP:</b> 
-      Download the Play&#8482; shortcut to your homescreen if you're using a mobile device!
+      <br>
+      <div class="centretext">
+        <b> PLAYTIP:</b> 
+        Download the Play&#8482; shortcut to your homescreen if you're using a mobile device!
+      </div>
+      <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/ezgif.com-crop.gif?alt=media&token=d5e40965-34d3-4a66-b5e9-970ba8f5838e" class="playtips"> 
+      <div class="centretext">
+        <br>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout.
+            See <a href="http://playapp.webflow.io/">http://playapp.webflow.io/</a> for more about how we're changing community sport
+      </div>
     </div>
-    <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/ezgif.com-crop.gif?alt=media&token=d5e40965-34d3-4a66-b5e9-970ba8f5838e" class="playtips"> 
-    <div class="centretext">
-      <br>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout.
-          See <a href="http://playapp.webflow.io/">http://playapp.webflow.io/</a> for more about how we're changing community sport
-    </div>
+    <br>     
   </div>
   <!-- </div> -->
 </template>
