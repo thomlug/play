@@ -1,41 +1,39 @@
 <template>
-  <div class="container-fluid body">
-    
-         <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span><span class="button-badge" v-if="isThereNewChatMessage()">&nbsp;</span>
-        </button>
-        <div>
+  <div class="container-fluid body">    
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span><span class="button-badge" v-if="isThereNewChatMessage()">&nbsp;</span>
+      </button>
+      <div>
         <a class="navbar-brand" href="#/home">
           <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="img-fluid play-logo">
           <!-- <div class="home">HOME</div> -->
-          </a>
-          <a>
+        </a>
+        <a>
           <router-link active-class="active" exact :to="{name: 'profile', params: {player_id: this.getThisPlayerId()}}">
-            
-              <div class="player-profile-content-nav" v-if="!_.isUndefined(player)">
+            <div class="player-profile-content-nav" v-if="!_.isUndefined(player) && player !== null">
               <img v-if="player.photo" class="profile-photo nav-photo" :src="player.photo" :class="'player-' + player.availability"/> 
               <div v-else class="initial-circle">
-              <div class="player-initials-nav">{{player.first_name | firstCharacter}}</div>
+                <div class="player-initials-nav">{{player.first_name | firstCharacter}}</div>
               </div>
-              </div>
+            </div>
           </router-link>
-          </a>
-          </div>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'home'}">Dashboard</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'chat'}">Chat<span class="button-badge" v-if="isThereNewChatMessage()">&nbsp;</span></router-link>
-            </li>
-            <li class="nav-item" v-if="user">
-              <router-link active-class="active" exact class="nav-item nav-link" :to="{name: 'profile', params: {player_id: this.getThisPlayerId()}}">My Profile</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'fixtures'}">Fixtures</router-link>
-            </li>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'home'}">Dashboard</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'chat'}">Chat<span class="button-badge" v-if="isThereNewChatMessage()">&nbsp;</span></router-link>
+          </li>
+          <li class="nav-item" v-if="user">
+            <router-link active-class="active" exact class="nav-item nav-link" :to="{name: 'profile', params: {player_id: this.getThisPlayerId()}}">My Profile</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'fixtures'}">Fixtures</router-link>
+          </li>
             <!-- <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" :to="{name: 'teams'}">Teams</router-link>
             </li>
@@ -49,64 +47,84 @@
             <li class="nav-item">
               <router-link active-class="active" exact class="nav-item nav-link" to="marketing">Marketing</router-link>
             </li> -->
-            <li @click="logOut" class="nav-item nav-link logout">
-              Log Out
-            </li>
-          </ul>
-        </div>
-      </nav>
-    <spinner v-if="this.player === undefined"></spinner>
+          <li @click="logOut" class="nav-item nav-link logout">
+            Log Out
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <spinner v-if="_.isUndefined(this.player)"></spinner>
     <slot v-else-if="playerBelongsToATeam()"></slot>
     <div v-else-if="!playerBelongsToATeam()">
-    <div class="funcard"><br><h2>Welcome to Play! <br><br>
-    <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="logofun">
-    </h2><br><br></div>
-    <p><h6><div class="darktext centretext">You have logged in, but to gain access to the team dashboard you have to be invited by your manager with an email link first. Check your inbox!</div></h6>
-    <br><br><br><div class="darktext centretext"><h5>Try These Steps</h5></div>
+      <div class="funcard">
+        <br><h2>Welcome to Play! <br><br>
+        <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="logofun">
+        </h2><br><br>
+      </div>
+      <h6 class="darktext centretext">You have logged in, but to gain access to the team dashboard you have to be invited by your manager with an email link first. Check your inbox!</h6>
+      <br><br><br><h5 class="darktext centretext">Try These Steps</h5>
+    </div>
     <br> 
     <div class="centre-margin">
-<span class="fa-stack">
+      <span class="fa-stack">
     <!-- The icon that will wrap the number -->
-    <span class="fa fa-circle-o fa-stack-2x"></span>
-    <!-- a strong element with the custom content, in this case a number -->
-    <strong class="fa-stack-1x">
-      1   
-    </strong>
-</span>Check your emails to see if you've been invited.
+        <span class="fa fa-circle-o fa-stack-2x"></span>
+      <!-- a strong element with the custom content, in this case a number -->
+        <strong class="fa-stack-1x">
+          1   
+        </strong>
+      </span>Check your emails to see if you've been invited.
+      <br>
+      <span class="fa-stack">
+        <!-- The icon that will wrap the number -->
+        <span class="fa fa-circle-o fa-stack-2x"></span>
+        <!-- a strong element with the custom content, in this case a number -->
+        <strong class="fa-stack-1x">
+          2    
+        </strong>
+      </span>Search for 'Playapp' in your inbox.
+          <br>
+          <span class="fa-stack">
+          <!-- The icon that will wrap the number -->
+          <span class="fa fa-circle-o fa-stack-2x"></span>
+          <!-- a strong element with the custom content, in this case a number -->
+          <strong class="fa-stack-1x">
+            3    
+          </strong>
+      </span>Follow the invite process in your invitation.<br>   
+      <span class="fa-stack">
+          <!-- The icon that will wrap the number -->
+          <span class="fa fa-circle-o fa-stack-2x"></span>
+          <!-- a strong element with the custom content, in this case a number -->
+          <strong class="fa-stack-1x">
+            4   
+          </strong>
+      </span>Or try again on your mobile.
+    </div>
     <br>
-<span class="fa-stack">
-    <!-- The icon that will wrap the number -->
-    <span class="fa fa-circle-o fa-stack-2x"></span>
-    <!-- a strong element with the custom content, in this case a number -->
-    <strong class="fa-stack-1x">
-      2    
-    </strong>
-</span>Search for 'Playapp' in your inbox.
     <br>
-    <span class="fa-stack">
-    <!-- The icon that will wrap the number -->
-    <span class="fa fa-circle-o fa-stack-2x"></span>
-    <!-- a strong element with the custom content, in this case a number -->
-    <strong class="fa-stack-1x">
-      3    
-    </strong>
-</span>Follow the invite process in your invitation.<br>   
-<span class="fa-stack">
-    <!-- The icon that will wrap the number -->
-    <span class="fa fa-circle-o fa-stack-2x"></span>
-    <!-- a strong element with the custom content, in this case a number -->
-    <strong class="fa-stack-1x">
-      4   
-    </strong>
-</span>Or try again on your mobile.
-</div>
-<br><br><div class="centretext">If that doesnt work, ask you manager to re-invite you to the team if he has not already, then follow the steps in the email invite<br></div>
-    <br><br><div class="centretext"><b>Remember: You can only join an existing team if you're invited!</b></div>  
+    <div class="centretext">
+      If that doesnt work, ask you manager to re-invite you to the team if he has not already, then follow the steps in the email invite
+      <br>
+    </div>
+    <br>
+    <br>
+    <div class="centretext">
+      <b>Remember: You can only join an existing team if you're invited!</b>
+    </div>  
     
     <!-- <p>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout</p> -->
-    <p><br><div class="centretext"><b> PLAYTIP:</b> Download the Play&#8482; shortcut to your homescreen if you're using a mobile device!</div></p>
+    <br>
+    <div class="centretext">
+      <b> PLAYTIP:</b> 
+      Download the Play&#8482; shortcut to your homescreen if you're using a mobile device!
+    </div>
     <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/ezgif.com-crop.gif?alt=media&token=d5e40965-34d3-4a66-b5e9-970ba8f5838e" class="playtips"> 
-    <div class="centretext"><br>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout.See <a href="http://playapp.webflow.io/">http://playapp.webflow.io/</a> for more about how we're changing community sport</p></div></div></div>
+    <div class="centretext">
+      <br>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout.
+          See <a href="http://playapp.webflow.io/">http://playapp.webflow.io/</a> for more about how we're changing community sport
+    </div>
+  </div>
   <!-- </div> -->
 </template>
 
@@ -128,6 +146,7 @@
       Promise.all([this.playerPromise]).then(
           this.setUpPlayer
       );
+      console.log(this.player);
     },
     computed: {
       ...mapState(['user'])
@@ -172,6 +191,7 @@ filters:{
           this.player = _.find(this.players, p => {
             return p.userUid === this.user.uid;
           }) || null;
+          console.log(this.player);
       },
       getThisPlayerId() {
         return this.player ? this.player['.key'] : '/';
