@@ -83,7 +83,7 @@
                           id="dateStart"
                           class="form-control" v-model="day"
                           required>
-                      </div>
+                      </div>    
                     </div>
                   </div>
 

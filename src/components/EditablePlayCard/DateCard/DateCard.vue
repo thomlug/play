@@ -25,9 +25,6 @@
                   <div><available-button :onClick="() => this.setGameActive()" type="button" class="btn ">On</available-button></div>
                   <div><danger-button :onClick="() => this.setGameCancelled()" type="button" class="btn ">Off</danger-button></div>
                   <div><done-button :onClick="() => this.setGameComplete()" type="button" class="btn ">Done</done-button></div>
-                <!-- //btn-primary btn-available active// -->
-                <!-- //btn-danger// -->
-                <!-- //btn-success// -->
                 </div>          
             </div>
         </div>    

@@ -664,7 +664,7 @@ p {
 .fixed-check{
 position: fixed;
 background-color: dodgerblue;
-top: 20%;
+top: 40%;
 z-index: 1;
 box-shadow: 2px 2px 2px -2px grey;
 }
