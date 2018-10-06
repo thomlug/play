@@ -107,7 +107,7 @@
           <div class="fa-stack-1x">
             5   
           </div>
-      </span>  Or try again on your mobile.
+      </span>  Ensure you SIGN UP first before logging in
       </div>
       <br>
       <br>
