@@ -136,7 +136,7 @@
       
       
       <div class="centretext color-bg-bottom">
-        <br>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout.
+        <br>For more support, contact <a href='mailto:'>play_app@outlook.com</a>.
             See <a href="http://playapp.webflow.io/">http://playapp.webflow.io/</a> for more about how we're changing community sport
         <br><br>
       </div>
@@ -255,7 +255,7 @@ filters:{
   margin: 0 -15px 0 -15px;
 }
 .fa-circle-o{
-  color: #50575e;
+  color: transparent;
   font-weight: 400;
 }
 
