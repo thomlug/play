@@ -63,43 +63,51 @@
         <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7" class="logofun">
         </h2><br><br>
       </div>
-      <h6 class="darktext centretext">You have logged in, but to gain access to the team dashboard you have to be invited by your manager with an email link first. Check your inbox!</h6>
-      <br><br><br><h5 class="darktext centretext">Try These Steps</h5>
+      <div class="darktext centretext color-bg"><br>You have logged in, but to gain access to the team dashboard you have to be invited by your manager with an email link first. Check your inbox!<br><br></div>
+      <br><br>
       <div class="centre-margin">
+      <h5 class="darktext">Try These Steps</h5>  
+      
       <span class="fa-stack">
-    <!-- The icon that will wrap the number -->
-        <span class="fa fa-circle-o fa-stack-2x"></span>
+      <!-- The icon that will wrap the number -->
+      <span class="fa fa-circle-o fa-stack-2x"></span>
       <!-- a strong element with the custom content, in this case a number -->
-        <strong class="fa-stack-1x">
-          1   
-        </strong>
-      </span>Check your emails to see if you've been invited.
+      <div class="fa-stack-1x">
+      1   
+      </div>
+      </span>  Logout of Play (top right menu)
       <br>
+
       <span class="fa-stack">
-        <!-- The icon that will wrap the number -->
-        <span class="fa fa-circle-o fa-stack-2x"></span>
-        <!-- a strong element with the custom content, in this case a number -->
-        <strong class="fa-stack-1x">
-          2    
-        </strong>
-      </span>Search for 'Playapp' in your inbox.
-          <br>
-          <span class="fa-stack">
-          <!-- The icon that will wrap the number -->
-          <span class="fa fa-circle-o fa-stack-2x"></span>
-          <!-- a strong element with the custom content, in this case a number -->
-          <strong class="fa-stack-1x">
-            3    
-          </strong>
-      </span>Follow the invite process in your invitation.<br>   
+      <span class="fa fa-circle-o fa-stack-2x"></span>
+      <div class="fa-stack-1x">
+      2   
+      </div>
+      </span>  Check your emails to see if you've been invited.
+      <br>
+
       <span class="fa-stack">
-          <!-- The icon that will wrap the number -->
+      <span class="fa fa-circle-o fa-stack-2x"></span>
+      <div class="fa-stack-1x">
+      3    
+      </div>
+      </span>  Search for 'Playapp' in your inbox.
+      <br>
+
+      <span class="fa-stack">
+      <span class="fa fa-circle-o fa-stack-2x"></span>
+      <div class="fa-stack-1x">
+      4    
+      </div>
+      </span>  Follow the invite process in your invitation.
+      <br>   
+
+      <span class="fa-stack">
           <span class="fa fa-circle-o fa-stack-2x"></span>
-          <!-- a strong element with the custom content, in this case a number -->
-          <strong class="fa-stack-1x">
-            4   
-          </strong>
-      </span>Or try again on your mobile.
+          <div class="fa-stack-1x">
+            5   
+          </div>
+      </span>  Or try again on your mobile.
       </div>
       <br>
       <br>
@@ -108,24 +116,31 @@
         <br>
       </div>
       <br>
-      <br>
       <div class="centretext">
-        <b>Remember: You can only join an existing team if you're invited!</b>
+        Remember: You can only join an existing team if you're invited!
+        <br>
       </div>  
     
     <!-- <p>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout</p> -->
       <br>
+      <div class="playtips-bg">
       <div class="centretext">
+        <br>
         <b> PLAYTIP:</b> 
         Download the Play&#8482; shortcut to your homescreen if you're using a mobile device!
+        <br><br>
       </div>
       <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/ezgif.com-crop.gif?alt=media&token=d5e40965-34d3-4a66-b5e9-970ba8f5838e" class="playtips"> 
-      <div class="centretext">
+      <br>
+      </div>
+      
+      
+      <div class="centretext color-bg-bottom">
         <br>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout.
             See <a href="http://playapp.webflow.io/">http://playapp.webflow.io/</a> for more about how we're changing community sport
+        <br><br>
       </div>
-    </div>
-    <br>     
+    </div>      
   </div>
   <!-- </div> -->
 </template>
@@ -235,6 +250,28 @@ filters:{
 /* .bgtest{
   height: auto;
 } */
+.playtips-bg{
+  background-color: whitesmoke;
+  margin: 0 -15px 0 -15px;
+}
+.fa-circle-o{
+  color: #50575e;
+  font-weight: 400;
+}
+
+.color-bg{
+  background-color: dodgerblue;
+  color: whitesmoke !important;
+  margin: 0 -15px 0 -15px;
+}
+
+.color-bg-bottom{
+  background-image: linear-gradient(45deg, #292b2b, #50575e);
+  color: whitesmoke !important;
+  margin: 0 -15px 0 -15px;
+  padding: 0 5px 0 5px;
+}
+
 .centretext{
   text-align: center;
 }
