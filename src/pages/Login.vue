@@ -40,7 +40,10 @@ export default {
     return {
       email: "",
       password: "",
+      newEmail: "",
+      newPassword: "",
       errorMessage: null,
+      signUpErrorMessage: null,
       redirect: this.$route.query.redirect,
       loading: false
     };
