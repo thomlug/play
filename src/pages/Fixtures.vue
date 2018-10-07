@@ -205,13 +205,6 @@
 
                 return team[".key"];
             },
-            // changeToTeam(teamId) {
-            //   var player = this.getCurrentPlayer();
-            //   this.$firebaseRefs.players
-            //     .child(player[".key"])
-            //     .child("teamKey")
-            //     .set(teamId);
-            // },
 
             canEdit() {
                 var currentUser = firebase.auth().currentUser;

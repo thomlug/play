@@ -52,8 +52,8 @@
                                 <h6> Name</h6>
                             </div>
                             <span class="text-center" v-if="!editable">
-                  <h4>{{player.first_name}} {{player.last_name}}</h4>
-                </span>
+                                <h4>{{player.first_name}} {{player.last_name}}</h4>
+                            </span>
 
                             <input placeholder="First name" :maxlength="10" v-if="editable"
                                    v-model="player.first_name"/>
@@ -116,7 +116,9 @@
                                     <h6>
                                         <div class="bigger">{{getTeam(team.teamKey).name}}</div>
                                     </h6>
-                                    <small>{{team.availability | camelToSentence}}</small>
+                                    <small :class="'player-' + team.availability + '-text'">{{team.availability |
+                                        camelToSentence}}
+                                    </small>
                                     <div>
                                         <span><small>Last Updated {{team.availabilityUpdated | lastUpdated}}</small></span>
                                     </div>
@@ -139,7 +141,9 @@
                         <div v-for="team in player.teams" :key="team.teamKey" class="availability-container row">
                             <div class="col-md-12">
                                 <div class="not-bold">{{getTeam(team.teamKey).name}}</div>
-                                <small>{{team.availability | camelToSentence}}</small>
+                                <small :class="'player-' + team.availability + '-text'">{{team.availability |
+                                    camelToSentence}}
+                                </small>
                             </div>
                             <div class="col-md-12">
                                 <span><small>Updated {{team.availabilityUpdated | lastUpdated}}</small></span>
@@ -422,6 +426,18 @@
     .player-unknown {
         border: 2px solid grey;
         -webkit-filter: grayscale(100%);
+    }
+
+    .player-available-text {
+        color: #2acad0;
+    }
+
+    .player-unavailable-text {
+        color: red;
+    }
+
+    .player-unknown-text {
+        color: grey;
     }
 
     .player-profile-box {
