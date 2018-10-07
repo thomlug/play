@@ -80,7 +80,7 @@ export default {
 
   methods: {
     signIn() {
-      //this.loading = true;
+      this.loading = true;
       this.$store
         .dispatch("userSignIn", { email: this.email, password: this.password, success: this.signInSuccess })
         .then(function(success) {
