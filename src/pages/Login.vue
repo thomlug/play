@@ -80,17 +80,18 @@ export default {
 
   methods: {
     signIn() {
-      this.loading = true;
+      //this.loading = true;
       this.$store
-        .dispatch("userSignIn", { email: this.email, password: this.password })
-        .then(function(t) {
-          //success
-          this.loading = false;
+        .dispatch("userSignIn", { email: this.email, password: this.password, success: this.signInSuccess })
+        .then(function(success) {
+          success();
         })
         .catch(error => {
           this.errorMessage = error.message;
           this.loading = false;
         });
+    },
+    signInSuccess(){
       this.$router.replace("/home");
     }
   }

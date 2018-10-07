@@ -43,7 +43,7 @@ export const store = new Vuex.Store({
                 })
                 .then(firebaseUser => {
                     commit('setUser', firebaseUser);
-                    resolve("Login success");
+                    resolve(payload.success);
                 })
             });
         },
