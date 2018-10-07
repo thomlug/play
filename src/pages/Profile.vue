@@ -208,11 +208,8 @@ export default {
         asObject: true
       },
       teams: {
-        source: db.ref("team"),
-        readyCallback: function() {
-          this.teamPromise.resolve();
-        }
-      },
+        source: db.ref("team")
+      }
     };
   },
   methods: {
