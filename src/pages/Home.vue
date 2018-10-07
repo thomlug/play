@@ -1992,6 +1992,7 @@
         font-family: "Roboto Condensed", sans-serif;
         margin: 10px 0px;
         background-color: whitesmoke;
+        padding-bottom: 6px;
     }
 
     .form-control-edit {
