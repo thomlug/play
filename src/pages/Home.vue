@@ -230,7 +230,7 @@
                     </div>
                 </modal>
                 <div v-if="_.every(this.playerFormation, (row) => {return row.length === 0})" class="alert alert-info alert-dismissible fade show" role="alert">
-                    Click the 'Move Players' button above to drag and drop players in the starting lineup. Make sure to save when you're done.
+                    Click the 'Move Players' button above to drag and drop players in the starting lineup. Make sure to save when you're done!
                 </div>
                 <!-- starting line-up -->
                 <div class="card play-card lineup">
@@ -531,9 +531,13 @@
                             </div>
                             <div class="form-group">
                                 <h6 for="sport" class="form-control-label">Sport:</h6>
-                                <select id="sport" v-model="newTeam.sport">
-                                    <option value="football">Football</option>
+                                <select id="sport" class="form-control" v-model="newTeam.sport">
                                     <option value="basketball">Basketball</option>
+                                    <option value="cricket">Cricket</option>
+                                    <option value="football">Football</option>
+                                    <option value="netball">Netball</option>
+                                    <option value="rugby">Rugby</option>
+                                    <option value="touch">Touch</option>
                                     <option value="default">Other</option>
                                 </select>
                             </div>
@@ -1444,6 +1448,26 @@
     .card-block-lineup-basketball {
         background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/Basketball%20court.png?alt=media&token=9ce355da-639f-4d6b-b7c7-aec0a6026193");
     }
+
+    /* .card-block-lineup-netball {
+        background-image: url("");
+    }
+
+    .card-block-lineup-rugby {
+        background-image: url("");
+    }
+
+    .card-block-lineup-cricket {
+        background-image: url("");
+    }
+
+    .card-block-lineup-touch {
+        background-image: url("");
+    }
+
+    .card-block-lineup-hockey {
+        background-image: url("");
+    } */
 
     .info-card-block {
         max-height: 35rem;

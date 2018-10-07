@@ -419,7 +419,7 @@
     .player-initials-nav {
         width: 36px;
         height: 36px;
-        margin-right: 12%;
+        margin-right: 15%;
         box-shadow: none;
         float: right;
         margin-top: 5px;
@@ -438,7 +438,7 @@
     .nav-photo {
         width: 36px;
         height: 36px;
-        margin-right: 12%;
+        margin-right: 15%;
         box-shadow: none;
         float: right;
         margin-top: 10px;

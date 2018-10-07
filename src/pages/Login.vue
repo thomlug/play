@@ -3,12 +3,13 @@
         <div class="col-md-4 col-sm-4 col-xs-12"></div>
         <div class="col-md-4 col-sm-4 col-xs-12">
             <play-form>
-                <h2 slot="page-header">Welcome to Play {{ this.user ? user.uid : ''}}</h2>
-                <div id="firebaseui-auth-container">                    
-                    <h4>Sign in</h4>                    
+                <h2 class="wider" slot="page-header">Welcome to Play {{ this.user ? user.uid : ''}}</h2>
+                <div id="firebaseui-auth-container">                 
+                    <h5>Sign in</h5>                    
                 </div>                        
                 <div class="divider text-center">OR</div>
                 <form @submit.prevent="signIn()" class="signin-container">
+                  
                   <input placeholder="Email" label="Email" id="email" type="email" class="email form-element text-center" v-model="email" required>
                   <input placeholder="Password" label="Password" id="password" type="password" class="password form-element text-center" v-model="password" required>
                   <div class="text-danger" v-if="errorMessage != null">{{errorMessage}}</div>
@@ -16,13 +17,13 @@
                 </form> 
                 <hr/>
                 <form @submit.prevent="onSignUp" class="signin-container">
-                    <p class="no-account" slot="additional-info">Don't have an account? </p>
+                    <p class="no-account" slot="additional-info">New user? </p>
                     <h5>Sign Up</h5>
                     <input placeholder="Email" label="Email" id="email" type="email" class="email form-element text-center" v-model="newEmail" required>
                     <input placeholder="Password" label="Password" id="password" type="password" class="password form-element text-center" v-model="newPassword" required>
                     <input placeholder="Confirm Password" label="Confirm Password" id="confirmPassword" type="password" class="confirmPassword form-element text-center" v-model="confirmPassword">
                     <div class="text-danger" v-if="signUpErrorMessage != null">{{signUpErrorMessage}}</div>
-                    <button type="submit" :disabled = "signUpButtonDisabled" class="login-button btn btn-submit form-element">Sign Up</button>
+                    <button type="submit" :disabled = "signUpButtonDisabled" class="login-button btn btn-submit form-element signup-button">Sign Up</button>
                 </form>  
                 <p class="no-account" slot="additional-info"><router-link :to="{name: 'resetpassword'}">Forgot password? </router-link> </p>
             </play-form>            
@@ -135,6 +136,10 @@ export default {
 </script>
 
 <style scoped>
+.wider{
+  width: 300px;
+}
+
 .mdl-shadow--2dp {
   box-shadow: none;
 }
@@ -211,6 +216,10 @@ div.mdl-progress::after {
 
 .login-button:hover {
   cursor: pointer;
+}
+
+.signup-button{
+background-color: dodgerblue;
 }
 
 .no-account {

@@ -23,7 +23,7 @@ export default {
     .logo {
         border-radius: 50%;
         height: 4rem;
-        margin: 5vh 0;
+        margin: 2vh 0;
     }
 
     .centered-col{
@@ -35,7 +35,7 @@ export default {
     }
 
     .form-container{
-        margin-top: 5vh;
+        margin-top: 2vh;
         width: 20rem;
         padding: 2rem 0 2rem 0;
         /* -webkit-box-shadow: 3px 3px 3px -3px rgba(0,0,0,0.75);
