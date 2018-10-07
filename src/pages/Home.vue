@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div v-if="getNextFixture()['.key'] == null" class="alert alert-info alert-dismissible fade show" role="alert">
-                    Click the button below to add your first fixture
+                    Click the '+' button below to add your next game
                 </div>
                 <three-column-edit-card :clickFn="toggleEditAwayTeam" :can-edit="canEdit()"
                                         :editable="awayTeamEditable">
@@ -230,7 +230,7 @@
                     </div>
                 </modal>
                 <div v-if="_.every(this.playerFormation, (row) => {return row.length === 0})" class="alert alert-info alert-dismissible fade show" role="alert">
-                    Click the Move Players button above to place players in the starting lineup
+                    Click the 'Move Players' button above to drag and drop players in the starting lineup. Make sure to save when you're done.
                 </div>
                 <!-- starting line-up -->
                 <div class="card play-card lineup">
@@ -2519,6 +2519,16 @@
         border: 1px solid lightgrey;
         padding: 7px;
         border-radius: 20px;
+    }
+
+    .alert-info{
+        background-color: lightblue;
+        /* border-color: #bcdff1; */
+        color: slategrey;
+        box-shadow: 0 1px 3px#ddd, 0 1px 2px #ddd;
+        margin-top: 15px;
+        text-align: center;
+        padding: 5px;
     }
 
     @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
