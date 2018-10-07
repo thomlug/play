@@ -531,9 +531,13 @@
                             </div>
                             <div class="form-group">
                                 <h6 for="sport" class="form-control-label">Sport:</h6>
-                                <input type="text" class="form-control" id="sport" v-model="newTeam.sport">
+                                <select id="sport" v-model="newTeam.sport">
+                                    <option value="football">Football</option>
+                                    <option value="basketball">Basketball</option>
+                                    <option value="default">Other</option>
+                                </select>
                             </div>
-
+                            
 
                             <!-- <button type="button" class="btn btn-secondary new-team" @click="hideNewTeamModal()">Close</button> -->
                             <input type="submit" class="btn btn-primary new-team" value="Create!">
