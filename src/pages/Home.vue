@@ -31,7 +31,9 @@
                         </div>
                     </div>
                 </div>
-
+                <div v-if="getNextFixture()['.key'] == null" class="alert alert-info alert-dismissible fade show" role="alert">
+                    Click the button below to add your first fixture
+                </div>
                 <three-column-edit-card :clickFn="toggleEditAwayTeam" :can-edit="canEdit()"
                                         :editable="awayTeamEditable">
                     <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="location-icon"> -->
@@ -227,6 +229,9 @@
                  </span><br>
                     </div>
                 </modal>
+                <div v-if="_.every(this.playerFormation, (row) => {return row.length === 0})" class="alert alert-info alert-dismissible fade show" role="alert">
+                    Click the Move Players button above to place players in the starting lineup
+                </div>
                 <!-- starting line-up -->
                 <div class="card play-card lineup">
                     <div class="card-block-lineup" :class="'card-block-lineup-' + getCurrentTeam().sport.toLowerCase()">
@@ -1046,7 +1051,7 @@
                     return f.status === "active" && f.homeTeam === teamKey;
                 });
 
-                return !_.isUndefined(fixture) ? fixture : {startDate: "unknown"};
+                return !_.isUndefined(fixture) ? fixture : {startDate: "unknown", noFixture: true};
             },
             getPlayersForCurrentTeam() {
                 var teamKey = this.getCurrentTeamKey();
