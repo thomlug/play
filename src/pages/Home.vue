@@ -725,12 +725,16 @@
                     return;
                 }
 
-                this.newTeam.manager = {1: firebase.auth().currentUser.uid};
                 this.newTeam.competition = "Default";
                 this.newTeam.sport = this.newTeam.sport != null ? this.newTeam.sport : 'default';
                 var newTeam = db.ref("team").push(this.newTeam);
                 var newTeamKey = newTeam.key;
-                var playerKey = this.getCurrentPlayer()['.key'];
+                var currentPlayer = this.getCurrentPlayer();
+                var playerKey = currentPlayer['.key'];
+                this.$firebaseRefs.teams
+                    .child(newTeamKey)
+                    .child('manager')
+                    .push(currentPlayer.userUid);
                 this.$firebaseRefs.players
                     .child(playerKey)
                     .child(newTeamKey)
