@@ -1,31 +1,35 @@
 <template>
-    <div class="row" v-if="!loading">
+    <div class="row gradient" v-if="!loading">
         <div class="col-md-4 col-sm-4 col-xs-12"></div>
         <div class="col-md-4 col-sm-4 col-xs-12">
             <play-form>
-                <h2 class="wider" slot="page-header">Welcome to Play {{ this.user ? user.uid : ''}}</h2>
-                <div id="firebaseui-auth-container">                 
-                    <h5>Sign in</h5>                    
+                <h2 class="wider azure" slot="page-header">Welcome to Play {{ this.user ? user.uid : ''}}</h2>
+                <div id="firebaseui-auth-container">
+                  <p class="no-account" slot="additional-info">Continue with existing account? </p>                 
+                    <!-- <h5>Continue with</h5>                     -->
                 </div>                        
-                <div class="divider text-center">OR</div>
-                <form @submit.prevent="signIn()" class="signin-container">
-                  
-                  <input placeholder="Email" label="Email" id="email" type="email" class="email form-element text-center" v-model="email" required>
-                  <input placeholder="Password" label="Password" id="password" type="password" class="password form-element text-center" v-model="password" required>
-                  <div class="text-danger" v-if="errorMessage != null">{{errorMessage}}</div>
-                  <button type="submit" class="login-button btn btn-submit form-element">Sign in</button> 
-                </form> 
+                <!-- <div class="divider text-center">OR</div> -->
+
                 <hr/>
                 <form @submit.prevent="onSignUp" class="signin-container">
-                    <p class="no-account" slot="additional-info">New user? </p>
-                    <h5>Sign Up</h5>
+                    <p class="no-account" slot="additional-info">New user? Sign Up!</p>
+                    <!-- <h5>Sign Up</h5> -->
                     <input placeholder="Email" label="Email" id="email" type="email" class="email form-element text-center" v-model="newEmail" required>
                     <input placeholder="Password" label="Password" id="password" type="password" class="password form-element text-center" v-model="newPassword" required>
                     <input placeholder="Confirm Password" label="Confirm Password" id="confirmPassword" type="password" class="confirmPassword form-element text-center" v-model="confirmPassword">
                     <div class="text-danger" v-if="signUpErrorMessage != null">{{signUpErrorMessage}}</div>
                     <button type="submit" :disabled = "signUpButtonDisabled" class="login-button btn btn-submit form-element signup-button">Sign Up</button>
-                </form>  
+                </form> 
+                <hr/> 
+                                <form @submit.prevent="signIn()" class="signin-container">
+                  <p class="no-account" slot="additional-info">Existing user? Log in! </p>
+                  <!-- <h5>Log in</h5>   -->
+                  <input placeholder="Email" label="Email" id="email" type="email" class="email form-element text-center" v-model="email" required>
+                  <input placeholder="Password" label="Password" id="password" type="password" class="password form-element text-center" v-model="password" required>
+                  <div class="text-danger" v-if="errorMessage != null">{{errorMessage}}</div>
+                  <button type="submit" class="login-button btn btn-submit form-element">Log in</button> 
                 <p class="no-account" slot="additional-info"><router-link :to="{name: 'resetpassword'}">Forgot password? </router-link> </p>
+                </form> 
             </play-form>            
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12"></div>
@@ -140,6 +144,14 @@ export default {
   width: 300px;
 }
 
+.gradient{
+  background-image: linear-gradient(110deg, #2acad0, dodgerblue);
+}
+
+.azure{
+  color: azure;
+}
+
 .mdl-shadow--2dp {
   box-shadow: none;
 }
@@ -199,7 +211,7 @@ div.mdl-progress::after {
   /* -webkit-box-shadow: 0px 1.5px 4px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 1.5px 4px 0px rgba(0, 0, 0, 0.75); */
   box-shadow: 0px 1.5px 4px 0px #ddd;
-  background-color: #2bcad0;
+  background-color: dodgerblue;
   color: #ffffff;
   font-weight: 550;
 }
@@ -209,7 +221,7 @@ div.mdl-progress::after {
   /* -webkit-box-shadow: 0px 1.5px 4px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 1.5px 4px 0px rgba(0, 0, 0, 0.75); */
   box-shadow: 0px 1.5px 4px 0px #ddd;
-  background-color: turquoise;
+  background-color: #2acad0;
   color: #ffffff;
   font-weight: 550;
 }
@@ -219,11 +231,11 @@ div.mdl-progress::after {
 }
 
 .signup-button{
-background-color: dodgerblue;
+background-image: linear-gradient(45deg, turquoise, #2acad0);
 }
 
 .no-account {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   font-size: 0.8rem;
 }
 
