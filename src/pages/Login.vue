@@ -14,7 +14,16 @@
                   <div class="text-danger" v-if="errorMessage != null">{{errorMessage}}</div>
                   <button type="submit" class="login-button btn btn-submit form-element">Sign in</button> 
                 </form> 
-                <p class="no-account" slot="additional-info">Don't have an account? <router-link :to="{name: 'signup', query: {redirect: $route.query.redirect}}">Sign up</router-link> </p>
+                <hr/>
+                <form @submit.prevent="onSignUp" class="signin-container">
+                    <p class="no-account" slot="additional-info">Don't have an account? </p>
+                    <h5>Sign Up</h5>
+                    <input placeholder="Email" label="Email" id="email" type="email" class="email form-element text-center" v-model="newEmail" required>
+                    <input placeholder="Password" label="Password" id="password" type="password" class="password form-element text-center" v-model="newPassword" required>
+                    <input placeholder="Confirm Password" label="Confirm Password" id="confirmPassword" type="password" class="confirmPassword form-element text-center" v-model="confirmPassword">
+                    <div class="text-danger" v-if="signUpErrorMessage != null">{{signUpErrorMessage}}</div>
+                    <button type="submit" :disabled = "signUpButtonDisabled" class="login-button btn btn-submit form-element">Sign Up</button>
+                </form>  
                 <p class="no-account" slot="additional-info"><router-link :to="{name: 'resetpassword'}">Forgot password? </router-link> </p>
             </play-form>            
         </div>
@@ -93,7 +102,31 @@ export default {
     },
     signInSuccess(){
       this.$router.replace("/home");
-    }
+    },
+    onSignUp(){
+            this.signUpErrorMessage = null;
+            this.signUpButtonDisabled = true;
+            var router = this.$router;
+            if (this.newPassword === this.confirmPassword){
+                this.$store.dispatch('userSignUp', {email: this.newEmail, password: this.newPassword})
+                .then((t) => {
+                    //success
+                    if(this.$route.query.redirect){
+                        this.$router.go(this.$route.query.redirect);
+                    }
+                    else{
+                        this.$router.replace('home');
+                    }
+                }).catch((error) => {
+                    this.signUpButtonDisabled = false;
+                    this.signUpErrorMessage = error.message;
+                });;
+            }else {
+                this.signUpButtonDisabled = false;
+                this.signUpErrorMessage = 'Passwords do not match';
+            }
+            
+        }
   }
 };
 </script>
