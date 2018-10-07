@@ -89,6 +89,7 @@ export default {
         })
         .catch(error => {
           this.errorMessage = error.message;
+          this.loading = false;
         });
       this.$router.replace("/home");
     }

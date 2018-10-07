@@ -180,7 +180,6 @@
             Promise.all([this.playerPromise]).then(
                 this.setUpPlayer
             );
-            console.log(this.player);
         },
         computed: {
             ...mapState(['user'])
@@ -225,7 +224,6 @@
                 this.player = _.find(this.players, p => {
                     return p.userUid === this.user.uid;
                 }) || null;
-                console.log(this.player);
             },
             getThisPlayerId() {
                 return this.player ? this.player['.key'] : '/';
