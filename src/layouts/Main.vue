@@ -455,6 +455,9 @@
         .nav-photo {
             display: none;
         }
+        .player-initials-nav {
+            display: none;
+        }
     }
 
     .home {
