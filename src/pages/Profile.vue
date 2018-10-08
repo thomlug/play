@@ -329,6 +329,17 @@ export default {
 .profile-bg {
   background-color: whitesmoke;
 }
+
+.alert-info{
+    background-color: lightblue;
+    /* border-color: #bcdff1; */
+    color: slategrey;
+    box-shadow: 0 1px 3px#ddd, 0 1px 2px #ddd;
+    margin-top: 15px;
+    text-align: center;
+    padding: 5px;
+}
+
 .row {
   background-color: transparent;
 }
