@@ -88,7 +88,7 @@
       <div class="fa-stack-1x">
       1   
       </div>
-      </span> Logout of Play (top right menu)
+      </span> Logout of Play (top menu).
                 <br>
 
                 <span class="fa-stack">
@@ -115,12 +115,19 @@
       </span> Follow the invite process in your invitation.
                 <br>
 
-                <span class="fa-stack">
-          <span class="fa fa-circle-o fa-stack-2x"></span>
-          <div class="fa-stack-1x">
-            5   
-          </div>
-      </span> Ensure you SIGN UP first before logging in
+                 <span class="fa-stack">
+      <span class="fa fa-circle-o fa-stack-2x"></span>
+      <div class="fa-stack-1x">
+       5   
+      </div>
+      </span> Ensure you SIGN UP first before logging in.
+                <br>
+                       <span class="fa-stack">
+      <span class="fa fa-circle-o fa-stack-2x"></span>
+      <div class="fa-stack-1x">
+       6   
+      </div>
+      </span> Try refreshing your page.
             </div>
             <br>
             <br>
@@ -282,7 +289,7 @@
     }
 
     .color-bg {
-        background-color: dodgerblue;
+        background-color: lightslategrey;
         color: whitesmoke !important;
         margin: 0 -15px 0 -15px;
     }

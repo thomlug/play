@@ -145,7 +145,7 @@ export default {
 }
 
 .gradient{
-  background-image: linear-gradient(110deg, #2acad0, dodgerblue);
+  background-image: linear-gradient(145deg,turquoise,30%, #2acad0, 90%, dodgerblue);
 }
 
 .azure{

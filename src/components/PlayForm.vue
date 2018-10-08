@@ -35,7 +35,7 @@ export default {
     }
 
     .form-container{
-        margin-top: 2vh;
+        margin: 2vh 0 2vh 0;
         width: 20rem;
         padding: 2rem 0 2rem 0;
         /* -webkit-box-shadow: 3px 3px 3px -3px rgba(0,0,0,0.75);
