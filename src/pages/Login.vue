@@ -145,11 +145,13 @@ export default {
 }
 
 .gradient{
-  background-image: linear-gradient(145deg,turquoise,30%, #2acad0, 90%, dodgerblue);
+     background-image: linear-gradient(-95deg,#292b2b,30%,#292b2b,70%, black);
 }
 
 .azure{
-  color: azure;
+  color: white;
+  font-weight: 350;
+  letter-spacing: -2px;
 }
 
 .mdl-shadow--2dp {
