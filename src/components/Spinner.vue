@@ -47,11 +47,7 @@ align-content: center; */
 
 .logo-container{
   margin: 0 auto; 
-  width: 650px;
-  height: 650px;
-  background-image: linear-gradient(275deg,rgba(19, 26, 29),30%,#50575e,70%, rgba(19, 26, 29));
-  padding: 25px;
-  border-radius: 50%; 
+  width: 25%;
 }
 
 /* this is the bouncing item */
