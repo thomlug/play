@@ -13,7 +13,7 @@
                     <!-- <div class="home">HOME</div> -->
                 </a>
                 <!-- test delete -->
-                <a class="navbar-brand" href="#/chat"><i class="fa fa-envelope" aria-hidden="true"></i>
+                <a class="navbar-brand" href="#/chat"><i class="fa fa-quote-left" aria-hidden="true"></i>
                     <!-- <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7"
                          class="img-fluid play-logo"> -->
                     <!-- <div class="home">HOME</div> -->
@@ -346,7 +346,7 @@
     }
 
     .play-logo {
-        max-height: 50px;
+        max-height: 44px;
         z-index: 1;
     }
 
@@ -507,7 +507,7 @@
 .fa-calendar{
     display: none;
 }   
-.fa-envelope{
+.fa-quote-left{
     display: none;
 }   
 .nav-cont{
@@ -532,17 +532,23 @@
     display: flex;
     justify-content: space-between;
 }
-.fa-envelope{
-    font-size: 34px;
+.fa-quote-left{
+    font-size: 28px;
     vertical-align: sub;
-    margin: 6px 0px 0px -8px;
+    margin: 7px 0px 0px -8px;
     color: whitesmoke;
 }
+.fa-quote-left:active{
+    color: #2acad0;
+}
 .fa-calendar{
-    font-size: 32px;
+    font-size: 28px;
     vertical-align: sub;
-    margin: 8px 0 0 8px;
+    margin: 7px 0 0 8px;
     color: whitesmoke;
+}
+.fa-calendar:active{
+    color: #2acad0;
 }
 .nav-photo {
     width: 36px;
@@ -551,6 +557,7 @@
     vertical-align: middle;
     margin-bottom: 4px;
     margin-right: 0px;
+    margin-top: 7px;
 }
 .navbar-inverse .navbar-toggler{
     display: none;

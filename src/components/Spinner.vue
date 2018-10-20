@@ -37,6 +37,7 @@ background-image: linear-gradient(-30deg,#50575e, rgba(19, 26, 29));
   bottom: 0;
   margin-right: 100px;
   min-height: 100vh;
+  z-index: 2;
   /* margin-top: 50px; */
   
   /* margin: auto 50% auto 50%; */
