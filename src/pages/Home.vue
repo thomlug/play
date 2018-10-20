@@ -531,10 +531,11 @@
                             </div>
                             <div class="form-group">
                                 <h6 for="sport" class="form-control-label">Sport:</h6>
-                                <select id="sport" class="form-control" v-model="newTeam.sport">
+                                <select id="sport" class="form-control pointer" v-model="newTeam.sport">
                                     <option value="basketball">Basketball</option>
                                     <option value="cricket">Cricket</option>
                                     <option value="football">Football</option>
+                                    <option value="hockey">Hockey</option>
                                     <option value="netball">Netball</option>
                                     <option value="rugby">Rugby</option>
                                     <option value="touch">Touch</option>
@@ -1440,7 +1441,7 @@
     .card-block-lineup-default {
         background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/default%20background.png?alt=media&token=bf4831ee-e1cf-4c84-9a0d-1b70f5314fa6");
     }
-    
+
     .card-block-lineup-football {
         background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/soccer%20pitch%20blue%20really%20long%20last.png?alt=media&token=34046254-a7a7-4a09-8d22-69ee7d663be2");
     }
@@ -2554,6 +2555,10 @@
         margin-top: 15px;
         text-align: center;
         padding: 5px;
+    }
+    .pointer{
+        cursor: pointer;
+        border-radius: 0px;
     }
 
     @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
