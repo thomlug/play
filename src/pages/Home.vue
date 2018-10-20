@@ -1438,9 +1438,9 @@
     }
 
     .card-block-lineup-default {
-        background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/soccer%20pitch%20blue%20really%20long%20last.png?alt=media&token=34046254-a7a7-4a09-8d22-69ee7d663be2");
+        background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/default%20background.png?alt=media&token=bf4831ee-e1cf-4c84-9a0d-1b70f5314fa6");
     }
-
+    
     .card-block-lineup-football {
         background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/soccer%20pitch%20blue%20really%20long%20last.png?alt=media&token=34046254-a7a7-4a09-8d22-69ee7d663be2");
     }
@@ -1449,25 +1449,25 @@
         background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/Basketball%20court.png?alt=media&token=9ce355da-639f-4d6b-b7c7-aec0a6026193");
     }
 
-    /* .card-block-lineup-netball {
-        background-image: url("");
+    .card-block-lineup-netball {
+        background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/Netball%20Layout%20Designs.png?alt=media&token=13578028-ce4d-46b9-8f86-bfd63686d9d1");
     }
 
     .card-block-lineup-rugby {
-        background-image: url("");
+        background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/default%20background.png?alt=media&token=bf4831ee-e1cf-4c84-9a0d-1b70f5314fa6");
     }
 
     .card-block-lineup-cricket {
-        background-image: url("");
+        background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/default%20background.png?alt=media&token=bf4831ee-e1cf-4c84-9a0d-1b70f5314fa6");
     }
 
     .card-block-lineup-touch {
-        background-image: url("");
+        background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/default%20background.png?alt=media&token=bf4831ee-e1cf-4c84-9a0d-1b70f5314fa6");
     }
 
     .card-block-lineup-hockey {
-        background-image: url("");
-    } */
+        background-image: url("https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/Hockey%20Layout%20Designs.png?alt=media&token=7b205e41-3a8f-4a05-8dc3-df616f68c8df");
+    }
 
     .info-card-block {
         max-height: 35rem;

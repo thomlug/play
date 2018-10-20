@@ -9,7 +9,7 @@
           </div>
         </div>
 
-        <h4 class="loading-text text-center">If page does not load, please refresh</h4>
+        <!-- <h4 class="loading-text text-center">If page does not load, please refresh</h4> -->
     <!-- <div class="infoimage">
       <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/ezgif.com-crop.gif?alt=media&token=d5e40965-34d3-4a66-b5e9-970ba8f5838e">
     </div> -->
