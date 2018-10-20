@@ -6,10 +6,22 @@
                     aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span><span class="button-badge" v-if="isThereNewChatMessage()">&nbsp;</span>
             </button>
-            <div>
+            <div class="nav-cont">
                 <a class="navbar-brand" href="#/home">
                     <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7"
                          class="img-fluid play-logo">
+                    <!-- <div class="home">HOME</div> -->
+                </a>
+                <!-- test delete -->
+                <a class="navbar-brand" href="#/chat"><i class="fa fa-envelope" aria-hidden="true"></i>
+                    <!-- <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7"
+                         class="img-fluid play-logo"> -->
+                    <!-- <div class="home">HOME</div> -->
+                </a>
+                <!-- test delete -->
+                <a class="navbar-brand" href="#/fixtures"><i class="fa fa-calendar" aria-hidden="true"></i>
+                    <!-- <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7"
+                         class="img-fluid play-logo"> -->
                     <!-- <div class="home">HOME</div> -->
                 </a>
                 <a>
@@ -491,5 +503,79 @@
         transform-origin: 100%;
         z-index: 0;
     } */
+@media (min-width: 768px) {
+.fa-calendar{
+    display: none;
+}   
+.fa-envelope{
+    display: none;
+}   
+.nav-cont{
+    margin-bottom: -15px;
+}     
+}
+@media (max-width: 768px) {
+    /* Place the navbar at the bottom of the page, and make it stick */
+.body{
+    padding-top: 1px;
+}
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+    box-shadow: 2px 2px 6px 1px darkslategrey;
+}
+.nav-cont{
+    display: flex;
+    justify-content: space-between;
+}
+.fa-envelope{
+    font-size: 34px;
+    vertical-align: sub;
+    margin: 6px 0px 0px -8px;
+    color: whitesmoke;
+}
+.fa-calendar{
+    font-size: 32px;
+    vertical-align: sub;
+    margin: 8px 0 0 8px;
+    color: whitesmoke;
+}
+.nav-photo {
+    width: 36px;
+    height: 36px;
+    box-shadow: none;
+    vertical-align: middle;
+    margin-bottom: 4px;
+    margin-right: 0px;
+}
+.navbar-inverse .navbar-toggler{
+    display: none;
+}
+/* Style the links inside the navigation bar */
+/* .navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+} */
 
+/* Change the color of links on hover */
+/* .navbar a:hover {
+    background-color: #ddd;
+    color: black;
+} */
+
+/* Add a color to the active/current link */
+/* .navbar a.active {
+    background-color: #4CAF50;
+    color: white;
+} */
+}
 </style>

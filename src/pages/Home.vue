@@ -549,6 +549,9 @@
                         </form>
                     </modal>
                 </div>
+               <div class="homenavspace">
+                   
+               </div>     
             </div>
         </div>
     </main-layout>
@@ -2495,6 +2498,9 @@
             font-weight: 250;
             font-size: 1.5rem;
             color: #50575e
+        }
+        .homenavspace{
+            height: 64px;
         }
     }
 
