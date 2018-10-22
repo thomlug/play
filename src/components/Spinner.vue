@@ -28,7 +28,7 @@
 .spinner {
   width: 100%;
   height: auto;
-background-image: linear-gradient(-30deg,#50575e, rgba(19, 26, 29));
+background-image: linear-gradient(-30deg,#50575e, rgb(19, 26, 29));
 /* border-radius: 50%; */
   position: absolute;
   top: 0;
