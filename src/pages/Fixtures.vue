@@ -10,12 +10,12 @@
                 </div>
             </div>
             <div class="card play-card">
-              <div class="card-block lesspad" v-if="canEdit()">
+              <div class="card-block lesspad greybg" v-if="canEdit()">
                 <div class="heading">
                   <h3 class="fix-title">
                     Fixtures for {{getCurrentTeam().name}}
                   </h3>
-                  <button class="fa fa-plus manage-players-button" @click="showNewFixtureModal()"></button> 
+                  <button class="fa fa-plus manage-players-button whitebg" @click="showNewFixtureModal()"></button> 
                   
                 </div>
                 <modal height=auto width=90% border-radius=25px name="add-fixture" :clickToClose="false" class="vertical-scroll">
@@ -281,6 +281,10 @@ a:focus, a:hover {
   padding: 10px;
 }
 
+.greybg{
+background-color: #50575e;
+}
+
 .form-content {
   padding: 10px;
 }
@@ -440,6 +444,9 @@ box-shadow: transparent !important;
   padding: 10px 12px 9px 12px;
   margin-left: 5px;
 }
+.whitebg{
+  background-color: white;
+}
 
 .fa-plus:hover {
   color: darkgray;
@@ -452,6 +459,7 @@ box-shadow: transparent !important;
   padding: 10px 12px 9px 12px;
   margin-left: 5px;
 }
+
 h2{
   color: #50575e;
 }
@@ -468,7 +476,9 @@ h6 {
   padding: 8px;
 }
 .lesspad{
-  padding: 0.5rem;
+    padding: 0.3rem;
+    background-image: linear-gradient(45deg, #2acad0, turquoise, #2acad0);
+    color: white;
 }
 .my-team{
 text-align: center;

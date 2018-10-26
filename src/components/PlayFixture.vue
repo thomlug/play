@@ -1,10 +1,10 @@
 <template>
 <div class="card play-card">
-        <div class="card-block">
+        <div class="card-block leftborder">
             <button @click="deleteFixture()" class="fa fa-trash red-button float-right"></button>
             <button v-if="fixture.status !== 'active'" @click="uncompleteFixture()" class="fa fa-undo grey-button float-right"></button>
         </div>
-        <div class="card-block">          
+        <div class="card-block leftborder">          
           <div class="centered-col fixture-content">
             <div class="centered-col">
               <div class="team-photo-container" @click="goToTeamProfile(this.fixture.homeTeam)">
@@ -41,7 +41,7 @@
             </div>
           </div>          
         </div> 
-        <div class="card-block text-center">
+        <div class="card-block text-center leftborder">
           <h2>{{time}}</h2>
           <h6>{{day}}</h6>
           <h6>{{fixture.ground}}</h6>  
@@ -279,7 +279,18 @@ export default {
   border: 1.5px #E5E5E5 solid;
 }
 
+.greybg{
+background-color: #50575e;
+color: white;
+}
 
+.whitetext{
+color: white;
+}
+
+.leftborder{
+  border-left: #2acad0 solid 10px;
+}
 @media (max-width: 768px) {
   .player-container {
     max-width: 64px;

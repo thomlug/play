@@ -224,7 +224,7 @@
         display: flex;
         flex-direction: row;
         align-items: stretch;
-        justify-content: center;
+        justify-content: left;
         padding-top: 10px;
     }
 
