@@ -480,7 +480,7 @@
     }
 
     .bg-inverse {
-        background-image: linear-gradient(18deg, #292b2c, 85%, #50576C);
+        background-image: linear-gradient(18deg, #292b2c, 85%, #292b2c);
     }
 
     .funcard {

@@ -214,7 +214,15 @@ export default {
       var result = currentTeam || _.head(this.teams);
       return result || { sport: "football" };
     },
-
+    changeToTeam(teamId) {
+        var player = this.getCurrentPlayer();
+        this.$firebaseRefs.players
+            .child(player[".key"])
+            .child("teamKey")
+            .set(teamId);
+        var gameInfo = this.getNextGameInfo();
+        this.gameInfoList = _.toPairs(gameInfo);
+    },
     showNewFixtureModal() {
       if (!this.canEdit()) {
         return;

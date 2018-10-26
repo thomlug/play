@@ -1,6 +1,17 @@
 <template>
     <main-layout>
         <div class="container">
+            <div class="card play-card">
+                    <div class="card-block">
+                        <!-- <h4 class="card-title">Change your current team <small>({{this.getCurrentTeam().name}})</small></h4> -->
+                        <div class="status-container team-buttons-container">
+                            <button v-for="team in listTeamsCurrentUserBelongsTo()" :key="team['.key']"
+                                    v-on:click="changeToTeam(team['.key'])" type="button" class="btn-teams"
+                                    :class="{'btn-teams-active': getCurrentTeamKey() === team['.key'] }">{{team.name}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
             <div class="chat-pane">
                 <div class="chat-pane-banner text-center">
                     <h1>{{getCurrentTeam().name}}</h1>
@@ -72,6 +83,31 @@
                             .set(this.moment.utc().format());
                     }
                 }
+            },
+            listTeamsCurrentUserBelongsTo() {
+                var player = this.getCurrentPlayer();
+                return _.filter(this.teams, team => {
+                    return _.some(player.teams, playerTeam => {
+                        return playerTeam.teamKey === team[".key"];
+                    });
+                });
+            },
+            getCurrentTeam() {
+                var player = this.getCurrentPlayer();
+                var currentTeam = _.find(this.teams, team => {
+                    return player.teamKey === team[".key"];
+                });
+
+                var result = currentTeam || _.head(this.teams);
+                return result || { sport: "football" };
+                },
+            getCurrentTeamKey() {
+                var team = this.getCurrentTeam();
+                if (_.isUndefined(team)) {
+                    return;
+                }
+
+                return team[".key"];
             },
             scrollToEnd: function () {
                 if (this.$el.querySelector) {
@@ -182,8 +218,46 @@
         width: none;
     }
 
+    .status-container {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: center;
+        padding-top: 10px;
+    }
+
+    .team-buttons-container {
+        overflow-x: auto;
+        justify-content: left;
+    }
+
+    .btn-teams {
+        background-color: #50575e;
+        border: 3px solid transparent;
+        color: gainsboro;
+        /* padding: 2px 30px 2px 30px; */
+        margin: 0px 5px 10px 5px;
+        border-radius: 40px;
+        cursor: pointer;
+        box-shadow: 2px 2px 2px -2px grey;
+        min-width: 115px;
+        border: 0px solid #2acad0;
+        font-size: small;
+    }
+
+    .btn-teams-active {
+
+        background-image: linear-gradient(45deg, #2acad0, dodgerblue);
+        color: white;
+    }
+
+    .btn-teams:focus {
+        outline: 0px transparent;
+    }
+
     .container {
         height: 443px;
+        width:100%;
         padding-left: 0px;
         padding-right: 0px;
     }
@@ -261,5 +335,14 @@
         text-transform: none;
     }
 
+        .play-card {
+        margin-top: 10px;
+        margin-bottom: 3px;
+        box-shadow: 0 1px 3px #ddd, 0 1px 2px #ddd;
+        text-transform: uppercase;
+        color: #50575e;
+        border-radius: 10px;
+        border-color: transparent;
+    }
 
 </style>
