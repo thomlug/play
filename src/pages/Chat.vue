@@ -32,6 +32,8 @@
                     </div>
                 </div>
             </div>
+            <div class="bottomnavspace">
+            </div>    
         </div>
     </main-layout>
 </template>
@@ -256,12 +258,17 @@
     }
 
     .container {
-        height: 443px;
+        height: 100%;
         width:100%;
         padding-left: 0px;
         padding-right: 0px;
     }
 
+@media (max-width: 768px) {
+    .bottomnavspace{
+        height: 64px;
+    }
+}
     .chat-pane-banner {
         width: 100%;
         background-color: #2BCAD0;
@@ -272,7 +279,7 @@
 
     .chat-pane-body {
         overflow-y: auto;
-        max-height: 70vh;
+        height: 61vh;
         background: #50575e;
         background-image: linear-gradient(15deg, #50575e, black);
         background-repeat: no-repeat;

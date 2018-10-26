@@ -549,7 +549,7 @@
                         </form>
                     </modal>
                 </div>
-               <div class="homenavspace">
+               <div class="bottomnavspace">
                    
                </div>     
             </div>
@@ -2499,7 +2499,7 @@
             font-size: 1.5rem;
             color: #50575e
         }
-        .homenavspace{
+        .bottomnavspace{
             height: 64px;
         }
     }

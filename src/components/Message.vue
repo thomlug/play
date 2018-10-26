@@ -75,7 +75,7 @@
 .chat {
     list-style: none;
     background: none;
-    margin: 0 0 0 -20px;
+    margin: 4px 0 0 -20px;
 }
 
 .chat li {

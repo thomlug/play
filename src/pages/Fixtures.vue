@@ -96,6 +96,8 @@
                 </tab>
               </tabs>
             </div>
+          <div class="bottomnavspace">
+          </div>
         </div>
     </main-layout>
 </template>
@@ -554,6 +556,11 @@ display: contents;
 
 .tabs-component-panels {
   /* padding: 1em 0; */
+}
+@media (max-width: 768px) {
+    .bottomnavspace{
+        height: 64px;
+    }
 }
 
 @media (min-width: 700px) {

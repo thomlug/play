@@ -135,6 +135,8 @@
             </div>          
         </div>
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
+      <div class="bottomnavspace">
+      </div>
     </div>
   </main-layout>
   
@@ -728,6 +730,12 @@ border-radius: 50%;
 
 .not-bold{
   font-weight:400;
+}
+
+@media (max-width: 768px) {
+    .bottomnavspace{
+        height: 64px;
+    }
 }
 
 @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
