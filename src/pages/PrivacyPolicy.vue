@@ -212,6 +212,6 @@
 
 <script>
 export default{
-    
+        
 }
 </script>
