@@ -4,9 +4,10 @@
             <button @click="deleteFixture()" class="fa fa-trash red-button float-right"></button>
             <button v-if="fixture.status !== 'active'" @click="uncompleteFixture()" class="fa fa-undo grey-button float-right"></button>
         </div>
+        <div class="sidetimeline">
         <div class="card-block leftborder">          
           <div class="centered-col fixture-content">
-            <div class="centered-col">
+            <!-- <div class="centered-col">
               <div class="team-photo-container" @click="goToTeamProfile(this.fixture.homeTeam)">
                 <div v-if="!_.isUndefined(homeTeam.photo)">
                   <img :src="homeTeam.photo" class="play-photo team-photo">
@@ -18,8 +19,8 @@
               <div class="team-name">
                 <h3 class="text-center">{{homeTeam.name}}</h3>
               </div>
-            </div>
-            <div class="centered-col vs-text text-center">VS</div>
+            </div> -->
+            <!-- <div class="centered-col vs-text text-center">VS</div> -->
             <div v-if="!_.isUndefined(this.fixture.awayTeam)" class="centered-col">
               <div class="team-photo-container" @click="goToTeamProfile(this.fixture.awayTeam)">
                 <div v-if="!_.isUndefined(awayTeam.photo)">
@@ -41,10 +42,11 @@
             </div>
           </div>          
         </div> 
-        <div class="card-block text-center leftborder">
+        <div class="card-block text-center">
           <h2>{{time}}</h2>
           <h6>{{day}}</h6>
           <h6>{{fixture.ground}}</h6>  
+        </div>
         </div>   
       </div>
 </template>
@@ -143,7 +145,9 @@ export default {
   -moz-box-shadow: 7px 9px 4px -8px rgba(0, 0, 0, 0.75);
   box-shadow: 3px 3px 3px -3px 50575e;
 }
-
+.sidetimeline{
+  display:inline-flex;
+}
 /* .play-photo:hover {
   -webkit-box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 7px 9px 16px -4px rgba(0, 0, 0, 0.75);
