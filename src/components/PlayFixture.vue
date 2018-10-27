@@ -31,7 +31,7 @@
                 </div>
               </div>
               <div class="team-name">
-                <h3 class="text-center">{{awayTeam.name}}</h3>
+                <h3 class="text-center">{{awayTeam.name}}</h3> 
               </div>
             </div>
             <div v-else class="centered-col">
@@ -44,8 +44,8 @@
         </div> 
         <div class="card-block text-center">
           <h2>{{time}}</h2>
-          <h6>{{day}}</h6>
-          <h6>{{fixture.ground}}</h6>  
+          <h6 class="blacktext">{{day}}</h6>
+          <h6>{{fixture.ground}}</h6> 
         </div>
         </div>   
       </div>
@@ -290,6 +290,10 @@ color: white;
 
 .whitetext{
 color: white;
+}
+
+.blacktext{
+  color: #50575e;
 }
 
 .leftborder{
