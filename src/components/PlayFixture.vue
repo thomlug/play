@@ -5,7 +5,7 @@
             <button v-if="fixture.status !== 'active'" @click="uncompleteFixture()" class="fa fa-undo grey-button float-right"></button>
         </div>
         <div class="sidetimeline">
-        <div class="card-block leftborder">          
+        <div class="card-block leftborder widen">          
           <div class="centered-col fixture-content">
             <!-- <div class="centered-col">
               <div class="team-photo-container" @click="goToTeamProfile(this.fixture.homeTeam)">
@@ -187,7 +187,10 @@ export default {
   -webkit-box-shadow: 2px 2px 2px -2px #50575e;
   cursor: pointer;
 }
-
+.widen{
+  padding: 0 0 0 10px;
+  width: 135px;
+}
 .home-circle {
   display: table-cell;
   text-align: center;
@@ -248,7 +251,7 @@ export default {
   margin-bottom: 0rem;
   margin-top: 1rem;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   width: 140px;
   height: 35px;
 }

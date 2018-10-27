@@ -4,7 +4,7 @@
             <div class="card play-card">
                 <div class="card-block">
             <!-- <h4 class="card-title">Change your current team <small>({{this.getCurrentTeam().name}})</small></h4> -->
-                    <div class="status-container">
+                    <div class="status-container team-buttons-container">
                         <button v-for="team in listTeamsCurrentUserBelongsTo()" :key="team['.key']" v-on:click="changeToTeam(team['.key'])" type="button" class="btn-teams-fix" :class="{'btn-teams-active': getCurrentTeamKey() === team['.key'] }">{{team.name}}</button>
                     </div>                    
                 </div>
@@ -313,19 +313,23 @@ box-shadow: 2px, 2px, 2px, -2px grey;
   text-transform: uppercase;
   color: #50575e;
   border-radius: 10px;
-  border-color: transparent;
+  border: whitesmoke;
   
 }
 .overflow{
   overflow-x: scroll;
 }
+.btn-teams-active {
+    background-image: linear-gradient(45deg, #2acad0, dodgerblue);
+    color: white;
+}
+
 .status-container {
   display: flex;
   flex-direction: row;
   align-items: stretch;
   justify-content: left;
   padding-top: 10px;
-  overflow-x: scroll;
 }
 
 .fix-title{
@@ -337,7 +341,7 @@ box-shadow: 2px, 2px, 2px, -2px grey;
 .btn-teams-fix {
   background-color: #50575e;
   border: 3px solid transparent;
-  color: gainsboro;
+  color: white;
   /* padding: 2px 30px 2px 30px; */
   margin: 0px 5px 10px 5px;
   border-radius: 40px;
@@ -359,6 +363,11 @@ box-shadow: 2px, 2px, 2px, -2px grey;
     background-image: linear-gradient(45deg,#2acad0, dodgerblue);
     color: white;
     outline:0px;
+}
+
+.team-buttons-container {
+    overflow-x: auto;
+    justify-content: left;
 }
 
 .btn {
@@ -483,6 +492,7 @@ h6 {
     padding: 0.3rem;
     background-image: linear-gradient(45deg, #2acad0, turquoise, #2acad0);
     color: white;
+    outline: solid 5px whitesmoke;
 }
 .my-team{
 text-align: center;

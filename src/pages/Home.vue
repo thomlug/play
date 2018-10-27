@@ -2237,7 +2237,7 @@
     .btn-teams {
         background-color: #50575e;
         border: 3px solid transparent;
-        color: gainsboro;
+        color: white;
         /* padding: 2px 30px 2px 30px; */
         margin: 0px 5px 10px 5px;
         border-radius: 40px;
