@@ -200,7 +200,7 @@
     position: relative;
     top: 0px;
     right: 0px;
-    left: 0px;
+    left: 1px;
     width: 0px;
     height: 0px;
     border: 5px solid #f5f5f5;
@@ -237,8 +237,8 @@
     position: relative;
     display: inline-block;
     float: right;
-    bottom: 0px;
-    right: 0px;
+    bottom: 0.5px;
+    right: 2px;
     width: 0px;
     height: 0px;
     border: 5px solid #2bcad0;
