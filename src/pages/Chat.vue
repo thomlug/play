@@ -111,6 +111,15 @@
 
                 return team[".key"];
             },
+                changeToTeam(teamId) {
+                var player = this.getCurrentPlayer();
+                this.$firebaseRefs.players
+                    .child(player[".key"])
+                    .child("teamKey")
+                    .set(teamId);
+                var gameInfo = this.getNextGameInfo();
+                this.gameInfoList = _.toPairs(gameInfo);
+            },
             scrollToEnd: function () {
                 if (this.$el.querySelector) {
                     var container = this.$el.querySelector("#chat-pane");

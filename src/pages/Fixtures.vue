@@ -5,12 +5,12 @@
                 <div class="card-block">
             <!-- <h4 class="card-title">Change your current team <small>({{this.getCurrentTeam().name}})</small></h4> -->
                     <div class="status-container">
-                        <button v-for="team in listTeamsCurrentUserBelongsTo()" :key="team['.key']" v-on:click="changeToTeam(team['.key'])" type="button" class="btn-teams-fix">{{team.name}}</button>
+                        <button v-for="team in listTeamsCurrentUserBelongsTo()" :key="team['.key']" v-on:click="changeToTeam(team['.key'])" type="button" class="btn-teams-fix" :class="{'btn-teams-active': getCurrentTeamKey() === team['.key'] }">{{team.name}}</button>
                     </div>                    
                 </div>
             </div>
             <div class="card play-card">
-              <div class="card-block lesspad greybg" v-if="canEdit()">
+              <div class="card-block lesspad" v-if="canEdit()">
                 <div class="heading">
                   <h3 class="fix-title">
                     Fixtures for {{getCurrentTeam().name}}
@@ -184,13 +184,21 @@ export default {
         });
       });
     },
-    changeToTeam(teamId) {
-      var player = this.getCurrentPlayer();
-      this.$firebaseRefs.players
-        .child(player[".key"])
-        .child("teamKey")
-        .set(teamId);
+    getCurrentTeamKey() {
+    var team = this.getCurrentTeam();
+    if (_.isUndefined(team)) {
+        return;
+    }
+
+    return team[".key"];
     },
+    // changeToTeam(teamId) {
+    //   var player = this.getCurrentPlayer();
+    //   this.$firebaseRefs.players
+    //     .child(player[".key"])
+    //     .child("teamKey")
+    //     .set(teamId);
+    // },
 
     canEdit() {
       var currentUser = firebase.auth().currentUser;
@@ -281,10 +289,6 @@ a:focus, a:hover {
   padding: 10px;
 }
 
-.greybg{
-background-color: #50575e;
-}
-
 .form-content {
   padding: 10px;
 }
@@ -347,7 +351,7 @@ box-shadow: 2px, 2px, 2px, -2px grey;
 .btn-teams-fix:active{
       border: 0px solid #2acad0;
     background-image: linear-gradient(45deg,#2acad0, dodgerblue);
-    color: white;
+    color: white !important;
 }
 
 .btn-teams-fix:focus{
