@@ -24,6 +24,7 @@ export default {
   border-radius: 20px;
   -webkit-box-shadow: 2px 2px 2px -2px #50575e;
   margin: 2px;
+  padding: 8px 8px 8px 8px;
 }
 
 .btn-done:hover {

@@ -11,6 +11,7 @@
                 </a>
                 <!-- test delete -->
                 <a class="navbar-brand" href="#/chat"><i class="fa fa-quote-left" aria-hidden="true"></i>
+                <span class="button-badge chat-badge" v-if="isThereNewChatMessage()">&nbsp;</span>
                     <!-- <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7"
                          class="img-fluid play-logo"> -->
                     <!-- <div class="home">HOME</div> -->
@@ -36,7 +37,7 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                     aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span><span class="button-badge" v-if="isThereNewChatMessage()">&nbsp;</span>
+                <span class="navbar-toggler-icon"></span><span class="button-badge toggler-badge" v-if="isThereNewChatMessage()">&nbsp;</span>
             </button>
             </div>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -47,8 +48,9 @@
                         </router-link>
                     </li>
                     <li v-if="playerBelongsToATeam()" class="nav-item chat-item">
-                        <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'chat'}">Chat<span
-                                class="button-badge" v-if="isThereNewChatMessage()">&nbsp;</span></router-link>
+                        <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'chat'}">
+                            chat
+                        </router-link>
                     </li>
                     <li v-if="playerBelongsToATeam() && user" class="nav-item profile-item">
                         <router-link active-class="active" exact class="nav-item nav-link"
@@ -585,6 +587,12 @@
 }
 .fixture-item{
     display: none;
+}
+/* .chat-badge{
+    cnjdskn
+} */
+.toggler-badge{
+    display:none;
 }
 /* .navbar-inverse .navbar-toggler{
     display: none;

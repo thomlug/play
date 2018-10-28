@@ -1,10 +1,11 @@
 <template>
     <three-column-edit-card :clickFn="toggleEdit" :can-edit="canEdit" :editable="editable" :class="calculateCancelledClass()">    
         <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/001-clock-with-white-face.png?alt=media&token=703b182a-ed12-4443-a194-34315062dc01" class="clock-icon"> -->
-        <div slot="main-content">    
+        <div slot="main-content">   
             <div v-if="!editable && !this.currentFixture.cancelled">
               <h2>{{this.formattedTime}}</h2>    
-              <h6>{{this.formattedDay}}</h6>  
+              <h6>{{this.formattedDay}}</h6>
+  
             </div>
             <div v-else-if="!editable && this.currentFixture.cancelled">
               <h2>Game Cancelled</h2>
@@ -16,17 +17,24 @@
                 id="timeStart"
                 class="form-control top-bottom" v-model="fixtureTime">
               <h6>Day</h6>
+
               <input
                 type="date"
                 id="dateStart"
                 class="form-control top-bottom" v-model="fixtureDay">
-                <h4 class="card-title top-padding">Game status</h4>      
-                <div class="status-container">
-                  <div><available-button :onClick="() => this.setGameActive()" type="button" class="btn ">On</available-button></div>
-                  <div><danger-button :onClick="() => this.setGameCancelled()" type="button" class="btn ">Off</danger-button></div>
-                  <div><done-button :onClick="() => this.setGameComplete()" type="button" class="btn ">Done</done-button></div>
-                </div>          
+   
+         
             </div>
+               
+            <!-- fix editing rights -->
+            <div v-if="can-edit">
+            <h4  class="card-title top-padding">Game status</h4> 
+              <div class="status-container">
+                <div><available-button :onClick="() => this.setGameActive()" type="button" class="btn ">On</available-button></div>
+                <div><danger-button :onClick="() => this.setGameCancelled()" type="button" class="btn ">Off</danger-button></div>
+                <div><done-button :onClick="() => this.setGameComplete()" type="button" class="btn ">Done</done-button></div>
+              </div>
+              </div> 
         </div>    
     </three-column-edit-card>
 </template>
@@ -136,16 +144,13 @@ export default {
 
     setGameCancelled() {
       this.currentFixture.cancelled = true;
-      this.toggleEdit();
     },
     setGameActive() {
       this.currentFixture.cancelled = false;
-      this.toggleEdit();
     },
     setGameComplete() {
       this.currentFixture.status = "past";
       this.$emit("fixture-completed", this.currentFixture);
-      this.toggleEdit();
     },
 
     calculateCancelledClass() {
