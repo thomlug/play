@@ -235,7 +235,6 @@
                 this.player = _.find(this.players, p => {
                     return p.userUid === this.user.uid;
                 }) || null;
-
                 if(this.player == null){
                     console.log('Failed to set up player');
                 }
