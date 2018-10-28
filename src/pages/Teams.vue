@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="card play-card">
-            <div class="card-block lesspad">
+            <div class="card-block">
                 <div class="heading">
                     <h3 class="fix-title">
                         Team: {{getCurrentTeam().name}}
@@ -286,9 +286,27 @@
         padding-top: 10px;
     }
 
+
     .team-buttons-container {
         overflow-x: auto;
         justify-content: left;
+    }
+
+    .team-member-photo {
+        float: left;
+        overflow: hidden;
+    }
+
+    .team-member-info {
+        margin-top: 2rem;
+        width: auto;
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+    }
+
+    .team-member-info > span {
+        padding: 10px;
     }
 
     .btn-teams {
@@ -342,21 +360,6 @@
         cursor: pointer;
     }
 
-    .team-member-container {
-        display: flex;
-        flex-flow: row;
-        align-items: center;
-        justify-content: flex-start;
-    }
-
-    .team-member-info {
-        width: auto;
-        display: flex;
-        flex-flow: row;
-        align-items: center;
-        justify-content: center;
-    }
-
     .heading {
         display: flex;
         flex-flow: row;
@@ -382,5 +385,19 @@
         margin-top: 0.25rem;
         font-size: 2rem;
         font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+        .team-member-info {
+            margin-top: 20px;
+            width: auto;
+            display: flex;
+            flex-flow: column;
+            text-align: right;
+        }
+
+        .team-member-photo {
+            margin-top: 30px;
+        }
     }
 </style>

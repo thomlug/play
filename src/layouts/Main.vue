@@ -39,7 +39,7 @@
                     </li>
                     <li v-if="playerBelongsToATeam()" class="nav-item chat-item">
                         <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'chat'}">
-                            chat
+                            Chat
                         </router-link>
                     </li>
                     <li v-if="playerBelongsToATeam() && user" class="nav-item profile-item">
@@ -51,6 +51,11 @@
                     <li v-if="playerBelongsToATeam()" class="nav-item fixture-item">
                         <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'fixtures'}">
                             Fixtures
+                        </router-link>
+                    </li>
+                    <li v-if="playerBelongsToATeam()" class="nav-item teams-item">
+                        <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'teams'}">
+                            Teams
                         </router-link>
                     </li>
                     <!-- <li class="nav-item">
@@ -566,6 +571,9 @@
     display: none;
 }
 .chat-item{
+    display: none;
+}
+team-item{
     display: none;
 }
 .profile-item{
