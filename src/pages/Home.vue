@@ -2330,7 +2330,9 @@
     }
 
     .list-group-item {
-        border: 1px solid whitesmoke;
+        border-top: 3px solid whitesmoke;
+        border-bottom: 3px solid whitesmoke;
+        /* border-left: solid 10px #2acad0; */
     }
 
     .help-available {

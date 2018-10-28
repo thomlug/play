@@ -1,12 +1,9 @@
 <template>
     <div class="container-fluid body">
         <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                    data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span><span class="button-badge" v-if="isThereNewChatMessage()">&nbsp;</span>
-            </button>
-            <div class="nav-cont">
+           <div class="nav-cont">
+
+            
                 <a class="navbar-brand" href="#/home">
                     <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7"
                          class="img-fluid play-logo">
@@ -36,24 +33,29 @@
                         </div>
                     </router-link>
                 </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span><span class="button-badge" v-if="isThereNewChatMessage()">&nbsp;</span>
+            </button>
             </div>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ul class="navbar-nav">
-                    <li v-if="playerBelongsToATeam()" class="nav-item">
+                    <li v-if="playerBelongsToATeam()" class="nav-item home-item">
                         <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'home'}">
                             Dashboard
                         </router-link>
                     </li>
-                    <li v-if="playerBelongsToATeam()" class="nav-item">
+                    <li v-if="playerBelongsToATeam()" class="nav-item chat-item">
                         <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'chat'}">Chat<span
                                 class="button-badge" v-if="isThereNewChatMessage()">&nbsp;</span></router-link>
                     </li>
-                    <li v-if="playerBelongsToATeam() && user" class="nav-item">
+                    <li v-if="playerBelongsToATeam() && user" class="nav-item profile-item">
                         <router-link active-class="active" exact class="nav-item nav-link"
                                      :to="{name: 'profile', params: {player_id: this.getThisPlayerId()}}">My Profile
                         </router-link>
                     </li>
-                    <li v-if="playerBelongsToATeam()" class="nav-item">
+                    <li v-if="playerBelongsToATeam()" class="nav-item fixture-item">
                         <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'fixtures'}">
                             Fixtures
                         </router-link>
@@ -75,6 +77,7 @@
                         Log Out
                     </li>
                 </ul>
+            
             </div>
         </nav>
         <spinner v-if="_.isUndefined(this.player)"></spinner>
@@ -519,9 +522,12 @@
 .fa-quote-left{
     display: none;
 }   
-.nav-cont{
+/* .nav-cont{
     margin-bottom: -15px;
-}     
+}   */
+.navbar-inverse .navbar-toggler {
+    float: right;
+}  
 }
 @media (max-width: 768px) {
     /* Place the navbar at the bottom of the page, and make it stick */
@@ -568,9 +574,21 @@
     margin-right: 0px;
     margin-top: 7px;
 }
-.navbar-inverse .navbar-toggler{
+.home-item{
     display: none;
 }
+.chat-item{
+    display: none;
+}
+.profile-item{
+    display: none;
+}
+.fixture-item{
+    display: none;
+}
+/* .navbar-inverse .navbar-toggler{
+    display: none;
+} */
 /* Style the links inside the navigation bar */
 /* .navbar a {
     float: left;
