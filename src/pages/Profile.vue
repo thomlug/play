@@ -736,6 +736,10 @@ border-radius: 50%;
   padding: 2px 0px 2px 0px;
 }
 
+img {
+    image-orientation: from-image;
+}
+
 @media (max-width: 768px) {
     .bottomnavspace{
         height: 64px;

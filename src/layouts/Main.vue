@@ -2,25 +2,15 @@
     <div class="container-fluid body">
         <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
            <div class="nav-cont">
-
-            
                 <a class="navbar-brand" href="#/home">
                     <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7"
                          class="img-fluid play-logo">
                     <!-- <div class="home">HOME</div> -->
                 </a>
-                <!-- test delete -->
-                <a class="navbar-brand" href="#/chat"><i class="fa fa-quote-left" aria-hidden="true"></i>
+                <a v-if="playerBelongsToATeam()" class="navbar-brand" href="#/chat"><i class="fa fa-quote-left" aria-hidden="true"></i>
                 <span class="button-badge chat-badge" v-if="isThereNewChatMessage()">&nbsp;</span>
-                    <!-- <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7"
-                         class="img-fluid play-logo"> -->
-                    <!-- <div class="home">HOME</div> -->
                 </a>
-                <!-- test delete -->
-                <a class="navbar-brand" href="#/fixtures"><i class="fa fa-calendar" aria-hidden="true"></i>
-                    <!-- <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7"
-                         class="img-fluid play-logo"> -->
-                    <!-- <div class="home">HOME</div> -->
+                <a v-if="playerBelongsToATeam()" class="navbar-brand" href="#/fixtures"><i class="fa fa-calendar" aria-hidden="true"></i>
                 </a>
                 <a>
                     <router-link active-class="active" exact
@@ -54,7 +44,8 @@
                     </li>
                     <li v-if="playerBelongsToATeam() && user" class="nav-item profile-item">
                         <router-link active-class="active" exact class="nav-item nav-link"
-                                     :to="{name: 'profile', params: {player_id: this.getThisPlayerId()}}">My Profile
+                                     :to="{name: 'profile', params: {player_id: this.getThisPlayerId()}}">
+                            My Profile
                         </router-link>
                     </li>
                     <li v-if="playerBelongsToATeam()" class="nav-item fixture-item">
@@ -76,10 +67,9 @@
                       <router-link active-class="active" exact class="nav-item nav-link" to="marketing">Marketing</router-link>
                     </li> -->
                     <li @click="logOut" class="nav-item nav-link logout">
-                        Log Out
+                            Log Out
                     </li>
                 </ul>
-            
             </div>
         </nav>
         <spinner v-if="_.isUndefined(this.player)"></spinner>
@@ -99,13 +89,11 @@
                 <h5 class="darktext">Try These Steps</h5>
 
                 <span class="fa-stack">
-      <!-- The icon that will wrap the number -->
       <span class="fa fa-circle-o fa-stack-2x"></span>
-                    <!-- a strong element with the custom content, in this case a number -->
       <div class="fa-stack-1x">
       1   
       </div>
-      </span> Logout of Play (top menu).
+      </span> Logout of Play (see menu).
                 <br>
 
                 <span class="fa-stack">
@@ -158,7 +146,6 @@
                 Remember: You can only join an existing team if you're invited!
                 <br>
             </div>
-
             <!-- <p>For more support, contact <a href='mailto:'>play_app@outlook.com</a>, or use the menu to logout</p> -->
             <br>
             <div class="playtips-bg">
@@ -172,8 +159,6 @@
                      class="playtips">
                 <br>
             </div>
-
-
             <div class="centretext color-bg-bottom">
                 <br>For more support, contact <a href='mailto:'>play_app@outlook.com</a>.
                 See <a href="http://playapp.webflow.io/">http://playapp.webflow.io/</a> for more about how we're
@@ -181,6 +166,8 @@
                 <br><br>
             </div>
         </div>
+        <div class="bottomnavspace">
+      </div>
     </div>
     <!-- </div> -->
 </template>
@@ -593,6 +580,9 @@
 } */
 .toggler-badge{
     display:none;
+}
+.bottomnavspace{
+    height: 50px;
 }
 /* .navbar-inverse .navbar-toggler{
     display: none;

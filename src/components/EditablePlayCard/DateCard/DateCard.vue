@@ -27,7 +27,7 @@
             </div>
                
             <!-- fix editing rights -->
-            <div v-if="can-edit">
+            <div v-if="canEdit">
             <h4  class="card-title top-padding">Game status</h4> 
               <div class="status-container">
                 <div><available-button :onClick="() => this.setGameActive()" type="button" class="btn ">On</available-button></div>
@@ -227,7 +227,6 @@ h4 {
   color: #50575e;
   font-weight: 400;
   padding: 15px 0 0px 0;
-  color: #a9a9a9;
 }
 
 h6 {
