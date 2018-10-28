@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-md-3 col-sm-3 col-xs-12"></div>
       <div class="col-md-6 col-sm-6 col-xs-12">
-        <play-profile title="Team Profile">
+        <play-profile title="Team Profile" class="morepad">
 
             
         <!-- <div class="card"> -->
@@ -390,6 +390,11 @@ export default {
 .row {
   background-color: transparent;
 }
+
+.morepad{
+  padding: 2px 0px 2px 0px;
+}
+
 .team-profile-header {
   margin: 0rem 0rem;
   display: flex;

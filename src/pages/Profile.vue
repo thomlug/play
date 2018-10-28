@@ -12,7 +12,7 @@
 
             Complete profile below, then click blue circle
           </div>
-          <div class="player-profile-banner text-center">
+          <div class="player-profile-banner text-center morepad">
             <h1>Player Profile</h1>
           </div>
           <div class="profile-block">          
@@ -730,6 +730,10 @@ border-radius: 50%;
 
 .not-bold{
   font-weight:400;
+}
+
+.morepad{
+  padding: 2px 0px 2px 0px;
 }
 
 @media (max-width: 768px) {
