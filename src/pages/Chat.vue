@@ -13,7 +13,7 @@
                     </div>
                 </div>
             <div class="chat-pane">
-                <div class="chat-pane-banner text-center">
+                <div class="chat-pane-banner text-center teams-title">
                     <h1>{{getCurrentTeam().name}}</h1>
                 </div>
 
@@ -257,7 +257,6 @@
     }
 
     .btn-teams-active {
-
         background-image: linear-gradient(45deg, #2acad0, dodgerblue);
         color: white;
     }
@@ -330,6 +329,12 @@
 
     .chat-box-row {
         margin-top: 0px;
+    }
+
+    .teams-title {
+        font-size: larger;
+        margin-top: 10px;
+        text-align: center;
     }
 
     h1 {

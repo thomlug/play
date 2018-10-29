@@ -599,7 +599,7 @@
 
     @media (max-width: 768px) {
         .bottomnavspace {
-            height: 64px;
+            height: 25px;
         }
     }
 

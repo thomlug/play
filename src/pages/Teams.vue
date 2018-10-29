@@ -483,7 +483,7 @@
             margin: 10px 0px 10px 15px;
         }
         .bottomnavspace{
-        height: 64px;
+        height: 40px;
     }
     }
 </style>

@@ -2502,7 +2502,7 @@
             color: #50575e
         }
         .bottomnavspace{
-            height: 64px;
+            height: 10px;
         }
     }
 
