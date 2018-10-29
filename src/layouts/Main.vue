@@ -55,7 +55,7 @@
                     </li>
                     <li v-if="playerBelongsToATeam()" class="nav-item teams-item">
                         <router-link active-class="active" exact class="nav-item nav-link" :to="{name:'teams'}">
-                            Teams
+                            My Teams
                         </router-link>
                     </li>
                     <!-- <li class="nav-item">

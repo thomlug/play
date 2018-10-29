@@ -1,9 +1,9 @@
 <template>
     <main-layout>
-        <div class="teams-banner text-center">
-            <h1>Teams</h1>
-        </div>
-        <div class="card play-card">
+        <!-- <div class="teams-banner text-center">
+            <h1>My Teams</h1>
+        </div> -->
+        <div class="card play-card-teams">
             <div class="card-block">
                 <!-- <h4 class="card-title">Change your current team <small>({{this.getCurrentTeam().name}})</small></h4> -->
                 <div class="status-container team-buttons-container">
@@ -16,39 +16,46 @@
             </div>
         </div>
         <div class="card play-card">
-            <div class="card-block">
+            <div class="card-block lesspad">
                 <div class="heading">
-                    <h3 class="fix-title">
-                        Team: {{getCurrentTeam().name}}
-                    </h3>
-                    <button class="btn btn-danger leave-team-button" v-if="canEdit()"
-                            @click="deleteTeam(getCurrentTeam())">Delete Team
-                    </button>
+                    <h4 class="teams-title">
+                        {{getCurrentTeam().name}}
+                    </h4>
+
                 </div>
             </div>
+
         </div>
+                                                        <button class="btn btn-danger delete-team-button" v-if="canEdit()"
+                            @click="deleteTeam(getCurrentTeam())">Delete Team
+                    </button>
         <div class="card play-card" v-for="player in getPlayersInTeam(getCurrentTeam())">
-            <button class="btn leave-team-button" v-if="player.userUid === getCurrentPlayer().userUid"
-                    @click="playerLeaveAction(player, getCurrentTeam())">Leave Team
-            </button>
-            <button class="btn leave-team-button" v-else-if="canEdit()"
-                    @click="playerRemovedAction(player, getCurrentTeam())">Remove player
-            </button>
+
             <div class="team-member-container">
                 <div class="team-member-photo">
                     <avatar v-if="player.photo" class="profile-photo" :image="player.photo"/>
-                    <div v-else class="profile-photo">
+                    <div v-else class="profile-photo noshadow">
                         <div class="player-initials">{{player.first_name | firstCharacter}}</div>
                     </div>
+                    <div class="text-center">{{player.first_name}}</div>
+                    <div class="text-center">{{player.last_name}}</div>
                 </div>
                 <div class="team-member-info">
-                    <span>{{player.first_name}}</span>
-                    <span>{{player.last_name}}</span>
-                    <span>Availability: <span
-                            :class="'player-' + player.teamAvailability">{{player.teamAvailability}}</span></span>
+                    <div>
+                    <button class="btn leave-team-button" v-if="player.userUid === getCurrentPlayer().userUid"
+                            @click="playerLeaveAction(player, getCurrentTeam())">Leave Team
+                    </button>
+                    <button class="btn leave-team-button" v-else-if="canEdit()"
+                            @click="playerRemovedAction(player, getCurrentTeam())">Remove player
+                    </button>
+                    </div>
+                    <div>Next Game Availability: <div
+                            :class="'player-' + player.teamAvailability">{{player.teamAvailability}}</div></div>
                 </div>
             </div>
         </div>
+            <div class="bottomnavspace">
+            </div>
     </main-layout>
 </template>
 
@@ -268,7 +275,37 @@
 
 <style media="screen" scoped>
     .play-card {
-        padding: 3rem !important;
+        margin-top: 10px;
+        box-shadow: 0 1px 3px #ddd, 0 1px 2px #ddd;
+        text-transform: uppercase;
+        color: #50575e;
+        border-radius: 10px;
+        border: whitesmoke;
+    }
+
+    .teams-title {
+        font-size: larger;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .play-card-teams {
+        margin-top: 10px;
+        margin-bottom: 0px;
+        box-shadow: 0 1px 3px #ddd, 0 1px 2px #ddd;
+        text-transform: uppercase;
+        color: #50575e;
+        border-radius: 10px;
+        border: whitesmoke;
+
+    }
+
+    .lesspad {
+        padding: 0.3rem;
+        background-image: linear-gradient(45deg, #2acad0, turquoise, #2acad0);
+        color: white;
+        outline: solid 5px whitesmoke;
+        border-radius: 0;
     }
 
     .teams-banner {
@@ -286,6 +323,28 @@
         padding-top: 10px;
     }
 
+    .btn-teams {
+        background-color: #50575e;
+        border: 3px solid transparent;
+        color: white;
+        /* padding: 2px 30px 2px 30px; */
+        margin: 0px 5px 10px 5px;
+        border-radius: 40px;
+        cursor: pointer;
+        box-shadow: 2px 2px 2px -2px grey;
+        min-width: 115px;
+        border: 0px solid #2acad0;
+        font-size: small;
+    }
+
+    .btn-teams-active {
+        background-image: linear-gradient(45deg, #2acad0, dodgerblue);
+        color: white;
+    }
+
+    .btn-teams:focus {
+        outline: 0px transparent;
+    }
 
     .team-buttons-container {
         overflow-x: auto;
@@ -335,6 +394,7 @@
         height: 80px !important;
         width: 80px !important;
         margin: 10px;
+        background-color: #e5e5e5;
     }
 
     .player-available, .player-Available {
@@ -351,13 +411,34 @@
 
     .leave-team-button {
         position: absolute;
-        right: 2rem;
-        top: 1rem;
+        right: 1rem;
+        top: 1.5rem;
         max-width: 150px;
+        border-radius:40px;
     }
 
     .leave-team-button:hover {
         cursor: pointer;
+    }
+
+    .delete-team-button {
+        max-width: 170px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        display: block;
+    }
+
+    .leave-team-button:hover {
+        cursor: pointer;
+    }
+
+    .player-initials {
+        font-size: 3.5rem;
+        margin: auto;
+        color: #a9a9a9;
+        font-weight: 500;
+        text-align: center;
     }
 
     .heading {
@@ -366,7 +447,9 @@
         align-items: center;
         justify-content: center;
     }
-
+    .noshadow{
+        box-shadow: none;
+    }
     .fix-title {
         text-align: center;
     }
@@ -389,7 +472,7 @@
 
     @media (max-width: 768px) {
         .team-member-info {
-            margin-top: 20px;
+            margin: 107px 15px 0 0;
             width: auto;
             display: flex;
             flex-flow: column;
@@ -397,7 +480,10 @@
         }
 
         .team-member-photo {
-            margin-top: 30px;
+            margin: 10px 0px 10px 15px;
         }
+        .bottomnavspace{
+        height: 64px;
+    }
     }
 </style>
