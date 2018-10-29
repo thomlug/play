@@ -361,6 +361,7 @@
         min-width: 115px;
         font-size: 12.8px;
         border: 0px solid #2acad0;
+        min-height: 36px;
     }
 
     .btn-teams-fix:active {

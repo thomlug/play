@@ -2245,6 +2245,7 @@
         box-shadow: 2px 2px 2px -2px grey;
         min-width: 115px;
         border: 0px solid #2acad0;
+        min-height: 36px;
     }
 
     .btn-teams-active {

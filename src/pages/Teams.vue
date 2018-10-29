@@ -37,8 +37,8 @@
                     <div v-else class="profile-photo noshadow">
                         <div class="player-initials">{{player.first_name | firstCharacter}}</div>
                     </div>
-                    <div class="text-center">{{player.first_name}}</div>
-                    <div class="text-center">{{player.last_name}}</div>
+                    <h6 class="blacktext text-center">{{player.first_name}}</h6>
+                    <h6 class="text-center">{{player.last_name}}</h6>
                 </div>
                 <div class="team-member-info">
                     <div>
@@ -49,8 +49,8 @@
                             @click="playerRemovedAction(player, getCurrentTeam())">Remove player
                     </button>
                     </div>
-                    <div>Next Game Availability: <div
-                            :class="'player-' + player.teamAvailability">{{player.teamAvailability}}</div></div>
+                    <h6 class="blacktext">Next Game Availability: <h6
+                            :class="'player-' + player.teamAvailability">{{player.teamAvailability}}</h6></h6>
                 </div>
             </div>
         </div>
@@ -300,6 +300,10 @@
 
     }
 
+    .blacktext{
+        color: #50575e;
+    }
+
     .lesspad {
         padding: 0.3rem;
         background-image: linear-gradient(45deg, #2acad0, turquoise, #2acad0);
@@ -335,11 +339,13 @@
         min-width: 115px;
         border: 0px solid #2acad0;
         font-size: small;
+        min-height: 36px;
     }
 
     .btn-teams-active {
         background-image: linear-gradient(45deg, #2acad0, dodgerblue);
         color: white;
+        min-height: 36px;
     }
 
     .btn-teams:focus {
@@ -368,33 +374,12 @@
         padding: 10px;
     }
 
-    .btn-teams {
-        background-color: #50575e;
-        border: 3px solid transparent;
-        color: gainsboro;
-        /* padding: 2px 30px 2px 30px; */
-        margin: 0px 5px 10px 5px;
-        border-radius: 40px;
-        cursor: pointer;
-        box-shadow: 2px 2px 2px -2px grey;
-        min-width: 115px;
-        border: 0px solid #2acad0;
-    }
-
-    .btn-teams-active {
-        background-image: linear-gradient(45deg, #2acad0, dodgerblue);
-        color: white;
-    }
-
-    .btn-teams:focus {
-        outline: 0px transparent;
-    }
-
     .profile-photo {
         height: 80px !important;
         width: 80px !important;
         margin: 10px;
         background-color: #e5e5e5;
+        object-fit: cover;
     }
 
     .player-available, .player-Available {
