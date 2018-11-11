@@ -1,7 +1,7 @@
 <template>
     <main-layout>
         <div class="row-home">
-            <div v-for="card in cards" :key="card.Title" class="col-md-3">
+            <dv v-for="card in cards" :key="card.Title" class="col-md-3">
                 <div class="card">
 
                     <div class="card-block">
@@ -11,8 +11,8 @@
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                             the card's content.</p>
                     </div>
-                </div>
-            </div>
+                </div>c
+            </dv>
         </div>
 
         <!-- next fixture -->
@@ -1168,7 +1168,8 @@
                         .child("availability")
                         .set(availability);
                 });
-
+                console.log('fixture', fixture);
+                this.$firebaseRefs.fixtures.child(fixture[".key"]).child("status").set(fixture.status);
             },
             toggleEditAwayTeam() {
                 if (this.awayTeamEditable) {
