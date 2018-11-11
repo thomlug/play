@@ -1015,7 +1015,6 @@
                 ) {
                     return "unknown";
                 }
-
                 return currentPlayer.teams[teamKey].availability;
             },
             getNextGameInfo() {
@@ -1168,7 +1167,6 @@
                         .child("availability")
                         .set(availability);
                 });
-                console.log('fixture', fixture);
                 this.$firebaseRefs.fixtures.child(fixture[".key"]).child("status").set(fixture.status);
             },
             toggleEditAwayTeam() {
@@ -1223,6 +1221,8 @@
                     .child("teams")
                     .child(teamKey)
                     .remove();
+
+                let player = this.$firebaseRefs.players.child(playerKey);
             },
             showNewTeamModal() {
                 if (!this.isAdmin()) {
@@ -1256,7 +1256,7 @@
                     .child(playerKey)
                     .child("teams")
                     .child(teamKey)
-                    .set({teamKey: teamKey, position: [0, 0]});
+                    .set({teamKey: teamKey, position: [0, 0], availability: 'unknown'});
                 this.$firebaseRefs.players
                     .child(playerKey)
                     .child("position")
