@@ -2,8 +2,8 @@
     <main-layout>
         <div class="row">
             <div class="col-md-3 col-sm-3 col-xs-12"></div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <!-- <div class="player-profile-box"> -->
+            <div class="col-md-6 col-sm-6 col-xs-12" v-if="player">
+                <!--<div class="player-profile-box"> -->
                 <div v-if="status === 'new'" class="alert alert-info alert-dismissible fade show" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -53,7 +53,7 @@
                             </div>
                             <span class="text-center" v-if="!editable">
                                 <h4>{{player.first_name}} {{player.last_name}}</h4>
-                            </span>
+                                </span>
 
                             <input placeholder="First name" :maxlength="10" v-if="editable"
                                    v-model="player.first_name"/>
@@ -97,14 +97,14 @@
                     </div>
 
                     <div class="content-block">
-              <span>  
-              <div class="input-header" v-if="editable">
-              <h6 class="input-header"> Email</h6>
-              </div>
-                <i class="fa fa-envelope" v-if="!editable"></i>
-                <a v-if="!editable" :href="'mailto:'+player.email">{{player.email}} </a>
-                <input placeholder="Email" v-if="editable" v-model="player.email"/>
-              </span>
+                    <span>
+                    <div class="input-header" v-if="editable">
+                    <h6 class="input-header"> Email</h6>
+                    </div>
+                    <i class="fa fa-envelope" v-if="!editable"></i>
+                    <a v-if="!editable" :href="'mailto:'+player.email">{{player.email}} </a>
+                    <input placeholder="Email" v-if="editable" v-model="player.email"/>
+                    </span>
                     </div>
                 </div>
                 <div v-if="canEditProfile() && !editable">
@@ -114,7 +114,9 @@
                             <div>
                                 <div>
                                     <h6>
-                                        <div class="bigger">{{getTeam(team.teamKey).name}}</div>
+                                        <div class="bigger" v-if="!_.isUndefined(getTeam(team.teamKey))">
+                                            {{getTeam(team.teamKey).name}}
+                                        </div>
                                     </h6>
                                     <small :class="'player-' + team.availability + '-text'">{{team.availability |
                                         camelToSentence}}
@@ -157,7 +159,6 @@
             </div>
         </div>
     </main-layout>
-
 </template>
 
 <script>
