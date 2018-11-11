@@ -245,6 +245,10 @@
                     .child("teams")
                     .child(teamKey)
                     .remove();
+                this.$firebaseRefs.players
+                    .child(player[".key"])
+                    .child(teamKey)
+                    .remove();
 
                 // Find the remaining player teams
                 _.filter(playerTeamsArray, team => {
