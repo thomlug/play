@@ -375,6 +375,7 @@
         background-image: linear-gradient(45deg, #2acad0, dodgerblue);
         color: white;
         outline: 0px;
+        min-height: 36px;
     }
 
     .team-buttons-container {

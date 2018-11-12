@@ -71,7 +71,7 @@
                     <li class="nav-item">
                       <router-link active-class="active" exact class="nav-item nav-link" to="marketing">Marketing</router-link>
                     </li> -->
-                    <li @click="logOut" class="nav-item nav-link logout">
+                    <li @click="logOut" class="nav-link logout-item">
                             Log Out
                     </li>
                 </ul>
@@ -394,13 +394,14 @@
         border: turquoise;
     }
 
-    .logout {
+    .logout-item {
         cursor: pointer;
         font-size: 0.8rem;
         font-weight: 300;
+        padding:16px;
     }
 
-    .logout:hover {
+    .logout-item:hover {
         cursor: pointer;
     }
 
@@ -595,6 +596,10 @@ team-item{
 }
 .bottomnavspace{
     height: 50px;
+}
+
+.logout-item{
+    text-align: center;
 }
 /* .navbar-inverse .navbar-toggler{
     display: none;

@@ -2252,6 +2252,7 @@
 
         background-image: linear-gradient(45deg, #2acad0, dodgerblue);
         color: white;
+        min-height: 36px;
     }
 
     .btn-teams:focus {
