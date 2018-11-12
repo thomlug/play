@@ -1,7 +1,7 @@
 <template>
     <main-layout>
         <div class="row-home">
-            <div v-for="card in cards" :key="card.Title" class="col-md-3">
+            <dv v-for="card in cards" :key="card.Title" class="col-md-3">
                 <div class="card">
 
                     <div class="card-block">
@@ -11,8 +11,8 @@
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                             the card's content.</p>
                     </div>
-                </div>
-            </div>
+                </div>c
+            </dv>
         </div>
 
         <!-- next fixture -->
@@ -1015,7 +1015,6 @@
                 ) {
                     return "unknown";
                 }
-
                 return currentPlayer.teams[teamKey].availability;
             },
             getNextGameInfo() {
@@ -1168,7 +1167,7 @@
                         .child("availability")
                         .set(availability);
                 });
-
+                this.$firebaseRefs.fixtures.child(fixture[".key"]).child("status").set(fixture.status);
             },
             toggleEditAwayTeam() {
                 if (this.awayTeamEditable) {
@@ -1222,6 +1221,8 @@
                     .child("teams")
                     .child(teamKey)
                     .remove();
+
+                let player = this.$firebaseRefs.players.child(playerKey);
             },
             showNewTeamModal() {
                 if (!this.isAdmin()) {
@@ -1255,7 +1256,7 @@
                     .child(playerKey)
                     .child("teams")
                     .child(teamKey)
-                    .set({teamKey: teamKey, position: [0, 0]});
+                    .set({teamKey: teamKey, position: [0, 0], availability: 'unknown'});
                 this.$firebaseRefs.players
                     .child(playerKey)
                     .child("position")
