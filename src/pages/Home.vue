@@ -42,6 +42,7 @@
                         <h4 class="fixture-title">Next Fixture</h4>
                         <button class="fa fa-plus home-add-fixture-button" @click="showNewFixtureModal()"
                                 v-if="canEdit()"></button>
+                        <button class="fa fa-bell reminder-button" @click="sendReminder()"></button>
 
                         <modal height=auto width=90% name="add-fixture" :clickToClose="false" class="vertical-scroll">
 
@@ -577,7 +578,6 @@
 
     var sanitizeHtml = require('sanitize-html');
 
-
     export default {
         components: {
             MainLayout,
@@ -802,6 +802,58 @@
                 this.$firebaseRefs.fixtures.push(this.newFixture);
                 this.hideNewFixtureModal();
             },
+
+            sendReminder() {
+                let currentTeam = this.getCurrentTeam();
+                let currentFixture = this.getNextFixture();
+
+                console.log("Current Team: ", currentTeam);
+                console.log("Current Fixture: ", currentFixture);
+
+                let playersInTeam = _.filter(this.players, player => {
+                    if (_.isUndefined(player.teams)) {
+                        return false;
+                    }
+                    // Get the player.teams Object
+                    var playerTeams = player.teams;
+                    // Convert into an array
+                    var playerTeamsArray = Object.keys(playerTeams).map(k => {
+                        return playerTeams[k];
+                    });
+
+                    return _.find(playerTeamsArray, team => {
+                        return team.teamKey === currentTeam[".key"];
+                    });
+                });
+
+                console.log("Players in team: ", playersInTeam);
+
+                let playersToRemind = _.filter(playersInTeam, player => {
+                    return player.teams[currentTeam[".key"]].availability === 'unknown'
+                })
+
+                console.log("memes: ", playersToRemind);
+
+                for(const player of playersToRemind) {
+                    let emailParams = {
+                        FIRSTNAME: player.first_name,
+                        OPPOSITION: currentFixture.awayTeamName,
+                        GAMETIME: moment(currentFixture.date).format("hh:mm a"),
+                        GAMEDATE: moment(currentFixture.date).format("dddd MMMM DD YYYY"),
+                        TEAMNAME: currentTeam.name
+                    };
+
+                    let sendSmtpEmail = {
+                        to: [{ 'name': player.first_name + ' ' + player.last_name, 'email': player.email }],
+                        params: emailParams,
+                        templateId: 16
+                    }; // SendSmtpEmail | Values to send a transactional email
+                    
+                    console.log(sendSmtpEmail); 
+                            
+                }
+            },
+
             formatDateTime() {
                 var date = new Date(this.day);
                 var dateString =
