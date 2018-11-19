@@ -132,7 +132,7 @@ exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event
                             }
                             var apiKey = defaultClient.authentications['api-key'];
                             apiKey.apiKey = functions.config().sendinblue.apikey;
-                            var localDate = moment.utc(fixture.date).tz('Antarctica/McMurdo');
+                            var localDate = moment.utc(fixture.date).tz('Pacific/Auckland');
                             var emailParams = {
                                 FIRSTNAME: player.first_name,
                                 OPPOSITION: fixture.awayTeamName,
@@ -158,16 +158,52 @@ exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event
                         })
                         
                         updateReminderSent(fixture);
-                    })
-
-                   
-                })
+                    });
+                });
             }
         });
-
     });
+});
 
-})
+
+exports.sendReminderOnClick = functions.database.ref('/reminder/{reminderId}').onCreate((snap) => {
+    const reminder = snap.val();
+    return reminder.playersNotified.map(playerId => {
+        return admin.database().ref('/player/' + playerId).once('value').then(snapshot => {
+            const player = snapshot.val();
+            // Validate email exists
+            if (!validateEmail(player.email)) {
+                console.error('Invalid email: ' + player.email);
+                return null;
+            }
+            var apiKey = defaultClient.authentications['api-key'];
+            apiKey.apiKey = functions.config().sendinblue.apikey;
+            var localDate = moment.utc(reminder.fixtureTime).tz('Pacific/Auckland');
+            var emailParams = {
+                FIRSTNAME: player.first_name,
+                OPPOSITION: reminder.opposition,
+                GAMETIME: localDate.format("hh:mm a"),
+                GAMEDATE: localDate.format("dddd MMMM DD YYYY"),
+                TEAMNAME: reminder.teamName
+            };
+            var apiInstance = new SibApiV3Sdk.SMTPApi();
+            var sendSmtpEmail = {
+                to: [{ 'name': player.first_name + ' ' + player.last_name, 'email': player.email }],
+                params: emailParams,
+                templateId: 16
+            }; // SendSmtpEmail | Values to send a transactional email
+            console.log(sendSmtpEmail); 
+            
+            //Send the email
+            return apiInstance.sendTransacEmail(sendSmtpEmail).then(function (data) {
+                console.log('API called successfully. Returned data: ',  data);
+            }, function (error) {
+                console.error(error);
+                return null;
+            });
+        })
+    });
+});
 
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

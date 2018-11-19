@@ -806,9 +806,7 @@
             sendReminder() {
                 let currentTeam = this.getCurrentTeam();
                 let currentFixture = this.getNextFixture();
-
-                console.log("Current Team: ", currentTeam);
-                console.log("Current Fixture: ", currentFixture);
+                let currentPlayer = this.getCurrentPlayer()[".key"];
 
                 let playersInTeam = _.filter(this.players, player => {
                     if (_.isUndefined(player.teams)) {
@@ -826,32 +824,53 @@
                     });
                 });
 
-                console.log("Players in team: ", playersInTeam);
-
                 let playersToRemind = _.filter(playersInTeam, player => {
                     return player.teams[currentTeam[".key"]].availability === 'unknown'
-                })
+                });
 
-                console.log("memes: ", playersToRemind);
+                _.map(playersToRemind, (player, index) => {
+                    playersToRemind[index] = player[".key"];
+                    return player;
+                });
 
-                for(const player of playersToRemind) {
-                    let emailParams = {
-                        FIRSTNAME: player.first_name,
-                        OPPOSITION: currentFixture.awayTeamName,
-                        GAMETIME: moment(currentFixture.date).format("hh:mm a"),
-                        GAMEDATE: moment(currentFixture.date).format("dddd MMMM DD YYYY"),
-                        TEAMNAME: currentTeam.name
-                    };
+                console.log(playersToRemind);
 
-                    let sendSmtpEmail = {
-                        to: [{ 'name': player.first_name + ' ' + player.last_name, 'email': player.email }],
-                        params: emailParams,
-                        templateId: 16
-                    }; // SendSmtpEmail | Values to send a transactional email
+                // let reminder = {
+                //     manager: this.getCurrentPlayer()[".key"],
+                //     timeStamp: moment.utc().format(),
+                //     teamName: currentTeam.name,
+                //     opposition: currentFixture.awayTeamName,
+                //     fixtureTime: currentFixture.date,
+                //     playersNotified: playersToRemind
+                // }
+
+                var result = db.ref("reminder").push({
+                    manager: currentPlayer,
+                    timeStamp: moment.utc().format(),
+                    teamName: currentTeam.name,
+                    opposition: currentFixture.awayTeamName,
+                    fixtureTime: currentFixture.date,
+                    playersNotified: playersToRemind
+                });
+
+                // for(const player of playersToRemind) {
+                //     let emailParams = {
+                //         FIRSTNAME: player.first_name,
+                //         OPPOSITION: currentFixture.awayTeamName,
+                //         GAMETIME: moment(currentFixture.date).format("hh:mm a"),
+                //         GAMEDATE: moment(currentFixture.date).format("dddd MMMM DD YYYY"),
+                //         TEAMNAME: currentTeam.name
+                //     };
+
+                //     let sendSmtpEmail = {
+                //         to: [{ 'name': player.first_name + ' ' + player.last_name, 'email': player.email }],
+                //         params: emailParams,
+                //         templateId: 16
+                //     }; // SendSmtpEmail | Values to send a transactional email
                     
-                    console.log(sendSmtpEmail); 
+                //     console.log(sendSmtpEmail); 
                             
-                }
+                // }
             },
 
             formatDateTime() {
