@@ -396,7 +396,7 @@
 
     .logout-item {
         cursor: pointer;
-        font-size: 0.8rem;
+        font-size: 1rem;
         font-weight: 300;
         padding:16px;
     }
@@ -418,9 +418,11 @@
     }
 
     a {
-        font-size: 0.8rem;
+        font-size: 1rem;
         font-weight: 300;
         color: #2acad0;
+        /* max-width: 290px; */
+        word-break: break-all;
     }
 
     p {

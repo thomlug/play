@@ -31,16 +31,23 @@
                         </div>
                     </div>
                 </div>
+
+                    <div class="card-block play-card card-title-header">
+                        <h4 class="fixture-title">Next Fixture</h4> 
+                    </div>
+
                 <div v-if="getNextFixture()['.key'] == null" class="alert alert-info alert-dismissible fade show" role="alert">
                     Click the '+' button below to add your next game
                 </div>
                 <three-column-edit-card :clickFn="toggleEditAwayTeam" :can-edit="canEdit()"
                                         :editable="awayTeamEditable">
                     <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="location-icon"> -->
+
+                    
                     <div slot="main-content">
 
-                        <h4 class="fixture-title">Next Fixture</h4>
-                        <button class="fa fa-plus home-add-fixture-button" @click="showNewFixtureModal()"
+                        
+                        <button class="fa fa-plus home-add-fixture-button shift-right" @click="showNewFixtureModal()"
                                 v-if="canEdit()"></button>
 
                         <button class="float-right fa fa-bell reminder-button" @click="sendReminder()" v-if="canEdit()"></button>
@@ -118,7 +125,7 @@
                             </form>
                         </modal>
 
-                        <div class="centered-col fixture-content">
+                        <div class="centered-col fixture-content shift-right">
                             <div class="centered-col">
                                 <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().homeTeam)">
                                     <div v-if="!_.isUndefined(this.currentFixtureHomeTeam.photo)">
@@ -171,13 +178,15 @@
                 <location-card :can-edit="canEdit()" :fixture="this.getNextFixture()"
                                @location-changed="fixtureLocationChanged"></location-card>
 
-
-                <!-- update your status -->
-                <div class="card play-card">
-                    <div class="card-block">
+                <div class="card-block play-card card-title-header top-margin">
                         <h4 class="card-title">Update Your Status
                             <small>{{getCurrentPlayerAvailability() | camelToSentence}}</small>
                         </h4>
+                </div>
+                <!-- update your status -->
+                <div class="card play-card remove-margin">
+                    <div class="card-block">
+
                         <div class="status-container">
                             <available-button :on-click="() => this.setCurrentPlayerAvailability('available')"
                                               class="btn active">Available
@@ -190,9 +199,10 @@
                 </div>
 
             </div>
-            <div class="col-xl-6">
+            <div class="col-xl-6 top-margin">
+                
                 <div class="card play-card">
-                    <div class="card-block">
+                    <div class="card-block card-title-header">
             <span v-if="canEdit()" class="float-right">
               <button class="fa fa-times red-ex" v-if="editPlayerMode"
                       v-on:click="cancelEditPlayersPositions()"></button>
@@ -201,13 +211,17 @@
             </span>
                         <h4 class="card-title">Starting Lineup <span class="fa fa-info clickable"
                                                                      @click="showLineupInfoModal()"></span></h4>
+                      </div>  
+                        <!-- <div class="grip-center-bottom">=</div> -->
+                    </div>
+                    <div class="card-block lineup-info">
                         <h4>
                             <small>Updated {{moment(getNextFixtureDetails().dateFormationLastUpdated).calendar()}}
                             </small>
                         </h4>
-                        <div class="grip-center-bottom">=</div>
+                        <p>{{this.getNumberOfAvailablePlayers()}} Available players</p>
                     </div>
-                </div>
+                
                 <modal height=auto width=350px border-radius=40px name="lineup-info">
                     <div class="input-header">
                         <button class="fa fa-times" @click="hideLineupInfoModal()"></button>
@@ -311,17 +325,22 @@
                 <!-- subs -->
             </div>
             <div class="col-xl-3">
+                <div class="card-block play-card card-title-header">
+                        <span>
+                            <h4 class="card-title">Subs
+                                <!-- <div class="grip-center">=</div> -->
+                                </h4>
+                        </span>
+                </div>    
+
                 <div class="card play-subs-card">
                     <div class="card-block">
-                        <span>
-                            <h4 class="card-title">Subs<div class="grip-center">=</div></h4>
-             
-                        </span>
+
                         <span v-if="canEdit()" class="float right">
               <!-- <button class="fa fa-grip-horizontal manage-players-button"></button> -->
               
                           <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
-                          <button class="fa fa-trash manage-players-button" @click="showRemovePlayerModal()"></button>
+                          <button class="fa fa-trash manage-players-button-1" @click="showRemovePlayerModal()"></button>
                         </span>
                         <modal height=auto width=350px name="add-player" :clickToClose="false" class="vertical-scroll">
                             <div class="input-header">
@@ -470,8 +489,25 @@
 
 
                 <!-- game info -->
-                <div class="card play-card">
-                    <div class="card-block">
+<div class="card-block play-card card-title-header">
+                        <div class="card-title">
+                            <h4>Game Info</h4>
+                        </div>
+                                                <div v-if="canEdit()">
+                            <button v-if="!editGameInfo" class="float-right btn edit-game-info-button"
+                                    @click="toggleEditGameInfo()">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            <button v-if="editGameInfo" class="fa fa-plus" @click="newGameInfo()" alt="add"></button>
+                            <button v-if="editGameInfo" class="fa fa-check" @click="toggleEditGameInfo()"></button>
+                            <button class="fa fa-times" v-if="editGameInfo" @click="cancelEditGameInfo()"></button>
+                        </div>
+</div>
+                <!-- <div class="card play-card"> -->
+                    <!-- <div class="card-block">
+                        <div class="card-title">
+                            <h4>Game Info</h4>
+                        </div>
                         <div v-if="canEdit()" class="float-right">
                             <button v-if="!editGameInfo" class="float-right btn edit-game-info-button"
                                     @click="toggleEditGameInfo()">
@@ -481,10 +517,8 @@
                             <button v-if="editGameInfo" class="fa fa-check" @click="toggleEditGameInfo()"></button>
                             <button class="fa fa-times" v-if="editGameInfo" @click="cancelEditGameInfo()"></button>
                         </div>
-                        <div class="card-title">
-                            <h4>Game Info</h4>
-                        </div>
-                    </div>
+
+                    </div> -->
                     <div class="info-card-block">
                         <div class="list-group list-group-flush">
                             <template v-for="(gameInfo,index) in this.gameInfoList">
@@ -512,7 +546,7 @@
                             </template>
                         </div>
                     </div>
-                </div>
+                <!-- </div> -->
 
                 <div class="card play-card" v-if="isAdmin()">
                     <div class="card-block">
@@ -1076,6 +1110,37 @@
                     }) || emptyPlayer
                 );
             },
+
+            getNumberOfAvailablePlayers() {
+                let currentTeam = this.getCurrentTeam();
+                let currentFixture = this.getNextFixture();
+                let currentPlayer = this.getCurrentPlayer()[".key"];
+
+                let playersInTeam = _.filter(this.players, player => {
+                    if (_.isUndefined(player.teams)) {
+                        return false;
+                    }
+                    // Get the player.teams Object
+                    var playerTeams = player.teams;
+                    // Convert into an array
+                    var playerTeamsArray = Object.keys(playerTeams).map(k => {
+                        return playerTeams[k];
+                    });
+
+                    return _.find(playerTeamsArray, team => {
+                        return team.teamKey === currentTeam[".key"];
+                    });
+                });
+
+                let availablePlayers = _.filter(playersInTeam, player => {
+                    return player.teams[currentTeam[".key"]].availability === 'available'
+                });
+
+                return availablePlayers.length;
+
+            },
+
+
             getCurrentPlayerAvailability() {
                 var currentPlayer = this.getCurrentPlayer();
                 var teamKey = this.getCurrentTeamKey();
@@ -1411,27 +1476,43 @@
     }
 
     .home-add-fixture-button {
-        margin: -46px 0px 0px 0px;
         position: relative;
-        left: -85%;
+        left: 110px;
+        top: -80px;
     }
 
+    .home-add-fixture-button:hover {
+        position: relative;
+        left: 110px;
+        top: -80px;
+    }
     .home-add-fixture-button:focus {
         outline-color: white;
     }
 
     .reminder-button {
-        margin: 0 -46px -46px 0;
+        position: relative;
+        right: -45%;
+        color: #e5e5e5;
+        font-size: x-large;
+        border: 2px solid #e5e5e5;
+        border-radius: 50%;
+        background-color: transparent;
+        padding: 7px;
+        top: -80px;
+        cursor: pointer;
     }
 
     .game-info {
         font-size: small !important;
-        background-color: transparent;
+        background-color: white;
+        border-radius: 10px;
     }
 
     .game-info h4 {
-        font-weight: 550;
-        font-size: 0.9rem;
+        font-weight: 500;
+        font-size: 1rem;
+        text-transform: capitalize;
     }
 
     .game-info > h6 {
@@ -1445,7 +1526,7 @@
     }
 
     .form-text {
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 
     .centered-col {
@@ -1461,6 +1542,7 @@
 
     .fixture-title {
         margin-left: 1rem;
+        font-weight: 700;
     }
 
     .fixture-content {
@@ -1480,8 +1562,8 @@
 
     .play-card {
         margin-top: 10px;
-        margin-bottom: 3px;
-        box-shadow: 0 1px 3px #ddd, 0 1px 2px #ddd;
+        margin-bottom: 10px;
+        /* box-shadow: 0 1px 3px #ddd, 0 1px 2px #ddd; */
         text-transform: uppercase;
         color: #50575e;
         border-radius: 10px;
@@ -1490,13 +1572,13 @@
 
     .play-subs-card {
         margin-top: 10px;
-        margin-bottom: 10px;
-        box-shadow: 0 1px 3px #ddd, 0 1px 2px #ddd;
+        margin-bottom: 20px;
+        /* box-shadow: 0 1px 3px #ddd, 0 1px 2px #ddd; */
         text-transform: uppercase;
         color: #50575e;
-        height: 13rem;
+        height: 10rem;
         border-color: transparent;
-        border-radius: 10px;
+        border-radius: 0 0 10px 10px;
     }
 
     .card-block {
@@ -1512,10 +1594,16 @@
         background-size: 100%;
         background-repeat: no-repeat;
         background-position: top;
-        border-radius: 10px;
+        border-radius: 0 0 10px 10px;
         border-color: transparent;
         padding-top: 20px;
         padding-bottom: 20px;
+    }
+
+    .lineup-info {
+        flex-flow: row;
+        justify-content: space-between;
+        width: 100%;
     }
 
     .card-block-lineup-default {
@@ -1554,6 +1642,8 @@
         max-height: 35rem;
         overflow-y: scroll;
         padding-bottom: 10px;
+        margin-top: 10px;
+        background-color: white;
     }
 
     .team-name {
@@ -1695,13 +1785,13 @@
 
         .play-subs-card {
             margin-top: 10px;
-            margin-bottom: 10px;
-            box-shadow: 0 1px 3px #ddd, 0 1px 2px #ddd;
+            margin-bottom: 20px;
+            /* box-shadow: 0 1px 3px #ddd, 0 1px 2px #ddd; */
             text-transform: uppercase;
             color: #50575e;
-            height: 17rem;
+            height: 10rem;
             border-color: transparent;
-            border-radius: 10px;
+            border-radius: 0 0 10px 10px;
         }
 
         .player-circle {
@@ -1920,6 +2010,7 @@
         color: #e5e5e5;
         background: white;
         padding: 2px;
+        margin-top: -35px;
     }
 
     .edit-game-info-button:focus {
@@ -1968,15 +2059,15 @@
     .scroller {
         position: absolute;
         display: flex;
-        top: 4.5rem;
+        top: 1.5rem;
         left: 1rem;
         right: 1rem;
-        bottom: 1rem;
+        /* bottom: 1rem; */
         width: calc(#{$finalHeight} + #{$scrollBarHeight});
         max-height: $ finalWidth;
         margin: 0;
         /* padding-top: 10px; */
-        padding-bottom: 45px;
+        padding-bottom: 31px;
         background: none;
         overflow-y: auto;
         overflow-x: scroll;
@@ -2267,28 +2358,24 @@
         margin-left: 5px;
     }
 
-    .manage-players-button {
-        /* font-size: 2.5rem;
-        color:#e5e5e5;
-        border-radius: none;
-        background: none;
-        border: none; */
-        float: right;
-        margin-top: -40px;
+    .manage-players-button-1 {
+        margin-top: -150px;
         cursor: pointer;
+    }
+
+    .manage-players-button {
+        margin-top: -150px;
+        cursor: pointer;
+        /* float: right; */
+        margin-left: 210px;
     }
 
     .manage-players-button:hover {
-        /* font-size: 2.5rem;
-        color:#2acad0;
-        border-radius: none;
-        background: none;
-        border: none; */
-        float: right;
-        margin-top: -40px;
+        margin-top: -150px;
         cursor: pointer;
+        /* float: right; */
+        margin-left: 210px;
     }
-
     .fa-times {
         color: lightgray;
         font-size: 20px;
@@ -2360,7 +2447,7 @@
 
     .fa-caret-left {
         color: lightgrey;
-        margin-top: 170px;
+        margin-top: 110px;
         /* margin-bottom: 80px; */
         background-color: transparent;
         border: none;
@@ -2375,7 +2462,7 @@
 
     .fa-caret-right {
         color: lightgrey;
-        margin-top: 170px;
+        margin-top: 110px;
         /* margin-bottom: 80px; */
         background-color: transparent;
         border: none;
@@ -2409,10 +2496,12 @@
     }
 
     .list-group-item {
-        border-top: 3px solid whitesmoke;
-        border-bottom: 3px solid whitesmoke;
+        border-top: 3px solid transparent;
+        border-bottom: 3px solid transparent;
         /* border-left: solid 10px #2acad0; */
-    }
+        margin: 5px 10px;
+        box-shadow: 1px 2px 6px -1px lightgrey;
+}
 
     .help-available {
         height: 64px;
@@ -2475,7 +2564,10 @@
     }
 
     .lineup-info {
-        padding: 5px;
+        padding: 10px;
+        background-color: currentColor;
+        margin-bottom: -20px;
+        display: inline-flex;
     }
 
     .leftpad {
@@ -2594,7 +2686,9 @@
             font-size: 0px;
         }
     }
-
+    /* .shift-right{
+            margin: -20px 0px 0px 40px;
+    } */
     .fa-grip-horizontal {
         color: #e5e5e5;
         /* border: 1.5px #e5e5e5 solid; */
@@ -2646,6 +2740,28 @@
     .pointer{
         cursor: pointer;
         border-radius: 0px;
+    }
+    .card-title-header{
+        background-color: white;
+        border-radius: 10px 10px 0 0;
+        box-shadow: 1px 2px 2px 0px lightgrey;
+        margin-bottom: -5px;
+    }
+    .card-title{
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        padding-bottom: 0px;
+    }
+    .remove-margin{
+        border-radius: 0 0 10px 10px;
+        box-shadow: none;
+        margin-bottom: -15px;
+    }
+    .top-margin{
+        margin-top: 20px;
+    }
+    .lineup{
+        background-color: transparent;
     }
 
     @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {

@@ -1,5 +1,5 @@
 <template>
-    <div class="card play-card">    
+    <div class="card play-card remove-margin">    
         <div class="card-block">    
             <div class="row">      
                 <div class="left">    
@@ -69,7 +69,7 @@ export default {
     align-items: center;
     justify-content: center;
     position: relative;
-    top: 62%;
+    top: 15%;
     cursor: pointer;
 }
 
@@ -144,6 +144,12 @@ export default {
 }
 .button:focus{
     outline: 0px;
+}
+
+.remove-margin{
+    border-radius: 10px;
+    box-shadow: none;
+    margin-bottom: -5px;
 }
 </style>
 
