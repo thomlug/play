@@ -41,7 +41,7 @@ export default {
 .play-card {
   margin-top: 10px;
   margin-bottom: 10px;
-  box-shadow: 0 1px 3px#ddd, 0 1px 2px #ddd;
+  /* box-shadow: 0 1px 3px#ddd, 0 1px 2px #ddd; */
   text-transform: uppercase;
   color: #50575e;
   border-color: transparent; 

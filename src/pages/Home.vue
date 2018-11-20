@@ -490,9 +490,9 @@
 
                 <!-- game info -->
 <div class="card-block play-card card-title-header">
-                        <div class="card-title">
-                            <h4>Game Info</h4>
-                        </div>
+                        
+                            <h4><div class="card-title">Game Info</div></h4>
+                        
                                                 <div v-if="canEdit()">
                             <button v-if="!editGameInfo" class="float-right btn edit-game-info-button"
                                     @click="toggleEditGameInfo()">
@@ -1477,14 +1477,14 @@
 
     .home-add-fixture-button {
         position: relative;
-        left: 110px;
-        top: -80px;
+        left: 105px;
+        top: -75px;
     }
 
     .home-add-fixture-button:hover {
         position: relative;
-        left: 110px;
-        top: -80px;
+        left: 105px;
+        top: -75px;
     }
     .home-add-fixture-button:focus {
         outline-color: white;
@@ -1499,7 +1499,7 @@
         border-radius: 50%;
         background-color: transparent;
         padding: 7px;
-        top: -80px;
+        top: -75px;
         cursor: pointer;
     }
 
@@ -1510,7 +1510,7 @@
     }
 
     .game-info h4 {
-        font-weight: 500;
+        font-weight: 600;
         font-size: 1rem;
         text-transform: capitalize;
     }
@@ -1543,6 +1543,8 @@
     .fixture-title {
         margin-left: 1rem;
         font-weight: 700;
+        margin-bottom: -5px;
+        font-size: 21px;
     }
 
     .fixture-content {
@@ -2359,22 +2361,25 @@
     }
 
     .manage-players-button-1 {
-        margin-top: -150px;
+        margin-top: -75px;
         cursor: pointer;
+        float: right;
     }
 
     .manage-players-button {
-        margin-top: -150px;
+        margin-top: -75px;
         cursor: pointer;
-        /* float: right; */
-        margin-left: 210px;
+        float: right;
+        position: relative;
+        left: -18%;
     }
 
     .manage-players-button:hover {
-        margin-top: -150px;
+        margin-top: -75px;
         cursor: pointer;
-        /* float: right; */
-        margin-left: 210px;
+        float: right;
+        position: relative;
+        left: -15%;
     }
     .fa-times {
         color: lightgray;
@@ -2499,7 +2504,7 @@
         border-top: 3px solid transparent;
         border-bottom: 3px solid transparent;
         /* border-left: solid 10px #2acad0; */
-        margin: 5px 10px;
+        margin: 10px 15px 5px 15px;
         box-shadow: 1px 2px 6px -1px lightgrey;
 }
 
@@ -2750,7 +2755,8 @@
     .card-title{
         font-weight: 700;
         letter-spacing: -0.5px;
-        padding-bottom: 0px;
+        margin-bottom: -5px;
+        font-size: 21px;
     }
     .remove-margin{
         border-radius: 0 0 10px 10px;
@@ -2762,6 +2768,9 @@
     }
     .lineup{
         background-color: transparent;
+    }
+    .padding-bottom-5{
+        padding-bottom: 5px;
     }
 
     @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
