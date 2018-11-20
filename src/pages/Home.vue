@@ -1510,7 +1510,7 @@
     }
 
     .game-info h4 {
-        font-weight: 600;
+        font-weight: 500;
         font-size: 1rem;
         text-transform: capitalize;
     }
@@ -1544,7 +1544,7 @@
         margin-left: 1rem;
         font-weight: 700;
         margin-bottom: -5px;
-        font-size: 21px;
+        font-size: 18px;
     }
 
     .fixture-content {
@@ -2756,7 +2756,7 @@
         font-weight: 700;
         letter-spacing: -0.5px;
         margin-bottom: -5px;
-        font-size: 21px;
+        font-size: 18px;
     }
     .remove-margin{
         border-radius: 0 0 10px 10px;
