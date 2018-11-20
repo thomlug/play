@@ -4,7 +4,7 @@
         <div slot="main-content">
             <div v-if="!editable && !this.currentFixture.cancelled">
               <h2>{{this.formattedTime}}</h2>
-              <h6>{{this.formattedDay}}</h6>
+              <h6><div class="extra-margin">{{this.formattedDay}}</div></h6>
 
             </div>
             <div v-else-if="!editable && this.currentFixture.cancelled">
@@ -143,13 +143,15 @@ export default {
     },
 
     setGameCancelled() {
+      if (confirm("This will show your team that this game is cancelled. Select 'On' to show the game details again, or 'Done' if game is complete")){
       this.currentFixture.cancelled = true;
+      }
     },
     setGameActive() {
       this.currentFixture.cancelled = false;
     },
     setGameComplete() {
-      if (confirm("Do you want to set the game as complete?")) {
+      if (confirm("Selecting 'Done' will show your next upcoming fixture on the dashboard and reset player availabilities. Continue?")) {
           console.log("ending fixture");
           this.currentFixture.status = "past";
           this.$emit("fixture-completed", this.currentFixture);
@@ -238,4 +240,7 @@ h6 {
   text-align: center;
   margin-bottom: 0rem;
 }
+.extra-margin{
+    margin: 0 -15% 0 -15%;
+    }
 </style>
