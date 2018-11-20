@@ -318,7 +318,7 @@
     .play-card {
         margin-top: 10px;
         margin-bottom: 0px;
-        box-shadow: 0 1px 3px #ddd, 0 1px 2px #ddd;
+        /* box-shadow: 0 1px 3px #ddd, 0 1px 2px #ddd; */
         text-transform: uppercase;
         color: #50575e;
         border-radius: 10px;
@@ -426,7 +426,7 @@
         border-radius: none;
         background: none;
         border: none; */
-        float: right !important;
+        float: right;
         /* margin-top: -40px; */
         cursor: pointer;
     }

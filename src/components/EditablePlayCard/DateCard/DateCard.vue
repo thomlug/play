@@ -241,6 +241,6 @@ h6 {
   margin-bottom: 0rem;
 }
 .extra-margin{
-    margin: 0 -15% 0 -15%;
+    margin: 0 -20% 0 -20%;
     }
 </style>
