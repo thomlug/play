@@ -201,11 +201,15 @@
             </span>
                         <h4 class="card-title">Starting Lineup <span class="fa fa-info clickable"
                                                                      @click="showLineupInfoModal()"></span></h4>
+                        
+                        <div class="grip-center-bottom">=</div>
+                    </div>
+                    <div class="card-block lineup-info">
                         <h4>
                             <small>Updated {{moment(getNextFixtureDetails().dateFormationLastUpdated).calendar()}}
                             </small>
                         </h4>
-                        <div class="grip-center-bottom">=</div>
+                        <p>{{this.getNumberOfAvailablePlayers()}} Available players</p>
                     </div>
                 </div>
                 <modal height=auto width=350px border-radius=40px name="lineup-info">
@@ -1076,6 +1080,37 @@
                     }) || emptyPlayer
                 );
             },
+
+            getNumberOfAvailablePlayers() {
+                let currentTeam = this.getCurrentTeam();
+                let currentFixture = this.getNextFixture();
+                let currentPlayer = this.getCurrentPlayer()[".key"];
+
+                let playersInTeam = _.filter(this.players, player => {
+                    if (_.isUndefined(player.teams)) {
+                        return false;
+                    }
+                    // Get the player.teams Object
+                    var playerTeams = player.teams;
+                    // Convert into an array
+                    var playerTeamsArray = Object.keys(playerTeams).map(k => {
+                        return playerTeams[k];
+                    });
+
+                    return _.find(playerTeamsArray, team => {
+                        return team.teamKey === currentTeam[".key"];
+                    });
+                });
+
+                let availablePlayers = _.filter(playersInTeam, player => {
+                    return player.teams[currentTeam[".key"]].availability === 'available'
+                });
+
+                return availablePlayers.length;
+
+            },
+
+
             getCurrentPlayerAvailability() {
                 var currentPlayer = this.getCurrentPlayer();
                 var teamKey = this.getCurrentTeamKey();
@@ -1516,6 +1551,12 @@
         border-color: transparent;
         padding-top: 20px;
         padding-bottom: 20px;
+    }
+
+    .lineup-info {
+        flex-flow: row;
+        justify-content: space-between;
+        width: 100%;
     }
 
     .card-block-lineup-default {
