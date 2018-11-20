@@ -29,7 +29,7 @@
                                                         <button class="btn btn-danger delete-team-button" v-if="canEdit()"
                             @click="deleteTeam(getCurrentTeam())">Delete Team
                     </button>
-        <div class="card play-card" v-for="player in getPlayersInTeam(getCurrentTeam())">
+        <div class="card play-card" v-for="player in getPlayersInTeam(getCurrentTeam())" v-bind:key="player.first_name">
 
             <div class="team-member-container">
                 <div class="team-member-photo">

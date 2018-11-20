@@ -43,6 +43,8 @@
                         <button class="fa fa-plus home-add-fixture-button" @click="showNewFixtureModal()"
                                 v-if="canEdit()"></button>
 
+                        <button class="float-right fa fa-bell reminder-button" @click="sendReminder()" v-if="canEdit()"></button>
+
                         <modal height=auto width=90% name="add-fixture" :clickToClose="false" class="vertical-scroll">
 
                             <div class="input-header">
@@ -577,7 +579,6 @@
 
     var sanitizeHtml = require('sanitize-html');
 
-
     export default {
         components: {
             MainLayout,
@@ -802,6 +803,77 @@
                 this.$firebaseRefs.fixtures.push(this.newFixture);
                 this.hideNewFixtureModal();
             },
+
+            sendReminder() {
+                let currentTeam = this.getCurrentTeam();
+                let currentFixture = this.getNextFixture();
+                let currentPlayer = this.getCurrentPlayer()[".key"];
+
+                let playersInTeam = _.filter(this.players, player => {
+                    if (_.isUndefined(player.teams)) {
+                        return false;
+                    }
+                    // Get the player.teams Object
+                    var playerTeams = player.teams;
+                    // Convert into an array
+                    var playerTeamsArray = Object.keys(playerTeams).map(k => {
+                        return playerTeams[k];
+                    });
+
+                    return _.find(playerTeamsArray, team => {
+                        return team.teamKey === currentTeam[".key"];
+                    });
+                });
+
+                let playersToRemind = _.filter(playersInTeam, player => {
+                    return player.teams[currentTeam[".key"]].availability === 'unknown'
+                });
+
+                _.map(playersToRemind, (player, index) => {
+                    playersToRemind[index] = player[".key"];
+                    return player;
+                });
+
+                console.log(playersToRemind);
+
+                // let reminder = {
+                //     manager: this.getCurrentPlayer()[".key"],
+                //     timeStamp: moment.utc().format(),
+                //     teamName: currentTeam.name,
+                //     opposition: currentFixture.awayTeamName,
+                //     fixtureTime: currentFixture.date,
+                //     playersNotified: playersToRemind
+                // }
+
+                var result = db.ref("reminder").push({
+                    manager: currentPlayer,
+                    timeStamp: moment.utc().format(),
+                    teamName: currentTeam.name,
+                    opposition: currentFixture.awayTeamName,
+                    fixtureTime: currentFixture.date,
+                    playersNotified: playersToRemind
+                });
+
+                // for(const player of playersToRemind) {
+                //     let emailParams = {
+                //         FIRSTNAME: player.first_name,
+                //         OPPOSITION: currentFixture.awayTeamName,
+                //         GAMETIME: moment(currentFixture.date).format("hh:mm a"),
+                //         GAMEDATE: moment(currentFixture.date).format("dddd MMMM DD YYYY"),
+                //         TEAMNAME: currentTeam.name
+                //     };
+
+                //     let sendSmtpEmail = {
+                //         to: [{ 'name': player.first_name + ' ' + player.last_name, 'email': player.email }],
+                //         params: emailParams,
+                //         templateId: 16
+                //     }; // SendSmtpEmail | Values to send a transactional email
+                    
+                //     console.log(sendSmtpEmail); 
+                            
+                // }
+            },
+
             formatDateTime() {
                 var date = new Date(this.day);
                 var dateString =
@@ -1346,6 +1418,10 @@
 
     .home-add-fixture-button:focus {
         outline-color: white;
+    }
+
+    .reminder-button {
+        margin: 0 -46px -46px 0;
     }
 
     .game-info {
