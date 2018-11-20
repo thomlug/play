@@ -42,7 +42,8 @@
                         <h4 class="fixture-title">Next Fixture</h4>
                         <button class="fa fa-plus home-add-fixture-button" @click="showNewFixtureModal()"
                                 v-if="canEdit()"></button>
-                        <button class="fa fa-bell reminder-button" @click="sendReminder()"></button>
+
+                        <button class="float-right fa fa-bell reminder-button" @click="sendReminder()" v-if="canEdit()"></button>
 
                         <modal height=auto width=90% name="add-fixture" :clickToClose="false" class="vertical-scroll">
 
@@ -1417,6 +1418,10 @@
 
     .home-add-fixture-button:focus {
         outline-color: white;
+    }
+
+    .reminder-button {
+        margin: 0 -46px -46px 0;
     }
 
     .game-info {
