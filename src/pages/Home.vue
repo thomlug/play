@@ -36,9 +36,7 @@
                         <h4 class="fixture-title">Next Fixture</h4> 
                     </div>
 
-                <div v-if="getNextFixture()['.key'] == null" class="alert alert-info alert-dismissible fade show" role="alert">
-                    Click the '+' button below to add your next game
-                </div>
+
                 <three-column-edit-card :clickFn="toggleEditAwayTeam" :can-edit="canEdit()"
                                         :editable="awayTeamEditable">
                     <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="location-icon"> -->
@@ -46,7 +44,7 @@
                     
                     <div slot="main-content">
 
-                        
+
                         <button class="fa fa-plus home-add-fixture-button shift-right" @click="showNewFixtureModal()"
                                 v-if="canEdit()"></button>
 
@@ -60,6 +58,7 @@
                                     <div class="text-center"> Add New Fixture</div>
                                 </h6>
                             </div>
+                            
                             <form @submit.prevent="addNewFixture" class="vertical-scroll form-content">
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6">
@@ -168,6 +167,9 @@
                                 </div>
                             </div>
                         </div>
+                                <div v-if="getNextFixture()['.key'] == null" class="alert alert-info alert-dismissible fade show" role="alert">
+                                     Click the '+' button above to add your next game
+                                </div>
                     </div>
                 </three-column-edit-card>
                 <!-- Date and time -->
@@ -214,6 +216,10 @@
                       </div>  
                         <!-- <div class="grip-center-bottom">=</div> -->
                     </div>
+
+                <div v-if="_.every(this.playerFormation, (row) => {return row.length === 0})" class="alert alert-info alert-dismissible fade show" role="alert">
+                    Click the 'Move Players' button above to drag and drop players in the starting lineup. Make sure to save when you're done!
+                </div>
                     <div class="card-block lineup-info">
                         <h4>
                             <small>Updated {{moment(getNextFixtureDetails().dateFormationLastUpdated).calendar()}}
@@ -245,9 +251,7 @@
                  </span><br>
                     </div>
                 </modal>
-                <div v-if="_.every(this.playerFormation, (row) => {return row.length === 0})" class="alert alert-info alert-dismissible fade show" role="alert">
-                    Click the 'Move Players' button above to drag and drop players in the starting lineup. Make sure to save when you're done!
-                </div>
+
                 <!-- starting line-up -->
                 <div class="card play-card lineup">
                     <div class="card-block-lineup" :class="'card-block-lineup-' + getCurrentTeam().sport.toLowerCase()">
