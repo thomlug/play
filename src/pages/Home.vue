@@ -843,6 +843,7 @@
             },
 
             sendReminder() {
+if (confirm("Selecting this will send an email reminder to those who have not yet responded with their availability to this game. Continue?")){ 
                 let currentTeam = this.getCurrentTeam();
                 let currentFixture = this.getNextFixture();
                 let currentPlayer = this.getCurrentPlayer()[".key"];
@@ -910,7 +911,7 @@
                 //     console.log(sendSmtpEmail); 
                             
                 // }
-            },
+            }},
 
             formatDateTime() {
                 var date = new Date(this.day);
@@ -1348,6 +1349,7 @@
                 this.$modal.hide("lineup-info");
             },
             removePlayerFromTeam(playerKey) {
+                if (confirm("You will remove this player from the team, he will no longer receive email notifications for this team. You can add them again if desired. Continue?")) {
                 if (!this.canEdit()) {
                     return;
                 }
@@ -1364,7 +1366,7 @@
                     .remove();
 
                 let player = this.$firebaseRefs.players.child(playerKey);
-            },
+            }},
             showNewTeamModal() {
                 if (!this.isAdmin()) {
                     return;
@@ -1408,6 +1410,7 @@
                 return re.test(String(email).toLowerCase());
             },
             saveNewPlayer() {
+                if (confirm("You will send this player an email invite to the team. Continue?")) {
                 this.newPlayerMessages.error = undefined;
                 this.newPlayerMessages.sucess = undefined;
 
@@ -1452,7 +1455,7 @@
                 var result = db.ref("player").push(this.newPlayer);
                 this.newPlayerMessages.success =
                     "Player added. They will receive an email with a sign-up link";
-            },
+            }},
             listTeamsCurrentUserBelongsTo() {
                 var player = this.getCurrentPlayer();
                 return _.filter(this.teams, team => {
@@ -1505,6 +1508,15 @@
         padding: 7px;
         top: -75px;
         cursor: pointer;
+    }
+
+    .reminder-button:active {
+        border: 2px solid grey;
+        color: grey;
+    }
+
+    .reminder-button:focus {
+        outline:none;
     }
 
     .game-info {
