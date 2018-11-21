@@ -13,7 +13,7 @@
                     </div>
                 </div>
             <div class="chat-pane">
-                <div class="chat-pane-banner text-center teams-title">
+                <div class="chat-pane-banner text-center">
                     <h1>{{getCurrentTeam().name}}</h1>
                 </div>
 
