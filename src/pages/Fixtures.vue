@@ -259,8 +259,9 @@
             },
 
             deleteFixture(fixture) {
+            if(confirm("You will remove this fixture. Continue?  ")){
                 this.$firebaseRefs.fixtures.child(fixture['.key']).remove();
-            },
+            }},
             undoComplete(fixture) {
                 this.$firebaseRefs.fixtures
                     .child(fixture['.key'])
