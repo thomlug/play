@@ -1485,13 +1485,13 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
     .home-add-fixture-button {
         position: relative;
         left: 105px;
-        top: -75px;
+        top: -72px;
     }
 
     .home-add-fixture-button:hover {
         position: relative;
         left: 105px;
-        top: -75px;
+        top: -72px;
     }
     .home-add-fixture-button:focus {
         outline-color: white;
@@ -1506,7 +1506,7 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
         border-radius: 50%;
         background-color: transparent;
         padding: 7px;
-        top: -75px;
+        top: -72px;
         cursor: pointer;
     }
 
@@ -2395,7 +2395,7 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
         cursor: pointer;
         float: right;
         position: relative;
-        left: -15%;
+        left: -18%;
     }
     .fa-times {
         color: lightgray;

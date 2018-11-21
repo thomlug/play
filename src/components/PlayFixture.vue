@@ -1,7 +1,7 @@
 <template>
 <div class="card play-card">
         <div class="card-block leftborder">
-            <button @click="deleteFixture()" class="fa fa-trash red-button float-right"></button>
+            <button @click="deleteFixture()" class="fa fa-trash fix-trash red-button float-right"></button>
             <button v-if="fixture.status !== 'active'" @click="uncompleteFixture()" class="fa fa-undo grey-button float-right"></button>
         </div>
         <div class="sidetimeline">
@@ -316,10 +316,10 @@ color: white;
     max-width: 64px;
   }
 
-  .fa-trash{
-    font-size: 10px !important;
-    padding: 4px 6px 6px 6px;
-    margin-top: -10px;
+  .fix-trash{
+    font-size: 20px !important;
+    padding: 11px 12px 8px 12px;
+    margin-left: 3px;
   }
 }
 @media (min-width: 768px) {
