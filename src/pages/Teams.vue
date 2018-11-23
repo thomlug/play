@@ -291,6 +291,8 @@
         font-size: larger;
         margin-top: 10px;
         text-align: center;
+        color: white;
+        font-weight: 600;
     }
 
     .play-card-teams {
