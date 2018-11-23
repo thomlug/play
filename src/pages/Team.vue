@@ -408,7 +408,7 @@ export default {
   height: 256px;
   width: 256px;
   object-fit: cover;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   box-shadow: none;
   background-image: linear-gradient(-45deg, dodgerblue, #2acad0);
 }
@@ -640,7 +640,7 @@ h3 {
 h4 {
   font-weight: 550;
   color: #50575e;
-  margin-bottom: 0rem;
+  /* margin-bottom: 0rem; */
   text-align: none;
 }
 

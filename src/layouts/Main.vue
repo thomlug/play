@@ -58,6 +58,12 @@
                             My Teams
                         </router-link>
                     </li>
+                    <li class="nav-item nav-link policy">
+                        <a href="https://privacypolicies.com/privacy/view/74b70cd935be2200a93d615d3c943045" class="nav-item teams-item policy"> Privacy Policy</a>
+                    </li>
+                    <li class="nav-item teams-item policy">
+                        <a href="https://app.termly.io/document/terms-of-use-for-website/f259cac8-cba7-4412-aeb8-035356e87a00" class="nav-item teams-item policy"> Terms</a>
+                    </li>
                     <!-- <li class="nav-item">
                       <router-link active-class="active" exact class="nav-item nav-link" :to="{name: 'teams'}">Teams</router-link>
                     </li>
@@ -602,6 +608,13 @@ team-item{
 
 .logout-item{
     text-align: center;
+    color: whitesmoke !important;
+}
+
+.policy{
+    color: rgba(255,255,255,.5);
+    text-align: center;
+    padding: 8px 0px 8px 0px;
 }
 /* .navbar-inverse .navbar-toggler{
     display: none;
