@@ -269,6 +269,10 @@
                     .set("active");
             },
             formatDateTime() {
+                if (_.isEmpty(this.time) || _.isEmpty(this.day)) {
+                    return;
+                }
+                
                 var date = new Date(this.day);
                 var dateString =
                     (date.getMonth() + 1) +

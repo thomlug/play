@@ -101,7 +101,7 @@ export default {
       get() {
         return moment(this.fixture.date).isValid()
           ?  moment(moment.utc(this.fixture.date).toDate()).local().format().split("T")[0] //Split the ISO string to date and time and take the first argument which is the date in yyyy-MM-dd format
-          : "Manager to confirm";
+          : "Manager to confirm time and date";
       },
 
       set(newDay) {
@@ -130,7 +130,7 @@ export default {
     formattedDay() {
       return !_.isUndefined(this.fixture.date) && moment(this.fixture.date).isValid()
           ?  moment(moment.utc(this.fixture.date).toDate()).local().format("dddd MMMM DD YYYY")
-          : "Manager to confirm";
+          : "Manager to confirm time and date";
     }
   },
 
