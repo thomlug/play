@@ -1,6 +1,6 @@
 <template>
 <div class="card play-card">
-        <div class="card-block leftborder">
+        <div v-if="canEdit" class="card-block leftborder">
             <button @click="deleteFixture()" class="fa fa-trash fix-trash red-button float-right"></button>
             <button v-if="fixture.status !== 'active'" @click="uncompleteFixture()" class="fa fa-undo grey-button float-right"></button>
         </div>
