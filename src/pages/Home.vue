@@ -34,21 +34,11 @@
 
                     <div class="card-block play-card card-title-header">
                         <h4 class="fixture-title">Next Fixture</h4> 
-                    </div>
-
-
-                <three-column-edit-card :clickFn="toggleEditAwayTeam" :can-edit="canEdit()"
-                                        :editable="awayTeamEditable">
-                    <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="location-icon"> -->
-
-                    
-                    <div slot="main-content">
-
-
-                        <button class="fa fa-plus home-add-fixture-button shift-right" @click="showNewFixtureModal()"
-                                v-if="canEdit()"></button>
 
                         <button class="float-right fa fa-bell reminder-button" @click="sendReminder()" v-if="canEdit()"></button>
+
+                        <button class="fa fa-plus home-add-fixture-button float-right" @click="showNewFixtureModal()"
+                                v-if="canEdit()"></button>
 
                         <modal height=auto width=90% name="add-fixture" :clickToClose="false" class="vertical-scroll">
 
@@ -121,83 +111,101 @@
                                 </div>
                             </form>
                         </modal>
+                    </div>
 
-                        <div class="centered-col fixture-content shift-right">
-                            <div class="centered-col">
-                                <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().homeTeam)">
-                                    <div v-if="!_.isUndefined(this.currentFixtureHomeTeam.photo)">
-                                        <img :src="this.currentFixtureHomeTeam.photo" class="play-photo team-photo">
-                                    </div>
-                                    <div v-else>
-                                        <div class="home-circle team-circle play-photo">
-                                            {{this.currentFixtureHomeTeam.name | firstCharacter}}
+
+                    <!-- If no upcoming fixture -->
+                    <div v-if="getNextFixture()['.key'] == null">
+                        <div v-if="canEdit()" class="alert alert-info alert-dismissible fade show" role="alert">
+                           <span>Click the '+' to add new fixtures</span>
+                        </div>
+                        <div class="text-center">
+                            No upcoming fixtures
+                        </div>                         
+                    </div>
+
+                    <!-- If there is a fixture -->
+                    <div v-else>
+                        <three-column-edit-card :clickFn="toggleEditAwayTeam" :can-edit="canEdit()"
+                                        :editable="awayTeamEditable">
+                    <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/place%20(2).png?alt=media&token=dade46a3-57c5-4bbf-98c2-20496f94388f" class="location-icon"> -->
+                   
+                            <div slot="main-content">
+                            
+                                <div class="centered-col fixture-content shift-right">
+                                    <div class="centered-col">
+                                        <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().homeTeam)">
+                                            <div v-if="!_.isUndefined(this.currentFixtureHomeTeam.photo)">
+                                                <img :src="this.currentFixtureHomeTeam.photo" class="play-photo team-photo">
+                                            </div>
+                                            <div v-else>
+                                                <div class="home-circle team-circle play-photo">
+                                                    {{this.currentFixtureHomeTeam.name | firstCharacter}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="team-name">
+                                            <h3 class="text-center">{{this.currentFixtureHomeTeam.name}}</h3>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="team-name">
-                                    <h3 class="text-center">{{this.currentFixtureHomeTeam.name}}</h3>
-                                </div>
-                            </div>
-                            <div class="centered-col vs-text text-center">VS</div>
-                            <div v-if="!_.isUndefined(getNextFixture().awayTeam)" class="centered-col">
-                                <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().awayTeam)">
-                                    <div v-if="!_.isUndefined(this.currentFixtureAwayTeam.photo)">
-                                        <img :src="this.currentFixtureAwayTeam.photo" class="play-photo team-photo">
-                                    </div>
-                                    <div v-else>
-                                        <div class="away-circle team-circle play-photo">
-                                            {{this.currentFixtureAwayTeam.name | firstCharacter}}
+                                    <div class="centered-col vs-text text-center">VS</div>
+                                    <div v-if="!_.isUndefined(getNextFixture().awayTeam)" class="centered-col">
+                                        <div class="team-photo-container" @click="goToTeamProfile(getNextFixture().awayTeam)">
+                                            <div v-if="!_.isUndefined(this.currentFixtureAwayTeam.photo)">
+                                                <img :src="this.currentFixtureAwayTeam.photo" class="play-photo team-photo">
+                                            </div>
+                                            <div v-else>
+                                                <div class="away-circle team-circle play-photo">
+                                                    {{this.currentFixtureAwayTeam.name | firstCharacter}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="team-name">
+                                            <h3 class="text-center">{{this.currentFixtureAwayTeam.name}}</h3>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="team-name">
-                                    <h3 class="text-center">{{this.currentFixtureAwayTeam.name}}</h3>
-                                </div>
+                                    <div v-else class="centered-col">
+                                        <div class="away-circle team-circle play-photo">{{getNextFixture().awayTeamName |
+                                            firstCharacter}}
+                                        </div>
+                                        <div class="team-name">
+                                            <input v-if="awayTeamEditable" class="form-control-edit" type="text" :maxlength="26"
+                                                v-model="getNextFixture().awayTeamName">
+                                            <h3 v-else class="text-center">{{getNextFixture().awayTeamName}}</h3>
+                                        </div>
+                                    </div>
+                                </div>                                
                             </div>
-                            <div v-else class="centered-col">
-                                <div class="away-circle team-circle play-photo">{{getNextFixture().awayTeamName |
-                                    firstCharacter}}
-                                </div>
-                                <div class="team-name">
-                                    <input v-if="awayTeamEditable" class="form-control-edit" type="text" :maxlength="26"
-                                           v-model="getNextFixture().awayTeamName">
-                                    <h3 v-else class="text-center">{{getNextFixture().awayTeamName}}</h3>
+                        </three-column-edit-card>
+                    <!-- Date and time -->
+                        <date-card :can-edit="canEdit()" :fixture="this.getNextFixture()" @fixture-edited="fixtureEdited"
+                                @fixture-completed="fixtureCompleted"></date-card>
+        
+                        <!-- Location -->
+                        <location-card :can-edit="canEdit()" :fixture="this.getNextFixture()"
+                                    @location-changed="fixtureLocationChanged"></location-card>
+        
+                        <div class="card-block play-card card-title-header top-margin">
+                                <h4 class="card-title">Update Your Status
+                                    <small>{{getCurrentPlayerAvailability() | camelToSentence}}</small>
+                                </h4>
+                        </div>
+
+                        <!-- update your status -->
+                        <div class="card play-card remove-margin">
+                            <div class="card-block">
+
+                                <div class="status-container">
+                                    <available-button :on-click="() => this.setCurrentPlayerAvailability('available')"
+                                                    class="btn active">Available
+                                    </available-button>
+                                    <danger-button :on-click="() => this.setCurrentPlayerAvailability('unavailable')"
+                                                class="btn">Unavailable
+                                    </danger-button>
                                 </div>
                             </div>
                         </div>
-                                <div v-if="getNextFixture()['.key'] == null" class="alert alert-info alert-dismissible fade show" role="alert">
-                                     Click the '+' button above to add your next game
-                                </div>
                     </div>
-                </three-column-edit-card>
-                <!-- Date and time -->
-                <date-card :can-edit="canEdit()" :fixture="this.getNextFixture()" @fixture-edited="fixtureEdited"
-                           @fixture-completed="fixtureCompleted"></date-card>
-
-                <!-- Location -->
-                <location-card :can-edit="canEdit()" :fixture="this.getNextFixture()"
-                               @location-changed="fixtureLocationChanged"></location-card>
-
-                <div class="card-block play-card card-title-header top-margin">
-                        <h4 class="card-title">Update Your Status
-                            <small>{{getCurrentPlayerAvailability() | camelToSentence}}</small>
-                        </h4>
-                </div>
-                <!-- update your status -->
-                <div class="card play-card remove-margin">
-                    <div class="card-block">
-
-                        <div class="status-container">
-                            <available-button :on-click="() => this.setCurrentPlayerAvailability('available')"
-                                              class="btn active">Available
-                            </available-button>
-                            <danger-button :on-click="() => this.setCurrentPlayerAvailability('unavailable')"
-                                           class="btn">Unavailable
-                            </danger-button>
-                        </div>
-                    </div>
-                </div>
-
             </div>
             <div class="col-xl-6 top-margin">
                 
@@ -1484,37 +1492,32 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
         background-color: transparent;
     }
 
-    .home-add-fixture-button {
+    .home-add-fixture-button, .home-add-fixture-button:hover {
         position: relative;
-        left: 105px;
-        top: -72px;
+        top: -28px;
     }
+    
 
-    .home-add-fixture-button:hover {
-        position: relative;
-        left: 105px;
-        top: -72px;
-    }
     .home-add-fixture-button:focus {
         outline-color: white;
     }
 
     .reminder-button {
         position: relative;
-        right: -45%;
         color: #e5e5e5;
         font-size: x-large;
         border: 2px solid #e5e5e5;
         border-radius: 50%;
         background-color: transparent;
         padding: 7px;
-        top: -72px;
-        cursor: pointer;
+        cursor: pointer;       
+        top: -28px;
+        margin-left: 5px;
     }
 
     .reminder-button:active {
         border: 2px solid grey;
-        color: grey;
+        color: grey; 
     }
 
     .reminder-button:focus {
