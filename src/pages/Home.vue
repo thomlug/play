@@ -89,8 +89,7 @@
                                                     type="time"
                                                     placeholder="Start Time"
                                                     id="timeStart"
-                                                    class="form-control" v-model="time"
-                                                    required>
+                                                    class="form-control" v-model="time">
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-6">
@@ -99,8 +98,7 @@
                                             <input
                                                     type="date"
                                                     id="dateStart"
-                                                    class="form-control" v-model="day"
-                                                    required>
+                                                    class="form-control" v-model="day">
                                         </div>
                                     </div>
                                 </div>
@@ -914,6 +912,10 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
             }},
 
             formatDateTime() {
+                if (_.isEmpty(this.time) || _.isEmpty(this.day)) {
+                    return;
+                }
+
                 var date = new Date(this.day);
                 var dateString =
                     (date.getMonth() + 1) +

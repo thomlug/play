@@ -1,5 +1,5 @@
 <template>
-   <button @click="onClick" type="button" class="btn btn-primary btn-available active">
+   <button @click="onClick" type="button" class="btn btn-available active">
        <slot></slot>
    </button>
 </template>
@@ -16,7 +16,7 @@ export default {
 
 
 <style scoped>
-.btn-primary {
+.btn-available {
   background-color: #2acad0;
   border: 0px solid #2acad0 !important;
   color: white;
@@ -26,14 +26,15 @@ export default {
   padding: 8px 16px 8px 16px;
 }
 
-.btn-primary:hover {
+.btn-available:hover {
   background-color: #2acad0;
+  cursor: pointer;
   border: 0px solid turquoise;
   background-image: linear-gradient(70deg,turquoise,30%, #2acad0, turquoise);
   box-shadow: 4px 4px 4px -4px grey;
 }
 
-.btn-primary:focus {
+.btn-available:focus {
   background-color: turquoise;
   background-image: linear-gradient(70deg,turquoise,30%, #2acad0, turquoise);
   border: 0px solid turquoise;

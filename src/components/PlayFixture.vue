@@ -87,10 +87,14 @@ export default {
       });
     },
     time() {
-      return moment(this.fixture.date).format("hh:mm A");
+      return !_.isUndefined(this.fixture.date) && moment(this.fixture.date).isValid() 
+              ? moment(this.fixture.date).format("hh:mm A") 
+              : "TBC";
     },
     day() {
-      return moment(this.fixture.date).format("dddd DD MMM YY");
+      return !_.isUndefined(this.fixture.date) && moment(this.fixture.date).isValid() 
+              ? moment(this.fixture.date).format("dddd DD MMM YY") 
+              : "TBC";
     }
   },
 

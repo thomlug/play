@@ -2,15 +2,21 @@
     <three-column-edit-card :clickFn="toggleEdit" :can-edit="canEdit" :editable="editable" :class="calculateCancelledClass()">
         <!-- <img slot="left-content" src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/001-clock-with-white-face.png?alt=media&token=703b182a-ed12-4443-a194-34315062dc01" class="clock-icon"> -->
         <div slot="main-content">
+
             <div v-if="!editable && !this.currentFixture.cancelled">
               <h2>{{this.formattedTime}}</h2>
               <h6><div class="extra-margin">{{this.formattedDay}}</div></h6>
-
             </div>
+
             <div v-else-if="!editable && this.currentFixture.cancelled">
               <h2>Game Cancelled</h2>
             </div>
-            <div class="centered-column" v-else>
+
+            <div v-else-if="!editable && this.currentFixture.date">
+              <h2>TBC</h2>
+            </div>
+
+            <div v-else class="centered-column">
               <h6>Time</h6>
               <input
                 type="time"
@@ -30,8 +36,9 @@
             <div v-if="canEdit">
             <h4  class="card-title top-padding">Game status</h4>
               <div class="status-container">
-                <div><available-button :onClick="() => this.setGameActive()" type="button" class="btn ">On</available-button></div>
-                <div><danger-button :onClick="() => this.setGameCancelled()" type="button" class="btn ">Off</danger-button></div>
+                <div><button @click="this.setGameTBC" class="btn btn-grey btn-tbc">TBC</button></div>
+                <div><available-button :onClick="() => this.setGameActive()">On</available-button></div>
+                <div><danger-button :onClick="() => this.setGameCancelled()">Off</danger-button></div>
                 <div><done-button :onClick="setGameComplete" type="button" class="btn ">Done</done-button></div>
               </div>
               </div>
@@ -94,7 +101,7 @@ export default {
       get() {
         return moment(this.fixture.date).isValid()
           ?  moment(moment.utc(this.fixture.date).toDate()).local().format().split("T")[0] //Split the ISO string to date and time and take the first argument which is the date in yyyy-MM-dd format
-          : "Manager to confirm";
+          : "Manager to confirm time and date";
       },
 
       set(newDay) {
@@ -115,15 +122,15 @@ export default {
     },
 
     formattedTime() {
-      return moment(this.fixture.date).isValid()
+      return !_.isUndefined(this.fixture.date) && moment(this.fixture.date).isValid()
         ? moment(moment.utc(this.fixture.date).toDate()).local().format("hh:mm a")
         : "";
     },
 
     formattedDay() {
-      return moment(this.fixture.date).isValid()
+      return !_.isUndefined(this.fixture.date) && moment(this.fixture.date).isValid()
           ?  moment(moment.utc(this.fixture.date).toDate()).local().format("dddd MMMM DD YYYY")
-          : "Manager to confirm";
+          : "Manager to confirm time and date";
     }
   },
 
@@ -142,19 +149,29 @@ export default {
       this.editable = !this.editable;
     },
 
+    setGameTBC() {
+      if ("This will show your team that this game is to be confirmed. Select 'On' to show the game details again, or 'Done' if game is complete") {
+        this.currentFixture.date = null;
+        this.$emit("fixture-edited", this.currentFixture);
+      }
+    },
+
     setGameCancelled() {
       if (confirm("This will show your team that this game is cancelled. Select 'On' to show the game details again, or 'Done' if game is complete")){
-      this.currentFixture.cancelled = true;
+        this.currentFixture.cancelled = true;      
+        this.currentFixture.tbc = false;
+        this.$emit("fixture-edited", this.currentFixture);
       }
     },
     setGameActive() {
       this.currentFixture.cancelled = false;
+      this.$emit("fixture-edited", this.currentFixture);
     },
     setGameComplete() {
       if (confirm("Selecting 'Done' will show your next upcoming fixture on the dashboard and reset player availabilities. Continue?")) {
-          console.log("ending fixture");
-          this.currentFixture.status = "past";
-          this.$emit("fixture-completed", this.currentFixture);
+        console.log("ending fixture");
+        this.currentFixture.status = "past";
+        this.$emit("fixture-completed", this.currentFixture);
       }
     },
 
@@ -202,6 +219,18 @@ export default {
     margin: 5px 0 5px 0;
 }
 
+.btn-tbc {
+  border-radius: 20px;
+  background: #abadaf;
+  color: white;
+  -webkit-box-shadow: 2px 2px 2px -2px #50575e;
+}
+
+.btn-tbc:hover {
+  background-color: #c3c5c7;
+  cursor: pointer;
+}
+
 /* .btn {
   margin-top: 10px;
   cursor: pointer;
@@ -212,6 +241,7 @@ export default {
   flex-direction: row;
   align-items: stretch;
   justify-content: space-between;
+  margin-left: -30px;
   /* padding-top: 10px; */
   /* flex-wrap: wrap; */
 }

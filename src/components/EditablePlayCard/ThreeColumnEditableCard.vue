@@ -1,10 +1,10 @@
 <template>
     <div class="card play-card remove-margin">    
         <div class="card-block">    
-            <div class="row">      
-                <div class="left">    
-                    <slot name="left-content"></slot>                 
-                </div>    
+            <div class="row">     
+                <div class="left">   
+                    <slot name="left-content"></slot>     
+                </div> 
                 <div class="center-content">   
                     <slot name="main-content"></slot>     
                 </div>    
