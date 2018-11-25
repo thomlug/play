@@ -45,6 +45,7 @@ export default {
   text-transform: uppercase;
   color: #50575e;
   border-color: transparent; 
+  width: 100%;
 }
 /* clock/time icon column styling */
 .center-content {
