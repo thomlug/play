@@ -70,101 +70,94 @@ exports.sendSignUpEmail = functions.database.ref('/player/{playerId}').onCreate(
 
 });
 
-exports.sendReminderEmail = functions.pubsub.topic('daily-tick').onPublish(event => {
-    // get fixture data from firebase
-    return admin.database().ref('/match').once('value').then(snapshot => {
-        // get an array of all fixtures
-        var fixtures = [];
-        snapshot.forEach(childSnapshot => {
-            var fixture = Object.assign(
-                {key: childSnapshot.key},
-                childSnapshot.val()
-                )
-            fixtures.push(fixture);
-        });
-        var startDate = moment();
-        var endDate = moment().add(2, 'days');
+exports.sendReminderForActiveGame = functions.database.ref('/match/{matchId}').onUpdate((change, context) => {
+    const fixtureBeforeData = change.before.val();     // data before the update
+    const fixtureAfterData = change.after.val();       // data after the update
 
-        // find the fixtures within next 48 hours
-        var upcomingFixtures = _.filter(fixtures, fixture => {
-            if (_.isUndefined(fixture.date)) {
+    // check that the fixture status has changed to 'in-progress' 
+    if (fixtureBeforeData.status === fixtureAfterData.status || fixtureAfterData.status !== 'in progress') {
+        return null;
+    }
+
+    // check that home team is valid and a reminder hasn't already been sent 
+    if (_.isUndefined(fixtureAfterData.homeTeam) || fixtureAfterData.reminderSent) {
+        return null;
+    }
+
+    return admin.database().ref('/player').once('value').then(snapshot => {
+        // get an array of all players
+        var players = [];
+        snapshot.forEach(childSnapShot => {
+            players.push(childSnapShot.val());
+        });
+
+        // get all players in the current fixture
+        var playersInTeam = _.filter(players, player => {
+            if (_.isUndefined(player.teams)) {
                 return false;
             }
-            var date = moment(fixture.date);
-            return (date.isBetween(startDate, endDate, null, '[]') && !fixture.reminderSent && fixture.status === 'active');
+            var playerTeams = player.teams;
+            var playerTeamsArray = Object.keys(playerTeams).map(k => {
+                return playerTeams[k];
+            });
+
+            return _.find(playerTeamsArray, team => {
+                return team.teamKey === fixtureAfterData.homeTeam;
+            });
         });
 
-        // for each fixture
-        upcomingFixtures.map(fixture => {
-            if (!_.isUndefined(fixture.homeTeam)) {
-                // get player data from firebase
-                return admin.database().ref('/player').once('value').then(snapshot => {
-                    // get an array of all players
-                    var players = [];
-                    snapshot.forEach(childSnapShot => {
-                        players.push(childSnapShot.val());
-                    });
+        // get the home team data from firebase
+        return admin.database().ref('/team/' + fixtureAfterData.homeTeam).once('value').then(snapshot => {
+            // send email to each player
+            playersInTeam.map(player => {
+                // Validate email exists
+                if (!validateEmail(player.email)) {
+                    console.error('Invalid email: ' + player.email);
+                    return null;
+                }
+                var apiKey = defaultClient.authentications['api-key'];
+                apiKey.apiKey = functions.config().sendinblue.apikey;
 
-                    // get all players in the current fixture
-                    var playersInTeam = _.filter(players, player => {
-                        if (_.isUndefined(player.teams)) {
-                            return false;
-                        }
-                        var playerTeams = player.teams;
-                        var playerTeamsArray = Object.keys(playerTeams).map(k => {
-                            return playerTeams[k];
-                        });
+                // hard coded to NZ time but will need to change later for global users, i.e. store a tz value against users and 
+                // use that
+                var localDate = moment.utc(fixtureAfterData.date).tz('Pacific/Auckland');
+                
+                let gameTime = "TBC";
+                let gameDate = "TBC";
 
-                        return _.find(playerTeamsArray, team => {
-                            return team.teamKey === fixture.homeTeam;
-                        });
-                    });
-                    
+                if (moment(localDate).isValid()) {
+                    gameTime = localDate.format("hh:mm a");
+                    gameDate = localDate.format("dddd MMMM DD YYYY");
+                }
 
-                    // get the home team data from firebase
-                    return admin.database().ref('/team/' + fixture.homeTeam).once('value').then(snapshot => {
-                        // send email to each player
-                        playersInTeam.map(player => {
-                            // Validate email exists
-                            if (!validateEmail(player.email)) {
-                                console.error('Invalid email: ' + player.email);
-                                return null;
-                            }
-                            var apiKey = defaultClient.authentications['api-key'];
-                            apiKey.apiKey = functions.config().sendinblue.apikey;
-                            var localDate = moment.utc(fixture.date).tz('Pacific/Auckland');
-                            var emailParams = {
-                                FIRSTNAME: player.first_name,
-                                OPPOSITION: fixture.awayTeamName,
-                                GAMETIME: localDate.format("hh:mm a"),
-                                GAMEDATE: localDate.format("dddd MMMM DD YYYY"),
-                                TEAMNAME: snapshot.val().name
-                            };
-                            var apiInstance = new SibApiV3Sdk.SMTPApi();
-                            var sendSmtpEmail = {
-                                to: [{ 'name': player.first_name + ' ' + player.last_name, 'email': player.email }],
-                                params: emailParams,
-                                templateId: 16
-                            }; // SendSmtpEmail | Values to send a transactional email
-                            console.log(sendSmtpEmail); 
-                            
-                            //Send the email
-                            return apiInstance.sendTransacEmail(sendSmtpEmail).then(function (data) {
-                                console.log('API called successfully. Returned data: ',  data);
-                            }, function (error) {
-                                console.error(error);
-                                return null;
-                            });
-                        })
-                        
-                        updateReminderSent(fixture);
-                    });
+                var emailParams = {
+                    FIRSTNAME: player.first_name,
+                    OPPOSITION: fixtureAfterData.awayTeamName,
+                    GAMETIME: gameTime,
+                    GAMEDATE: gameDate,
+                    TEAMNAME: snapshot.val().name
+                };
+                var apiInstance = new SibApiV3Sdk.SMTPApi();
+                var sendSmtpEmail = {
+                    to: [{ 'name': player.first_name + ' ' + player.last_name, 'email': player.email }],
+                    params: emailParams,
+                    templateId: 16
+                }; // SendSmtpEmail | Values to send a transactional email
+                console.log(sendSmtpEmail);
+
+                //Send the email
+                return apiInstance.sendTransacEmail(sendSmtpEmail).then(function (data) {
+                    console.log('API called successfully. Returned data: ', data);
+                }, function (error) {
+                    console.error(error);
+                    return null;
                 });
-            }
+            })
+
+            updateReminderSent(fixtureAfterData, context.params.matchId);
         });
     });
 });
-
 
 exports.sendReminderOnClick = functions.database.ref('/reminder/{reminderId}').onCreate((snap) => {
     const reminder = snap.val();
@@ -178,12 +171,25 @@ exports.sendReminderOnClick = functions.database.ref('/reminder/{reminderId}').o
             }
             var apiKey = defaultClient.authentications['api-key'];
             apiKey.apiKey = functions.config().sendinblue.apikey;
+
+            
+            // hard coded to NZ time but will need to change later for global users, i.e. store a tz value against users and 
+            // use that
             var localDate = moment.utc(reminder.fixtureTime).tz('Pacific/Auckland');
+                
+            let gameTime = "TBC";
+            let gameDate = "TBC";
+
+            if (moment(localDate).isValid()) {
+                gameTime = localDate.format("hh:mm a");
+                gameDate = localDate.format("dddd MMMM DD YYYY");
+            }
+
             var emailParams = {
                 FIRSTNAME: player.first_name,
                 OPPOSITION: reminder.opposition,
-                GAMETIME: localDate.format("hh:mm a"),
-                GAMEDATE: localDate.format("dddd MMMM DD YYYY"),
+                GAMETIME: gameTime,
+                GAMEDATE: gameDate,
                 TEAMNAME: reminder.teamName
             };
             var apiInstance = new SibApiV3Sdk.SMTPApi();
@@ -192,11 +198,11 @@ exports.sendReminderOnClick = functions.database.ref('/reminder/{reminderId}').o
                 params: emailParams,
                 templateId: 16
             }; // SendSmtpEmail | Values to send a transactional email
-            console.log(sendSmtpEmail); 
-            
+            console.log(sendSmtpEmail);
+
             //Send the email
             return apiInstance.sendTransacEmail(sendSmtpEmail).then(function (data) {
-                console.log('API called successfully. Returned data: ',  data);
+                console.log('API called successfully. Returned data: ', data);
             }, function (error) {
                 console.error(error);
                 return null;
@@ -210,13 +216,10 @@ function validateEmail(email) {
     return re.test(String(email).toLowerCase());
 }
 
-function updateReminderSent(fixture) {
-    const fixtureKey = fixture.key;
+function updateReminderSent(fixture, fixtureKey) {
     const newFixture = Object.assign(
         fixture,
-        {reminderSent: true}
+        { reminderSent: true }
     )
-    // delete the 'key' field so it isn't pushed to the database
-    delete newFixture.key;
     return admin.database().ref("match/" + fixtureKey).update(newFixture);
 }
