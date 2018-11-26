@@ -144,13 +144,13 @@
         computed: {
             upcomingTeamFixtures() {
                 var teamFixtures = _.filter(this.fixtures, fixture => {
-                    return fixture.homeTeam === this.getCurrentPlayer().teamKey && fixture.status === 'active';
+                    return fixture.homeTeam === this.getCurrentPlayer().teamKey && fixture.status !== 'past';
                 });
                 return _.orderBy(teamFixtures, "date", "asc");
             },
             pastTeamFixtures() {
                 var teamFixtures = _.filter(this.fixtures, fixture => {
-                    return fixture.homeTeam === this.getCurrentPlayer().teamKey && fixture.status !== 'active';
+                    return fixture.homeTeam === this.getCurrentPlayer().teamKey && fixture.status === 'past';
                 });
                 return _.orderBy(teamFixtures, "date", "asc");
             }

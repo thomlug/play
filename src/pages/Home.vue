@@ -609,7 +609,7 @@
     import {db} from "../firebase";
     import MainLayout from "../layouts/Main.vue";
     import Slick from "vue-slick";
-    import moment from "moment";
+    import moment,{ fn } from "moment";
     import draggable from "vuedraggable";
     import Avatar from "../components/Avatar.vue";
     import {mapState} from "vuex";
@@ -1210,15 +1210,30 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
                 var teamKey = currentTeam[".key"];
                 var component = this;
                 var sortedFixtures = _.orderBy(this.fixtures, "date", "asc");
-                var fixture = sortedFixtures.find(f => {
-                    return f.status === "active" && f.homeTeam === teamKey;
-                });
 
                 let statusInProgress = "in progress";
+                let statusActive = 'active';
+
+                var fixture = sortedFixtures.find(f => {
+                    return (f.status === statusInProgress || f.status === statusActive) && f.homeTeam === teamKey;
+                });
 
                 if (!_.isUndefined(fixture) && fixture.status !== statusInProgress) {
-                    console.log("new fixture");
+                    // set the current fixture to 'in progress' 
                     this.$firebaseRefs.fixtures.child(fixture[".key"]).child("status").set(statusInProgress);
+
+                    // find all other fixtures that are 'in progress' 
+                    let fixturesInProgress = _.filter(this.fixtures, f => {
+                        return f.status === statusInProgress && f[".key"] !== fixture[".key"];
+                    });
+
+                    console.log("fixtures in progress: ", fixturesInProgress);
+
+                    // set their status to active
+                    _.map(fixturesInProgress, f => {
+                        this.$firebaseRefs.fixtures.child(f[".key"]).child("status").set(statusActive);
+                    });
+
                 }
 
                 return !_.isUndefined(fixture) ? fixture : {startDate: "unknown", noFixture: true};
