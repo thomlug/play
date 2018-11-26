@@ -1214,6 +1214,13 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
                     return f.status === "active" && f.homeTeam === teamKey;
                 });
 
+                let statusInProgress = "in progress";
+
+                if (!_.isUndefined(fixture) && fixture.status !== statusInProgress) {
+                    console.log("new fixture");
+                    this.$firebaseRefs.fixtures.child(fixture[".key"]).child("status").set(statusInProgress);
+                }
+
                 return !_.isUndefined(fixture) ? fixture : {startDate: "unknown", noFixture: true};
             },
             getPlayersForCurrentTeam() {
