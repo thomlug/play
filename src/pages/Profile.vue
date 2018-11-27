@@ -107,9 +107,12 @@
                     </span>
                     </div>
                 </div>
+                <div class="card-block play-card card-title-header-profile">
+                <h4 class="card-title profile-title">Update your status </h4>
+                </div>
                 <div v-if="canEditProfile() && !editable">
                     <div class="profile-block">
-                        <h4 class="card-title">Update your status </h4>
+                        
                         <div v-for="team in player.teams" :key="team.teamKey" class="availability-container row">
                             <div>
                                 <div>
@@ -379,7 +382,11 @@
     }
 
     .card-title {
-        text-align: center;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        margin-bottom: -5px;
+        font-size: 18px;
+        margin-top: 0px;
     }
 
     .profile-block {
@@ -780,6 +787,16 @@
 
     img {
         image-orientation: from-image;
+    }
+
+    .card-title-header-profile{
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 1px 2px 2px 0px lightgrey;
+    margin-bottom: -5px;
+    margin-bottom: -12px;
+    margin-top: 15px;
+    text-transform: uppercase;
     }
 
     @media (max-width: 768px) {
