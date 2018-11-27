@@ -17,32 +17,34 @@ export default {
 
 <style scoped>
 .btn-available {
-  background-color: #2acad0;
-  border: 0px solid #2acad0 !important;
-  color: white;
+  background-color: white;
+  border: 1px solid lightgrey !important;
+  color: slategrey;
   border-radius: 20px;
-  -webkit-box-shadow: 2px 2px 2px -2px #50575e;
+  /* -webkit-box-shadow: 2px 2px 2px -2px #50575e; */
   margin: 2px;
-  padding: 8px 16px 8px 16px;
+  padding: 8px 24px;
 }
 
 .btn-available:hover {
-  background-color: #2acad0;
   cursor: pointer;
   border: 0px solid turquoise;
-  background-image: linear-gradient(70deg,turquoise,30%, #2acad0, turquoise);
-  box-shadow: 4px 4px 4px -4px grey;
+  color: white;
+  background-image: linear-gradient(170deg, #2acad0, dodgerblue);
+  box-shadow: 2px 1px 4px -1px grey;
 }
 
 .btn-available:focus {
   background-color: turquoise;
-  background-image: linear-gradient(70deg,turquoise,30%, #2acad0, turquoise);
+  background-image: linear-gradient(170deg, #2acad0, dodgerblue);
   border: 0px solid turquoise;
+  color: white;
+  box-shadow: 2px 1px 4px -1px grey;
 }
 
 .btn-primary:active {
-  background-color: turquoise;
-  background-image: linear-gradient(70deg,turquoise,30%, #2acad0, turquoise);
+  background-image: linear-gradient(170deg, #2acad0, dodgerblue);
   border: 0px solid turquoise;
+  box-shadow: 2px 1px 4px -1px grey;
 }
 </style>

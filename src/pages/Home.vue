@@ -210,7 +210,7 @@
             <div class="col-xl-6 top-margin">
                 
                 <div class="card play-card">
-                    <div class="card-block card-title-header">
+                    <div class="card-block card-title-header padding-bottom-5">
             <span v-if="canEdit()" class="float-right">
               <button class="fa fa-times red-ex" v-if="editPlayerMode"
                       v-on:click="cancelEditPlayersPositions()"></button>
@@ -1528,7 +1528,7 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
         position: relative;
         color: #e5e5e5;
         font-size: x-large;
-        border: 2px solid #e5e5e5;
+        border: 1px solid lightgrey;
         border-radius: 50%;
         background-color: transparent;
         padding: 7px;
@@ -1538,7 +1538,7 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
     }
 
     .reminder-button:active {
-        border: 2px solid grey;
+        border: 1px solid grey;
         color: grey; 
     }
 
@@ -1962,8 +1962,8 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
     .btn-available:active,
     .btn-available.active,
     .open .dropdown-toggle.btn-available {
-        background-color: #2acad0;
-        border: 2px solid #2acad0;
+        /* background-color: #2acad0;
+        border: 2px solid #2acad0; */
         cursor: pointer;
         -webkit-box-shadow: 2px 2px -2px 2px #50575e;
         border-radius: 20px;
@@ -2025,9 +2025,9 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
     }
 
     .btn-edit {
-        color: #50575e;
+        color: slategrey;
         background-color: white;
-        border: 2px solid #e5e5e5;
+        border: 1px solid lightgrey;
         border-radius: 20px;
     }
 
@@ -2038,15 +2038,15 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
     } */
 
     .btn-edit:active {
-        color: #50575e;
+        color: slategrey;
         background-color: #e5e5e5;
-        border: 2px solid #e5e5e5;
+        border: 1px solid #e5e5e5;
     }
 
     .btn-edit:focus {
-        color: #50575e;
+        color: slategrey;
         background-color: white;
-        border: 2px solid #e5e5e5;
+        border: 1px solid #e5e5e5;
         box-shadow: none;
     }
 
@@ -2262,7 +2262,7 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
 
     .fa-check {
         color: #e5e5e5;
-        border: 1.5px #e5e5e5 solid;
+        border: 1px lightgray solid;
         border-radius: 50%;
         position: inherit;
         background-color: transparent;
@@ -2281,7 +2281,7 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
 
     .fa-trash {
         color: #e5e5e5;
-        border: 1.5px #e5e5e5 solid;
+        border: 1px lightgrey solid;
         border-radius: 50%;
         background-color: transparent;
         font-size: 20px;
@@ -2292,12 +2292,12 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
 
     .fa-check:hover {
         color: darkgray;
-        border: 1.5px darkgray solid;
+        border: 1px lightgray solid;
     }
 
     .fa-trash:hover {
         color: darkgray;
-        border: 1.5px darkgrey solid;
+        border: 1px lightgrey solid;
         border-radius: 50%;
         background-color: transparent;
         font-size: 20px;
@@ -2308,7 +2308,7 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
 
     .fa-plus {
         color: #e5e5e5;
-        border: 1.5px #e5e5e5 solid;
+        border: 1px lightgray solid;
         border-radius: 50%;
         background-color: transparent;
         font-size: 20px;
@@ -2461,8 +2461,8 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
     }
 
     .btn-teams-active {
-
-        background-image: linear-gradient(45deg, #2acad0, dodgerblue);
+        box-shadow: 2px 1px 4px -1px grey;
+        background-image: linear-gradient(285deg, #2acad0, dodgerblue);
         color: white;
         min-height: 36px;
     }

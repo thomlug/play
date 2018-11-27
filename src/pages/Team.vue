@@ -728,19 +728,19 @@ h6 {
 .btn-edit {
   color: #50575e;
   background-color: white;
-  border: 2px solid #e5e5e5;
+  border: 1px solid #e5e5e5;
 }
 
 .btn-edit:active {
   color: #50575e;
   background-color: #e5e5e5;
-  border: 2px solid #e5e5e5;
+  border: 1px solid #e5e5e5;
 }
 
 .btn-edit:focus {
   color: #50575e;
   background-color: white;
-  border: 2px solid #e5e5e5;
+  border: 1px solid #e5e5e5;
   box-shadow: none;
 }
 
