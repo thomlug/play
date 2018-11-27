@@ -3,7 +3,7 @@
         <div class="col-md-4 col-sm-4 col-xs-12"></div>
         <div class="col-md-4 col-sm-4 col-xs-12">
             <play-form>
-                <h2 class="wider azure" slot="page-header">Welcome to Play {{ this.user ? user.uid : ''}}</h2>
+                <h2 class="wider azure" slot="page-header">Welcome to <b>Play</b>App {{ this.user ? user.uid : ''}}</h2>
                 <div id="firebaseui-auth-container">
                   <p class="no-account" slot="additional-info">Continue with existing account? </p>                 
                     <!-- <h5>Continue with</h5>                     -->
