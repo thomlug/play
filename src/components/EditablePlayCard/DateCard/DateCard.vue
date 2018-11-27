@@ -101,7 +101,7 @@ export default {
       get() {
         return moment(this.fixture.date).isValid()
           ?  moment(moment.utc(this.fixture.date).toDate()).local().format().split("T")[0] //Split the ISO string to date and time and take the first argument which is the date in yyyy-MM-dd format
-          : "Manager to confirm time and date";
+          : "GAME TIME TO BE CONFIRMED";
       },
 
       set(newDay) {
@@ -130,7 +130,7 @@ export default {
     formattedDay() {
       return !_.isUndefined(this.fixture.date) && moment(this.fixture.date).isValid()
           ?  moment(moment.utc(this.fixture.date).toDate()).local().format("dddd MMMM DD YYYY")
-          : "Manager to confirm time and date";
+          : "GAME TIME TO BE CONFIRMED";
     }
   },
 
@@ -164,8 +164,10 @@ export default {
       }
     },
     setGameActive() {
+      if (confirm("Great games back on! Click the edit button if you want to change the time and date of the game")){
       this.currentFixture.cancelled = false;
       this.$emit("fixture-edited", this.currentFixture);
+      }
     },
     setGameComplete() {
       if (confirm("Selecting 'Done' will show your next upcoming fixture on the dashboard and reset player availabilities. Continue?")) {
@@ -221,14 +223,36 @@ export default {
 
 .btn-tbc {
   border-radius: 20px;
-  background: #abadaf;
-  color: white;
-  -webkit-box-shadow: 2px 2px 2px -2px #50575e;
+  background-color: white;
+  color: slategrey;
+  border: 1px solid lightgrey;
+  padding: 8px 24px;
+  margin: 2px;
+  /* -webkit-box-shadow: 2px 2px 2px -2px #50575e; */
 }
 
 .btn-tbc:hover {
-  background-color: #c3c5c7;
+  background-image: linear-gradient(170deg, t#2acad0, dodgerblue);
+  border: 0px solid #2acad0;
+  color: white;
   cursor: pointer;
+  box-shadow: 2px 1px 4px -1px grey;
+}
+
+.btn-tbc:active {
+  background-image: linear-gradient(170deg, #2acad0, dodgerblue);
+  border: 0px solid 2acad0;
+  color: white;
+  cursor: pointer;
+  box-shadow: 2px 1px 4px -1px grey;
+}
+
+.btn-tbc:focus {
+  background-image: linear-gradient(170deg, #2acad0, dodgerblue);
+  border: 0px solid 2acad0;
+  color: white;
+  cursor: pointer;
+  box-shadow: 2px 1px 4px -1px grey;
 }
 
 /* .btn {
@@ -240,8 +264,8 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: space-between;
-  margin-left: -30px;
+  justify-content: center;
+  /* margin-left: -30px; */
   /* padding-top: 10px; */
   /* flex-wrap: wrap; */
 }

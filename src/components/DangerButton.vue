@@ -17,27 +17,35 @@ export default {
 
 <style scoped>
 .btn-danger {
-  background-color: indianred;
-  border: 0px solid indianred !important;
+  background-color: white;
+  border: 1px solid lightgrey;
   cursor: pointer;
+  color: slategrey;
   border-radius: 20px;
-  -webkit-box-shadow: 2px 2px 2px -2px #50575e;
+  /* -webkit-box-shadow: 2px 2px 2px -2px #50575e; */
   margin: 2px;
+  padding: 8px 24px;
 }
 
 .btn-danger:hover {
   background-color: #cf3e39;
-  border: 0px solid #cf3e39;
-  box-shadow: 4px 4px 4px -4px grey;
+  border: 0px solid indianred;
+  background-image: linear-gradient(380deg,  indianred, 75%, darkviolet);
+  color: white;
+  /* box-shadow: 4px 4px 4px -4px grey; */
 }
 
 .btn-danger:focus {
-  background-color: #cf3e39;
-  border: 0px solid #cf3e39;
+  background-image: linear-gradient(380deg,  indianred, 75%, darkviolet);
+  border: 0px solid indianred;
+  color: white;
+  box-shadow: 2px 1px 4px -1px grey;
 }
 
 .btn-danger:active {
-  background-color: #cf3e39;
-  border: 0px solid #cf3e39;
+  background-image: linear-gradient(380deg,  indianred, 75%, darkviolet);
+  border: 0px solid indianred;
+  color: white;
+  box-shadow: 2px 1px 4px -1px grey;
 }
 </style>
