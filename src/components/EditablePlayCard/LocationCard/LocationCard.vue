@@ -4,6 +4,7 @@
         <div slot="main-content">    
             
             <h6 v-if="!this.editable && (ground != null && ground != '')">
+                <div class="wider">
                 <div class="fa fa-map-marker">
                     <a :href="'https://www.google.com/maps/search/?api=1&query=' + this.ground" target="_blank" rel="noopener noreferrer">
                         {{this.ground}}
@@ -11,6 +12,7 @@
                 </div>
                 <div>
                     <small>{{groundNotes}}</small>
+                </div>
                 </div>
             </h6>
             <h6 v-else-if="!this.editable">
@@ -137,5 +139,9 @@ a {
 .fa.fa-map-marker::before {
     font-size: 25px;
     vertical-align: bottom;
+}
+
+.wider{
+    margin: auto -25px;
 }
 </style>

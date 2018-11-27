@@ -138,6 +138,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 5px;
 }
 .play-photo {
   width: 96px;

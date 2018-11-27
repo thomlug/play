@@ -1502,7 +1502,7 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
         border: 1px solid lightgrey;
         border-radius: 50%;
         background-color: transparent;
-        padding: 7px;
+        padding: 8px;
         cursor: pointer;       
         top: -28px;
         margin-left: 5px;
@@ -2376,13 +2376,13 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
     }
 
     .manage-players-button-1 {
-        margin-top: -75px;
+        margin-top: -72px;
         cursor: pointer;
         float: right;
     }
 
     .manage-players-button {
-        margin-top: -75px;
+        margin-top: -72px;
         cursor: pointer;
         float: right;
         position: relative;
@@ -2390,7 +2390,7 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
     }
 
     .manage-players-button:hover {
-        margin-top: -75px;
+        margin-top: -72px;
         cursor: pointer;
         float: right;
         position: relative;
@@ -2506,9 +2506,9 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
     .fa-info {
         cursor: pointer;
         color: #e5e5e5;
-        border: 2px solid #e5e5e5;
+        border: 1px solid lightgrey;
         border-radius: 50%;
-        padding: 3px 6.5px 2px 6.5px;
+        padding: 3px 7px 2px 6.5px;
         font-size: small;
         font-weight: 300;
         margin: -5px -5px -5px 2px;

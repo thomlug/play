@@ -14,7 +14,7 @@
                 </div>
             <div class="chat-pane">
                 <div class="chat-pane-banner text-center">
-                    <h1>{{getCurrentTeam().name}}</h1>
+                    <div class="chat-title">{{getCurrentTeam().name}}</div>
                 </div>
 
                 <div class="chat-pane-body" id="chat-pane">
@@ -339,6 +339,13 @@
         text-align: center;
     }
 
+    .chat-title{
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        font-size: larger;
+        font-weight: 600;
+    }
     h1 {
         text-transform: uppercase;
         margin-bottom: 0.25rem;
