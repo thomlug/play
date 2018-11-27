@@ -852,7 +852,7 @@
             },
 
             sendReminder() {
-if (confirm("Selecting this will send an email reminder to those who have not yet responded with their availability to this game. Continue?")){ 
+if (confirm("Selecting this will send an email reminder to only those who have not yet responded with their availability to this game. Continue?")){ 
                 let currentTeam = this.getCurrentTeam();
                 let currentFixture = this.getNextFixture();
                 let currentPlayer = this.getCurrentPlayer()[".key"];

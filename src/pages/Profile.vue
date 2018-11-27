@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div class="card-block play-card card-title-header-profile">
-                <h4 class="card-title profile-title">Update your status </h4>
+                <h4 class="card-title profile-title">Availability status </h4>
                 </div>
                 <div v-if="canEditProfile() && !editable">
                     <div class="profile-block">
@@ -142,7 +142,7 @@
                 </div>
                 <div v-else-if="!editable">
                     <div class="profile-block">
-                        <h4 class="card-title">Availability </h4>
+                        <!-- <h4 class="card-title">Availability </h4> -->
                         <div v-for="team in player.teams" :key="team.teamKey" class="availability-container row">
                             <div class="col-md-12">
                                 <div class="not-bold">{{getTeam(team.teamKey).name}}</div>
