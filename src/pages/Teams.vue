@@ -41,16 +41,22 @@
                     <h6 class="text-center">{{player.last_name}}</h6>
                 </div>
                 <div class="team-member-info">
-                    <div>
-                    <button class="btn leave-team-button" v-if="player.userUid === getCurrentPlayer().userUid"
-                            @click="playerLeaveAction(player, getCurrentTeam())">Leave Team
-                    </button>
-                    <button class="btn leave-team-button" v-else-if="canEdit()"
-                            @click="playerRemovedAction(player, getCurrentTeam())">Remove player
-                    </button>
-                    </div>
                     <h6 class="blacktext">Next Game Availability: <h6
                             :class="'player-' + player.teamAvailability">{{player.teamAvailability}}</h6></h6>
+                    <div class="button-container">
+                        <available-button v-if="canEdit()" :on-click="() => setPlayerAvailability(player, 'available')"
+                            class="btn active">Available
+                        </available-button>
+                        <danger-button v-if="canEdit()" :on-click="() => setPlayerAvailability(player, 'unavailable')"
+                            class="btn">Unavailable
+                        </danger-button>
+                        <button class="btn leave-team-button" v-if="player.userUid === getCurrentPlayer().userUid"
+                                @click="playerLeaveAction(player, getCurrentTeam())">Leave Team
+                        </button>
+                        <button class="btn leave-team-button" v-else-if="canEdit()"
+                                @click="playerRemovedAction(player, getCurrentTeam())">Remove player
+                        </button>
+                    </div>                    
                 </div>
             </div>
         </div>
@@ -63,11 +69,15 @@
     import MainLayout from '../layouts/Main.vue';
     import {db} from '../firebase';
     import Avatar from '../components/Avatar.vue';
+    import AvailableButton from '../components/AvailableButton.vue';
+    import DangerButton from '../components/DangerButton.vue';
 
     export default {
         components: {
             MainLayout,
-            Avatar
+            Avatar,
+            AvailableButton,
+            DangerButton
         },
         filters: {
             firstCharacter(value) {
@@ -271,7 +281,24 @@
                             .set(playerTeamsArray[0]);
                     }
                 }
-            }
+            },
+
+            setPlayerAvailability(player, availability) {
+                var teamKey = this.getCurrentTeamKey();
+
+                this.$firebaseRefs.players
+                    .child(player[".key"])
+                    .child("teams")
+                    .child(teamKey)
+                    .child("availabilityUpdated")
+                    .set(this.moment().toString());
+                this.$firebaseRefs.players
+                    .child(player[".key"])
+                    .child("teams")
+                    .child(teamKey)
+                    .child("availability")
+                    .set(availability);
+            },
         }
     }
 </script>
@@ -373,7 +400,7 @@
         width: auto;
         display: flex;
         flex-flow: row;
-        justify-content: center;
+        justify-content: space-around;
     }
 
     .team-member-info > span {
@@ -400,10 +427,14 @@
         color: grey;
     }
 
+    .button-container {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
     .leave-team-button {
-        position: absolute;
-        right: 1rem;
-        top: 1.5rem;
         max-width: 150px;
         border-radius:40px;
     }
@@ -418,10 +449,6 @@
         margin-right: auto;
         margin-top: 10px;
         display: block;
-    }
-
-    .leave-team-button:hover {
-        cursor: pointer;
     }
 
     .player-initials {
@@ -463,11 +490,17 @@
 
     @media (max-width: 768px) {
         .team-member-info {
-            margin: 107px 15px 0 0;
+            margin: 15px 15px 0 0;
             width: auto;
             display: flex;
             flex-flow: column;
             text-align: right;
+        }
+
+        .button-container {
+            display: flex;
+            flex-flow: column;
+            justify-content: space-around;
         }
 
         .team-member-photo {
