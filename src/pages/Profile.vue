@@ -12,7 +12,7 @@
                     Complete profile below, then click blue circle
                 </div>
                 <div class="player-profile-banner text-center morepad">
-                    <h1>Player Profile</h1>
+                    <div class="profile-title">Player Profile</div>
                 </div>
                 <div class="profile-block">
                     <div class="player-profile-header-other">
@@ -363,7 +363,13 @@
         text-align: center;
         padding: 5px;
     }
-
+    .profile-title{
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        font-size: larger;
+        font-weight: 600;
+    }
     .row {
         background-color: transparent;
     }
