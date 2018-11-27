@@ -164,8 +164,10 @@ export default {
       }
     },
     setGameActive() {
+      if (confirm("Great games back on! Click the edit button if you want to change the time and date of the game")){
       this.currentFixture.cancelled = false;
       this.$emit("fixture-edited", this.currentFixture);
+      }
     },
     setGameComplete() {
       if (confirm("Selecting 'Done' will show your next upcoming fixture on the dashboard and reset player availabilities. Continue?")) {
