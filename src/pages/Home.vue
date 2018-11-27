@@ -33,12 +33,15 @@
                 </div>
 
                     <div class="card-block play-card card-title-header">
-                        <h4 class="fixture-title">Next Fixture</h4> 
 
                         <button class="float-right fa fa-bell reminder-button" @click="sendReminder()" v-if="canEdit()"></button>
-
                         <button class="fa fa-plus home-add-fixture-button float-right" @click="showNewFixtureModal()"
                                 v-if="canEdit()"></button>
+
+                        <h4 class="fixture-title">Next Fixture</h4> 
+
+
+
 
                         <modal height=auto width=90% name="add-fixture" :clickToClose="false" class="vertical-scroll">
 
@@ -1487,7 +1490,7 @@ if (confirm("Selecting this will send an email reminder to only those who have n
 
     .home-add-fixture-button, .home-add-fixture-button:hover {
         position: relative;
-        top: -28px;
+        top: -13px;
     }
     
 
@@ -1504,7 +1507,7 @@ if (confirm("Selecting this will send an email reminder to only those who have n
         background-color: transparent;
         padding: 8px;
         cursor: pointer;       
-        top: -28px;
+        top: -13px;
         margin-left: 5px;
     }
 

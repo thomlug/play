@@ -88,7 +88,7 @@
         <div v-else-if="!playerBelongsToATeam()">
             <div class="funcard">
                 <br>
-                <h2>Welcome to Play! <br><br>
+                <h2>Welcome to <b>Play</b>App! <br><br>
                     <img src="https://firebasestorage.googleapis.com/v0/b/play-14e3e.appspot.com/o/logo-noBackground.png?alt=media&token=02e86de0-7d77-487d-979c-1d319745a9d7"
                          class="logofun">
                 </h2><br><br>
