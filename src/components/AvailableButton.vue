@@ -18,7 +18,7 @@ export default {
 <style scoped>
 .btn-available {
   background-color: white;
-  border: 1px solid lightgrey !important;
+  border: 1px solid lightgrey;
   color: slategrey;
   border-radius: 20px;
   /* -webkit-box-shadow: 2px 2px 2px -2px #50575e; */

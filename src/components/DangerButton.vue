@@ -18,7 +18,7 @@ export default {
 <style scoped>
 .btn-danger {
   background-color: white;
-  border: 1px solid lightgrey !important;
+  border: 1px solid lightgrey;
   cursor: pointer;
   color: slategrey;
   border-radius: 20px;

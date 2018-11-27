@@ -197,7 +197,10 @@
 
                                 <div class="status-container">
                                     <available-button :on-click="() => this.setCurrentPlayerAvailability('available')"
-                                                    class="btn active">Available
+                                                    class="btn-active">Available
+                                                    
+                                                   
+                                                    
                                     </available-button>
                                     <danger-button :on-click="() => this.setCurrentPlayerAvailability('unavailable')"
                                                 class="btn">Unavailable
@@ -210,7 +213,7 @@
             <div class="col-xl-6 top-margin">
                 
                 <div class="card play-card">
-                    <div class="card-block card-title-header padding-bottom-5">
+                    <div class="card-block card-title-header">
             <span v-if="canEdit()" class="float-right">
               <button class="fa fa-times red-ex" v-if="editPlayerMode"
                       v-on:click="cancelEditPlayersPositions()"></button>
@@ -2029,6 +2032,7 @@ if (confirm("Selecting this will send an email reminder to those who have not ye
         background-color: white;
         border: 1px solid lightgrey;
         border-radius: 20px;
+        margin-bottom: -10px;
     }
 
     /* .btn-edit:hover{
