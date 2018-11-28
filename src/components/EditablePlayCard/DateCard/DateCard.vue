@@ -232,8 +232,8 @@ export default {
 }
 
 .btn-tbc:hover {
-  background-image: linear-gradient(170deg, t#2acad0, dodgerblue);
-  border: 0px solid #2acad0;
+  background-image: linear-gradient(170deg, #2acad0, dodgerblue);
+  border: 1px solid lightgrey;
   color: white;
   cursor: pointer;
   box-shadow: 2px 1px 4px -1px grey;
@@ -241,7 +241,7 @@ export default {
 
 .btn-tbc:active {
   background-image: linear-gradient(170deg, #2acad0, dodgerblue);
-  border: 0px solid 2acad0;
+  border: 1px solid lightgrey;
   color: white;
   cursor: pointer;
   box-shadow: 2px 1px 4px -1px grey;
@@ -249,7 +249,7 @@ export default {
 
 .btn-tbc:focus {
   background-image: linear-gradient(170deg, #2acad0, dodgerblue);
-  border: 0px solid 2acad0;
+  border: 1px solid lightgray;
   color: white;
   cursor: pointer;
   box-shadow: 2px 1px 4px -1px grey;

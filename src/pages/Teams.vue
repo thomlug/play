@@ -41,7 +41,7 @@
                     <h6 class="text-center">{{player.last_name}}</h6>
                 </div>
                 <div class="team-member-info">
-                    <h6 class="blacktext">Next Game Availability: <h6
+                    <h6 class="blacktext">Set Next Game Availability: <h6
                             :class="'player-' + player.teamAvailability">{{player.teamAvailability}}</h6></h6>
                     <div class="button-container">
                         <available-button v-if="canEdit()" :on-click="() => setPlayerAvailability(player, 'available')"
@@ -335,6 +335,7 @@
 
     .blacktext{
         color: #50575e;
+        text-align: center;
     }
 
     .lesspad {
@@ -437,6 +438,7 @@
     .leave-team-button {
         max-width: 150px;
         border-radius:40px;
+        background-color: #e5e5e5;
     }
 
     .leave-team-button:hover {
@@ -449,6 +451,7 @@
         margin-right: auto;
         margin-top: 10px;
         display: block;
+        border-radius: 20px;
     }
 
     .player-initials {
@@ -501,6 +504,7 @@
             display: flex;
             flex-flow: column;
             justify-content: space-around;
+            margin-bottom: 15px;
         }
 
         .team-member-photo {

@@ -377,8 +377,9 @@
     }
 
     .nav-item{
-        padding: 8px 0px 8px 0px;
+        padding: 0px 0px 8px 0px;
         text-align: center;
+        color: rgba(255,255,255,.5);
     }
     
     .navbar {
@@ -404,7 +405,7 @@
         cursor: pointer;
         font-size: 1rem;
         font-weight: 300;
-        padding:16px;
+        padding:0px;
     }
 
     .logout-item:hover {
@@ -614,7 +615,7 @@ team-item{
 .policy{
     color: rgba(255,255,255,.5);
     text-align: center;
-    padding: 8px 0px 8px 0px;
+    padding: 2px 0px 8px 0px;
 }
 /* .navbar-inverse .navbar-toggler{
     display: none;

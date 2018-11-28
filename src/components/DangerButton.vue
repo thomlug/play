@@ -29,7 +29,7 @@ export default {
 
 .btn-danger:hover {
   background-color: #cf3e39;
-  border: 0px solid indianred;
+  border: 1px solid lightgrey;
   background-image: linear-gradient(380deg,  indianred, 75%, darkviolet);
   color: white;
   /* box-shadow: 4px 4px 4px -4px grey; */
@@ -37,14 +37,14 @@ export default {
 
 .btn-danger:focus {
   background-image: linear-gradient(380deg,  indianred, 75%, darkviolet);
-  border: 0px solid indianred;
+  border: 1px solid lightgrey;
   color: white;
   box-shadow: 2px 1px 4px -1px grey;
 }
 
 .btn-danger:active {
   background-image: linear-gradient(380deg,  indianred, 75%, darkviolet);
-  border: 0px solid indianred;
+  border: 1px solid lightgrey;
   color: white;
   box-shadow: 2px 1px 4px -1px grey;
 }

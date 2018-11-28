@@ -30,7 +30,7 @@ export default {
 .btn-done:hover {
   /* box-shadow: 4px 4px 4px -4px grey; */
   
-  border: 0px solid turquoise;
+  border: 1px solid lightgrey;
   color: white;
   background-image: linear-gradient(285deg, #2acad0, dodgerblue);
   cursor: pointer;
@@ -39,7 +39,7 @@ export default {
 
 .btn-done:focus {
   /* background-color: dodgerblue; */
-  border: 0px solid turquoise;
+  border: 1px solid lightgrey;
   color: white;
   background-image: linear-gradient(285deg, #2acad0, dodgerblue);
   cursor: pointer;
@@ -48,7 +48,7 @@ export default {
 
 .btn-done:active {
   background-image: linear-gradient(285deg, #2acad0, dodgerblue);
-  border: 0px solid turquoise;
+  border: 1px solid lightgrey;
     color: white;
 }
 </style>

@@ -28,7 +28,7 @@ export default {
 
 .btn-available:hover {
   cursor: pointer;
-  border: 0px solid turquoise;
+  border: 1px solid lightgrey;
   color: white;
   background-image: linear-gradient(170deg, #2acad0, dodgerblue);
   box-shadow: 2px 1px 4px -1px grey;
@@ -37,14 +37,14 @@ export default {
 .btn-available:focus {
   background-color: turquoise;
   background-image: linear-gradient(170deg, #2acad0, dodgerblue);
-  border: 0px solid turquoise;
+  border: 1px solid lightgrey;
   color: white;
   box-shadow: 2px 1px 4px -1px grey;
 }
 
 .btn-primary:active {
   background-image: linear-gradient(170deg, #2acad0, dodgerblue);
-  border: 0px solid turquoise;
+  border: 1px solid lightgrey;
   box-shadow: 2px 1px 4px -1px grey;
 }
 </style>
