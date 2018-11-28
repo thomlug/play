@@ -45,7 +45,7 @@
                             :class="'player-' + player.teamAvailability">{{player.teamAvailability}}</h6></h6>
                     <div class="button-container">
                         <!-- <div class="availability-changer"> -->
-                            <h6 class="blacktext">Set Availability</h6>
+                            <!-- <h6 class="blacktext">Set Availability</h6> -->
                         <available-button v-if="canEdit()" :on-click="() => setPlayerAvailability(player, 'available')"
                             class="btn active">Available
                         </available-button>
