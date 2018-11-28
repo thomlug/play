@@ -44,12 +44,15 @@
                     <h6 class="blacktext">Set Next Game Availability: <h6
                             :class="'player-' + player.teamAvailability">{{player.teamAvailability}}</h6></h6>
                     <div class="button-container">
+                        <!-- <div class="availability-changer"> -->
+                            <h6 class="blacktext">Set Availability</h6>
                         <available-button v-if="canEdit()" :on-click="() => setPlayerAvailability(player, 'available')"
                             class="btn active">Available
                         </available-button>
                         <danger-button v-if="canEdit()" :on-click="() => setPlayerAvailability(player, 'unavailable')"
                             class="btn">Unavailable
                         </danger-button>
+                        <!-- </div> -->
                         <button class="btn leave-team-button" v-if="player.userUid === getCurrentPlayer().userUid"
                                 @click="playerLeaveAction(player, getCurrentTeam())">Leave Team
                         </button>
@@ -429,10 +432,13 @@
     }
 
     .button-container {
-        display: flex;
+        /* display: flex;
         flex-flow: row;
-        justify-content: space-evenly;
+        justify-content: space-evenly; */
         align-items: center;
+        display: grid;
+        flex-flow: unset;
+        margin-bottom: 20px;
     }
 
     .leave-team-button {
@@ -474,7 +480,9 @@
     .fix-title {
         text-align: center;
     }
-
+    .availability-changer{
+        display: inline;
+    }
     h1 {
         text-transform: uppercase;
         margin-bottom: 0.25rem;
@@ -501,9 +509,13 @@
         }
 
         .button-container {
+            align-items: center;
             display: flex;
             flex-flow: column;
+<<<<<<< HEAD
             justify-content: space-around;
+=======
+>>>>>>> d719b7c0f5f8f554d693836b0d14864f54c159b6
             margin-bottom: 15px;
         }
 
