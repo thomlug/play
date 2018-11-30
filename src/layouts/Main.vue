@@ -323,6 +323,15 @@
         .centre-margin {
             margin-left: 40%
         }
+        .play-logo {
+        max-height: 75px;
+        z-index: 1;
+        margin: 10px -10px -10px 0;
+        }
+        .nav-item{
+        min-width: 80px;
+        margin: 0 2px;
+        }
     }
 
     .darktext {
@@ -345,11 +354,6 @@
         width: 100px;
         align-content: center;
         /* margin-left: 40%; */
-    }
-
-    .play-logo {
-        max-height: 44px;
-        z-index: 1;
     }
 
     .body {
@@ -377,7 +381,7 @@
     }
 
     .nav-item{
-        padding: 0px 0px 8px 0px;
+        padding: 0px 0px 0px 0px;
         text-align: center;
         color: rgba(255,255,255,.5);
     }
@@ -530,6 +534,8 @@
 .fa-quote-left{
     display: none;
 }   
+
+
 /* .nav-cont{
     margin-bottom: -15px;
 }   */
@@ -542,6 +548,10 @@
 .body{
     padding-top: 1px;
 }
+.play-logo {
+    max-height: 44px;
+    z-index: 1;
+    }
 .navbar {
     background-color: #333;
     overflow: hidden;
@@ -611,7 +621,9 @@ team-item{
     text-align: center;
     color: whitesmoke !important;
 }
-
+.navbar-brand{
+    display: table-cell !important;
+}
 .policy{
     color: rgba(255,255,255,.5);
     text-align: center;
