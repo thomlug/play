@@ -215,7 +215,7 @@
             </div>
             <div class="col-xl-6 top-margin">
                 
-                <div class="card play-card">
+                <div class="card play-card starting-top-margin">
                     <div class="card-block card-title-header">
             <span v-if="canEdit()" class="float-right">
               <button class="fa fa-times red-ex" v-if="editPlayerMode"
@@ -343,6 +343,12 @@
             <div class="col-xl-3">
                 <div class="card-block play-card card-title-header">
                         <span>
+                        <span v-if="canEdit()" class="float right">
+              <!-- <button class="fa fa-grip-horizontal manage-players-button"></button> -->
+              
+                          <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
+                          <button class="fa fa-trash manage-players-button-1" @click="showRemovePlayerModal()"></button>
+                        </span>
                             <h4 class="card-title">Subs
                                 <!-- <div class="grip-center">=</div> -->
                                 </h4>
@@ -352,12 +358,7 @@
                 <div class="card play-subs-card">
                     <div class="card-block">
 
-                        <span v-if="canEdit()" class="float right">
-              <!-- <button class="fa fa-grip-horizontal manage-players-button"></button> -->
-              
-                          <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
-                          <button class="fa fa-trash manage-players-button-1" @click="showRemovePlayerModal()"></button>
-                        </span>
+
                         <modal height=auto width=350px name="add-player" :clickToClose="false" class="vertical-scroll">
                             <div class="input-header">
                                 <button class="fa fa-times mt-1" @click="hideNewPlayerModal()"></button>
@@ -1511,6 +1512,11 @@ if (confirm("Selecting this will send an email reminder to only those who have n
         margin-left: 5px;
     }
 
+    .reminder-button:hover {
+        border: 1px solid grey;
+        color: grey; 
+    }
+
     .reminder-button:active {
         border: 1px solid grey;
         color: grey; 
@@ -1658,7 +1664,7 @@ if (confirm("Selecting this will send an email reminder to only those who have n
     }
 
     .info-card-block {
-        max-height: 35rem;
+        max-height: 26rem;
         overflow-y: scroll;
         padding-bottom: 10px;
         margin-top: 10px;
@@ -1808,7 +1814,7 @@ if (confirm("Selecting this will send an email reminder to only those who have n
             /* box-shadow: 0 1px 3px #ddd, 0 1px 2px #ddd; */
             text-transform: uppercase;
             color: #50575e;
-            height: 10rem;
+            height: 11rem;
             border-color: transparent;
             border-radius: 0 0 10px 10px;
         }
@@ -2379,25 +2385,25 @@ if (confirm("Selecting this will send an email reminder to only those who have n
     }
 
     .manage-players-button-1 {
-        margin-top: -72px;
+        margin-top: -13px;
         cursor: pointer;
         float: right;
     }
 
     .manage-players-button {
-        margin-top: -72px;
+        margin-top: -13px;
         cursor: pointer;
         float: right;
         position: relative;
-        left: -18%;
+        /* left: -18%; */
     }
 
     .manage-players-button:hover {
-        margin-top: -72px;
+        margin-top: -13px;
         cursor: pointer;
         float: right;
         position: relative;
-        left: -18%;
+        /* left: -18%; */
     }
     .fa-times {
         color: lightgray;
@@ -2708,6 +2714,9 @@ if (confirm("Selecting this will send an email reminder to only those who have n
         .grip-center-bottom {
             font-size: 0px;
         }
+        .starting-top-margin{
+        margin-top: -10px;
+    }
     }
     /* .shift-right{
             margin: -20px 0px 0px 40px;
