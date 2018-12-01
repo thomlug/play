@@ -257,10 +257,6 @@
                  <div class="help-unknown"> </div>
                  Players' availability is unconfirmed
                  </span><br>
-                        <span>
-                 <div class="help-not-registered"> </div>
-                 Player is invited but not registered
-                 </span><br>
                     </div>
                 </modal>
 
@@ -2209,7 +2205,7 @@ if (confirm("Selecting this will send an email reminder to only those who have n
         font-family: "Roboto Condensed", sans-serif;
         margin: 10px 0px;
         background-color: whitesmoke;
-        padding-bottom: 6px;
+        /* padding-bottom: 6px; */
     }
 
     .form-control-edit {
@@ -2393,7 +2389,7 @@ if (confirm("Selecting this will send an email reminder to only those who have n
 
     .fa-plus:hover {
         color: darkgray;
-        border: 1.5px darkgray solid;
+        border: 1px darkgray solid;
         border-radius: 50%;
         background-color: transparent;
         font-size: 20px;
@@ -2775,8 +2771,9 @@ if (confirm("Selecting this will send an email reminder to only those who have n
     .my-team {
         text-align: center;
         border: 1px solid lightgrey;
-        padding: 7px;
+        padding: 12px;
         border-radius: 20px;
+        margin-top: 10px;
     }
 
     .alert-info{

@@ -139,6 +139,7 @@ export default {
   justify-content: center;
   align-items: center;
   padding-top: 5px;
+  padding-bottom: 5px;
 }
 .play-photo {
   width: 96px;
