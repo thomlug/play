@@ -349,9 +349,21 @@
                           <button class="fa fa-plus manage-players-button" @click="showNewPlayerModal()"></button>
                           <button class="fa fa-trash manage-players-button-1" @click="showRemovePlayerModal()"></button>
                         </span>
-                            <h4 class="card-title">Subs
+                            <h4 class="card-title">Subs<span class="fa fa-info clickable"
+                                                                     @click="showSubsInfoModal()"></span>
                                 <!-- <div class="grip-center">=</div> -->
                                 </h4>
+                                            <modal height=auto width=350px border-radius=40px name="subs-info">
+                    <div class="input-header">
+                        <button class="fa fa-times" @click="hideSubsInfoModal()"></button>
+                        <h6>Starting Lineup Help</h6>
+                    </div>
+                    <div class="leftpad">
+                        <div>
+                        Players shown in the subs and staring lineup will receive email notifications with game information and reminders. <br><br>Players and managers can remove themselves or their players from this list (see the 'myteams' page). They can also be easily added again.
+                        </div>
+                    </div>
+                </modal>
                         </span>
                 </div>    
 
@@ -1355,6 +1367,13 @@ if (confirm("Selecting this will send an email reminder to only those who have n
             hideLineupInfoModal() {
                 this.$modal.hide("lineup-info");
             },
+            showSubsInfoModal() {
+                this.$modal.show("subs-info");
+            },
+            hideSubsInfoModal() {
+                this.$modal.hide("subs-info");
+            },
+
             removePlayerFromTeam(playerKey) {
                 if (confirm("You will remove this player from the team, he will no longer receive email notifications for this team. You can add them again if desired. Continue?")) {
                 if (!this.canEdit()) {
