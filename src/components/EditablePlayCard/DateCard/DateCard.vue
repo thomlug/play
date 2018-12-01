@@ -37,7 +37,10 @@
             <h4  class="card-title top-padding">Game status</h4>
               <div class="status-container">
                 <div><button @click="this.setGameTBC" class="btn btn-grey btn-tbc">TBC</button></div>
-                <div><available-button :onClick="() => this.setGameActive()">On</available-button></div>
+                <div><available-button  :onClick="() => this.setGameActive()">On</available-button></div>
+
+<!-- <div><available-button :class="{'btn-teams-active': setGameActive()=== true }">On</available-button></div> -->
+                
                 <div><danger-button :onClick="() => this.setGameCancelled()">Off</danger-button></div>
                 <div><done-button :onClick="setGameComplete" type="button" class="btn ">Done</done-button></div>
               </div>

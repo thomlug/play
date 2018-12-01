@@ -310,6 +310,7 @@
         background-color: whitesmoke;
         border-color: whitesmoke;
         text-align: center;
+        padding: .75rem .75rem;
     }
 
     .form-group-add {
@@ -410,7 +411,7 @@
 
     .new-team {
         background-image: linear-gradient(45deg, turquoise, #2acad0, turquoise);
-        width: 100px;
+        width: 110px;
         margin: 5px 0 10px 37%;
         border-color: transparent;
     }
@@ -492,6 +493,7 @@
         cursor: pointer;
         padding: 10px 12px 9px 12px;
         margin-left: 5px;
+        background-color: white;
     }
 
     h2 {
@@ -520,8 +522,10 @@
     .my-team {
         text-align: center;
         border: 1px solid lightgrey;
-        padding: 7px;
-        border-radius: 20px;
+        padding: 12px;
+        border-radius: 25px;
+        margin-top: 10px;
+        color: #50575e;
     }
 
     .tabs-component {

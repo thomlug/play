@@ -37,14 +37,14 @@ export default {
   box-shadow: 2px 1px 4px -1px grey;
 }
 
-.btn-done:focus {
-  /* background-color: dodgerblue; */
+/* .btn-done:focus {
+
   border: 1px solid lightgrey;
   color: white;
   background-image: linear-gradient(285deg, #2acad0, dodgerblue);
   cursor: pointer;
   box-shadow: 2px 1px 4px -1px grey;
-}
+} */
 
 .btn-done:active {
   background-image: linear-gradient(285deg, #2acad0, dodgerblue);

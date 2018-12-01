@@ -32,7 +32,7 @@ export default {
   border: 1px solid lightgrey;
   background-image: linear-gradient(380deg,  indianred, 75%, darkviolet);
   color: white;
-  /* box-shadow: 4px 4px 4px -4px grey; */
+  box-shadow: 2px 1px 4px -1px grey;
 }
 
 .btn-danger:focus {
