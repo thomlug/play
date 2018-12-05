@@ -51,7 +51,7 @@ export default {
 
 .profile-header {
   margin: 0rem;
-  display: flex;
+  display: -webkit-flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
@@ -59,7 +59,7 @@ export default {
 }
 
 .profile-content {
-  display: flex;
+  display: -webkit-flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;

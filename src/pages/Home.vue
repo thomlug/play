@@ -1568,14 +1568,14 @@ if (confirm("Selecting this will send an email reminder to only those who have n
     }
 
     .centered-col {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        display: -webkit-flex;
+        -webkit-flex-direction: column;
+        -webkit-justify-content: center;
+        -webkit-align-items: center;
     }
 
     .fixture-container {
-        align-items: stretch;
+        -webkit-align-items: stretch;
     }
 
     .fixture-title {
@@ -1586,15 +1586,15 @@ if (confirm("Selecting this will send an email reminder to only those who have n
     }
 
     .fixture-content {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-around;
+        display: -webkit-flex;
+        -webkit-flex-direction: row;
+        -webkit-align-items: center;
+        -webkit-justify-content: space-around;
     }
 
     .vs-text {
         font-size: 1.25em;
-        justify-content: flex-start;
+        -webkit-justify-content: flex-start;
         margin-top: -2rem;
         /* margin-left: 2rem;
         margin-left: 2rem; */
@@ -1642,7 +1642,7 @@ if (confirm("Selecting this will send an email reminder to only those who have n
 
     .lineup-info {
         flex-flow: row;
-        justify-content: space-between;
+        -webkit-justify-content: space-between;
         width: 100%;
     }
 
@@ -1747,16 +1747,16 @@ if (confirm("Selecting this will send an email reminder to only those who have n
     }
 
     .status-container {
-        display: flex;
-        flex-direction: row;
-        align-items: stretch;
-        justify-content: center;
+        display: -webkit-flex;
+        -webkit-flex-direction: row;
+        -webkit-align-items: stretch;
+        -webkit-justify-content: center;
         padding-top: 10px;
     }
 
     .team-buttons-container {
         overflow-x: auto;
-        justify-content: left;
+        -webkit-justify-content: space-between;
     }
 
     /* .player-container a {
@@ -2099,7 +2099,7 @@ if (confirm("Selecting this will send an email reminder to only those who have n
 
     .scroller {
         position: absolute;
-        display: flex;
+        display: -webkit-flex;
         top: 1.5rem;
         left: 1rem;
         right: 1rem;
@@ -2611,7 +2611,7 @@ if (confirm("Selecting this will send an email reminder to only those who have n
         padding: 10px;
         background-color: currentColor;
         margin-bottom: -20px;
-        display: inline-flex;
+        display: -webkit-inline-flex;
     }
 
     .leftpad {

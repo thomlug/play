@@ -201,10 +201,10 @@ export default {
 } */
 
 .centered-column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  -webkit-justify-content: center;
+  -webkit-align-items: center;
 }
 
 .form-control {
@@ -264,13 +264,13 @@ export default {
 } */
 
 .status-container {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: center;
-  /* margin-left: -30px; */
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
+  -webkit-align-items: stretch;
+  -webkit-justify-content: center;
+  margin: 0px -100px;
   /* padding-top: 10px; */
-  /* flex-wrap: wrap; */
+  -webkit-flex-wrap: wrap;
 }
 
 .cancelled h2 {

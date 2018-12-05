@@ -81,7 +81,7 @@
 .chat li {
     padding: 0.5rem;
     overflow: hidden;
-    display: flex;
+    display: -webkit-flex;
 }
 .chat .avatar {
     float: left;
@@ -114,7 +114,7 @@
 }
 
 .chat .avatar h3 {
-    display: flex;
+    display: -webkit-flex;
     align-items: center;
     justify-content: center;
     margin-top: 10px;

@@ -223,14 +223,14 @@
 <style>
     .chat-pane {
         margin-top: 1.5vh;
-        display: flex;
+        display: -webkit-flex;
         flex-direction: column;
         box-shadow: 3px 3px 3px -3px rgba(128, 126, 128, 1);
         width: none;
     }
 
     .status-container {
-        display: flex;
+        display: -webkit-flex;
         flex-direction: row;
         align-items: stretch;
         justify-content: left;

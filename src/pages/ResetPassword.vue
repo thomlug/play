@@ -58,7 +58,7 @@ export default {
 
 <style scoped>
 .login-form {
-  display: flex;
+  display: -webkit-flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;

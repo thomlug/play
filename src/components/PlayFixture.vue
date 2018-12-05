@@ -134,7 +134,7 @@ export default {
 
 <style media="screen" scoped>
 .centered-col {
-  display: flex;
+  display: -webkit-flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -162,7 +162,7 @@ export default {
 } */
 
 .fixture-content {
-  display: flex;
+  display: -webkit-flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;

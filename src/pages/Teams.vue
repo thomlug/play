@@ -12,6 +12,8 @@
                             :class="{'btn-teams-active': getCurrentTeamKey() === team['.key'] }">
                         {{team.name}}
                     </button>
+
+
                 </div>
             </div>
         </div>
@@ -357,7 +359,7 @@
     }
 
     .status-container {
-        display: flex;
+        display: -webkit-flex;
         flex-direction: row;
         align-items: stretch;
         justify-content: center;
@@ -402,7 +404,7 @@
     .team-member-info {
         margin-top: 2rem;
         width: auto;
-        display: flex;
+        display: -webkit-flex;
         flex-flow: row;
         justify-content: space-around;
     }
@@ -469,7 +471,7 @@
     }
 
     .heading {
-        display: flex;
+        display: -webkit-flex;
         flex-flow: row;
         align-items: center;
         justify-content: center;
@@ -503,14 +505,14 @@
         .team-member-info {
             margin: 15px 15px 0 0;
             width: auto;
-            display: flex;
+            display: -webkit-flex;
             flex-flow: column;
             text-align: right;
         }
 
         .button-container {
             align-items: center;
-            display: flex;
+            display: -webkit-flex;
             flex-flow: column;
 <<<<<<< HEAD
             justify-content: space-around;

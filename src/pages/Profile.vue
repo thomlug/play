@@ -414,7 +414,7 @@
     }
 
     div > .profile-photo {
-        display: flex;
+        display: -webkit-flex;
         flex-direction: column;
         align-content: center;
         justify-content: center;
@@ -456,7 +456,7 @@
 
     .player-profile-box {
         margin-top: 1vh;
-        display: flex;
+        display: -webkit-flex;
         flex-direction: column;
         box-shadow: 0px 1px 6px 0px #eee;
     }
@@ -471,7 +471,7 @@
 
     .player-profile-header {
         margin: 0rem;
-        display: flex;
+        display: -webkit-flex;
         flex-direction: row;
         justify-content: flex-end;
         align-items: center;
@@ -483,7 +483,7 @@
     }
 
     .player-profile-content {
-        display: flex;
+        display: -webkit-flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;

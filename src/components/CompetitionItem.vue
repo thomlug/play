@@ -130,7 +130,7 @@ export default {
 }
 
 .aligner {
-  display: flex;
+  display: -webkit-flex;
   align-items: center;
   justify-content: center;
   /* padding: 5px; */

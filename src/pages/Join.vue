@@ -119,7 +119,7 @@ export default {
     }
 
     #signup-page{
-        display: flex;
+        display: -webkit-flex;
         flex-direction: column;
         height: 100vh;
         margin-bottom: 0;
@@ -127,7 +127,7 @@ export default {
     }
 
     #signup-page-content{
-        display: flex;
+        display: -webkit-flex;
         flex-direction: row-reverse;
         flex-grow: 1;
         flex-wrap: wrap;
@@ -135,20 +135,20 @@ export default {
     }
 
     .signup-page-block{
-        display: flex;
+        display: -webkit-flex;
         flex: 1;
         justify-content: center;
     }
 
     .signup-page-registerBlock{
-        display: flex;
+        display: -webkit-flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
 
     .register-form{
-        display: flex;
+        display: -webkit-flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
@@ -176,7 +176,7 @@ export default {
     }
 
     .signup-page-bannerContent{
-        display: flex;
+        display: -webkit-flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;

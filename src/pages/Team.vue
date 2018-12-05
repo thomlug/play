@@ -397,7 +397,7 @@ export default {
 
 .team-profile-header {
   margin: 0rem 0rem;
-  display: flex;
+  display: -webkit-flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
@@ -430,7 +430,7 @@ export default {
 }
 
 .managers-block {
-  display: flex;
+  display: -webkit-flex;
   /* justify-content: center; */
   align-items: center;
   overflow-x: scroll;

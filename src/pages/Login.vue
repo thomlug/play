@@ -186,10 +186,10 @@ div.mdl-progress::after {
 }
 
 .login-form {
-  display: flex;
+  display: -webkit-flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  -webkit-justify-content: center;
+  -webkit-flex-direction: column;
 }
 
 .form-element {
@@ -202,7 +202,7 @@ div.mdl-progress::after {
 }
 
 .signin-container {
-  display: flex;
+  display: -webkit-flex;
   flex-flow: column;
   align-items: center;
   justify-content: center;

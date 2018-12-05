@@ -319,7 +319,7 @@
         text-align: center;
     }
 
-    @media (min-width: 700px) {
+    @media (min-width: 768px) {
         .centre-margin {
             margin-left: 40%
         }
@@ -543,7 +543,7 @@
     float: right;
 }  
 }
-@media (max-width: 768px) {
+@media (max-width: 990px) {
     /* Place the navbar at the bottom of the page, and make it stick */
 .body{
     padding-top: 1px;
@@ -562,7 +562,7 @@
     box-shadow: 2px 2px 6px 1px darkslategrey;
 }
 .nav-cont{
-    display: flex;
+    display: -webkit-flex;
     justify-content: space-between;
 }
 .fa-quote-left{
@@ -629,6 +629,12 @@ team-item{
     text-align: center;
     padding: 2px 0px 8px 0px;
 }
+
+/* @media (min-width: 768px) and (max-width: 992px){
+.play-logo{    
+        margin: 0px -25px 0px 0;
+        }
+} */
 /* .navbar-inverse .navbar-toggler{
     display: none;
 } */

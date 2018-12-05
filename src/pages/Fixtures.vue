@@ -342,7 +342,7 @@
     }
 
     .status-container {
-        display: flex;
+        display: -webkit-flex;
         flex-direction: row;
         align-items: stretch;
         justify-content: left;
@@ -403,7 +403,7 @@
     }
 
     .heading {
-        display: flex;
+        display: -webkit-flex;
         flex-flow: row;
         align-items: center;
         justify-content: center;
@@ -543,7 +543,7 @@
         .tabs-component-tabs {
             border: 0;
             align-items: stretch;
-            display: flex;
+            display: -webkit-flex;
             justify-content: flex-start;
             margin-bottom: -10px;
         }
@@ -594,7 +594,7 @@
     .tabs-component-tab-a {
         align-items: center;
         color: inherit;
-        display: flex;
+        display: -webkit-flex;
         padding: .75em 1em;
         text-decoration: none;
         font-size: larger;

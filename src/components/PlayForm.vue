@@ -27,7 +27,7 @@ export default {
     }
 
     .centered-col{
-        display: flex;
+        display: -webkit-flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;

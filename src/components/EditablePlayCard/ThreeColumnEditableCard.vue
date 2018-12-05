@@ -66,9 +66,9 @@ export default {
     font-size: 1.3rem;    
     height: 1.5rem;
     width: 1.5rem;    
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
     position: relative;
     top: 15%;
     cursor: pointer;
