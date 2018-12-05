@@ -45,6 +45,6 @@ export default {
 .btn-primary:active {
   background-image: linear-gradient(170deg, #2acad0, dodgerblue);
   border: 1px solid lightgrey;
-  box-shadow: 2px 1px 4px -1px grey;
+  /* box-shadow: 2px 1px 4px -1px grey; */
 }
 </style>

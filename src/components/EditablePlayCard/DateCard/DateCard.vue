@@ -40,7 +40,6 @@
                 <div><available-button  :onClick="() => this.setGameActive()">On</available-button></div>
 
 <!-- <div><available-button :class="{'btn-teams-active': setGameActive()=== true }">On</available-button></div> -->
-                
                 <div><danger-button :onClick="() => this.setGameCancelled()">Off</danger-button></div>
                 <div><done-button :onClick="setGameComplete" type="button" class="btn ">Done</done-button></div>
               </div>
@@ -247,7 +246,7 @@ export default {
   border: 1px solid lightgrey;
   color: white;
   cursor: pointer;
-  box-shadow: 2px 1px 4px -1px grey;
+  box-shadow:none;
 }
 
 .btn-tbc:focus {

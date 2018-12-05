@@ -2535,7 +2535,7 @@ if (confirm("Selecting this will send an email reminder to only those who have n
         padding: 3px 7px 2px 6.5px;
         font-size: small;
         font-weight: 300;
-        margin: -5px -5px -5px 2px;
+        margin: -5px -5px -2px 5px;
         vertical-align: middle;
     }
 
